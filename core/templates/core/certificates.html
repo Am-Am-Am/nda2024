@@ -1,0 +1,56 @@
+{% extends 'core/base1.html' %}
+{% load static %}
+
+{% block content %}
+  <header style="height: 0px;">
+    <!-- летающая шапка -->
+    {% include 'core/components/flyingHeader.html' %}
+
+    <!-- летающая шапка -->
+  </header>
+  <main class="main">
+    <div class="container1">
+      <div class="breadCrumbs">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item fs-4">
+            <a href="{% url 'home' %}" style="color: var(--color-theme-main)">ГЛАВНАЯ</a>
+          </li>
+          <li class="breadcrumb-item active fs-4" aria-current="page">Сертификаты</li>
+        </ol>
+      </div>
+      <div class="brandBanner">
+        <div class="brandLogo">
+          <img src="{% static 'images/certificates/certificates.svg' %}" alt="" />
+        </div>
+        <div class="brandInfo">
+          <h1>ру и сертификаты</h1>
+          <h2>РЕГИСТРАЦИОННОЕ УДОСТОВЕРЕНИЕ, ДЕКЛАРАЦИИ СООТВЕТСТВИЯ И ДРУГИЕ ДОКУМЕНТЫ</h2>
+        </div>
+      </div>
+      <div class="catalogItems">
+        {% for brand in brands %}
+          <a href="{% url 'brand_certificates' brand.pk %}">
+            <div class="catalogItem">
+              <div class="catalogItemImg">
+                <img src="{{ brand.logo.url }}" alt="{{ brand.name }}" />
+              </div>
+              <h3>{{ brand.name }}</h3>
+            </div>
+          </a>
+        {% endfor %}
+
+        <!-- 3 пустых дива - для ровной сетки flex -->
+        <div class="emptyEl"></div>
+        <div class="emptyEl"></div>
+        <div class="emptyEl"></div>
+        <!-- 3 пустых дива - для ровной сетки flex -->
+      </div>
+      <ul></ul>
+      <!-- плавающий элемент с формами связи -->
+      {% include 'core/components/formsContainer.html' %}
+
+      <!-- плавающий элемент с формами связи -->
+      <!-- формы на странице -->
+    </div>
+  </main>
+{% endblock %}

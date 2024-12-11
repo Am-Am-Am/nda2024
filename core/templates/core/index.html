@@ -1,52 +1,29 @@
-{% extends 'core/base.html' %}
+{% extends 'core/base1.html' %}
 {% load cache %}
 {% load infoblock_tag %}
+{% load static %}
+
 {% block content %}
 
-    {% infoblock_query %}
+    <header>
+      {% include 'core/components/flyingHeader.html' %}
 
-    {% include 'core/components/search_field.html' %}
+      {% include 'core/components/subheader.html' %}
+    </header>
+
+    <main>
+      {% include 'core/components/catalog.html' %}
+      <!-- формы на странице -->
+  
+      <!-- плавающий элемент с формами связи -->
+      {% include 'core/components/formsContainer.html' %}
+  
+      <!-- плавающий элемент с формами связи -->
+      <!-- формы на странице -->
+    </main>
 
     {% cache 600 index_page %}
-        <div class="main-container">
-            <ul class="nav nav-pills nav-justified mt-5" id="index-tabs" role="tablist" style="border: solid 2px #f9f9f7">
-                <li class="nav-item" role="presentation">
-                    <button
-                            class="nav-link active fs-5 fw-bold"
-                            id="brands-tab"
-                            data-bs-toggle="tab"
-                            data-bs-target="#brands"
-                            type="button"
-                            role="tab"
-                            aria-controls="brands"
-                            aria-selected="true">
-                        Каталог по производителям
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button
-                        class="nav-link fs-5 fw-bold"
-                        id="categories-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#categories"
-                        type="button"
-                        role="tab"
-                        aria-controls="categories"
-                        aria-selected="false"
-                    >
-                    Каталог по направлениям
-                    </button>
-                </li>
-            </ul>
-            <div class="tab-content" id="index-tabs-content">
-                <div class="tab-pane fade show active" id="brands" role="tabpanel" aria-labelledby="brands-tab">
-                    {% include 'core/components/brands_tab.html' %}
-                </div>
-                <div class="tab-pane fade show" id="categories" role="tabpanel" aria-labelledby="categories-tab">
-                    {% include 'core/components/categories_tab.html' %}
-                </div>
-            </div>
-        </div>
+        
     {% endcache %}
 
 {% endblock %}      

@@ -1,4 +1,4 @@
-{% extends 'core/base.html' %}
+{% extends 'core/base1.html' %}
 {% load static %}
 {% load thumbnail %}
 {% block title %}<title>{{ category.name }}</title>{% endblock %}
@@ -10,8 +10,8 @@
 
     {% include 'core/components/search_field.html' %}
 
-    <script src="{% static '/js/carousel.js' %}"></script>
-    <script src="{% static '/js/offers-htmx-handlers.js' %}"></script>
+    <script src="{% static '/scripts/carousel.js' %}"></script>
+    <script src="{% static '/scripts/offers-htmx-handlers.js' %}"></script>
 
     <div class="main-container">
 

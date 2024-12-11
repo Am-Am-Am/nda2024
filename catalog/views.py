@@ -6,7 +6,9 @@ from django.contrib import messages
 from catalog.models import Category, Brand, Offer
 from files.models import ModelFile, ModelImage
 from cart.forms import CartAddProductForm
-
+from django.views.generic import DetailView
+from django.core.mail import send_mail
+from django.views.generic.edit import FormView
 
 SEARCH_QUERY_PARAM = 'q'
 
@@ -33,18 +35,19 @@ def breadcrumbs_path(category):
 
 
 class IndexView(TemplateView):
-    template_name = 'core/index.html'
+    template_name = 'core\index.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['brands'] = Brand.visible.all().order_by('name')
-        context['categories'] = Category.visible.filter(parents=None).filter(brand=None)
+        context['categories'] = Category.visible.filter(parents=None)
+        # context['categories'] = Category.visible.filter(parents=None).filter(brand=None)
         return context
 
 
 class CategoryView(TemplateView):
     model = Category
-    template_name = 'catalog/category.html'
+    template_name = 'core/category.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -57,7 +60,7 @@ class CategoryView(TemplateView):
 
 class BrandView(TemplateView):
     model = Category
-    template_name = 'catalog/brand.html'
+    template_name = 'core/brand.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -69,7 +72,7 @@ class BrandView(TemplateView):
 
 class OfferView(TemplateView):
     model = Offer
-    template_name = 'catalog/offer.html'
+    template_name = 'core/offer2.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -86,7 +89,7 @@ class OfferView(TemplateView):
 
 class SiteSearchView(ListView):
     model = Category
-    template_name = 'catalog/components/search.html'
+    template_name = 'core/search.html'
     paginate_by = 10
 
     def get_queryset(self):
@@ -105,3 +108,38 @@ class SiteSearchView(ListView):
             .prefetch_related(related_offers).distinct()
         )
         return qs
+
+class BrandsWithCertificatesView(ListView):
+    model = Brand
+    template_name = 'core/certificates.html'  
+    context_object_name = 'brands'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        brands_with_certs = set(Brand.objects.filter(category__modelfile__isnull=False))
+        return queryset.filter(id__in=[b.id for b in brands_with_certs])
+    
+
+class BrandCertificatesDetailView(DetailView):
+    model = Brand
+    template_name = 'core/brand_certificates_detail.html'
+    context_object_name = 'brand'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        brand = self.object
+        categories = Category.objects.filter(brand=brand)
+        certificates = ModelFile.objects.filter(category__in=categories)
+        
+        # Формируем контекст для передачи в шаблон
+        context['categories'] = categories
+        context['certificates'] = certificates
+        return context
+    
+class WorkView(TemplateView):
+    template_name = 'core/work.html'
+
+class ContactsView(TemplateView):
+    template_name = 'core/contacts.html'
+
+
