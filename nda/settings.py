@@ -25,7 +25,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+# SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = 'django-insecure-=j#*b5xl1dgzvmdrf9zc+qae3z7^uqie)rao-_*okz+=tboh2-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -109,11 +110,16 @@ WSGI_APPLICATION = 'nda.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'another_db'),
-        'USER': os.getenv('DB_USER', 'postgres'),
-        'PASSWORD': os.getenv('DB_USER_PASSWORD'),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
-        'PORT': os.getenv('DB_PORT', '5432'),
+        # 'NAME': os.getenv('DB_NAME', 'another_db'),
+        # 'USER': os.getenv('DB_USER', 'postgres'),
+        # 'PASSWORD': os.getenv('DB_USER_PASSWORD'),
+        # 'HOST': os.getenv('DB_HOST', 'localhost'),
+        # 'PORT': os.getenv('DB_PORT', '5432'),
+        'NAME': 'nda',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -192,7 +198,7 @@ MEDIA_URL = '/media/'
 
 
 # DJANGO_SENDFILE SETTINGS
-PRIVATE_ROOT = os.getenv('PRIVATE_PATH')
+PRIVATE_ROOT = os.getenv('PRIVATE_PATH', os.path.join(BASE_DIR, 'private')) 
 SENDFILE_ROOT = 'private/'
 SENDFILE_BACKEND = 'django_sendfile.backends.simple'
 
