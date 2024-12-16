@@ -55,6 +55,7 @@ class CategoryView(TemplateView):
         context['brand'] = category.brand
         context['category'] = category
         context['breadcrumbs'] = breadcrumbs_path(category)
+        context['brands'] = Brand.visible.all().order_by('name')
         return context
 
 
@@ -67,6 +68,7 @@ class BrandView(TemplateView):
         brand = get_object_or_404(Brand.visible, slug=self.kwargs['brand_slug'])
         context['categories'] = Category.visible.filter(parents=None, brand=brand).select_related('brand')
         context['brand'] = brand
+        context['brands'] = Brand.visible.all().order_by('name')
         return context
 
 
@@ -84,6 +86,7 @@ class OfferView(TemplateView):
         context['certificates'] = ModelFile.objects.filter(category=category.id)
         context['breadcrumbs'] = breadcrumbs_path(category)
         context['cart_product_form'] = CartAddProductForm()
+        context['brands'] = Brand.visible.all().order_by('name')
         return context
 
 
@@ -115,8 +118,10 @@ class BrandsWithCertificatesView(ListView):
     context_object_name = 'brands'
 
     def get_queryset(self):
+        
         queryset = super().get_queryset()
         brands_with_certs = set(Brand.objects.filter(category__modelfile__isnull=False))
+
         return queryset.filter(id__in=[b.id for b in brands_with_certs])
     
 
@@ -134,12 +139,21 @@ class BrandCertificatesDetailView(DetailView):
         # Формируем контекст для передачи в шаблон
         context['categories'] = categories
         context['certificates'] = certificates
+        context['brands'] = Brand.visible.all().order_by('name')
         return context
     
 class WorkView(TemplateView):
     template_name = 'core/work.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['brands'] = Brand.visible.all().order_by('name')
+        return context
 
 class ContactsView(TemplateView):
     template_name = 'core/contacts.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['brands'] = Brand.visible.all().order_by('name')
+        return context
 
 

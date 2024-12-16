@@ -44,13 +44,25 @@
                             {% endfor %}
                         </div>
                         <div class="slider-arrows">
-                            <div class="slick-prev1" style="background-image: url('{% static "images/products/arrowLeft.svg"%}')"></div>
-                            <div class="slick-next1" style="background-image: url('{% static "images/products/arrowRight.svg"%}')"></div>
+                            <div class="slick-prev1" style="background-image: url('{% static "images/offer/left.svg"%}')"></div>
+                            <div class="slick-next1" style="background-image: url('{% static "images/offer/right.svg"%}')"></div>
                         </div>
                     </div>
                     <div class="slider-nav nav2">
 
+
                         {% for image in images %}
+                        {% with forloop.counter0 as index %}
+                        {% thumbnail image.image '450x450' as im %}
+                        <div class="sliderNavEl stick-cloned">
+                            <a data-slide-index="{{index}}">
+                                <img src="{{im.url}}" style="width: 100%">
+                            </a>
+                        </div>
+                        {% endthumbnail %}
+                        {% endwith %}
+                        {% endfor %}
+                        {% comment %} {% for image in images %}
                         {% with forloop.counter0 as index %}
                         {% thumbnail image.image '450x450' as im %}
                         <div class="sliderNavEl stick-cloned">
@@ -74,7 +86,7 @@
                         </div>
                         {% endthumbnail %}
                         {% endwith %}
-                        {% endfor %}
+                        {% endfor %} {% endcomment %}
                     </div>
 
                 </div>
