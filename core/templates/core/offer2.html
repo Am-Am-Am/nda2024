@@ -2,32 +2,32 @@
 {% load static %}
 {% load thumbnail %}
 {% block title %}
-  <title>{{ category.name }}</title>
+<title>{{ category.name }}</title>
 {% endblock %}
 {% block header %}
 
 {% endblock %}
 
 {% block links %}
-  <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}" />
-  <link rel="stylesheet" type="text/css" href="{% static 'custom/css/custom.css' %}" />
-  <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
-  <script src="{% static 'htmx/htmx.min.js' %}"></script>
-  <script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script>
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'custom/css/custom.css' %}" />
+<script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+<script src="{% static 'htmx/htmx.min.js' %}"></script>
+<script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script>
 {% endblock %}
 
 {% block content %}
-  <header style="height: 0px;">
+<header style="height: 0px;">
     <!-- летающая шапка -->
     {% include 'core/components/flyingHeader.html' %}
 
     <!-- летающая шапка -->
-  </header>
+</header>
 
-  <main class="main">
+<main class="main">
     <div class="container1">
-     
-      
+
+
         {% include 'core/components/breadcrumbs.html' %}
         {% include 'core/components/banner.html' %}
 
@@ -38,10 +38,10 @@
                     <div class="sliderContainer">
                         <div class="slider">
                             {% for image in images %}
-                                {% thumbnail image.image '600x800' as im %}
-                                <div><img class="sliderImg" src="{{im.url}}"></div>
-                                {% endthumbnail %}
-                            {% endfor %} 
+                            {% thumbnail image.image '600x800' as im %}
+                            <div><img class="sliderImg" src="{{im.url}}"></div>
+                            {% endthumbnail %}
+                            {% endfor %}
                         </div>
                         <div class="slider-arrows">
                             <div class="slick-prev1" style="background-image: url('{% static "images/products/arrowLeft.svg"%}')"></div>
@@ -49,43 +49,43 @@
                         </div>
                     </div>
                     <div class="slider-nav nav2">
-                        
+
                         {% for image in images %}
-                            {% with forloop.counter0 as index %}
-                                {% thumbnail image.image '450x450' as im %}
-                                        <div class="sliderNavEl stick-cloned">
-                                            <a data-slide-index="-{{index}}">
-                                                <img src="{{im.url}}" style="width: 100%">
-                                            </a>
-                                        </div>
-                                    {% endthumbnail %}
-                                    {% thumbnail image.image '450x450' as im %}
-                                        <div class="sliderNavEl">
-                                            <a class="{% if index == 0 %}active{% endif %}" data-slide-index="{{index}}">
-                                                <img src="{{im.url}}" style="width: 100%">
-                                            </a>
-                                        </div>
-                                    {% endthumbnail %}
-                                    {% thumbnail image.image '450x450' as im %}
-                                    <div class="sliderNavEl stick-cloned">
-                                        <a data-slide-index="{{index}} + images.length + 2 ">
-                                            <img src="{{im.url}}" style="width: 100%">
-                                        </a>
-                                    </div>
-                                {% endthumbnail %}
-                            {% endwith %}
+                        {% with forloop.counter0 as index %}
+                        {% thumbnail image.image '450x450' as im %}
+                        <div class="sliderNavEl stick-cloned">
+                            <a data-slide-index="-{{index}}">
+                                <img src="{{im.url}}" style="width: 100%">
+                            </a>
+                        </div>
+                        {% endthumbnail %}
+                        {% thumbnail image.image '450x450' as im %}
+                        <div class="sliderNavEl">
+                            <a class="{% if index == 0 %}active{% endif %}" data-slide-index="{{index}}">
+                                <img src="{{im.url}}" style="width: 100%">
+                            </a>
+                        </div>
+                        {% endthumbnail %}
+                        {% thumbnail image.image '450x450' as im %}
+                        <div class="sliderNavEl stick-cloned">
+                            <a data-slide-index="{{index}} + images.length + 2 ">
+                                <img src="{{im.url}}" style="width: 100%">
+                            </a>
+                        </div>
+                        {% endthumbnail %}
+                        {% endwith %}
                         {% endfor %}
                     </div>
-                       
+
                 </div>
-            
+
 
                 <div class="productTitle">
                     <div class="productTitleText">
                         <h3>({{brand}})</h3>
                         <h2>{{ category.name }}</h2>
                         {{ category.description|safe }}
-                       
+
                     </div>
                     <div class="productTitleConnect">
                         <div class="linkText">
@@ -129,8 +129,8 @@
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="pills-catalogs-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-catalogs" type="button" role="tab"
-                                aria-controls="pills-catalogs" aria-selected="false">Каталоги и РУ</button>
+                                data-bs-target="#pills-catalogs" type="button" role="tab" aria-controls="pills-catalogs"
+                                aria-selected="false">Каталоги и РУ</button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link last" id="pills-video-tab" data-bs-toggle="pill"
@@ -144,89 +144,96 @@
                     <div class="tab-pane fade show active" id="pills-description" role="tabpanel"
                         aria-labelledby="pills-description-tab">
                         <div class="productDescription">
-                            <h2>ПОЛИСОРБ</h2>
-                            <p><b>Применение:</b> для сшивания или для лигирования тканей в общей, торакальной
-                                хирургии, урологии, гинекологии и офтальмохирургии. Ограничено применение в ССХ и на
-                                нервных тканях.</p>
-                            <p><b>Действие:</b> Polysorb™ вызывает минимальную воспалительную реакцию в тканях,
-                                быстро инкапсулируется. Прогрессирующая потеря прочности и окончательное
-                                рассасывание происходит путем гидролиза, когда Lactomer™ 9-1 распадается на
-                                гликолиевую и молочную кислоты, которые впоследствии рассасываются и
-                                метаболизируются в организме.</p>
-                            <p><b>Прочность:</b> первоначальная прочность в узле оценивается как 140% стандарта USP
-                                и EP. 80% прочности сохраняется в первые 2 недели и 30% сохраняется по истечению 3
-                                недель после имплантации шовного материала.</p>
-                            <p><b>Рассасывание:</b> начинается как потеря прочности без потери массы и заканчивается
-                                между 56 и 70 днями.Стерилизация: оксид этилена.</p>
-                            <p><b>Упаковка:</b> Polysorb™ окрашен в фиолетовый цвет для большей наглядности и также
-                                доступен неокрашенный. Возможные варианты размеров от 2 (метрический размер 5) до
-                                8-0 (М 0.4). Стерильный шовный материал поставляется в отрезках, катушках,
-                                безыгольном исполнении или с различными видами игл, как перманентно зафиксированных,
-                                так и отсоединяемых. Формируется в коробках по 12, 24 и 36 шт.</p>
+
 
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-characteristics" role="tabpanel"
                         aria-labelledby="pills-characteristics-tab">
                         <div class="productSpecifications">
-                            <h2>Характеристики</h2>
+
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-order" role="tabpanel" aria-labelledby="pills-order-tab">
 
                         <div class="placeOrder">
-                            <h2>Форма оформления заказа</h2>
                             <form action=""></form>
                             <div class="container1 mt-5">
-                                <table class="table-responsive table-bordered my-5 w-100" style="border: 2px solid #3391c5; box-shadow: 0 0 5px 0 #000000">
+                                <table class="table table-responsive table-borderless">
                                     <thead>
-                                      <tr style="background: rgb(249, 249, 247);">
-                                        <th scope="col" class="col-sm-2 text-center" style="border-right: 1px solid #a1a1a0">
-                                          <strong>Код</strong>
-                                        </th>
-                                        <th scope="col" class="col-sm-7 text-start" style="border-right: 1px solid #a1a1a0">
-                                          <strong>Описание</strong>
-                                        </th>
-                                        <th scope="col" class="col-sm-1 text-start" style="border-right: 1px solid #a1a1a0">
-                                          <strong>Количество в упаковке</strong>
-                                        </th>
-                                        <th scope="col" class="col-sm-2">Количество</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody class="table-group-divider">
-                                      {% for offer in offers %}
-                                        <tr>
-                                          <td class="text-center align-middle" style="border-top: 1px solid #a1a1a0; border-bottom: 1px solid #a1a1a0; border-right: 1px solid #a1a1a0; font-size: 20px;">{{ offer.name }}</td>
-                                          <td class="text-start align-middle" style="border-top: 1px solid #a1a1a0; border-left: 1px solid #a1a1a0; border-right: 1px solid #a1a1a0; font-size: 20px;">{{ offer.description }}</td>
-                                          <td class="text-start align-middle" style="border-top: 1px solid #a1a1a0; border-left: 1px solid #a1a1a0; border-right: 1px solid #a1a1a0; font-size: 20px;">{{ offer.shipping_pack }}</td>
-                                          <td class="text-start align-middle" style="border-top: 1px solid #a1a1a0; border-left: 1px solid #a1a1a0;">
-                                            <form hx-post="{% url 'cart_add' offer_id=offer.pk %}" hx-target="#cart" hx-swap="outerHTML">
-                                              <div class="input-group justify-content-evenly">
-                                                <input class="form-control" type="number" name="quantity" min="1" required="" id="id_quantity" />
-                                                <button class="btn button-bg btn-primary" type="submit" value="">Добавить</button>
-                                              </div>
-                                            </form>
-                                          </td>
+                                        <tr class="table-header">
+                                            <th class="col-sm-1 text-center">
+                                                Код
+                                            </th>
+                                            <th class="col-sm-10 text-start">
+                                                Описание
+                                            </th>
+                                            <th class="col-sm-1 text-start">
+                                                Уп/шт.
+                                            </th>
+                                            <th class="col-sm-2">
+                                                Количество
+                                            </th>
                                         </tr>
-                                      {% endfor %}
+                                    </thead>
+                                    <tbody class="">
+                                        {% for offer in offers %}
+                                        <tr class="table-row">
+                                            <td class="text-center align-middle">{{ offer.name }}</td>
+                                            <td class="text-start align-middle">{{ offer.description }}</td>
+                                            <td class="text-start align-middle">{{ offer.shipping_pack }}</td>
+                                            <td class="text-start">
+
+                                                <div class="tableCountAdd"
+                                                    onclick="toggleInput(this)">Добавить
+                                                </div>
+
+                                                <div class="quantity-input" style="display:none;">
+                                                    <form hx-post="{% url 'cart_add' offer_id=offer.pk %}"
+                                                        hx-target="#cart" hx-swap="outerHTML" style="width: 100%;">
+                                                        <div class="offerCount">
+                                                            <div class="inputCount">
+                                                                <div class="inputCountBtn1"
+                                                                    onclick="changeQuantity(this, -1)">-</div>
+
+                                                                <input class="form-control" type="number"
+                                                                    name="quantity" value="0" required=""
+                                                                    id="id_quantity" min="1"/>
+
+                                                                <div class="inputCountBtn2"
+                                                                    onclick="changeQuantity(this, 1)">+</div>
+
+                                                            </div>
+
+                                                                <button class="btn btn-primary quantityFormBtn" type="submit"
+                                                                value="">Добавить</button>
+                                                           
+                                                        </div>
+                                                    </form>
+
+                                                </div>
+
+
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
                                     </tbody>
-                                  </table>
+                                </table>
                             </div>
                             </form>
                         </div>
                     </div>
 
-                    <div class="tab-pane fade" id="pills-catalogs" role="tabpanel"
-                        aria-labelledby="pills-catalogs-tab">
+                    <div class="tab-pane fade" id="pills-catalogs" role="tabpanel" aria-labelledby="pills-catalogs-tab">
                         <div class="catalogTutorial">
-                            <h2>
-                                Каталоги и Руководства по эксплуатации
-                            </h2>
+                            
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-video" role="tabpanel" aria-labelledby="pills-video-tab">
                         <div class="productVideo">
-                            <h2>Видео о товаре/услуге</h2>
+                            <div class="productVideoContainer">
+
+                            </div>
 
                         </div>
                     </div>
@@ -235,8 +242,9 @@
                 <div id="cart">
                     {% if offers_in_cart|length > 0 %}
                     <div class="placeResult">
-                        
-                        <button type="button" class="orderButton" hx-get="{% url 'cart_modal' %}" hx-target="#dialog">Оформить заказ</button>
+
+                        <button type="button" class="orderButton" hx-get="{% url 'cart_modal' %}"
+                            hx-target="#dialog">Оформить заказ</button>
                         <div class="countItems">
                             <div class="countText">Всего изделий в заказе:</div>
                             <div class="count">{{ offers_in_cart|length }}</div>
@@ -248,41 +256,45 @@
         </div>
 
 
-    
+
 
         <!-- Placeholder for the modal -->
         <div id="modal" class="modal fade">
-          <div id="dialog" class="modal-dialog" hx-target="this"></div>
+            <div id="dialog" class="modal-dialog" hx-target="this"></div>
         </div>
 
         <!-- Empty toast to show the message -->
 
         <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 2000;">
-          <div id="toast" class="toast align-items-center text-white border-0 bg-success" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="d-flex">
-              <div id="toast-body" class="toast-body"></div>
-              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            <div id="toast" class="toast align-items-center text-white border-0 bg-success" role="alert"
+                aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div id="toast-body" class="toast-body"></div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+                </div>
             </div>
-          </div>
-          <div id="toast-warning" class="toast align-items-center text-white border-0 bg-warning" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="d-flex">
-              <div id="toast-warning-body" class="toast-body"></div>
-              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            <div id="toast-warning" class="toast align-items-center text-white border-0 bg-warning" role="alert"
+                aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div id="toast-warning-body" class="toast-body"></div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+                </div>
             </div>
-          </div>
         </div>
-    
+
     </div>
     <!-- плавающий элемент с формами связи -->
     {% include 'core/components/formsContainer.html' %}
 
     <!-- плавающий элемент с формами связи -->
-  </main>
+</main>
 {% endblock %}
 
 {% block script %}
- 
-  <script src="{% static 'scripts/offers-htmx-handlers.js' %}"></script>
-  <script src="{% static "scripts/productSlider.js" %}"></script>
+
+<script src="{% static 'scripts/offers-htmx-handlers.js' %}"></script>
+<script src="{% static "scripts/productSlider.js" %}"></script>
 
 {% endblock %}

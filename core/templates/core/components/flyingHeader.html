@@ -94,7 +94,7 @@
                                 <a href="/">Главная</a>
                             </li>
                             <li>
-                                <a href="#">Условия работы</a>
+                                <a href="{% url 'work' %}">Условия работы</a>
                             </li>
                             <li>
                                 <div class="catalogBurgerInner">
@@ -107,25 +107,20 @@
                             </li>
                             <div class="collapse collapseList" id="components-collapse">
                                 <ul>
-                                    <li class="collapseEl">
-                                        <a href="">JOHNSON & JOHNSON</a>
-                                    </li>
-                                    <li class="collapseEl">
-                                        <a href="">JOHNSON & JOHNSON</a>
-                                    </li>
-                                    <li class="collapseEl">
-                                        <a href="">JOHNSON & JOHNSON</a>
-                                    </li>
-                                    <li class="collapseEl">
-                                        <a href="">JOHNSON & JOHNSON</a>
-                                    </li>
+                                    {% for brand in brands %}
+                                        <li class="collapseEl">
+                                            <a href="{% url 'brand' brand_slug=brand.slug %}">
+                                                    {{ brand.name }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                             <li>
-                                <a href="certificates.html">Сертификаты</a>
+                                <a href="{% url 'brands_with_certificates' %}">Сертификаты</a>
                             </li>
                             <li>
-                                <a href="contacts.html">Контакты</a>
+                                <a href="{% url 'contacts' %}">Контакты</a>
                             </li>
                             <div class="info">
                                 <div class="time">

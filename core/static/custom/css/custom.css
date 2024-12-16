@@ -1,4 +1,4 @@
-:root {
+/* :root {
     --color-theme-main: #3391c5;
     --color-theme-button-border: #5BA7D0;
     --color-theme-card-border: #efefee;
@@ -52,7 +52,6 @@ h1, h4 {
 
 .nav-item .active {
     background-color: var(--color-theme-main) !important;
-    color: #fff !important;;
 }
 
 .nda-card {
@@ -63,9 +62,6 @@ h1, h4 {
     position: relative;
 }
 
-/*.nda-card:hover {*/
-/*    border: solid 1px var(--color-theme-text);*/
-/*}*/
 
 .nda-card-image {
     border-radius: 10px;
@@ -276,36 +272,4 @@ header {
     background-color: var(--color-theme-header);
 }
 
-/*.divTable{*/
-/*    display: table;*/
-/*    width: 100%;*/
-/*    border: 2px solid #3391c5;*/
-/*    box-shadow: 0 0 5px 0 #000000*/
-/*}*/
-/*.divTableRow {*/
-/*    display: table-row;*/
-/*}*/
-/*.divTableRowHead {*/
-/*    display: table-row;*/
-/*    background: rgb(249, 249, 247);*/
-/*    border-bottom: 20px;*/
-/*}*/
-
-/*.divTableCell {*/
-/*    border: 1px solid #999999;*/
-/*    display: table-cell;*/
-/*    padding: 3px 10px;*/
-/*}*/
-
-/*.divTableBody {*/
-/*    display: table-row-group;*/
-/*}*/
-
-/*.breadcrumb li {*/
-/*    display: inline;*/
-/*    max-width: 200px;*/
-/*    white-space: nowrap;*/
-/*    overflow: hidden; */
-/*    text-overflow: ellipsis;*/
-/*}*/
-
+ */
