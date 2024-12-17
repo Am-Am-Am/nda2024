@@ -13,8 +13,10 @@ class ContactForm(forms.Form):
         required=True,
         max_length=120,
         widget=forms.TextInput(
-            attrs={'placeholder': 'Ваше имя',
+
+            attrs={'placeholder': 'ФИО контактного лица',
                    'class': 'form-control',
+                   'id': 'fullNameLegal',
                    }))
     phone_number = forms.CharField(
         required=True,
@@ -23,10 +25,36 @@ class ContactForm(forms.Form):
                    'class': 'form-control',
                    'id': 'validationPhoneNumber'
                    }))
-    email = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'example@example.ru', 'class': 'form-control'}))
+    email = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'example@example.ru', 'class': 'form-control', 'id':'email'}))
+
+    company_name = forms.CharField(
+        label='Наименование организации',
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'id': 'companyName',
+            'placeholder': 'Наименование организации',
+        })
+    )
+
+    inn = forms.CharField(
+        label='ИНН',
+        max_length=12,
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'id': 'inn',
+            'placeholder': 'ИНН',
+        })
+    )
+
+    message = forms.CharField(required=False, widget=forms.Textarea(attrs={ 'id':'message','class':"form-control"}))
+
     company_details = forms.FileField(required=False, widget=forms.ClearableFileInput(
         attrs={'multiple': False, 'allow_empty_file': True, 'id': 'company_details_input', 'form': 'cart_modal_form', 'class': 'form-control', 'type': 'file'}))
-    message = forms.CharField(required=False, widget=forms.Textarea(attrs={'placeholder': 'Ваше сообщение', 'class': 'form-control'}))
+    
+    
 
     def clean_phone_number(self):
         phone_number = self.cleaned_data['phone_number']

@@ -1,80 +1,77 @@
-<div class="modal-content">
-  <div class="modal-header">
-    <h1 class="modal-title fs-5" id="cartModalLabel">Ваш запрос</h1>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-  </div>
-  <div class="modal-body">
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="legal-tab" data-bs-toggle="tab" data-bs-target="#legal" type="button" role="tab" aria-controls="legal"aria-selected="true" >Юридическое лицо</button>
-          </li>
-
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="physical-tab" data-bs-toggle="tab" data-bs-target="#physical" type="button" role="tab" aria-controls="physical" aria-selected="false">Физическое лицо</button>
-      </li>
-
+<div class="modal-custom">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="cartModalLabel">Ваш запрос</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="legal-tab" data-bs-toggle="tab" data-bs-target="#legal" type="button" role="tab" aria-controls="legal"aria-selected="true" >Юридическое лицо</button>
+                </li>
       
-    </ul>
-    <div class="tab-content" id="myTabContent">
-      <!-- Форма для юридического лица -->
-      <div class="tab-pane fade show active" id="legal" role="tabpanel" aria-labelledby="legal-tab">
-        <div class="physicalForm">
-          <div class="formEl">
-            {% include 'nda_email/contactform.html' %}
-          </div>
-          <div class="listOrders mb-3">
-            {% include 'cart/cart_popup.html' %}
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="physical-tab" data-bs-toggle="tab" data-bs-target="#physical" type="button" role="tab" aria-controls="physical" aria-selected="false">Физическое лицо</button>
+            </li>
+      
+            
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <!-- Форма для юридического лица -->
+            <div class="tab-pane fade show active" id="legal" role="tabpanel" aria-labelledby="legal-tab">
+              <div class="physicalForm">
+                <div class="formEl">
+                  {% include 'nda_email/contactform.html' %}
+                </div>
+                  {% include 'cart/cart_popup.html' %}
+              </div>
+              {% comment %} <div class="mb-3">
+                {{ contact_form.company_details }}
+                {% if contact_form.company_details.errors %}
+                  <span style="color: #FF4343">{{ contact_form.details.errors }}</span>
+                {% endif %}
+              </div> {% endcomment %}
+            </div>
+            <!-- Форма для физического лица -->
+            <div class="tab-pane fade" id="physical" role="tabpanel" aria-labelledby="physical-tab">
+              <div class="physicalForm">
+                <div class="formEl">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="fullName" placeholder="ФИО" name="fullName" required />
+                    <label for="fullName">ФИО</label>
+                  </div>
+                  <div class="oneLine">
+                    <div class="form-floating mb-3 w-50">
+                      <input type="tel" class="form-control" id="phone" placeholder="Номер телефона" name="phone" required />
+                      <label for="phone">Номер телефона</label>
+                    </div>
+                    <div class="form-floating mb-3 w-50">
+                      <input type="email" class="form-control" id="email" placeholder="Email" name="email" required />
+                      <label for="email">Email</label>
+                    </div>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <textarea class="form-control" id="message" rows="3" placeholder="Текст письма" name="message" required></textarea>
+                    <label for="message">Текст письма</label>
+                  </div>
+                  <div class="mb-3">
+                    <label class="input-file">
+                      <input type="file" name="file" />
+                      <span>Прикрепить файл</span>
+                    </label>
+                  </div>
+                </div>
+               
+                  {% include 'cart/cart_popup.html' %}
+                
+              </div>
+            </div>
           </div>
         </div>
-        <div class="mb-3">
-          {{ contact_form.company_details }}
-          {% if contact_form.company_details.errors %}
-            <span style="color: #FF4343">{{ contact_form.details.errors }}</span>
-          {% endif %}
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+          <button type="submit" form="cart_modal_form" class="btn btn-primary">Отправить запрос</button>
         </div>
       </div>
-      <!-- Форма для физического лица -->
-      <div class="tab-pane fade" id="physical" role="tabpanel" aria-labelledby="physical-tab">
-        <div class="physicalForm">
-          <div class="formEl">
-            <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="fullName" placeholder="ФИО" name="fullName" required />
-              <label for="fullName">ФИО</label>
-            </div>
-            <div class="oneLine">
-              <div class="form-floating mb-3 w-50">
-                <input type="tel" class="form-control" id="phone" placeholder="Номер телефона" name="phone" required />
-                <label for="phone">Номер телефона</label>
-              </div>
-              <div class="form-floating mb-3 w-50">
-                <input type="email" class="form-control" id="email" placeholder="Email" name="email" required />
-                <label for="email">Email</label>
-              </div>
-            </div>
-            <div class="form-floating mb-3">
-              <textarea class="form-control" id="message" rows="3" placeholder="Текст письма" name="message" required></textarea>
-              <label for="message">Текст письма</label>
-            </div>
-            <div class="mb-3">
-              <label class="input-file">
-                <input type="file" name="file" />
-                <span>Прикрепить файл</span>
-              </label>
-            </div>
-          </div>
-          <div class="listOrders mb-3">
-            {% include 'cart/cart_popup.html' %}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <div class="form-check mb-3">
-      <input class="form-check-input" type="checkbox" id="policyCheckLegal" required />
-      <label class="form-check-label" for="policyCheckLegal">Я прочитал(а) уведомление о политике конфиденциальности</label>
-    </div>
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-    <button type="submit" form="cart_modal_form" class="btn btn-primary">Отправить запрос</button>
-  </div>
 </div>
+

@@ -15,32 +15,65 @@
         novalidate
 >
     {% csrf_token %}
-    <div class="mb-3">
-        {{ contact_form.name }}
-    </div>
-    <div class="mb-3">
-        {{ contact_form.phone_number }}
-        {% if contact_form.phone_number.errors %}
-            <div style="color: red">
-                {{ contact_form.phone_number.errors }}
+    <div class="physicalForm">
+        <div class="formEl">
+            <div class="form-floating mb-3">
+                {{ contact_form.name }}
+                <label for="fullNameLegal">ФИО контактного лица</label>
             </div>
-        {% endif %}
+            <div class="oneLine">
+                <div class="form-floating mb-3 w-50">
+                    {{ contact_form.phone_number }}
+                    <label for="validationPhoneNumber">Номер телефона</label>
+                    {% if contact_form.phone_number.errors %}
+                    <div style="color: red">
+                        {{ contact_form.phone_number.errors }}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="form-floating mb-3 w-50">
+                    {{ contact_form.email }}
+                    {% if contact_form.email.errors %}
+                        <span class="invalid-feedback">
+                            {{ contact_form.email.errors }}
+                        </span>
+                    {% endif %}
+                    <label for="email">Email</label>
+                </div>
+            </div>
+            <div class="oneLine">
+                <div class="form-floating mb-3 w-50">
+                    {{contact_form.company_name}}
+                    <label for="companyName">Наименование организации</label>
+                </div>
+                <div class="form-floating mb-3 w-50">
+                    {{contact_form.inn}}
+                    <label for="inn">ИНН</label>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                {{ contact_form.message }}
+                <label for="message">Комментарий к заказу</label>
+            </div>
+            <div class="mb-3">
+                <label class="input-file">
+                    {{contact_form.company_details}}
+                    <span>Прикрепить файл</span>
+                </label>
+            </div>
+            
+            <div
+                    id="captcha-container"
+                    class="smart-captcha mb-3"
+                    data-sitekey="ysc1_sxny6cNZmnvhyJKrojDDLNxj0nvkGnTleldHzqEo9d9475ca"
+                >
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="policyCheckLegal" required />
+                <label class="form-check-label" for="policyCheckLegal">Я прочитал(а) уведомление о политике конфиденциальности</label>
+              </div>
+        </div>
+        
     </div>
-    <div class="mb-3">
-        {{ contact_form.email }}
-            {% if contact_form.email.errors %}
-                <span class="invalid-feedback">
-                    {{ contact_form.email.errors }}
-                </span>
-            {% endif %}
-    </div>
-    <div class="mb-3">
-        {{ contact_form.message }}
-    </div>
-    <div
-            id="captcha-container"
-            class="smart-captcha mb-3"
-            data-sitekey="ysc1_sxny6cNZmnvhyJKrojDDLNxj0nvkGnTleldHzqEo9d9475ca"
-        >
-    </div>
+    
 </form>
