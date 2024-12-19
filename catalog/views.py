@@ -84,9 +84,19 @@ class OfferView(TemplateView):
         context['offers'] = Offer.visible.filter(category=category.id)
         context['images'] = ModelImage.objects.filter(category=category.id)
         context['certificates'] = ModelFile.objects.filter(category=category.id)
+        context['instruction'] = category.instruction
         context['breadcrumbs'] = breadcrumbs_path(category)
         context['cart_product_form'] = CartAddProductForm()
         context['brands'] = Brand.visible.all().order_by('name')
+
+        # Получаем информацию о специалисте, ответственном за данную категорию
+        context['specialist'] = category.specialist
+
+        # Передаем видео в зависимости от типа видео, указанного в категории
+        context['video_file'] = category.video_file
+        context['youtube_link'] = category.youtube_link
+        context['rt_link'] = category.rt_link
+
         return context
 
 

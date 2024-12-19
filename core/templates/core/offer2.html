@@ -101,22 +101,23 @@
                     </div>
                     <div class="productTitleConnect">
                         <div class="linkText">
-                            Связаться со специалистом по продукции Medtronic Александр Гарцуев:
+                            Связаться со специалистом по продукции {{brand}} {{specialist.name}}:
                         </div>
                         <div class="linkContacts">
-                            <a href="tel:79816967084">
+                            <a href="tel:{{specialist.phone}}">
                                 <div class="linkContactsEl">
                                     <img src="{% static "images/productCall.svg" %}" alt="">
-                                    <div>+7 (981) 696 - 70 - 84</div>
+                                    <div>{{specialist.phone}}</div>
                                 </div>
                             </a>
                             <a href="mailto:221@nda.ru">
                                 <div class="linkContactsEl">
                                     <img src="{% static "images/productMail.svg" %}" alt="">
-                                    <div>221@nda.ru</div>
+                                    <div>{{specialist.email}}</div>
                                 </div>
                             </a>
                         </div>
+                        {{vk_link}}
                     </div>
                 </div>
             </div>
@@ -144,11 +145,13 @@
                                 data-bs-target="#pills-catalogs" type="button" role="tab" aria-controls="pills-catalogs"
                                 aria-selected="false">Каталоги и РУ</button>
                         </li>
+                        {% if video_file or youtube_link or rt_link %}
                         <li class="nav-item" role="presentation">
                             <button class="nav-link last" id="pills-video-tab" data-bs-toggle="pill"
                                 data-bs-target="#pills-video" type="button" role="tab" aria-controls="pills-video"
                                 aria-selected="false">Видео</button>
                         </li>
+                        {% endif%}
                     </ul>
                 </div>
                 <div class="tab-content productTabContent" id="pills-tabContent">
@@ -156,8 +159,7 @@
                     <div class="tab-pane fade show active" id="pills-description" role="tabpanel"
                         aria-labelledby="pills-description-tab">
                         <div class="productDescription">
-
-
+                            {{ category.description|safe }}
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-characteristics" role="tabpanel"
@@ -238,17 +240,38 @@
 
                     <div class="tab-pane fade" id="pills-catalogs" role="tabpanel" aria-labelledby="pills-catalogs-tab">
                         <div class="catalogTutorial">
-                            
+                            {% for offer in offers %}
+                            <a href="{{ offer.tech_info }} ">Скачать Инструкцию</a>
+                            <a href="{{ offer.tech_info }} ">Скачать Инструкцию</a>
+                           {% endfor %}
+
                         </div>
                     </div>
+                    {% if video_file or youtube_link or rt_link %}
                     <div class="tab-pane fade" id="pills-video" role="tabpanel" aria-labelledby="pills-video-tab">
                         <div class="productVideo">
-                            <div class="productVideoContainer">
 
+                            <div class="productVideoContainer">
+                                
+                                    {% if  video_file %}
+                                        <!-- Локальное видео -->
+                                        <video controls>
+                                            <source src="{{ video_file }}" type="video/mp4">
+                                            
+                                        </video>
+                                    {% elif rt_link %}
+                                        <!-- Видео с RuTube -->
+                                        <iframe width="100%" height="100%" src="{{rt_link}}" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                                    {% elif youtube_link %}
+                                        <!-- Видео с Ютуб -->
+                                        <iframe width="100%" height="100%" src="https://rutube.ru/play/embed/405026faf0d5c5600a18d53a9dc84cf2/" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                                    {% endif %}
+                                
                             </div>
 
                         </div>
                     </div>
+                    {% endif %}
                 </div>
 
                 <div id="cart">

@@ -1,15 +1,15 @@
 
-<div class="listOrders mb-3">
-    {% if offers_in_cart|length > 0  %}
-    {% comment %} <div class="orderEl mb-3">
+{% comment %} <div class="listOrders mb-3">
+    {% if offers_in_cart|length > 0  %} 
+     <div class="orderEl mb-3">
         <div class="orderName">Код заказа</div>
         <div class="orderCount">
             <div class="">
                 Кол/во
             </div>
         </div>
-    </div> {% endcomment %}
-    {% for offer in offers_in_cart %}
+    </div> 
+     {% for offer in offers_in_cart %}
     <div class="orderEl mb-3">
         <div class="orderName">{{ offer.name }}</div>
         <div class="orderCount">
@@ -17,10 +17,46 @@
                 {{ offer.quantity }}
             </div>
         </div>
+        <button
+        hx-confirm="Вы уверены?"
+        hx-target="#offers-table"
+        hx-delete="{% url 'cart_remove' offer_id=offer.id %}"
+        class="btn btn-danger"
+        id="remove-offer-button"
+    >Удалить</button>
     </div>
     {% endfor %}
+    {% endif %} 
+</div> {% endcomment %}
+
+<table id="offers-table">
+    {% if offers_in_cart|length > 0  %}
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Количество</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for offer in offers_in_cart %}
+            <tr>
+                <td>{{ offer.name }}</td>
+                <td>{{ offer.quantity }}</td>
+                <td >
+                    <button
+                        hx-confirm="Вы уверены?"
+                        hx-target="#offers-table"
+                        hx-delete="{% url 'cart_remove' offer_id=offer.id %}"
+                        class="btn btn-danger"
+                        id="remove-offer-button"
+                    >Удалить</button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
     {% endif %}
-</div>
+</table>
+
 
 
 

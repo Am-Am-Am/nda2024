@@ -1,7 +1,9 @@
 from django.db import models
+from django.forms import ValidationError
 from django.urls import reverse
 from django.core.files.storage import FileSystemStorage
-
+from django.core.validators import URLValidator, ValidationError
+import re  # Импортируем модуль регулярных выражений для проверки ссылок
 
 from nda.settings import PRIVATE_ROOT, SENDFILE_ROOT
 
@@ -92,6 +94,19 @@ class Brand(BaseFields):
         return self.name.upper()
 
 
+
+class Specialist(models.Model):
+    name = models.CharField(max_length=56, verbose_name='Имя специалиста')
+    phone = models.CharField(max_length=28, verbose_name='Телефон')
+    email = models.EmailField(max_length=56, verbose_name='Email')
+
+    class Meta:
+        verbose_name = 'Специалист'
+        verbose_name_plural = 'Специалисты'
+
+    def __str__(self):
+        return self.name
+
 class Category(BaseFields):
     name = models.CharField(
         max_length=256,
@@ -142,6 +157,37 @@ class Category(BaseFields):
         verbose_name='Отметка о том, что категория является финальной и в ней содержатся товары'
     )
 
+    video_file = models.FileField(
+        upload_to='videos/',
+        null=True,
+        blank=True,
+        verbose_name='Видео файл'
+    )
+    youtube_link = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        verbose_name='Ссылка на YouTube'
+    )
+    rt_link = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        verbose_name='Ссылка Rutube'
+    )
+
+    specialist = models.ForeignKey(
+        Specialist,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name='Специалист, ответственный за категорию'
+    )
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
+
     class Meta:
         ordering = ['place']
         verbose_name = 'Категория'
@@ -154,7 +200,6 @@ class Category(BaseFields):
         if self.brand:
             return str(self.brand).upper() + '----' + self.name.upper()
         return 'ПОДБОРКА' + '----' + self.name.upper()
-
 
 class Offer(BaseFields):
     name = models.CharField(
@@ -195,3 +240,5 @@ class Offer(BaseFields):
 
     def __str__(self):
         return self.name
+
+

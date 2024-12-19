@@ -36,30 +36,7 @@
             <div class="tab-pane fade" id="physical" role="tabpanel" aria-labelledby="physical-tab">
               <div class="physicalForm">
                 <div class="formEl">
-                  <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="fullName" placeholder="ФИО" name="fullName" required />
-                    <label for="fullName">ФИО</label>
-                  </div>
-                  <div class="oneLine">
-                    <div class="form-floating mb-3 w-50">
-                      <input type="tel" class="form-control" id="phone" placeholder="Номер телефона" name="phone" required />
-                      <label for="phone">Номер телефона</label>
-                    </div>
-                    <div class="form-floating mb-3 w-50">
-                      <input type="email" class="form-control" id="email" placeholder="Email" name="email" required />
-                      <label for="email">Email</label>
-                    </div>
-                  </div>
-                  <div class="form-floating mb-3">
-                    <textarea class="form-control" id="message" rows="3" placeholder="Текст письма" name="message" required></textarea>
-                    <label for="message">Текст письма</label>
-                  </div>
-                  <div class="mb-3">
-                    <label class="input-file">
-                      <input type="file" name="file" />
-                      <span>Прикрепить файл</span>
-                    </label>
-                  </div>
+                  {% include 'nda_email/PhysicalContactform.html' %}
                 </div>
                
                   {% include 'cart/cart_popup.html' %}

@@ -6,7 +6,7 @@ from django.urls import reverse
 
 from tinymce.widgets import TinyMCE
 
-from catalog.models import Brand, Category, Offer
+from catalog.models import Brand, Category, Offer, Specialist
 from files.models import ModelImage, ModelFile
 from catalog.admin_filters import DropdownFilter, RelatedOnlyDropdownFilter, CategoryRelatedOnlyDropdownFilter
 
@@ -101,7 +101,11 @@ class CategoryAdmin(admin.ModelAdmin):
         'slug',
         'place',
         'status',
-        'is_final'
+        'is_final',
+        'video_file',
+        'youtube_link',
+        'rt_link',
+        'specialist'
     ]
     filter_horizontal = ('parents', )
     autocomplete_fields = ('brand', )
@@ -163,9 +167,15 @@ class OfferAdmin(admin.ModelAdmin):
     def brand_name(self, obj):
         return obj.category.brand.name
 
+class SpecialistAdmin(admin.ModelAdmin):
+    list_display = ('name', 'phone', 'email')
+    search_fields = ('name', 'phone', 'email')
+
 
 admin.site.register(Brand, BrandAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Offer, OfferAdmin)
 admin.site.register(Group, GroupAdmin)
 admin.site.register(User, UserAdmin)
+
+admin.site.register(Specialist, SpecialistAdmin)
