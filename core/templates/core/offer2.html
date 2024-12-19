@@ -252,12 +252,10 @@
                         <div class="productVideo">
 
                             <div class="productVideoContainer">
-                                
                                     {% if  video_file %}
                                         <!-- Локальное видео -->
-                                        <video controls>
-                                            <source src="{{ video_file }}" type="video/mp4">
-                                            
+                                        <video controls style="width:100%; height:100%">
+                                            <source src="{{ video_file.url }}" type="video/mp4">
                                         </video>
                                     {% elif rt_link %}
                                         <!-- Видео с RuTube -->

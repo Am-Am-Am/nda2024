@@ -40,6 +40,9 @@ class CategoryImageInline(admin.TabularInline):
     readonly_fields = ('image_preview',)
 
 
+
+   
+
 class CategoryFileInline(admin.TabularInline):
     model = ModelFile
 

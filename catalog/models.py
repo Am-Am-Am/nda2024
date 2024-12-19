@@ -158,7 +158,7 @@ class Category(BaseFields):
     )
 
     video_file = models.FileField(
-        upload_to='videos/',
+        upload_to='category/videos',
         null=True,
         blank=True,
         verbose_name='Видео файл'
