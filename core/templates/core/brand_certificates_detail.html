@@ -57,7 +57,7 @@
           <tbody>
             {% for category in categories %}
               {% for certificate in certificates %}
-                {% if certificate.category == category %}
+                {% if certificate.category == category and category.ru%}
                   <tr class="table-row">
                     <td>{{ forloop.counter }}</td>
                     <td>{{ category.name }}</td>
