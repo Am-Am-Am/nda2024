@@ -2,9 +2,9 @@ from django.db.models import Q, Prefetch
 from django.shortcuts import get_object_or_404
 from django.views.generic import TemplateView, ListView
 from django.contrib import messages
-
+from core.models import MainPageInfoBlock
 from catalog.models import Category, Brand, Offer
-from files.models import ModelFile, ModelImage
+from files.models import ModelFile, ModelImage, InstructionsFile, CatalogFile
 from cart.forms import CartAddProductForm
 from django.views.generic import DetailView
 from django.core.mail import send_mail
@@ -42,6 +42,7 @@ class IndexView(TemplateView):
         context['brands'] = Brand.visible.all().order_by('name')
         context['categories'] = Category.visible.filter(parents=None)
         # context['categories'] = Category.visible.filter(parents=None).filter(brand=None)
+        context['ads'] = MainPageInfoBlock.visible.all()
         return context
 
 
@@ -84,18 +85,16 @@ class OfferView(TemplateView):
         context['offers'] = Offer.visible.filter(category=category.id)
         context['images'] = ModelImage.objects.filter(category=category.id)
         context['certificates'] = ModelFile.objects.filter(category=category.id)
-        context['instruction'] = category.instruction
         context['breadcrumbs'] = breadcrumbs_path(category)
         context['cart_product_form'] = CartAddProductForm()
         context['brands'] = Brand.visible.all().order_by('name')
-
-        # Получаем информацию о специалисте, ответственном за данную категорию
         context['specialist'] = category.specialist
-
-        # Передаем видео в зависимости от типа видео, указанного в категории
         context['video_file'] = category.video_file
         context['youtube_link'] = category.youtube_link
         context['rt_link'] = category.rt_link
+        context['instructions'] = InstructionsFile.objects.filter(category=category.id)
+        context['catalogs'] = CatalogFile.objects.filter(category=category.id)
+
 
         return context
 

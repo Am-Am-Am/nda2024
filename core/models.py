@@ -21,12 +21,16 @@ class MainPageInfoBlock(models.Model):
         blank=False,
         verbose_name='Категория для рекламы на главной странице'
     )
-    block_text = models.CharField(
-        max_length=256,
-        null=False,
-        blank=False,
-        verbose_name='Текст рекламного блока'
+    block_text = models.TextField(
+        default='''<ul>
+                    <li><span>Особенность 1</span> </li>
+                    <li><span>Особенность 2</span></li>
+                </ul>''',
+        null=True,
+        blank=True,
+        verbose_name='Описание'
     )
+
     block_image = models.ImageField(
         upload_to='main_page/infoblock',
         default='',

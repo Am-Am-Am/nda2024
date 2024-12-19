@@ -23,19 +23,37 @@
 
           {% for category in category.children.all %}
             {% if category.is_final %}
+            {% if category.children.all %}
               <div class="catalogBrandItem">
-                <a href="{% url 'offer' brand_slug=category.brand.slug category_slug=category.slug %}">
+                <a href="{% url 'category' category_slug=category.slug %}">
                   <div class="catalogBrandItemImg">
-                    {% comment %} {% if not category.logo %}
-                      <img src="{% get_media_prefix %}default.jpg" />
+                    {% if category.logo %}
+                      <img src="{{ category.logo.url }}" alt="Логотип категории" />
                     {% else %}
-                      <img src="{{ category.logo.url }}" />
-                    {% endif %} {% endcomment %}
-                    <img src="{{ category.logo.url }}" />
+                      <img src="{% static "/images/noImage.jpg" %}" alt="Нет логотипа" />
+                    {% endif %}
                   </div>
                   <div class="catalogBrandItemTitle">{{ category.name }}</div>
                 </a>
               </div>
+              {% else %}
+
+
+              <div class="catalogBrandItem">
+                <a href="{% url 'offer' brand_slug=category.brand.slug category_slug=category.slug %}">
+                  <div class="catalogBrandItemImg">
+                    {% if category.logo %}
+                      <img src="{{ category.logo.url }}" alt="Логотип категории" />
+                    {% else %}
+                      <img src="{% static "/images/noImage.jpg" %}" alt="Нет логотипа" />
+                    {% endif %}
+                  </div>
+                  <div class="catalogBrandItemTitle">{{ category.name }}</div>
+                </a>
+              </div>
+              
+              {% endif %}
+
             {% endif %}
           {% endfor %}
           {% comment %} <div class="catalogBrandItem">

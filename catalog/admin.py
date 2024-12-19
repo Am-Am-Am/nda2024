@@ -7,7 +7,7 @@ from django.urls import reverse
 from tinymce.widgets import TinyMCE
 
 from catalog.models import Brand, Category, Offer, Specialist
-from files.models import ModelImage, ModelFile
+from files.models import ModelImage, ModelFile, InstructionsFile, CatalogFile
 from catalog.admin_filters import DropdownFilter, RelatedOnlyDropdownFilter, CategoryRelatedOnlyDropdownFilter
 
 
@@ -39,12 +39,15 @@ class CategoryImageInline(admin.TabularInline):
     model = ModelImage
     readonly_fields = ('image_preview',)
 
-
-
-   
-
 class CategoryFileInline(admin.TabularInline):
     model = ModelFile
+
+class InstructionsFileInline(admin.TabularInline):
+    model = InstructionsFile
+
+class CatalogFileInline(admin.TabularInline):
+    model = CatalogFile
+
 
 
 """"Классы админки"""
@@ -98,7 +101,6 @@ class CategoryAdmin(admin.ModelAdmin):
         'description',
         'logo',
         'banner',
-        'instruction',
         'parents',
         'brand',
         'slug',
@@ -108,11 +110,12 @@ class CategoryAdmin(admin.ModelAdmin):
         'video_file',
         'youtube_link',
         'rt_link',
-        'specialist'
+        'specialist',
+        'ru'
     ]
     filter_horizontal = ('parents', )
     autocomplete_fields = ('brand', )
-    inlines = [OfferInline, CategoryImageInline, CategoryFileInline]
+    inlines = [OfferInline, CategoryImageInline, CategoryFileInline, InstructionsFileInline, CatalogFileInline]
     view_on_site = True
     actions_on_bottom = True
     list_per_page = 25
@@ -151,7 +154,7 @@ class OfferAdmin(admin.ModelAdmin):
     fields = [
         'name',
         'description',
-        'shipping_pack'
+        'shipping_pack',
         'tech_info',
         'ctru',
         'category',

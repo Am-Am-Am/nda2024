@@ -139,13 +139,6 @@ class Category(BaseFields):
         blank=True,
         verbose_name='Баннер категории'
     )
-    instruction = models.FileField(
-        storage=private_storage,
-        upload_to='instructions',
-        null=True,
-        blank=True,
-        verbose_name='Инструкция'
-    )
     slug = models.SlugField(
         unique=True,
         max_length=128,
@@ -182,6 +175,13 @@ class Category(BaseFields):
         null=True,
         blank=True,
         verbose_name='Специалист, ответственный за категорию'
+    )
+
+    ru = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        verbose_name='Номер РУ'
     )
 
     def save(self, *args, **kwargs):

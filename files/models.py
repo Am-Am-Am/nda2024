@@ -26,9 +26,29 @@ class ModelFile(models.Model):
     file = models.FileField(upload_to='category/certificates', null=True, blank=True)
 
     class Meta:
-        verbose_name_plural = 'Сертификаты'
+        verbose_name_plural = 'РУ и Сертификаты'
 
     def __str__(self):
         return self.file.url
     
+
+class InstructionsFile(models.Model):
+    category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
+    file = models.FileField(upload_to='category/instructions', null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = 'Инструкции'
+
+    def __str__(self):
+        return self.file.url    
+    
+class CatalogFile(models.Model):
+    category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
+    file = models.FileField(upload_to='category/catalog', null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = 'Каталог'
+
+    def __str__(self):
+        return self.file.url   
 

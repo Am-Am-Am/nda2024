@@ -22,7 +22,11 @@
             <a href="{% url 'brand' brand_slug=brand.slug %}">
               <div class="catalogItem">
                 <div class="catalogItemImg">
-                  <img src="{{ brand.logo.url }}" alt="{{ brand.name }}" />
+                  {% if brand.logo %}
+                    <img src="{{brand.logo.url}}" alt="{{brand.name}}" />
+                  {% else %}
+                    <img src="{% static 'images/noImage.jpg' %}" />
+                  {% endif %}
                 </div>
                 <h3>{{ brand.name }}</h3>
                 <p>{{ brand.description }}</p> <!-- Замените description на соответствующее поле, если оно есть -->
@@ -45,8 +49,10 @@
             <a href="{% url 'category' category_slug=category.slug %}">
               <div class="catalogItem">
                 <div class="catalogItemImg">
-                  {% if catagory.logo %}
+                  {% if category.logo %}
                     <img src="{{category.logo.url}}" alt="{{catagory.name}}" />
+                  {% else %}
+                    <img src="{% static 'images/noImage.jpg' %}" />
                   {% endif %}
                 </div>
                 <h3>{{category.name}}</h3>

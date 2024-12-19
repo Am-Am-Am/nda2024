@@ -240,10 +240,23 @@
 
                     <div class="tab-pane fade" id="pills-catalogs" role="tabpanel" aria-labelledby="pills-catalogs-tab">
                         <div class="catalogTutorial">
-                            {% for offer in offers %}
-                            <a href="{{ offer.tech_info }} ">Скачать Инструкцию</a>
-                            <a href="{{ offer.tech_info }} ">Скачать Инструкцию</a>
-                           {% endfor %}
+                            {% if instructions %}
+                                {% for instruction in instructions %}
+                                    <a href="{{ instruction.file.url }}">Скачать Инструкции</a>
+                                {% endfor %}
+                            {% endif %}
+
+                            {% if certificates %}
+                                {% for certificate in certificates %}
+                                    <a href="{{ certificate.flie.url }}">Скачать сертификат</a>
+                                {% endfor %}
+                            {% endif %}
+
+                            {% if catalogs %}
+                                {% for catalog in catalogs %}
+                                    <a href="{{ catalog.file.url }}">Скачать Каталог</a>
+                                {% endfor %}
+                            {% endif %}
 
                         </div>
                     </div>
