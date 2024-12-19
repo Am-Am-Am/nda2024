@@ -32,7 +32,11 @@
           <a href="{% url 'brand_certificates' brand.pk %}">
             <div class="catalogItem">
               <div class="catalogItemImg">
+                {% if brand.logo %}  
                 <img src="{{ brand.logo.url }}" alt="{{ brand.name }}" />
+                {% else %}
+                    <img src="{% static 'images/noImage.jpg' %}" alt="Default logo" />  
+                {% endif %}
               </div>
               <h3>{{ brand.name }}</h3>
             </div>

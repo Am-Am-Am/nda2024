@@ -2,11 +2,11 @@
 
 <div class="brandBanner" style="background: linear-gradient(135deg, {{ brand.banner_color }}, white);">
   <div class="brandLogo">
-    {% if not brand or not brand.logo %}
-      <img src="{% get_media_prefix %}logo-header.png" style="height:140px; width:140px;" />
-    {% else %}
-      <img src="{{ brand.logo.url }}" alt="" />
-    {% endif %}
+    {% if brand.logo %}  
+                <img src="{{ brand.logo.url }}" alt="{{ brand.name }}" />
+                {% else %}
+                    <img src="{% static 'images/noImage.jpg' %}" alt="Default logo" />  
+                {% endif %}
   </div>
   <div class="brandInfo">
     {% if brand %}

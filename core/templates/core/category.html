@@ -37,8 +37,6 @@
                 </a>
               </div>
               {% else %}
-
-
               <div class="catalogBrandItem">
                 <a href="{% url 'offer' brand_slug=category.brand.slug category_slug=category.slug %}">
                   <div class="catalogBrandItemImg">
@@ -53,7 +51,6 @@
               </div>
               
               {% endif %}
-
             {% endif %}
           {% endfor %}
           {% comment %} <div class="catalogBrandItem">
