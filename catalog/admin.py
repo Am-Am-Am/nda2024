@@ -54,6 +54,7 @@ class CatalogFileInline(admin.TabularInline):
 
 
 class BrandAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("name",)}
     list_display = (
         'name',
         'slug',
