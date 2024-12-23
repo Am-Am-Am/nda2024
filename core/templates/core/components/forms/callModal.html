@@ -28,8 +28,12 @@
                             <span>Прикрепить файл</span>
                         </label>
                     </div>
-                    <!-- <div class="g-recaptcha mb-3" data-sitekey="ВАШ_САЙТ_КЛЮЧ"></div> -->
+                    
                     <button type="submit" class="btn btn-success">Отправить</button>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="callModal" required />
+                        <label class="form-check-label" for="callModal">Я прочитал(а) уведомление о <a href='{% url "privacy" %}'>политике конфиденциальности</a></label>
+                      </div>
                 </form>
             </div>
         </div>

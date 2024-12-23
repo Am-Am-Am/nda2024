@@ -158,9 +158,10 @@
                           required>
                       <label for="number">Email</label>
                   </div>
-                  <!-- <div class="g-recaptcha mb-3" data-sitekey="ВАШ_САЙТ_КЛЮЧ"></div> -->
+                  <div class="g-recaptcha mb-3" data-sitekey="ВАШ_САЙТ_КЛЮЧ"></div>
                   <button type="submit" class="btn btn-success">Отправить</button>
-                  <p>Я прочел (прочла) Уведомление о <a href="#">политики конфиденциальности</a></p>
+                  <p>Я прочел (прочла) Уведомление о <a href="{% url "privacy" %}">политики конфиденциальности</a></p>
+
               </form>
           </div>
       </div>

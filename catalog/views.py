@@ -203,6 +203,20 @@ class WorkView(TemplateView):
         context['brands'] = Brand.visible.all().order_by('name')
         return context
 
+
+class PrivacyView(TemplateView):
+    template_name = 'core/privacy.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        current_path = self.request.path_info
+        match = resolve(current_path)
+        current_url_name = match.url_name
+        context['current_url_name'] = current_url_name
+
+        context['brands'] = Brand.visible.all().order_by('name')
+        return context
+
 class ContactsView(TemplateView):
     template_name = 'core/contacts.html'
     def get_context_data(self, **kwargs):
