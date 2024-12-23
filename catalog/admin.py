@@ -80,6 +80,8 @@ class BrandAdmin(admin.ModelAdmin):
 
 
 class CategoryAdmin(admin.ModelAdmin):
+
+    prepopulated_fields = {"slug": ("name",)}
     list_select_related = ['brand']
     list_display = (
         'name',
@@ -99,6 +101,7 @@ class CategoryAdmin(admin.ModelAdmin):
     fields = [
         'name',
         'description',
+        'full_description',
         'logo',
         'banner',
         'parents',
@@ -142,6 +145,7 @@ class OfferAdmin(admin.ModelAdmin):
         'name',
         'brand_name',
         'category',
+        'characteristics',
         'place',
         'status'
     )
@@ -154,6 +158,7 @@ class OfferAdmin(admin.ModelAdmin):
     fields = [
         'name',
         'description',
+        'characteristics',
         'shipping_pack',
         'tech_info',
         'ctru',

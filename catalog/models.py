@@ -3,8 +3,7 @@ from django.forms import ValidationError
 from django.urls import reverse
 from django.core.files.storage import FileSystemStorage
 from django.core.validators import URLValidator, ValidationError
-import re  # Импортируем модуль регулярных выражений для проверки ссылок
-
+from django.utils.text import slugify
 from nda.settings import PRIVATE_ROOT, SENDFILE_ROOT
 
 
@@ -29,7 +28,14 @@ class BaseFields(models.Model):
         default='',
         null=True,
         blank=True,
-        verbose_name='Описание'
+        verbose_name='Краткое описание'
+    )
+
+    full_description = models.TextField(
+        default='',
+        null=True,
+        blank=True,
+        verbose_name='Полное описание'
     )
     place = models.IntegerField(
         blank=True,
@@ -108,6 +114,14 @@ class Specialist(models.Model):
         return self.name
 
 class Category(BaseFields):
+
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name, allow_unicode=True)
+        super().save(*args, **kwargs)
+
+
     name = models.CharField(
         max_length=256,
         verbose_name='Название категории'
@@ -219,6 +233,13 @@ class Offer(BaseFields):
         blank=True,
         related_name='offer',
         verbose_name='Категория, к которой принадлежит товар'
+    )
+
+    characteristics = models.TextField(
+        default='',
+        null=True,
+        blank=True,
+        verbose_name='Характеристики'
     )
     tech_info = models.FileField(
         upload_to='files/instructions',

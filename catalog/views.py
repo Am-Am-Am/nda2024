@@ -48,6 +48,7 @@ class IndexView(TemplateView):
 
         context['brands'] = Brand.visible.all().order_by('name')
         context['categories'] = Category.visible.filter(parents=None)
+        
         # context['categories'] = Category.visible.filter(parents=None).filter(brand=None)
         context['ads'] = MainPageInfoBlock.visible.all()
         return context

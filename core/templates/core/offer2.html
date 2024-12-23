@@ -163,13 +163,40 @@
                     <div class="tab-pane fade show active" id="pills-description" role="tabpanel"
                         aria-labelledby="pills-description-tab">
                         <div class="productDescription">
-                            {{ category.description|safe }}
+                            {{ category.full_description|safe }}
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-characteristics" role="tabpanel"
                         aria-labelledby="pills-characteristics-tab">
                         <div class="productSpecifications">
-                            
+                            <div class="container1 mt-5">
+                                <table class="table table-responsive table-borderless">
+                                    <thead>
+                                        <tr class="table-header">
+                                            <th class="col-2 text-center">
+                                                Код
+                                            </th>
+                                            <th class="col-8 text-start">
+                                                Описание
+                                            </th>
+                                            <th class="col-2 text-start">
+                                                Уп/шт.
+                                            </th>
+                                          
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                        {% for offer in offers %}
+                                        <tr class="table-row">
+                                            <td class="text-center align-middle">{{ offer.name }}</td>
+                                            <td class="text-start align-middle">{{ offer.characteristics }}</td>
+                                            <td class="text-start align-middle">{{ offer.shipping_pack }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-order" role="tabpanel" aria-labelledby="pills-order-tab">
