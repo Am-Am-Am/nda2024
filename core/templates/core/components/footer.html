@@ -16,16 +16,52 @@
                     <div class="footerDataEls">
                         <h4>Ссылки</h4>
                         <ul>
-                            <a href="#">
-                                <span>
-                                    <li><span>Главная</span></li>
-                                </span>
+                            <a href={% url "home" %}>
+                                {% if current_url_name == 'home' %}
+                                    <span>
+                                        <li><span style="color:#3494c8">Главная</span></li>
+                                    </span>
+                                {% else %}
+                                    <span>
+                                        <li style="color:#bebebe"><span>Главная</span></li>
+                                    </span>
+                                {% endif %}
                             </a>
-                            <a href="#">
-                                <li><span>О компании</span></li>
+                            
+                            <a href={% url "work" %}>
+                                {% if current_url_name == 'work' %}
+                                    <span>
+                                        <li><span style="color:#3494c8">Условия работы</span></li>
+                                    </span>
+                                {% else %}
+                                    <span>
+                                        <li style="color:#bebebe"><span>Условия работы</span></li>
+                                    </span>
+                                {% endif %}
                             </a>
-                            <a href="#">
-                                <li><span>Кредо</span></li>
+                           
+                            <a href={% url "brands_with_certificates" %}>
+                                {% if current_url_name == 'brands_with_certificates' %}
+                                    <span>
+                                        <li><span style="color:#3494c8">РУ и сертификаты</span></li>
+                                    </span>
+                                {% else %}
+                                    <span>
+                                        <li style="color:#bebebe"><span>РУ и сертификаты</span></li>
+                                    </span>
+                                {% endif %}
+                            </a>
+
+                            <a href={% url "contacts" %}>
+                                {% if current_url_name == 'contacts' %}
+                                    <span>
+                                        <li><span style="color:#3494c8">Контакты</span></li>
+                                    </span>
+                                {% else %}
+                                    <span>
+                                        <li style="color:#bebebe"><span>Контакты</span></li>
+                                    </span>
+                                {% endif %}
                             </a>
                         </ul>
                     </div>

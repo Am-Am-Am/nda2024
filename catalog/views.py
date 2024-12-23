@@ -9,6 +9,7 @@ from cart.forms import CartAddProductForm
 from django.views.generic import DetailView
 from django.core.mail import send_mail
 from django.views.generic.edit import FormView
+from django.urls import resolve
 
 SEARCH_QUERY_PARAM = 'q'
 
@@ -39,6 +40,12 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        current_path = self.request.path_info
+        match = resolve(current_path)
+        current_url_name = match.url_name
+        context['current_url_name'] = current_url_name
+
         context['brands'] = Brand.visible.all().order_by('name')
         context['categories'] = Category.visible.filter(parents=None)
         # context['categories'] = Category.visible.filter(parents=None).filter(brand=None)
@@ -52,6 +59,12 @@ class CategoryView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        current_path = self.request.path_info
+        match = resolve(current_path)
+        current_url_name = match.url_name
+        context['current_url_name'] = current_url_name
+
         category = Category.visible.select_related('brand').get(slug=self.kwargs['category_slug'])
         context['brand'] = category.brand
         context['category'] = category
@@ -66,6 +79,12 @@ class BrandView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        current_path = self.request.path_info
+        match = resolve(current_path)
+        current_url_name = match.url_name
+        context['current_url_name'] = current_url_name
+
         brand = get_object_or_404(Brand.visible, slug=self.kwargs['brand_slug'])
         context['categories'] = Category.visible.filter(parents=None, brand=brand).select_related('brand')
         context['brand'] = brand
@@ -79,6 +98,12 @@ class OfferView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        current_path = self.request.path_info
+        match = resolve(current_path)
+        current_url_name = match.url_name
+        context['current_url_name'] = current_url_name
+
         category = Category.visible.select_related('brand').get(slug=self.kwargs['category_slug'])
         context['category'] = category
         context['brand'] = category.brand
@@ -133,6 +158,14 @@ class BrandsWithCertificatesView(ListView):
 
         return queryset.filter(id__in=[b.id for b in brands_with_certs])
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        current_path = self.request.path_info
+        match = resolve(current_path)
+        current_url_name = match.url_name
+        context['current_url_name'] = current_url_name
+        return context
+    
 
 class BrandCertificatesDetailView(DetailView):
     model = Brand
@@ -141,6 +174,12 @@ class BrandCertificatesDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        current_path = self.request.path_info
+        match = resolve(current_path)
+        current_url_name = match.url_name
+        context['current_url_name'] = current_url_name
+
         brand = self.object
         categories = Category.objects.filter(brand=brand)
         certificates = ModelFile.objects.filter(category__in=categories)
@@ -155,6 +194,12 @@ class WorkView(TemplateView):
     template_name = 'core/work.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        current_path = self.request.path_info
+        match = resolve(current_path)
+        current_url_name = match.url_name
+        context['current_url_name'] = current_url_name
+
         context['brands'] = Brand.visible.all().order_by('name')
         return context
 
@@ -162,6 +207,12 @@ class ContactsView(TemplateView):
     template_name = 'core/contacts.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        current_path = self.request.path_info
+        match = resolve(current_path)
+        current_url_name = match.url_name
+        context['current_url_name'] = current_url_name
+
         context['brands'] = Brand.visible.all().order_by('name')
         return context
 
