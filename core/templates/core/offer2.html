@@ -16,6 +16,10 @@
 <script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script>
 {% endblock %}
 
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/styleOffer.css'%}" type="text/css">
+{% endblock %}
+
 {% block content %}
 <header style="height: 0px;">
     <!-- летающая шапка -->
@@ -125,22 +129,22 @@
                 <div class="productInfoChoice">
                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
 
-                        <li class="nav-item" role="presentation">
+                        <li {% if not video_file and not youtube_link and not rt_link %} style="width: 25%;"{% endif %} class="nav-item" role="presentation">
                             <button class="nav-link first active" id="pills-description-tab" data-bs-toggle="pill"
                                 data-bs-target="#pills-description" type="button" role="tab"
                                 aria-controls="pills-description" aria-selected="true">Описание</button>
                         </li>
-                        <li class="nav-item" role="presentation">
+                        <li {% if not video_file and not youtube_link and not rt_link %} style="width: 25%;"{% endif %} class="nav-item" role="presentation">
                             <button class="nav-link" id="pills-characteristics-tab" data-bs-toggle="pill"
                                 data-bs-target="#pills-characteristics" type="button" role="tab"
                                 aria-controls="pills-characteristics" aria-selected="false">Характеристики</button>
                         </li>
-                        <li class="nav-item" role="presentation">
+                        <li {% if not video_file and not youtube_link and not rt_link %} style="width: 25%;"{% endif %} class="nav-item" role="presentation">
                             <button class="nav-link" id="pills-order-tab" data-bs-toggle="pill"
                                 data-bs-target="#pills-order" type="button" role="tab" aria-controls="pills-order"
                                 aria-selected="false">Оформить заказ</button>
                         </li>
-                        <li class="nav-item" role="presentation">
+                        <li {% if not video_file and not youtube_link and not rt_link %} style="width: 25%;"{% endif %} class="nav-item" role="presentation">
                             <button class="nav-link" id="pills-catalogs-tab" data-bs-toggle="pill"
                                 data-bs-target="#pills-catalogs" type="button" role="tab" aria-controls="pills-catalogs"
                                 aria-selected="false">Каталоги и РУ</button>
@@ -176,16 +180,16 @@
                                 <table class="table table-responsive table-borderless">
                                     <thead>
                                         <tr class="table-header">
-                                            <th class="col-sm-1 text-center">
+                                            <th class="col-2 text-center">
                                                 Код
                                             </th>
-                                            <th class="col-sm-10 text-start">
+                                            <th class="col-8 text-start">
                                                 Описание
                                             </th>
-                                            <th class="col-sm-1 text-start">
+                                            <th class="col-2 text-start">
                                                 Уп/шт.
                                             </th>
-                                            <th class="col-sm-2">
+                                            <th class="col-4">
                                                 Количество
                                             </th>
                                         </tr>
@@ -219,7 +223,7 @@
 
                                                             </div>
 
-                                                                <button class="btn btn-primary quantityFormBtn" type="submit"
+                                                                <button class="btn btn-primary quantityFormBtn" id="addButton"type="submit"
                                                                 value="">Добавить</button>
                                                            
                                                         </div>
@@ -242,19 +246,42 @@
                         <div class="catalogTutorial">
                             {% if instructions %}
                                 {% for instruction in instructions %}
-                                    <a href="{{ instruction.file.url }}">Скачать Инструкции</a>
+                                    <div class="catalogTutorialLink">
+                                        <a href="{{ instruction.file.url }}">
+                                            <div class="catalogTutorialEl">
+                                                <div class="catalogTutorialElText">Скачать инструкцию</div>
+                                                <div class="catalogTutorialElImg"></div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    
                                 {% endfor %}
                             {% endif %}
 
                             {% if certificates %}
                                 {% for certificate in certificates %}
-                                    <a href="{{ certificate.flie.url }}">Скачать сертификат</a>
+                                <div class="catalogTutorialLink">
+                                    <a href="{{ certificate.flie.url }}">
+                                        <div class="catalogTutorialEl">
+                                            <div class="catalogTutorialElText">Скачать сертификат</div>
+                                            <div class="catalogTutorialElImg"></div>
+                                        </div>
+                                        
+                                    </a>
+                                </div>
                                 {% endfor %}
                             {% endif %}
 
                             {% if catalogs %}
                                 {% for catalog in catalogs %}
-                                    <a href="{{ catalog.file.url }}">Скачать Каталог</a>
+                                <div class="catalogTutorialLink">
+                                    <a href="{{ catalog.file.url }}">
+                                        <div class="catalogTutorialEl">
+                                            <div class="catalogTutorialElText">Скачать Каталог</div>
+                                            <div class="catalogTutorialElImg"></div>
+                                        </div>
+                                    </a>
+                                </div>
                                 {% endfor %}
                             {% endif %}
 
