@@ -112,16 +112,12 @@ WSGI_APPLICATION = 'nda.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': os.getenv('DB_NAME', 'another_db'),
-        # 'USER': os.getenv('DB_USER', 'postgres'),
-        # 'PASSWORD': os.getenv('DB_USER_PASSWORD'),
-        # 'HOST': os.getenv('DB_HOST', 'localhost'),
-        # 'PORT': os.getenv('DB_PORT', '5432'),
-        'NAME': 'nda',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.getenv('DB_NAME', 'nda'),
+        'USER': os.getenv('DB_USER', 'root'),
+        'PASSWORD': os.getenv('DB_USER_PASSWORD', 'root'),
+        'HOST': os.getenv('DB_HOST', 'localhost'),
+        'PORT': os.getenv('DB_PORT', '5432'),
+     
     }
 }
 

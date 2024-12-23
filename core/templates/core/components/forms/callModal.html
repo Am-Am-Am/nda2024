@@ -1,3 +1,5 @@
+
+
 <div class="modal fade" id="callModal" tabindex="-1" aria-labelledby="callModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -7,34 +9,43 @@
                     aria-label="Закрыть"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="call_form" action="{% url 'call_submit' %}"  method="post" 
+                    enctype="multipart/form-data" hx-post="{% url 'call_submit' %}" hx-target="#call_form"
+                    hx-swap="outerHTML" novalidate>
+                    {% csrf_token %}
                     <div class="form-floating mb-2">
-                        <input type="text" class="form-control" id="name" placeholder="Ваше имя" required>
+                        {{ contact_form.name }}
                         <label for="name">Ваше имя</label>
                     </div>
                     <div class="form-floating mb-2">
-                        <input type="tel" class="form-control" placeholder="Ваш телефон" id='number'
-                            required>
-                        <label for="number">Ваш телефон</label>
+                        {{ contact_form.phone_number }}
+                        <label for="phone">Ваш телефон</label>
+                        {% if contact_form.phone_number.errors %}
+                        <div style="color: red">
+                            {{ contact_form.phone_number.errors }}
+                        </div>
+                        {% endif %}
                     </div>
                     <div class="form-floating mb-2">
-                        <textarea class="form-control" placeholder="Комментарий" id="comm"
-                            required></textarea>
-                        <label for="comm">Комментарий</label>
+                        {{ contact_form.message }}
+                        <label for="org">Текст письма</label>
                     </div>
                     <div class="mb-2">
                         <label class="input-file">
-                            <input type="file" name="file">
+                            {{contact_form.company_details}}
                             <span>Прикрепить файл</span>
                         </label>
                     </div>
-                    
-                    <button type="submit" class="btn btn-success">Отправить</button>
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" id="callModal" required />
-                        <label class="form-check-label" for="callModal">Я прочитал(а) уведомление о <a href='{% url "privacy" %}'>политике конфиденциальности</a></label>
-                      </div>
+
+                  
+
                 </form>
+                <button type="submit" class="btn btn-success" form="call_form">Отправить</button>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="callModal" required />
+                    <label class="form-check-label" for="callModal">Я прочитал(а) уведомление о <a
+                            href='{% url "privacy" %}'>политике конфиденциальности</a></label>
+                </div>
             </div>
         </div>
     </div>

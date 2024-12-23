@@ -1,16 +1,16 @@
-<script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script>
+
 
 
 
 
 
 <form
-        id="cart_modal_form"
+        id="physical_modal_form"
 {#        action="{% url 'physical_cart_submit' %}"#}
 {#        method="post"#}
         enctype="multipart/form-data"
         hx-post="{% url 'physical_cart_submit' %}"
-        hx-target="#cart_modal_form"
+        hx-target="#physical_modal_form"
         hx-swap="outerHTML"
         novalidate
 >
