@@ -100,6 +100,7 @@ class CategoryAdmin(admin.ModelAdmin):
         'is_final'
     )
     fields = [
+        'db_id',
         'name',
         'description',
         'full_description',
@@ -177,7 +178,13 @@ class OfferAdmin(admin.ModelAdmin):
 
     @admin.display(description='Бренд', ordering='name')
     def brand_name(self, obj):
-        return obj.category.brand.name
+        if getattr(obj, 'category'):
+            if obj.category.brand:
+                return obj.category.brand.name
+        elif hasattr(obj, 'brand'):
+            return obj.brand.name
+        else:
+            return "Бренда нет"
 
 class SpecialistAdmin(admin.ModelAdmin):
     list_display = ('name', 'phone', 'email')

@@ -31,6 +31,13 @@ class BaseFields(models.Model):
         verbose_name='Краткое описание'
     )
 
+    custom_description = models.TextField(
+        default='',
+        null=True,
+        blank=True,
+        verbose_name='Кастомное описание'
+    )
+
     full_description = models.TextField(
         default='',
         null=True,
@@ -132,6 +139,12 @@ class Category(BaseFields):
         null=True,
         blank=True,
         verbose_name='Бренд, к которому относится категория'
+    )
+    db_id = models.CharField(
+        max_length=256,
+        verbose_name='Id со старой бд',
+        null=True,
+        blank=True,
     )
     parents = models.ManyToManyField(
         'self',
