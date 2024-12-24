@@ -1,0 +1,491 @@
+.nav-pills .nav-link.active{
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+}
+
+.nav-pills .nav-link{
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+}
+
+
+#pills-tab .nav-item:first-child button.nav-link {
+    border-top-left-radius: 10px;
+}
+
+/* Применяем скругление к последнему элементу */
+#pills-tab .nav-item:last-child button.nav-link {
+    border-top-right-radius: 10px;
+}
+
+.catalogTutorial{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    gap: 40px;
+}
+
+.catalogTutorialLink{
+    width: 33%;
+    border: 2px solid #3391c5;
+    border-radius: 10px;
+    height: 70px;
+}
+
+.catalogTutorialLink a{
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 25px;
+    color: #1a1a18;
+}
+
+.catalogTutorialEl{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.catalogTutorialElImg{
+    height: 70px;
+    width: 70px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../images/offer/download_blue.svg' );
+}
+
+.catalogTutorialLink:hover{
+    background-color: #3391c5;
+}
+.catalogTutorialLink:hover .catalogTutorialElText{
+    color: #fff;
+}
+
+.catalogTutorialLink:hover .catalogTutorialElImg{
+    background-image: url('../images/offer/download_white.svg' );
+}
+
+.tab-content{
+    height: auto;
+}
+
+.nav-pills .nav-link{
+    padding: 0;
+    height: 60px;
+}
+
+.sliderContainer{
+    height: 600px;
+}
+
+.slick-track{
+    height: 500px;
+}
+
+.sliderContainer{
+    position: relative;
+}
+
+.slider-arrows{
+    position: absolute;
+}
+
+
+.product{
+    height: auto;
+}
+
+.slider-nav .nav2 .slick-initialized .slick-slider{
+    height: 200px;
+}
+
+#offers-table{
+    width: 450px;
+}
+
+
+
+#offers-table tr{
+    display: flex;
+    gap: 10px;
+    height: 50px;
+    margin-bottom: 20px;
+    justify-content: start;
+    align-items: center;
+    gap: 20px;
+}
+
+#offers-table th{
+    width: 100px;
+}
+
+#offers-table td{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100px;
+}
+
+.modal-dialog {
+    width: 95vw
+}
+@media (max-width: 1440px){
+    #addButton{
+        font-size: 12px;
+    }
+
+}
+
+
+@media (max-width: 1260px){
+
+    .formButton {
+        position: fixed;
+        right: 50px;
+        bottom: 130px;
+        
+    }
+
+    .placeResult {
+      flex-direction: column;
+      align-items: center;
+      height: auto;
+      padding: 10px;
+    }
+
+
+    .orderButton {
+        width: 300px;
+    }
+
+    .countItems {
+        width: 300px;
+    }
+
+    .linkContacts{
+        width: 100%;
+    }
+   .linkContactsEl{
+    width: 100%;
+   }
+
+   .catalogTutorialElText{
+    font-size: 18px;
+   }
+
+   .nav-pills .nav-link {
+    font-size: 18px;
+   }
+
+   .productInfo{
+    margin-top: 100px;
+  } 
+
+  .sliderImg img{
+    width: 100%;
+  }
+
+  .quantity-input form{
+    height: 100%;
+    width: 100%;
+  }
+
+  .offerCount{
+    flex-direction: column;
+    gap: 10px;
+  }
+
+
+  .table td{
+    height: auto;
+    padding-bottom: 50px;
+  }
+
+  .inputCount{
+    width: 100%;
+    height: 30px;
+  }
+  #addButton{
+    font-size: 14px;
+    width: 100%;
+    height: 50px;
+}
+
+    .modal-dialog {
+        width: 95vw;
+        margin: auto;
+        margin-top: 120px;
+    }
+
+    .tab-content{
+        padding: 20px;
+    }
+
+    .physicalForm{
+        width: 100%;
+        gap: 20px;
+    }
+
+}  
+
+
+
+@media (max-width: 900px){
+  
+    .slider-nav{
+        margin-top: 140px;
+    }
+
+    .productTitle{
+        height: auto;
+    }
+
+    .modal-dialog {
+        
+        width: 95vw;
+        margin: auto;
+        margin-top: 120px;
+    }
+
+    .modal-lg, .modal-xl {
+        max-width: 95vw;
+    }
+
+}
+
+
+@media (max-width: 800px){
+    .nav-pills .nav-link {
+        font-size: 16px;
+       }
+
+       .catalogTutorial{
+        gap: 20px;
+       }
+
+       .modal-dialog {
+        
+        width: 95vw;
+        margin: auto;
+        margin-top: 120px;
+    }
+}
+
+@media (max-width: 700px){
+    .catalogTutorial{
+        gap: 10px;
+       }
+
+       .table td{
+        font-size: 14px;
+       }   
+
+       .modal-dialog {
+        
+        width: 95vw;
+        margin: auto;
+        margin-top: 120px;
+    }
+
+  .slick-slide img{
+    width: 100%;
+  }
+}
+@media (max-width: 600px){
+    .nav-pills .nav-link {
+        font-size: 14px;
+       }
+
+       .catalogTutorialEl{
+        padding: 0 10px;
+       }
+       .catalogTutorialElImg{
+        width: 50px;
+       }
+
+       .modal-dialog {
+        
+        width: 95vw;
+        margin: auto;
+        margin-top: 120px;
+    }
+
+}
+
+@media (width < 550px){
+
+    .formButton {
+        position: fixed;
+        right: 20px;
+        bottom: 300px;
+        
+    }
+    .placeResult {
+        flex-direction: column-reverse;
+        align-items: center;
+        height: auto;
+        padding: 10px;
+        bottom: 130px;
+        width: 95%;
+        left: 2.5%;
+        gap: 10px;
+        border-radius: 15px;
+      }
+  
+  
+      .orderButton {
+          width: 100%;
+          border-radius: 10px;
+          font-size: 16px;
+      }
+  
+      .countItems {
+        width: 100%;
+        border-radius: 10px;
+        font-size: 16px;
+      }
+  
+      .countItems .count {
+        font-weight: 500;
+        font-size: 16px;
+      }
+
+      .linkContacts{
+        flex-direction: column;
+        align-items: start;
+      }
+
+      .nav-pills .nav-link {
+        font-size: 12px;
+       }
+
+       .catalogTutorialEl{
+        padding: 0 5px;
+       }
+
+       .table td{
+        font-size: 12px;
+       }   
+
+       .inputCountBtn1{
+        display: none;
+       }
+       .inputCountBtn2{
+        display: none;
+       }
+       .table th{
+        font-size: 14px;
+       }
+
+       .quantity-input input{
+        padding-left: 20px;
+       }
+
+       .tab-content{
+        padding: 10px;
+       }
+
+       .sliderContainer{
+        height: 400px;
+       }
+
+       #offers-table{
+        width: 350px;
+    }
+
+}
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 95vw;
+
+    }
+}
+@media (width < 480px){
+    .formButton {
+        position: fixed;
+        right: 20px;
+        bottom: 230px;
+    }
+    
+    .placeResult {
+        flex-direction: column-reverse;
+        align-items: center;
+        height: auto;
+        padding: 10px;
+        bottom: 100px;
+        width: 95%;
+        left: 2.5%;
+        gap: 10px;
+        border-radius: 15px;
+      }
+  
+  
+      .orderButton {
+          width: 100%;
+          border-radius: 10px;
+          font-size: 16px;
+          height: 40px;
+      }
+  
+      .countItems {
+        width: 100%;
+        border-radius: 10px;
+        font-size: 16px;
+        height: 40px;
+      }
+  
+      .countItems .count {
+        font-weight: 500;
+        font-size: 16px;
+      }
+
+      .nav-pills .nav-link {
+        font-size: 10px;
+       }
+
+      .catalogTutorial{
+        flex-direction: column;
+      } 
+
+      .catalogTutorialLink{
+        width: 100%;
+      }
+
+      .footerLogo img{
+        width: 100%;
+        height: auto;
+      }
+
+      .linkContacts a{
+        font-size: 14px;
+      }
+
+      .modal-dialog{
+        margin-top: 100px;
+        width: 95vw;
+      }
+
+}
+
+   
+@media (width < 400px){
+    .table th{
+        font-size: 12px;
+       }
+
+       .table td{
+        font-size: 10px;
+       }  
+}
