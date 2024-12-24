@@ -964,7 +964,7 @@ li .active {
 
 .catalogBrandItemImg {
     border-radius: 10px;
-    height: 200px;
+    height: 210px;
     margin-right: 20px;
     box-shadow: 0 0 40px 3px rgba(0, 0, 0, 0.15);
     background: #fff;
@@ -2574,3 +2574,13 @@ input .form-control .d-inline-block {
 }
 
 /* work.html */
+
+
+.breadcrumb-item a{
+    color: #858585;
+}
+
+.breadcrumb-item-active {
+    color: #1A1A18;
+}
+

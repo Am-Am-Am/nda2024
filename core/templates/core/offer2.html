@@ -343,7 +343,200 @@
                     </div>
                     {% endif %}
                 </div>
+                
+           
+                 <div class="dropDown">
+                    <details>
+                        <summary>Описание</summary>
+                        <div class="dropDownEl">
+                            <div class="productDescription">
+                                {{ category.full_description|safe }}
+                            </div>
+                        </div>
+                    </details>
+                    <details>
+                        <summary>Характеристики</summary>
+                        <div class="dropDownEl">
+                            <div class="productSpecifications">
+                                <div class="container1 mt-5">
+                                    <table class="table table-responsive table-borderless">
+                                        <thead>
+                                            <tr class="table-header">
+                                                <th class="col-2 text-center">
+                                                    Код
+                                                </th>
+                                                <th class="col-8 text-start">
+                                                    Описание
+                                                </th>
+                                                <th class="col-2 text-start">
+                                                    Уп/шт.
+                                                </th>
+                                              
+                                            </tr>
+                                        </thead>
+                                        <tbody class="">
+                                            {% for offer in offers %}
+                                            <tr class="table-row">
+                                                <td class="text-center align-middle">{{ offer.name }}</td>
+                                                <td class="text-start align-middle">{{ offer.characteristics }}</td>
+                                                <td class="text-start align-middle">{{ offer.shipping_pack }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+    
+                            </div>
+                        </div>
+                    </details>
+                    <details>
+                        <summary>Оформить заказ</summary>
+                        <div class="dropDownEl">
+                            <div class="placeOrder">
+                                <form action=""></form>
+                                <div class="container1 mt-5">
+                                    <table class="table table-responsive table-borderless">
+                                        <thead>
+                                            <tr class="table-header">
+                                                <th class="col-2 text-center">
+                                                    Код
+                                                </th>
+                                                <th class="col-8 text-start">
+                                                    Описание
+                                                </th>
+                                                <th class="col-2 text-start">
+                                                    Уп/шт.
+                                                </th>
+                                                <th class="col-4">
+                                                    Количество
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="">
+                                            {% for offer in offers %}
+                                            <tr class="table-row">
+                                                <td class="text-center align-middle">{{ offer.name }}</td>
+                                                <td class="text-start align-middle">{{ offer.description }}</td>
+                                                <td class="text-start align-middle">{{ offer.shipping_pack }}</td>
+                                                <td class="text-start">
+    
+                                                    <div class="tableCountAdd"
+                                                        onclick="toggleInput(this)">Добавить
+                                                    </div>
+    
+                                                    <div class="quantity-input" style="display:none;">
+                                                        <form hx-post="{% url 'cart_add' offer_id=offer.pk %}"
+                                                            hx-target="#cart" hx-swap="outerHTML" style="width: 100%;">
+                                                            <div class="offerCount">
+                                                                <div class="inputCount">
+                                                                    <div class="inputCountBtn1"
+                                                                        onclick="changeQuantity(event, this, -1)">-</div>
+    
+                                                                    <input class="form-control" type="number"
+                                                                        name="quantity" value="0" required=""
+                                                                        id="id_quantity" min="1"/>
+    
+                                                                    <div class="inputCountBtn2"
+                                                                        onclick="changeQuantity(event, this, 1)">+</div>
+    
+                                                                </div>
+    
+                                                                    <button class="btn btn-primary quantityFormBtn" id="addButton"type="submit"
+                                                                    value="">Добавить</button>
+                                                               
+                                                            </div>
+                                                        </form>
+    
+                                                    </div>
+    
+    
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </details>
+                    <details>
+                        <summary>Каталоги и РУ</summary>
+                        <div class="dropDownEl">
+                            <div class="catalogTutorial">
+                                {% if instructions %}
+                                    {% for instruction in instructions %}
+                                        <div class="catalogTutorialLink">
+                                            <a href="{{ instruction.file.url }}">
+                                                <div class="catalogTutorialEl">
+                                                    <div class="catalogTutorialElText">Скачать инструкцию</div>
+                                                    <div class="catalogTutorialElImg"></div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        
+                                    {% endfor %}
+                                {% endif %}
+    
+                                {% if certificates %}
+                                    {% for certificate in certificates %}
+                                    <div class="catalogTutorialLink">
+                                        <a href="{{ certificate.flie.url }}">
+                                            <div class="catalogTutorialEl">
+                                                <div class="catalogTutorialElText">Скачать сертификат</div>
+                                                <div class="catalogTutorialElImg"></div>
+                                            </div>
+                                            
+                                        </a>
+                                    </div>
+                                    {% endfor %}
+                                {% endif %}
+    
+                                {% if catalogs %}
+                                    {% for catalog in catalogs %}
+                                    <div class="catalogTutorialLink">
+                                        <a href="{{ catalog.file.url }}">
+                                            <div class="catalogTutorialEl">
+                                                <div class="catalogTutorialElText">Скачать Каталог</div>
+                                                <div class="catalogTutorialElImg"></div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    {% endfor %}
+                                {% endif %}
+    
+                            </div>
+                        </div>
+                    </details>
+                    {% if video_file or youtube_link or rt_link %}
+                    <details>
+                        <summary>Видео</summary>
+                        <div class="dropDownEl">
+                            <div class="productVideo">
 
+                                <div class="productVideoContainer">
+                                        {% if  video_file %}
+                                            <!-- Локальное видео -->
+                                            <video controls style="width:100%; height:auto">
+                                                <source src="{{ video_file.url }}" type="video/mp4">
+                                            </video>
+                                        {% elif rt_link %}
+                                            <!-- Видео с RuTube -->
+                                            <iframe width="100%" height="100%" src="{{rt_link}}" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                                        {% elif youtube_link %}
+                                            <!-- Видео с Ютуб -->
+                                            <iframe width="100%" height="100%" src="https://rutube.ru/play/embed/405026faf0d5c5600a18d53a9dc84cf2/" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                                        {% endif %}
+                                    
+                                </div>
+    
+                            </div>
+                        </div>
+                    </details>
+                    {% endif %}
+                 </div>   
+                  
+                  
                 <div id="cart">
                     {% if offers_in_cart|length > 0 %}
                     <div class="placeResult">
