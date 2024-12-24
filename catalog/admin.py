@@ -4,7 +4,7 @@ from django.contrib.auth.models import Group, User
 from django.contrib.auth.admin import GroupAdmin, UserAdmin
 from django.urls import reverse
 
-from tinymce.widgets import TinyMCE
+
 
 from catalog.models import Brand, Category, Offer, Specialist
 from files.models import ModelImage, ModelFile, InstructionsFile, CatalogFile
@@ -104,6 +104,7 @@ class CategoryAdmin(admin.ModelAdmin):
         'name',
         'description',
         'full_description',
+        'metadescription',
         'logo',
         'banner',
         'parents',
@@ -126,13 +127,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_per_page = 25
     search_fields = ['name']
 
-    def formfield_for_dbfield(self, db_field, **kwargs):
-        if db_field.name == 'description':
-            return db_field.formfield(widget=TinyMCE(
-                attrs={'cols': 80, 'rows': 30},
-                mce_attrs={'external_link_list_url': reverse('tinymce-linklist')},
-            ))
-        return super().formfield_for_dbfield(db_field, **kwargs)
+   
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(CategoryAdmin, self).get_form(request, obj, **kwargs)

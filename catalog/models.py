@@ -172,6 +172,13 @@ class Category(BaseFields):
         db_index=True,
         verbose_name='url-адрес'
     )
+    metadescription = models.TextField(
+        default='',
+        null=True,
+        blank=True,
+        verbose_name='Описание для метатега'
+    )
+        
     is_final = models.BooleanField(
         default=False,
         verbose_name='Отметка о том, что категория является финальной и в ней содержатся товары'

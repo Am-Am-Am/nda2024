@@ -2,10 +2,10 @@
 /venv
 .idea
 /dumps
-/media/
+
 /temporary_unused_code
 **/**/__pycache__
-/static
+
 /theory
 /private
 dump.rdb

@@ -26,7 +26,6 @@ import catalog.views
 urlpatterns = [
     path('', catalog.views.IndexView.as_view(), name='home'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('tinymce/', include('tinymce.urls')),
     path('admin/', admin.site.urls),
     path('cart/', include('cart.urls')),
     path('catalog/', include('catalog.urls')),

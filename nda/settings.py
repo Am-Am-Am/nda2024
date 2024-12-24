@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'django_celery_results',
     'core.apps.CoreConfig',
     'sorl.thumbnail',
-    'tinymce',
     'phonenumber_field',
 ]
 
@@ -125,7 +124,7 @@ DATABASES = {
 SQL_HOST = os.getenv('SQL_DB_HOST', "localhost")
 SQL_USER = os.getenv('SQL_DB_USER',"root")
 SQL_PASSWORD = os.getenv('SQL_DB_PASSWORD', 'root')
-SQL_BASE_NAME = os.getenv("SQL_DB_BASE_NAME", "nda_test")
+SQL_BASE_NAME = os.getenv("SQL_DB_BASE_NAME","nda_test")
 
 CACHES = {
     "default": {
