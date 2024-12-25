@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'sorl.thumbnail',
     'phonenumber_field',
+    'django_summernote',
 ]
 
 MIDDLEWARE = [
@@ -222,6 +223,17 @@ EMAIL_USE_TLS = True
 # YANDEX CAPTCHA SETTINGS
 SECURE_REFERRER_POLICY = 'no-referrer-when-downgrade'
 YACAPTCHA_SERVER = os.getenv('SERVER_KEY')
+
+
+
+# Конфигурация CKEditor
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': '100%',
+    },
+}
 
 
 # TINYMCE SETTINGS
