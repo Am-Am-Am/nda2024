@@ -869,7 +869,7 @@ li .active {
 .breadCrumbs {
     font-family: var(--font-family);
     font-weight: 500;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 111%;
     color: #1a1a18;
 }
@@ -2578,9 +2578,15 @@ input .form-control .d-inline-block {
 
 .breadcrumb-item a{
     color: #858585;
+    font-weight: 300;
+}
+
+.breadcrumb-item{
+    margin-bottom: 5px;
 }
 
 .breadcrumb-item-active {
     color: #1A1A18;
+    font-weight: 500;
 }
 
