@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'sorl.thumbnail',
     'phonenumber_field',
-    'django_summernote',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [

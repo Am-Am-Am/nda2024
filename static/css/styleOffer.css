@@ -99,15 +99,12 @@
 
 .slider-arrows {
     position: absolute;
+    bottom: 10%;
 }
 
 
 .product {
     height: auto;
-}
-
-.slider-nav .nav2 .slick-initialized .slick-slider {
-    height: 200px;
 }
 
 #offers-table {
@@ -142,420 +139,579 @@
     width: 95vw
 }
 
-.dropDown{
+.dropDown {
     display: none;
 }
 
-@media (max-width: 1440px) {
-    #addButton {
-        font-size: 12px;
-    }
-
+.sliderNavEl {
+    height: auto;
+    background-color: #fff;
+    height: 180px;
 }
 
+.slider-nav {
+    margin-top: 40px;
+    height: 300px;
+}
 
-@media (max-width: 1260px) {
+.slider-nav img {
 
-    .formButton {
-        position: fixed;
-        right: 50px;
-        bottom: 130px;
-
-    }
-
-    .placeResult {
-        flex-direction: column;
-        align-items: center;
-        height: auto;
-        padding: 10px;
-    }
-
-
-    .orderButton {
-        width: 300px;
-    }
-
-    .countItems {
-        width: 300px;
-    }
-
-    .linkContacts {
-        width: 100%;
-    }
-
-    .linkContactsEl {
-        width: 100%;
-    }
-
-    .catalogTutorialElText {
-        font-size: 18px;
-    }
-
-    .nav-pills .nav-link {
-        font-size: 18px;
-    }
-
-    .productInfo {
-        margin-top: 100px;
-    }
-
-    .sliderImg img {
-        width: 100%;
-    }
-
-    .quantity-input form {
-        height: 100%;
-        width: 100%;
-    }
-
-    .offerCount {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-
-    .table td {
-        height: auto;
-        padding-bottom: 50px;
-    }
-
-    .inputCount {
-        width: 100%;
-        height: 30px;
-    }
-
-    #addButton {
-        font-size: 14px;
-        width: 100%;
-        height: 50px;
-    }
-
-    .modal-dialog {
-        width: 95vw;
-        margin: auto;
-        margin-top: 120px;
-    }
-
-    .tab-content {
-        padding: 20px;
-    }
-
-    .physicalForm {
-        width: 100%;
-        gap: 20px;
-    }
-
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
 }
 
 
 
-@media (max-width: 900px) {
 
-    .slider-nav {
-        margin-top: 140px;
-    }
+.slider-nav .glide__slide .active {
+    border: 2px solid #3391c5;
+}
 
-    .productTitle {
-        height: auto;
-    }
-
-    .modal-dialog {
-
-        width: 95vw;
-        margin: auto;
-        margin-top: 120px;
-    }
-
-    .modal-lg,
-    .modal-xl {
-        max-width: 95vw;
-    }
-
+.slider-nav .glide__slides {
+    display: flex;
+    flex-wrap: wrap;
+    /* Enable wrapping */
+    justify-content: flex-start;
 }
 
 
-@media (max-width: 800px) {
-    .nav-pills .nav-link {
-        font-size: 16px;
-    }
 
-    .catalogTutorial {
-        gap: 20px;
-    }
 
-    .modal-dialog {
+/* .slider-nav .glide__slide.active {
+    border: 2px solid #ff0000;
+} */
 
-        width: 95vw;
-        margin: auto;
-        margin-top: 120px;
-    }
+.thumbnail-slider-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
 
-@media (max-width: 700px) {
-    .catalogTutorial {
-        gap: 10px;
-    }
+.thumbnail-slider-prev,
+.thumbnail-slider-next {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    background-color: #f0f0f0;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    opacity: 0.7;
+}
 
-    .table td {
-        font-size: 14px;
-    }
+.thumbnail-slider-prev:hover,
+.thumbnail-slider-next:hover {
+    opacity: 1;
+}
 
-    .modal-dialog {
 
-        width: 95vw;
-        margin: auto;
-        margin-top: 120px;
-    }
 
-    .slick-slide img {
-        width: 100%;
-    }
 
-    .productInfoChoice{
-        display: none;
-    }
+.thumbnail-slider-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
 
-    .productTabContent{
-        display: none;
-    }
+.thumbnail-slider-prev,
+.thumbnail-slider-next {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    background-color: #f0f0f0;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    opacity: 0.7;
+}
 
-    .dropDown{
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: auto;
-        background-color: #fff;
-        border-radius: 15px;
-        box-shadow: 0 0 40px 3px rgba(0, 0, 0, 0.15);
-        padding: 20px;
-    }
+.thumbnail-slider-prev:hover,
+.thumbnail-slider-next:hover {
+    opacity: 1;
+}
 
-    .dropDown details{
-        border-bottom: 2px solid #F2F2F2;
-    }
-    .dropDown summary{
-        height: 50px;
-        margin-top: 20px;
+.glide__track {
+    height: 100%;
+}
 
-    }
+.glide__slides {
+    height: 100%;
+}
 
-    
-    details > summary {
-        list-style-type: none;
-        width: 100%;
-    }
-    
+.productInfo{
+    margin-top: 40px;
+}
 
-    details > summary::after {
-        display: inline-block;
-        width: 14px; /* Ширина вашего SVG */
-        height: 8px; /* Высота вашего SVG */
-        background-image: url("data:image/svg+xml,%3Csvg width='14' height='8' viewBox='0 0 14 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.5547 1.00269L6.7782 6.77917L0.698374 0.699349' stroke='%231A1A18' stroke-linecap='round'/%3E%3C/svg%3E%0A");
-        content: '';
-        margin-left: 10px;
-    }
-    
-   
-    details[open] > summary::after{
-        margin-left: 10px;
-        background-image: url("data:image/svg+xml,%3Csvg width='14' height='8' viewBox='0 0 14 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.699219 6.71008L6.46521 0.92312L12.5561 6.9919' stroke='%231A1A18' stroke-linecap='round'/%3E%3C/svg%3E%0A");
-    }
-
+.glide__slide{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.glide__slide img{
+    width: 80%;
 }
 
 @media (max-width: 600px) {
-    .nav-pills .nav-link {
-        font-size: 14px;
+
+
+    .thumbnail-slider-controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
     }
 
-    .catalogTutorialEl {
-        padding: 0 10px;
-    }
-
-    .catalogTutorialElImg {
-        width: 50px;
-    }
-
-    .modal-dialog {
-
-        width: 95vw;
-        margin: auto;
-        margin-top: 120px;
-    }
-
-}
-
-@media (width < 550px) {
-
-    .formButton {
-        position: fixed;
-        right: 20px;
-        bottom: 300px;
-
-    }
-
-    .placeResult {
-        flex-direction: column-reverse;
-        align-items: center;
-        height: auto;
-        padding: 10px;
-        bottom: 130px;
-        width: 95%;
-        left: 2.5%;
-        gap: 10px;
-        border-radius: 15px;
-    }
-
-
-    .orderButton {
-        width: 100%;
-        border-radius: 10px;
-        font-size: 16px;
-    }
-
-    .countItems {
-        width: 100%;
-        border-radius: 10px;
-        font-size: 16px;
-    }
-
-    .countItems .count {
-        font-weight: 500;
-        font-size: 16px;
-    }
-
-    .linkContacts {
-        flex-direction: column;
-        align-items: start;
-    }
-
-    .nav-pills .nav-link {
-        font-size: 12px;
-    }
-
-    .catalogTutorialEl {
-        padding: 0 5px;
-    }
-
-    .table td {
-        font-size: 12px;
-    }
-
-    .inputCountBtn1 {
-        display: none;
-    }
-
-    .inputCountBtn2 {
-        display: none;
-    }
-
-    .table th {
-        font-size: 14px;
-    }
-
-    .quantity-input input {
-        padding-left: 20px;
-    }
-
-    .tab-content {
-        padding: 10px;
-    }
-
-    .sliderContainer {
-        height: 400px;
-    }
-
-    #offers-table {
-        width: 350px;
-    }
-
-}
-
-@media (min-width: 576px) {
-    .modal-dialog {
-        max-width: 95vw;
-
-    }
-}
-
-@media (width < 480px) {
-    .formButton {
-        position: fixed;
-        right: 20px;
-        bottom: 150px;
-    }
-
-    .placeResult {
-        flex-direction: column-reverse;
-        align-items: center;
-        height: auto;
-        padding: 10px;
-        bottom: 20px;
-        width: 95%;
-        left: 2.5%;
-        gap: 10px;
-        border-radius: 15px;
-    }
-
-
-    .orderButton {
-        width: 100%;
-        border-radius: 10px;
-        font-size: 16px;
+    .thumbnail-slider-prev,
+    .thumbnail-slider-next {
+        cursor: pointer;
+        width: 40px;
         height: 40px;
+        background-color: #f0f0f0;
+        background-repeat: no-repeat;
+        background-position: center;
+        border: none;
+        opacity: 0.7;
     }
 
-    .countItems {
-        width: 100%;
-        border-radius: 10px;
-        font-size: 16px;
-        height: 40px;
-    }
-
-    .countItems .count {
-        font-weight: 500;
-        font-size: 16px;
-    }
-
-    .nav-pills .nav-link {
-        font-size: 10px;
-    }
-
-    .catalogTutorial {
-        flex-direction: column;
-    }
-
-    .catalogTutorialLink {
-        width: 100%;
-    }
-
-    .footerLogo img {
-        width: 100%;
-        height: auto;
-    }
-
-    .linkContacts a {
-        font-size: 14px;
-    }
-
-    .modal-dialog {
-        margin-top: 100px;
-        width: 95vw;
-    }
-
-    .productHead {
-        height: auto;
-    }
-
-}
-
-
-@media (width < 400px) {
-    .table th {
-        font-size: 12px;
-    }
-
-    .table td {
-        font-size: 10px;
+    .thumbnail-slider-prev:hover,
+    .thumbnail-slider-next:hover {
+        opacity: 1;
     }
 }
+    @media (max-width: 1440px) {
+        #addButton {
+            font-size: 12px;
+        }
+
+    }
+
+
+    @media (max-width: 1260px) {
+
+        .formButton {
+            position: fixed;
+            right: 45px;
+            bottom: 90px;
+
+        }
+
+        .placeResult {
+            flex-direction: column;
+            align-items: center;
+            height: auto;
+            padding: 10px;
+            bottom: 10px;
+        }
+
+
+        .orderButton {
+            width: 300px;
+        }
+
+        .countItems {
+            width: 300px;
+        }
+
+        .linkContacts {
+            width: 100%;
+        }
+
+        .linkContactsEl {
+            width: 100%;
+        }
+
+        .catalogTutorialElText {
+            font-size: 18px;
+        }
+
+        .nav-pills .nav-link {
+            font-size: 18px;
+        }
+
+     
+
+        .sliderImg img {
+            width: 100%;
+        }
+
+        .quantity-input form {
+            height: 100%;
+            width: 100%;
+        }
+
+        .offerCount {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+
+        .table td {
+            height: auto;
+            padding-bottom: 50px;
+        }
+
+        .inputCount {
+            width: 100%;
+            height: 30px;
+        }
+
+        #addButton {
+            font-size: 14px;
+            width: 100%;
+            height: 50px;
+        }
+
+        .modal-dialog {
+            width: 95vw;
+            margin: auto;
+            margin-top: 120px;
+        }
+
+        .tab-content {
+            padding: 20px;
+        }
+
+        .physicalForm {
+            width: 100%;
+            gap: 20px;
+        }
+
+    }
+
+
+
+    @media (max-width: 900px) {
+
+
+
+        .productTitle {
+            height: auto;
+        }
+
+        .modal-dialog {
+
+            width: 95vw;
+            margin: auto;
+            margin-top: 120px;
+        }
+
+        .modal-lg,
+        .modal-xl {
+            max-width: 95vw;
+        }
+
+    }
+
+
+    @media (max-width: 800px) {
+        .nav-pills .nav-link {
+            font-size: 16px;
+        }
+
+        .catalogTutorial {
+            gap: 20px;
+        }
+
+        .modal-dialog {
+
+            width: 95vw;
+            margin: auto;
+            margin-top: 120px;
+        }
+    }
+
+    @media (max-width: 700px) {
+        .catalogTutorial {
+            gap: 10px;
+        }
+
+        .table td {
+            font-size: 14px;
+        }
+
+        .modal-dialog {
+
+            width: 95vw;
+            margin: auto;
+            margin-top: 120px;
+        }
+
+        .slick-slide img {
+            width: 100%;
+        }
+
+        .productInfoChoice {
+            display: none;
+        }
+
+        .productTabContent {
+            display: none;
+        }
+
+        .dropDown {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: auto;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 0 40px 3px rgba(0, 0, 0, 0.15);
+            padding: 20px;
+        }
+
+        .dropDown details {
+            border-bottom: 2px solid #F2F2F2;
+        }
+
+        .dropDown summary {
+            height: 50px;
+            margin-top: 20px;
+
+        }
+
+
+        details>summary {
+            list-style-type: none;
+            width: 100%;
+        }
+
+
+        details>summary::after {
+            display: inline-block;
+            width: 14px;
+            /* Ширина вашего SVG */
+            height: 8px;
+            /* Высота вашего SVG */
+            background-image: url("data:image/svg+xml,%3Csvg width='14' height='8' viewBox='0 0 14 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.5547 1.00269L6.7782 6.77917L0.698374 0.699349' stroke='%231A1A18' stroke-linecap='round'/%3E%3C/svg%3E%0A");
+            content: '';
+            margin-left: 10px;
+        }
+
+
+        details[open]>summary::after {
+            margin-left: 10px;
+            background-image: url("data:image/svg+xml,%3Csvg width='14' height='8' viewBox='0 0 14 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.699219 6.71008L6.46521 0.92312L12.5561 6.9919' stroke='%231A1A18' stroke-linecap='round'/%3E%3C/svg%3E%0A");
+        }
+
+    }
+
+    @media (max-width: 600px) {
+        .nav-pills .nav-link {
+            font-size: 14px;
+        }
+
+        .catalogTutorialEl {
+            padding: 0 10px;
+        }
+
+        .catalogTutorialElImg {
+            width: 50px;
+        }
+
+        .modal-dialog {
+
+            width: 95vw;
+            margin: auto;
+            margin-top: 120px;
+        }
+
+    }
+
+    @media (width < 550px) {
+
+        .formButton {
+            position: fixed;
+            right: 15px;
+            bottom: 180px;
+
+        }
+
+        .placeResult {
+            flex-direction: column-reverse;
+            align-items: center;
+            height: auto;
+            padding: 10px;
+            bottom: 10px;
+            width: 95%;
+            left: 2.5%;
+            gap: 10px;
+            border-radius: 15px;
+        }
+
+
+        .orderButton {
+            width: 100%;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        .countItems {
+            width: 100%;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        .countItems .count {
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .linkContacts {
+            flex-direction: column;
+            align-items: start;
+        }
+
+        .nav-pills .nav-link {
+            font-size: 12px;
+        }
+
+        .catalogTutorialEl {
+            padding: 0 5px;
+        }
+
+        .table td {
+            font-size: 12px;
+        }
+
+        .inputCountBtn1 {
+            display: none;
+        }
+
+        .inputCountBtn2 {
+            display: none;
+        }
+
+        .table th {
+            font-size: 14px;
+        }
+
+        .quantity-input input {
+            padding-left: 20px;
+        }
+
+        .tab-content {
+            padding: 10px;
+        }
+
+        .sliderContainer {
+            height: auto
+        }
+
+        #offers-table {
+            width: 350px;
+        }
+
+        .sliderContainer{
+            display: none;
+        }
+
+        .glide__slide{
+            width: 100%;
+            height: 100%;
+        }
+
+        .glide__slide img{
+            width: 300px;
+            height: auto;
+        }
+
+        .glide__slide .sliderNavEl{
+            width: 100%;
+        }
+
+
+    }
+
+    @media (min-width: 576px) {
+        .modal-dialog {
+            max-width: 95vw;
+
+        }
+    }
+
+    @media (width < 480px) {
+        .formButton {
+            position: fixed;
+            right: 20px;
+            bottom: 150px;
+        }
+
+        .placeResult {
+            flex-direction: column-reverse;
+            align-items: center;
+            height: auto;
+            padding: 10px;
+            bottom: 20px;
+            width: 95%;
+            left: 2.5%;
+            gap: 10px;
+            border-radius: 15px;
+        }
+
+
+        .orderButton {
+            width: 100%;
+            border-radius: 10px;
+            font-size: 16px;
+            height: 40px;
+        }
+
+        .countItems {
+            width: 100%;
+            border-radius: 10px;
+            font-size: 16px;
+            height: 40px;
+        }
+
+        .countItems .count {
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .nav-pills .nav-link {
+            font-size: 10px;
+        }
+
+        .catalogTutorial {
+            flex-direction: column;
+        }
+
+        .catalogTutorialLink {
+            width: 100%;
+        }
+
+        .footerLogo img {
+            width: 100%;
+            height: auto;
+        }
+
+        .linkContacts a {
+            font-size: 14px;
+        }
+
+        .modal-dialog {
+            margin-top: 100px;
+            width: 95vw;
+        }
+
+        .productHead {
+            height: auto;
+        }
+
+
+
+
+    }
+
+
+    @media (width < 400px) {
+        .table th {
+            font-size: 12px;
+        }
+
+        .table td {
+            font-size: 10px;
+        }
+    }

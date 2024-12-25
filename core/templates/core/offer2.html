@@ -19,6 +19,8 @@
 <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
 <script src="{% static 'htmx/htmx.min.js' %}"></script>
 <script src="https://www.google.com/recaptcha/api.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.min.js"></script>
 {% endblock %}
 
 {% block styles %}
@@ -44,7 +46,9 @@
         <div class="product">
             <div class="productHead">
                 <div class="productCarousel">
-                    <div class="sliderContainer">
+
+
+                    {% comment %} <div class="sliderContainer">
                         <div class="slider">
                             {% for image in images %}
                             {% thumbnail image.image '600x800' as im %}
@@ -57,9 +61,8 @@
                             <div class="slick-next1" style="background-image: url('{% static "images/offer/right.svg"%}')"></div>
                         </div>
                     </div>
+
                     <div class="slider-nav nav2">
-
-
                         {% for image in images %}
                         {% with forloop.counter0 as index %}
                         {% thumbnail image.image '450x450' as im %}
@@ -71,33 +74,50 @@
                         {% endthumbnail %}
                         {% endwith %}
                         {% endfor %}
-                        {% comment %} {% for image in images %}
-                        {% with forloop.counter0 as index %}
-                        {% thumbnail image.image '450x450' as im %}
-                        <div class="sliderNavEl stick-cloned">
-                            <a data-slide-index="-{{index}}">
-                                <img src="{{im.url}}" style="width: 100%">
-                            </a>
-                        </div>
-                        {% endthumbnail %}
-                        {% thumbnail image.image '450x450' as im %}
-                        <div class="sliderNavEl">
-                            <a class="{% if index == 0 %}active{% endif %}" data-slide-index="{{index}}">
-                                <img src="{{im.url}}" style="width: 100%">
-                            </a>
-                        </div>
-                        {% endthumbnail %}
-                        {% thumbnail image.image '450x450' as im %}
-                        <div class="sliderNavEl stick-cloned">
-                            <a data-slide-index="{{index}} + images.length + 2 ">
-                                <img src="{{im.url}}" style="width: 100%">
-                            </a>
-                        </div>
-                        {% endthumbnail %}
-                        {% endwith %}
-                        {% endfor %} {% endcomment %}
-                    </div>
+                    </div> {% endcomment %}
 
+                    <div class="sliderContainer">
+                        <div class="glide" id="image-slider">
+                            <div class="glide__track" data-glide-el="track">
+                                <ul class="glide__slides">
+                                    {% for image in images %}
+                                    {% thumbnail image.image '600x800' as im %}
+                                    <li class="glide__slide">
+                                        <img class="sliderImg" src="{{im.url}}">
+                                    </li>
+                                    {% endthumbnail %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="slider-arrows" data-glide-el="controls">
+                                <button class="slick-prev1" data-glide-dir="<" style="background-image: url('{% static "images/offer/left.svg"%}')"></button>
+                                <button class="slick-next1" data-glide-dir=">" style="background-image: url('{% static "images/offer/right.svg"%}')"></button>
+                            </div>
+                            <div class="glide__bullets" data-glide-el="controls[nav]"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-nav nav2" id="thumbnail-slider">
+                        <div class="glide">
+                            <div class="glide__track" data-glide-el="track">
+                                <ul class="glide__slides">
+                                    {% for image in images %}
+                                    {% with forloop.counter0 as index %}
+                                    {% thumbnail image.image '450x450' as im %}
+                                    <li class="glide__slide sliderNavEl">
+                                        <a href="#" data-slide-index="{{index}}" class="thumbnail-link">
+                                            <img src="{{im.url}}" style="width: 100%">
+                                        </a>
+                                    </li>
+                                    {% endthumbnail %}
+                                    {% endwith %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
                 </div>
 
 
@@ -593,7 +613,7 @@
 {% block script %}
 
 <script src="{% static 'scripts/offers-htmx-handlers.js' %}"></script>
-<script src="{% static "scripts/productSlider.js" %}"></script>
+{% comment %} <script src="{% static "scripts/productSlider.js" %}"></script> {% endcomment %}
 <script>
     $(document).ready(function () {
         $('.modal').on('shown.bs.modal', function () {
@@ -605,5 +625,88 @@
         });
     });
 </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.min.js"></script>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+         // Get all thumbnail elements
+        const thumbnailSlides = document.querySelectorAll('.sliderNavEl');
+        const totalThumbnails = thumbnailSlides.length;
+        let perViewCount = 4; // Default perView for <= 4 items
+
+        if (totalThumbnails > 4) {
+            perViewCount = 4; // Use 4 for wrapping
+          }
+
+        // Initialize main slider (one time)
+        const imageSlider = new Glide('#image-slider', {
+            type: 'carousel',
+            perView: 1,
+            animationDuration: 700,
+        }).mount();
+
+
+         // Initialize thumbnail slider (one time)
+        const thumbnailSlider = new Glide('#thumbnail-slider', {
+            type: 'carousel',
+            perView: perViewCount,
+            focusAt: 'center',
+            animationDuration: 700,
+             rewind: false,
+            breakpoints: {
+                 600: {
+                    perView: 2
+                }
+            }
+        }).mount();
+
+        const thumbnailLinks = document.querySelectorAll('.thumbnail-link');
+        const thumbnailPerView = thumbnailSlider.settings.perView;
+
+
+        // Function to highlight the active thumbnail and move thumbnail slider if needed
+       function updateActiveThumbnail(index) {
+            thumbnailSlides.forEach(slide => slide.classList.remove('active'));
+           thumbnailSlides[index].classList.add('active');
+
+           if (index >= thumbnailSlider.index + 4 || index < thumbnailSlider.index) {
+              thumbnailSlider.go(`=${index}`);
+            }
+        }
+
+
+        // Handle thumbnail click
+        thumbnailLinks.forEach((link, index) => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                imageSlider.go(`=${index}`);
+                updateActiveThumbnail(index);
+            });
+        });
+
+        // Event on main slider move to sync active thumbnail highlight
+         imageSlider.on('move.after', () => {
+             updateActiveThumbnail(imageSlider.index);
+        });
+
+
+        // Handle rewind for thumbnail slider only when needed
+          if(totalThumbnails > 4){
+            thumbnailSlider.update({rewind: true})
+            }
+    });
+    </script>
+  
+
+
+
+
+    
+    
+    
+
+
 
 {% endblock %}

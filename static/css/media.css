@@ -679,7 +679,6 @@
 
     /* product.html */
     .productHead {
-
         width: 100%;
     }
 
@@ -840,6 +839,7 @@
         align-items: center;
         justify-content: start;
         width: 100%;
+        height: auto;
     }
 
     .productCarousel {
@@ -1713,20 +1713,20 @@
 
     .sliderNavEl {
         background: #fff;
-        width: 100px;
+        height: 200px;
         background-size: 150px 150px;
         border-radius: 15px;
         -webkit-border-radius: 15px;
         -moz-border-radius: 15px;
         -ms-border-radius: 15px;
         -o-border-radius: 15px;
-        height: 100px;
+       
         /* Задаем фиксированную ширину для миниатюр */
         margin: 0 10px;
     }
 
     .slider-nav img {
-        height: 50px;
+        height: 200px;
     }
 
 
@@ -2498,8 +2498,17 @@
         display: none;
     }
 
+    .slider-arrows {
+        display: none;
+    }
+    .slider-arrows{
+        display: none;
+    }
 
-
+    .choice {
+        width: 50vh;
+        font-size: 14px;
+    }
 
 
     /* certificatesInternalPage.html */

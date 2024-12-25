@@ -5,9 +5,7 @@ from django.core.files.storage import FileSystemStorage
 from django.core.validators import URLValidator, ValidationError
 from django.utils.text import slugify
 from nda.settings import PRIVATE_ROOT, SENDFILE_ROOT
-from django_summernote.fields import SummernoteTextField
-   
-
+from ckeditor.fields import RichTextField
 
 private_storage = FileSystemStorage(location=PRIVATE_ROOT + SENDFILE_ROOT, base_url='/files')
 
@@ -26,22 +24,28 @@ class BaseFields(models.Model):
         PUBLISHED = 'PUBLISHED', 'Активен'
         ARCHIVED = 'ARCHIVED', 'В архиве'
 
-    description = SummernoteTextField(
+    description = RichTextField(
+        default='',
         null=True,
         blank=True,
-        verbose_name='Описание'
+        verbose_name='Краткое описание',
+        config_name='default'  # Используем конфигурацию по умолчанию
     )
 
-    custom_description = SummernoteTextField(
+    custom_description = RichTextField(
+        default='',
         null=True,
         blank=True,
-        verbose_name='Кастомное описание'
+        verbose_name='Кастомное описание',
+        config_name='default'
     )
 
-    full_description = SummernoteTextField(
+    full_description = RichTextField(
+        default='',
         null=True,
         blank=True,
-        verbose_name='Полное описание'
+        verbose_name='Полное описание',
+        config_name='default'
     )
     place = models.IntegerField(
         blank=True,
