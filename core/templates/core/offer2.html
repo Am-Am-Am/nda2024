@@ -25,6 +25,8 @@
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/styleOffer.css'%}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/styleCarousel.css'%}" type="text/css">
+
 {% endblock %}
 
 {% block content %}
@@ -46,79 +48,44 @@
         <div class="product">
             <div class="productHead">
                 <div class="productCarousel">
-
-
-                    {% comment %} <div class="sliderContainer">
-                        <div class="slider">
-                            {% for image in images %}
-                            {% thumbnail image.image '600x800' as im %}
-                            <div><img class="sliderImg" src="{{im.url}}"></div>
-                            {% endthumbnail %}
-                            {% endfor %}
-                        </div>
-                        <div class="slider-arrows">
-                            <div class="slick-prev1" style="background-image: url('{% static "images/offer/left.svg"%}')"></div>
-                            <div class="slick-next1" style="background-image: url('{% static "images/offer/right.svg"%}')"></div>
-                        </div>
+                    <div class="carouselWrapper">
+                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                             <div class="carousel-inner">
+                                 {% for image in images %}
+                                 {% thumbnail image.image '600x800' as im %}
+                                 <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                     <img src="{{ im.url }}" class="d-block" alt="Product Image">
+                                 </div>
+                                 {% endthumbnail %}
+                                 {% endfor %}
+                             </div>
+                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                 <span class="carousel-control-prev-icon slick-prev1" aria-hidden="true" style="background-image: url('{% static "images/offer/left.svg"%}')" ></span>
+                                 <span class="visually-hidden">Previous</span>
+                             </button>
+                             <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                 <span class="carousel-control-next-icon slick-next1" aria-hidden="true" style="background-image: url('{% static "images/offer/right.svg"%}')"></span>
+                                 <span class="visually-hidden">Next</span>
+                             </button>
+                         </div>
                     </div>
-
-                    <div class="slider-nav nav2">
-                        {% for image in images %}
-                        {% with forloop.counter0 as index %}
-                        {% thumbnail image.image '450x450' as im %}
-                        <div class="sliderNavEl stick-cloned">
-                            <a data-slide-index="{{index}}">
-                                <img src="{{im.url}}" style="width: 100%">
-                            </a>
-                        </div>
-                        {% endthumbnail %}
-                        {% endwith %}
-                        {% endfor %}
-                    </div> {% endcomment %}
-
-                    <div class="sliderContainer">
-                        <div class="glide" id="image-slider">
-                            <div class="glide__track" data-glide-el="track">
-                                <ul class="glide__slides">
-                                    {% for image in images %}
-                                    {% thumbnail image.image '600x800' as im %}
-                                    <li class="glide__slide">
-                                        <img class="sliderImg" src="{{im.url}}">
-                                    </li>
-                                    {% endthumbnail %}
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                            <div class="slider-arrows" data-glide-el="controls">
-                                <button class="slick-prev1" data-glide-dir="<" style="background-image: url('{% static "images/offer/left.svg"%}')"></button>
-                                <button class="slick-next1" data-glide-dir=">" style="background-image: url('{% static "images/offer/right.svg"%}')"></button>
-                            </div>
-                            <div class="glide__bullets" data-glide-el="controls[nav]"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="slider-nav nav2" id="thumbnail-slider">
-                        <div class="glide">
-                            <div class="glide__track" data-glide-el="track">
-                                <ul class="glide__slides">
-                                    {% for image in images %}
-                                    {% with forloop.counter0 as index %}
-                                    {% thumbnail image.image '450x450' as im %}
-                                    <li class="glide__slide sliderNavEl">
-                                        <a href="#" data-slide-index="{{index}}" class="thumbnail-link">
-                                            <img src="{{im.url}}" style="width: 100%">
-                                        </a>
-                                    </li>
-                                    {% endthumbnail %}
-                                    {% endwith %}
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
+                    <div class="tumbnailsWrapper">
+                         <div class="carousel-indicators tumbnails-list">
+                             {% for image in images %}
+                                 {% with forloop.counter0 as index %}
+                                 {% thumbnail image.image '100x100' as im %}
+                                 <div class="thumbnailContainer" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{index}}" class="{% if forloop.first %}active{% endif %}">
+                                     <img src="{{ im.url }}" class="d-block  thumbnail-image" aria-label="Slide {{ index }}">
+                                 </div>
+                                 {% endthumbnail %}
+                                 {% endwith %}
+                             {% endfor %}
+                         </div>
+                     </div>
                 </div>
+                
+                   
+                
 
 
                 <div class="productTitle">
@@ -629,81 +596,46 @@
 <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.min.js"></script>
 
 
-    <script>
+
+<script>
     document.addEventListener('DOMContentLoaded', function() {
-         // Get all thumbnail elements
-        const thumbnailSlides = document.querySelectorAll('.sliderNavEl');
-        const totalThumbnails = thumbnailSlides.length;
-        let perViewCount = 4; // Default perView for <= 4 items
-
-        if (totalThumbnails > 4) {
-            perViewCount = 4; // Use 4 for wrapping
-          }
-
-        // Initialize main slider (one time)
-        const imageSlider = new Glide('#image-slider', {
-            type: 'carousel',
-            perView: 1,
-            animationDuration: 700,
-        }).mount();
+        const thumbnailDivs = document.querySelectorAll('.tumbnails-list div');
+        const carouselElement = document.getElementById('carouselExampleIndicators');
+        const carousel = new bootstrap.Carousel(carouselElement);
 
 
-         // Initialize thumbnail slider (one time)
-        const thumbnailSlider = new Glide('#thumbnail-slider', {
-            type: 'carousel',
-            perView: perViewCount,
-            focusAt: 'center',
-            animationDuration: 700,
-             rewind: false,
-            breakpoints: {
-                 600: {
-                    perView: 2
-                }
-            }
-        }).mount();
-
-        const thumbnailLinks = document.querySelectorAll('.thumbnail-link');
-        const thumbnailPerView = thumbnailSlider.settings.perView;
-
-
-        // Function to highlight the active thumbnail and move thumbnail slider if needed
-       function updateActiveThumbnail(index) {
-            thumbnailSlides.forEach(slide => slide.classList.remove('active'));
-           thumbnailSlides[index].classList.add('active');
-
-           if (index >= thumbnailSlider.index + 4 || index < thumbnailSlider.index) {
-              thumbnailSlider.go(`=${index}`);
-            }
+        function setActiveThumbnail(slideIndex) {
+            thumbnailDivs.forEach(div => div.classList.remove('active'));
+            thumbnailDivs[slideIndex].classList.add('active');
+        
         }
 
+          carouselElement.addEventListener('slid.bs.carousel', function(e) {
+             const activeSlideIndex = e.to;
 
-        // Handle thumbnail click
-        thumbnailLinks.forEach((link, index) => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                imageSlider.go(`=${index}`);
-                updateActiveThumbnail(index);
+             setActiveThumbnail(activeSlideIndex);
+            });
+
+        thumbnailDivs.forEach(div => {
+            div.addEventListener('click', function() {
+                const slideTo = parseInt(this.getAttribute('data-bs-slide-to'));
+                carousel.to(slideTo);
+                setActiveThumbnail(slideTo);
+             
             });
         });
 
-        // Event on main slider move to sync active thumbnail highlight
-         imageSlider.on('move.after', () => {
-             updateActiveThumbnail(imageSlider.index);
-        });
 
-
-        // Handle rewind for thumbnail slider only when needed
-          if(totalThumbnails > 4){
-            thumbnailSlider.update({rewind: true})
+          // Инициализируем активную миниатюру при загрузке страницы
+          const initialActiveSlide = document.querySelector('.carousel-item.active');
+          if (initialActiveSlide) {
+               const initialActiveIndex = Array.from(document.querySelectorAll('.carousel-item')).indexOf(initialActiveSlide);
+                setActiveThumbnail(initialActiveIndex);
+        
             }
+
     });
-    </script>
-  
-
-
-
-
-    
+</script> 
     
     
 

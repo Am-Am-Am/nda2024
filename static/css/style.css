@@ -8,11 +8,34 @@
 input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
-  }
+}
 
   input[type="number"] {
     -moz-appearance: textfield;
   }
+
+  ::-webkit-scrollbar {
+    width: 10px; /* Adjust width as needed */
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Light grey for track */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3391C5; /* Desired color for thumb */
+    border-radius: 5px; /* Add rounded corners for the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2a7ab3; /* Darker color on hover */
+}
+
+/* Firefox */
+html {
+    scrollbar-color: #3391C5 #f1f1f1; /* thumb and track color */
+    scrollbar-width: thin; /* Use thin for a smaller scrollbar */
+}
 
 
 :root {
@@ -993,6 +1016,8 @@ li .active {
     justify-content: space-between;
     gap: 40px;
     margin-top: 40px;
+    height: auto;
+
 }
 
 .productCarousel {
@@ -1000,6 +1025,7 @@ li .active {
     display: flex;
     flex-direction: column;
     width: 49vw;
+    height: auto;
 }
 
 .slick-initialized  {
@@ -1030,8 +1056,6 @@ li .active {
 .slider-nav .nav2 .slick-initialized .slick-slider{
     height: 300px;
 }
-
-
 
 .slider-nav div {
     width: 100%;
@@ -1184,6 +1208,7 @@ li .active {
 }
 
 .productTitle {
+    flex: 1;
     width: 44vw;
     box-shadow: 0 0 40px 3px rgba(0, 0, 0, 0.15);
     background: #fff;
