@@ -16,10 +16,10 @@
       {% comment %} {% include 'catalog/components/breadcrumbs.html' %} {% endcomment %}
       <div class="breadCrumbs">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item fs-4">
+          <li class="breadcrumb-item">
             <a href="{% url 'home' %}" style="color: var(--color-theme-main)">ГЛАВНАЯ</a>
           </li>
-          <li class="breadcrumb-item active fs-4" aria-current="page">{{ brand.name.upper }}</li>
+          <li class="breadcrumb-item breadcrumb-item-active" aria-current="page">{{ brand.name.upper }}</li>
         </ol>
       </div>
       {% include 'core/components/banner.html' %}

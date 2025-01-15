@@ -32,13 +32,13 @@
     <div class="container1">
       <div class="breadCrumbs">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item fs-4">
+          <li class="breadcrumb-item">
             <a href="{% url 'home' %}" style="color: var(--color-theme-main)">ГЛАВНАЯ</a>
           </li>
-          <li class="breadcrumb-item fs-4">
+          <li class="breadcrumb-item">
             <a href="{% url 'brands_with_certificates' %}" style="color: var(--color-theme-main)">Сертификаты</a>
           </li>
-          <li class="breadcrumb-item active fs-4" aria-current="page">{{ brand.name }}</li>
+          <li class="breadcrumb-item breadcrumb-item-active" aria-current="page">{{ brand.name }}</li>
         </ol>
       </div>
 
