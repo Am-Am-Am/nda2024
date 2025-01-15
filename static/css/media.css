@@ -1443,33 +1443,8 @@
         font-size: 18px;
     }
 
-    .deliveryStepsEl:nth-child(1) {
-        height: 450px;
-    }
-
-    .deliveryStepsEl:nth-child(2) {
-        height: 450px;
-    }
-
-    .deliveryStepsEl:nth-child(3) {
-        height: 400px;
-    }
-
-    .deliveryStepsEl:nth-child(4) {
-        height: 400px;
-    }
-
-    .deliveryStepsEl:nth-child(5) {
-        height: 400px;
-    }
-
-    .reservationImagesEl:nth-child(1){
-        display: none;
-    }
-
-    .reservationImagesEl img{
-        width: 45vw;
-    }
+  
+  
 
     .h2{
         font-family: var(--font3);

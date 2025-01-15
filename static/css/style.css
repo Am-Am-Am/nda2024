@@ -2419,6 +2419,7 @@ input .form-control .d-inline-block {
     color: #3391c5;
 }
 
+
 .bullingSteps {
     margin-top: 40px;
     width: 100%;
@@ -2455,66 +2456,43 @@ input .form-control .d-inline-block {
 .reservation {
     display: flex;
     gap: 40px;
-
-}
-
-.reservationImages {
-    display: flex;
-    gap: 40px;
     flex-wrap: wrap;
-
 }
 
-.reservationImagesEl img {
-    
+.reservationStepsEl{
+    background: #fff;
     border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-}
-
-
-.reservationImagesEl:nth-child(1){
-    width: 100%;
-}
-
-.reservationImagesEl:nth-child(2){
-    width: calc(50%-20px);
-}
-
-.reservationImagesEl img:nth-child(2) {
-    width: calc(50%-20px);
-}
-
-.reservationImagesEl img:nth-child(3){
-    width: calc(50%-20px);
-}
-
-
-.reservationText{
-    width: 100%;
- }
-
-.reservation h2 {
-    margin-top: 0;
-    text-align: left;
-
-}
-
-.reservation li {
-    margin-bottom: 20px;
-    color: #3391C5;
-    font-size: 25px;
-}
-
-
-.reservation span {
+    height: auto;
+    padding: 30px;
     font-family: var(--second-family);
     font-weight: 400;
     font-size: 20px;
     color: #1a1a18;
+    background-repeat: no-repeat;
+    background-position: 95% -10px;
+    padding: 30px;
 }
+
+.reservationStepsEl:nth-child(1){
+    width: calc(100% - 50% - 20px);
+}
+
+.reservationStepsEl:nth-child(2){
+    width: calc(100% - 50% - 20px);
+}
+
+.reservationStepsEl:nth-child(3){
+    width: calc(100% - 67% - 30px);
+}
+
+.reservationStepsEl:nth-child(4){
+    width: calc(100% - 67% - 30px);
+}
+
+.reservationStepsEl:nth-child(5){
+    width: calc(100% - 67% - 30px);
+}
+
 
 .deliverySteps {
     display: flex;
