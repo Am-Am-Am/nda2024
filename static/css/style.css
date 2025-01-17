@@ -533,16 +533,7 @@ li .active {
     color: #000;
 }
 
-.catalogItems {
-    margin-top: 50px;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-content: flex-start;
 
-
-}
 
 .catalogItems h3 {
     font-family: var(--font-family);
@@ -560,11 +551,25 @@ li .active {
 
 }
 
-.catalogItems a {
-    text-decoration: none;
+
+.catalogItems {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: flex-start;
+    gap: 40px;
+    margin-bottom: 40px;
+    
 }
 
-
+.catalogItems a {
+    text-decoration: none;
+    display: block;
+    width: calc(100% - 75% - 40px);
+    height:auto;
+}
 
 
 .catalogItem {
@@ -573,14 +578,15 @@ li .active {
     align-items: center;
     justify-content: start;
     border-radius: 10px;
-    width: 400px;
+    width: 100%;
     background: #fff;
     color: #1a1a18;
     padding: 20px;
-    margin-bottom: 40px;
+    height: 100%;
     border-bottom: 10px solid #fff;
-
 }
+
+
 
 .catalogItem:hover {
     background-color: #3494c8;
@@ -590,7 +596,7 @@ li .active {
 }
 
 .emptyEl {
-    width: 400px;
+    width: calc(100% - 75% - 40px);
 }
 
 .catalogItemImg {
@@ -606,10 +612,9 @@ li .active {
 }
 
 .catalogItemImg img {
-    /* width: 320px; */
-    height: 180px;
-
-
+    width: 100%;
+    height: 220px;
+    border-radius: 10px;
 }
 
 /* конец catalog */
@@ -1387,7 +1392,7 @@ li .active {
 .tab-content {
     border-radius: 0 0 10px 10px;
     box-shadow: 0 0 40px 3px rgba(0, 0, 0, 0.15);
-    padding: 40px;
+  
     height: auto;
     -webkit-border-radius: 0 0 10px 10px;
     -moz-border-radius: 0 0 10px 10px;
