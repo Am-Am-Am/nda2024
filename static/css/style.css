@@ -883,6 +883,10 @@ li .active {
     align-items: center;
 }
 
+.footerDataEls ul {
+    list-style: none;
+
+}
 
 /* стили для brand.html */
 .main {
@@ -2043,9 +2047,9 @@ input .form-control .d-inline-block {
 
 
 .contactsMap {
-    margin-top: 55px;
+    margin-top: 40px;
     border-radius: 15px;
-    height: 600px;
+    height: 800px;
     border-radius: 15px;
     display: flex;
     background-size: contain;
@@ -2069,17 +2073,18 @@ input .form-control .d-inline-block {
 .addresses {
     margin-top: 40px;
     width: 100%;
-    height: 480px;
+    height: auto;
     display: flex;
-    justify-content: space-between;
+    gap: 40px;
 }
 
 .ContactAddress {
     background: #fff;
     border-radius: 20px;
-    width: 560px;
-    height: 480px;
+    width: calc(100% - 67% - 20px);
+    height: auto;
     padding: 30px;
+
 }
 
 .addressInfo h3 {
@@ -2111,9 +2116,9 @@ input .form-control .d-inline-block {
 .addressInfoElText {
     font-family: var(--font-family);
     font-weight: 400;
-    font-size: 18px;
+    font-size: 20px;
     color: #1a1a18;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .addressInfoElText a {
@@ -2296,9 +2301,8 @@ input .form-control .d-inline-block {
     font-size: 90px;
     line-height: 133%;
     color: #1a1a18;
-    margin-top: 200px;
+    margin-top: 150px;
     margin-bottom: 40px;
-    
     text-align: center;
 }
 
@@ -2421,7 +2425,7 @@ input .form-control .d-inline-block {
 
 
 .bullingSteps {
-    margin-top: 40px;
+   
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -2441,14 +2445,14 @@ input .form-control .d-inline-block {
 }
 
 .bullingStepsEl:nth-child(1) {
-    background-image: url('images/workPage/billing1.png');
-    background-position: right;
+ 
+    background-position: right bottom;
     background-repeat: no-repeat;
 }
 
 .bullingStepsEl:nth-child(2) {
-    background-image: url('images/workPage/billing2.png');
-    background-position: right;
+
+    background-position: right bottom;
     background-repeat: no-repeat;
 }
 
@@ -2491,6 +2495,35 @@ input .form-control .d-inline-block {
 
 .reservationStepsEl:nth-child(5){
     width: calc(100% - 67% - 30px);
+}
+
+.reservationImagesNew{
+    display: flex;
+    gap: 40px;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.reservationImagesEl{
+    border-radius: 10px;
+    background-size: cover;
+    height: 380px;
+}
+
+.reservationImagesEl:nth-child(1){
+    width: calc(100% - 67% - 30px);
+    background-color: #fff;
+}
+
+.reservationImagesEl:nth-child(2){
+    width: calc(100% - 67% - 30px);
+    background-color: #fff;
+}
+
+.reservationImagesEl:nth-child(3){
+    width: calc(100% - 67% - 30px);
+    background-color: #fff;
 }
 
 
@@ -2574,6 +2607,8 @@ input .form-control .d-inline-block {
     background-image: url("images/workPage/truck.png");
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center top;
+
 }
 
 /* work.html */

@@ -1,19 +1,30 @@
-@media (max-width: 1820px) {
-    .ContactAddress {
-        width: 450px;
+@media(max-width: 4000px){
+    .truck{
+        height: 600px;
     }
+}
+
+@media(width < 1920px){
+    .truck{
+        height: 470px;
+    }
+}
+
+@media (max-width: 1820px) {
+ 
 
     .addressInfo h3 {
-        font-family: var(--second-family);
-        font-weight: 400;
-        font-size: 25px;
-        line-height: 140%;
+        font-family: var(--font-family);
+        font-weight: 500;
+        font-size: 28px;
+        line-height: 133%;
         text-transform: uppercase;
         color: #1a1a18;
         margin-bottom: 20px;
     }
 
 
+ 
     .orderStepsElNumber {
         width: 60px;
         height: 60px;
@@ -288,25 +299,10 @@
 
     /* contacts.html */
     .contactsMap {
-        height: 550px;
-    }
-
-    .addresses {
-        gap: 15px;
-        height: 900px;
-        flex-wrap: wrap;
-    }
-
-    .ContactAddress {
-        height: 440px;
-        width: 49%;
-        padding: 20px;
+        height: 600px;
     }
 
 
-    .mainAddress {
-        width: 100%;
-    }
 
     .applicationText h3 {
         font-size: 86px;
@@ -418,7 +414,6 @@
         font-size: 80px;
         line-height: 133%;
         color: #1a1a18;
-        margin-top: 200px;
         margin-bottom: 40px;
         
         text-align: center;
@@ -468,17 +463,48 @@
         font-size: 18px;
     }
 
-    .reservationImages {
-        height: 480px;
+
+    .reservationImagesEl{
+        border-radius: 10px;
+        background-size: cover;
+        height: 300px;
     }
 
-    .reservation li {
+    .truck{
+        height: 400px;
+    }
+
+    .bullingStepsEl{
         font-size: 18px;
     }
 
+    .reservationStepsEl{
+        font-size: 18px;
+    }
 
+    .deliveryStepsEl{
+        font-size: 18px;
+    }
+
+    .refundEl p{
+        font-size: 18px;
+    }
     /* work.html */
 
+    .orderStepsEl{
+        padding: 20px;
+    }
+
+    .addressInfo h3{
+        font-size: 25px;
+    }    
+    .addressInfoElText{
+        font-size: 18px;
+    }
+
+    .addressInfo p{
+        font-size: 18px;
+    }    
 }
 
 
@@ -819,18 +845,12 @@
         height: auto;
     }
 
-    .reservationImagesEl:nth-child(1){
-       width: auto;
+    
+    .reservationImagesEl{
+        border-radius: 10px;
+        background-size: cover;
+        height: 250px;
     }
-
-    .reservationImagesEl:nth-child(2){
-        width: auto;
-     }
-
-     .reservationImagesEl:nth-child(3){
-        width: auto;
-     }
-
 
     /* work.html */
     .productHead {
@@ -1365,16 +1385,6 @@
         font-size: 18px;
     }
 
-    .orderSteps {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .orderStepsEl:nth-child(n) {
-        width: 100%;
-        height: auto;
-    }
-
     .bullingSteps {
         gap: 20px;
     }
@@ -1454,12 +1464,59 @@
         color: #1a1a18;
         margin-top: 140px;
         margin-bottom: 40px;
-        
         text-align: center;
     }
 
 
+    
+    .reservationImagesEl{
+        border-radius: 10px;
+        background-size: cover;
+        height: 200px;
+    }
+
+    .reservationStepsEl{
+        background: #fff;
+        border-radius: 10px;
+        height: auto;
+        padding: 20px;
+        font-family: var(--second-family);
+        font-weight: 400;
+        color: #1a1a18;
+        background-repeat: no-repeat;
+        background-position: 95% -10px;
+    
+    }
+
+    
+    .bullingStepsEl{
+        padding: 20px;
+    }
+
+    .deliveryStepsEl{
+        padding: 20px;
+    }
+
+    .refundEl{
+        padding: 20px;
+    }
     /* work.html */
+
+    .addresses {
+        gap: 15px;
+        height: 900px;
+        flex-wrap: wrap;
+    }
+
+    .ContactAddress {
+        width: 49%;
+        padding: 20px;
+    }
+
+
+    .mainAddress {
+        width: 100%;
+    }
 
 }
 
@@ -1596,15 +1653,15 @@
 
 
     .addresses {
-        gap: 15px;
-        height: 1400px;
+        gap: 20px;
+        height: auto;
         flex-wrap: wrap;
     }
 
     .ContactAddress {
-        height: 450px;
         width: 100%;
         padding: 20px;
+        height: fit-content;
     }
 
 
@@ -2108,8 +2165,129 @@
         display: none;
     }
 
+    .reservation {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .reservationStepsEl:nth-child(1){
+        width: 100%;
+    }
+    
+    .reservationStepsEl:nth-child(2){
+        width: 100%;
+    }
+    
+    .reservationStepsEl:nth-child(3){
+        width: calc(100% - 50% - 20px);
+    }
+    
+    .reservationStepsEl:nth-child(4){
+        width: calc(100% - 50% - 20px);
+    }
+    
+    .reservationStepsEl:nth-child(5){
+        width: 100%;
+    }
 
+
+
+    .reservationImagesEl:nth-child(1){
+        width: calc(100% - 50% - 10px);
+  
+    }
+    
+    .reservationImagesEl:nth-child(2){
+        width: calc(100% - 50% - 10px);
+      
+    }
+    
+    .reservationImagesEl:nth-child(3){
+       display: none;
+    
+    }
+
+    .truck {
+        height: 300px;
+    }
+
+    .h2{
+        margin-top: 100px;
+        font-size: 50px;
+        margin-bottom: 20px;
+    }
+
+    
+    .orderSteps {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .orderStepsEl:nth-child(n) {
+        width: 100%;
+        height: auto;
+    }
     /* work.html */
+
+    .orderSteps{
+        gap: 20px;
+    }
+
+    .orderSteps p{
+        margin-bottom: 0;
+    }
+
+    .orderStepsElNumber{
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .orderStepsEl p {
+        font-size: 16px;
+    }
+
+    .bullingStepsEl p{
+        font-size: 16px;
+        margin-bottom: 0;
+    }     
+
+    .reservationStepsEl{
+        font-size: 16px;
+    }
+
+    .reservationStepsEl p{
+        margin-bottom: 0;
+    }
+
+    .orderStepsElNumber img{
+        width: auto;
+        height: 15px;
+    }
+
+    .deliveryStepsEl{
+        font-size: 16px;
+    }
+
+    .deliveryStepsEl p{
+        margin-bottom: 0;
+    }
+
+    .refundEl p{
+        font-size: 16px;
+        margin-bottom: 0;
+    }    
+
+
+    .refundEl h3{
+        font-size: 20px;
+        color: #1a1a18;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
 }
 
 
@@ -2164,15 +2342,13 @@
     }
 
     /* catalog */
-    .catalogItems {
-        justify-content: center;
-        gap: 10px;
-    }
 
     .catalogItem {
         width: 200px;
         min-height: 300px;
     }
+
+
 
     .catalogItemImg img {
         width: 180px;
@@ -2180,9 +2356,9 @@
     }
 
     .emptyEl {
-        width: 240px;
-        min-height: 300px;
+        width: 200px;
     }
+
 
     .catalogBrand {
         margin-top: 20px;
@@ -2217,13 +2393,9 @@
 
     /* contacts.html */
 
-    .addresses {
-        height: 1600px;
-    }
+ 
 
-    .ContactAddress {
-        height: 520px;
-    }
+  
 
     .application {
         height: 700px;
@@ -2422,20 +2594,11 @@
         display: none;
     }
 
-    .reservationImagesEl:nth-child(2){
-        display: none;
-    }
-
-    .reservationImagesEl{
-        width: 100%;
-        height: 350px;
-    }
-    .reservationImagesEl img{
-        width: 100%;
-        height: 350px;
-    }
     /* work.html */
    
+    .truck {
+        height: 250px;
+    }
 }
 
 
@@ -2535,12 +2698,107 @@
         font-size: 16px;
     }
 
-   
+
+    .reservation {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    
+    .reservationStepsEl{
+        background: #fff;
+        border-radius: 10px;
+        height: auto;
+        padding: 20px;
+        font-family: var(--second-family);
+        font-weight: 400;
+        color: #1a1a18;
+        background-repeat: no-repeat;
+        background-position: 95% -10px;
+     
+    }
+    
+
+    .reservationStepsEl:nth-child(3){
+        width: 100%;
+    }
+    
+    .reservationStepsEl:nth-child(4){
+        width: 100%;
+    }
+    
+    .reservationImagesNew{
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+
+    .reservationImagesEl:nth-child(1){
+        width: 100%;
+        height: 300px;
+  
+    }
+    
+    .reservationImagesEl:nth-child(2){
+        width: 100%;
+        height: 300px;
+    }
+
+
     /* work.html */
 
     .breadCrumb{
         font-size: 14px;
     }
+
+    .truck {
+        height: 300px;
+    }
+
+    .h2{
+        margin-top: 80px;
+        font-size: 37px;
+    }
+
+    .deliverySteps{
+        gap: 20px;
+    }
+
+    .reservationImagesNew{
+        margin-top: 20px;
+        gap: 20px;
+    }
+
+    .refund{
+        gap: 20px;
+    }
+
+    .truck{
+        margin-top: 20px;
+    }
+
+    .addressInfo h3{
+        font-size: 18px;
+    }
+
+    .addressInfoElText{
+        font-size: 16px;
+    }
+
+    .addressInfoElImg img{
+        height: 18px;
+        width: 18px;
+    }
+
+    .addresses{
+        gap: 10px;
+    }
+
+    .addressImg img{
+        height: 60px;
+        width: 60px;
+    }
+
 }
 
 @media (width < 480px) {
@@ -2986,6 +3244,17 @@
         height: 150px;
     }
 
+
+    .reservationImagesEl:nth-child(1){
+        width: 100%;
+        height: 200px;
+  
+    }
+    
+    .reservationImagesEl:nth-child(2){
+        width: 100%;
+        height: 200px;
+    }
     /* work.html */
 
 }

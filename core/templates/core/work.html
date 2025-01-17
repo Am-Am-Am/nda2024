@@ -4,6 +4,15 @@
 {% block title %}
 <title> Условия работы</title>
 {% endblock%}
+{% comment %} 
+{% block styles %}
+<style>
+    html, body{
+        overflow-x: hidden;
+    }
+</style>
+{% endblock%} {% endcomment %}
+
 
 {% block content%}
 <header style="height: 0px;">
@@ -158,6 +167,13 @@
                 </div>
             </div>
         </div>
+        <div class="reservationImagesNew">
+            <div class="reservationImagesEl" style="background-image: url({% static 'images/workPage/reservation1.png' %});"></div>
+            <div class="reservationImagesEl" style="background-image: url({% static 'images/workPage/reservation2.png' %});"></div>
+            <div class="reservationImagesEl" style="background-image: url({% static 'images/workPage/reservation3.png' %});"></div>
+        </div>
+
+
 
         <h2 class="h2">Доставка товара</h2>
         
