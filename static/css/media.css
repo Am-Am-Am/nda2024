@@ -290,7 +290,7 @@
     }
 
     .catalogBrandItemImg {
-        
+        width: auto;
         height: 200px;
     }
 
@@ -3040,8 +3040,7 @@
     }
 
     .catalogBrandItemImg {
-        
-        height: 100px;
+        height: 110px;
     }
 
     /* product.html */
@@ -3270,6 +3269,7 @@
         height: 200px;
         width: 100%;
     }
+
 
   
 }

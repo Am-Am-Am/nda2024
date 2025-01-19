@@ -29,7 +29,7 @@
                   {% endif %}
                 </div>
                 <h3>{{ brand.name }}</h3>
-                <p>{{ brand.description }}</p> <!-- Замените description на соответствующее поле, если оно есть -->
+                <p>{{ brand.description|safe }}</p> <!-- Замените description на соответствующее поле, если оно есть -->
               </div>
             </a>
           {% endfor %}
@@ -56,7 +56,7 @@
                   {% endif %}
                 </div>
                 <h3>{{category.name}}</h3>
-                <p>{{category.description}}</p>
+                <p>{{category.description|safe}}</p>
               </div>
             </a>
           {% endfor %}
@@ -72,6 +72,7 @@
   </div>
   <div class="infoMain">
     <div class="infoImg">
+
       <div class="slider-container sliderInfo">
         <div class="slider sliderInfo">
           <div class="sliderImg">
@@ -86,6 +87,7 @@
         </div>
         <div class="slick-dots"></div>
       </div>
+      
     </div>
     <div class="infoText">
       <h3>Работаем для <br /> вас с 1992 года</h3>
