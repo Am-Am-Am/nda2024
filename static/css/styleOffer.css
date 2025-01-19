@@ -31,7 +31,6 @@
     width: 100%;
     height: auto;
     gap: 40px;
-    padding: 40px;
    
 }
 
@@ -245,6 +244,13 @@
 
 .productInfo{
     margin-top: 40px;
+    background-color: #fff;
+    box-shadow: 0 0 40px 3px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
 }
 
 .glide__slide{
