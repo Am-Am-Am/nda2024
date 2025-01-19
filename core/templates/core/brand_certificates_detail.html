@@ -55,19 +55,19 @@
             </tr>
           </thead>
           <tbody>
-            {% for category in categories %}
-              {% for certificate in certificates %}
-                {% if certificate.category == category and category.ru%}
-                  <tr class="table-row">
-                    <td>{{ forloop.counter }}</td>
-                    <td>{{ category.name }}</td>
-                    <td>{{ category.ru}}</td>
-                    <td>
-                      <a href="{{ certificate.file.url }}">Скачать</a>
-                    </td>
-                  </tr>
-                {% endif %}
-              {% endfor %}
+            {% for product in products %}
+                {% for certificate in certificates %}
+                  {% if certificate.product == product and product.ru%}
+                    <tr class="table-row">
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.ru}}</td>
+                        <td>
+                          <a href="{{ certificate.file.url }}">Скачать</a>
+                        </td>
+                    </tr>
+                  {% endif %}
+                {% endfor %}
             {% endfor %}
           </tbody>
         </table>

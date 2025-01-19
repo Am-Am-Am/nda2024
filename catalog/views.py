@@ -200,13 +200,13 @@ class BrandCertificatesDetailView(DetailView):
         context['current_url_name'] = current_url_name
 
         brand = self.object
-        categories = Category.objects.filter(brand=brand)
-        certificates = ModelFile.objects.filter(category__in=categories)
-        
+        products = Product.objects.filter(brand=brand)
+        certificates = ModelFile.objects.filter(product__in=products)
+                
         # Формируем контекст для передачи в шаблон
-        context['categories'] = categories
+        context['products'] = products
         context['certificates'] = certificates
-        context['brands'] = Brand.visible.all().order_by('name')
+        context['brands'] = Brand.objects.all().order_by('name') # убрали видимость, как говорили ранее
         return context
     
 class WorkView(TemplateView):
