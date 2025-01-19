@@ -6,7 +6,7 @@ from django.urls import reverse
 
 
 
-from catalog.models import Brand, Category, Offer, Specialist
+from catalog.models import Brand, Category, Offer, Specialist, Product
 from files.models import ModelImage, ModelFile, InstructionsFile, CatalogFile
 from catalog.admin_filters import DropdownFilter, RelatedOnlyDropdownFilter, CategoryRelatedOnlyDropdownFilter
 
@@ -121,7 +121,6 @@ class CategoryAdmin(admin.ModelAdmin):
     ]
     filter_horizontal = ('parents', )
     autocomplete_fields = ('brand', )
-    inlines = [OfferInline, CategoryImageInline, CategoryFileInline, InstructionsFileInline, CatalogFileInline]
     view_on_site = True
     actions_on_bottom = True
     list_per_page = 25
@@ -181,15 +180,50 @@ class OfferAdmin(admin.ModelAdmin):
         else:
             return "Бренда нет"
 
+class OfferInline(admin.TabularInline):
+    model = Offer
+    can_delete = True
+    extra = 0
+    show_change_link = True
+    classes = ['collapse', 'wide']
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'brand', 'is_final']
+    prepopulated_fields = {"slug": ("name",)}
+    list_filter = ['brand', 'is_final']
+    search_fields = ['name']
+
+admin.site.register(Category, CategoryAdmin)
+
+class ProductImageInline(admin.TabularInline):
+    model = ModelImage
+    readonly_fields = ('image_preview',)
+    
+class ProductFileInline(admin.TabularInline):
+    model = ModelFile
+
+class InstructionsFileInline(admin.TabularInline):
+    model = InstructionsFile
+    
+class CatalogFileInline(admin.TabularInline):
+    model = CatalogFile
+
 class SpecialistAdmin(admin.ModelAdmin):
     list_display = ('name', 'phone', 'email')
     search_fields = ('name', 'phone', 'email')
 
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ['name', 'brand', 'is_final']
+    prepopulated_fields = {"slug": ("name",)}
+    list_filter = ['brand', 'is_final']
+    search_fields = ['name']
+    inlines = [OfferInline, ProductImageInline, ProductFileInline, InstructionsFileInline, CatalogFileInline]
+
 
 admin.site.register(Brand, BrandAdmin)
-admin.site.register(Category, CategoryAdmin)
 admin.site.register(Offer, OfferAdmin)
 admin.site.register(Group, GroupAdmin)
 admin.site.register(User, UserAdmin)
 
 admin.site.register(Specialist, SpecialistAdmin)
+admin.site.register(Product, ProductAdmin)

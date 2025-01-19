@@ -22,7 +22,7 @@
           {% comment %} {% cache 600 children_categories category.id %} {% endcomment %}
 
           {% for category in category.children.all %}
-            {% if category.is_final %}
+            {% if category.status == 'PUBLISHED' %}
             {% if category.children.all %}
               <div class="catalogBrandItem">
                 <a href="{% url 'category' category_slug=category.slug %}">

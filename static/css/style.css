@@ -617,6 +617,8 @@ li .active {
     border-radius: 10px;
 }
 
+
+
 /* конец catalog */
 /* начало info */
 
@@ -1372,6 +1374,7 @@ li .active {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 40px;
     
 }
 

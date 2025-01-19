@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.views.generic import TemplateView, ListView
 from django.contrib import messages
 from core.models import MainPageInfoBlock
-from catalog.models import Category, Brand, Offer
+from catalog.models import Category, Brand, Offer, Product
 from files.models import ModelFile, ModelImage, InstructionsFile, CatalogFile
 from cart.forms import CartAddProductForm
 from django.views.generic import DetailView
@@ -94,34 +94,51 @@ class BrandView(TemplateView):
 
 
 class OfferView(TemplateView):
-    model = Offer
     template_name = 'core/offer2.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
+        # Get current URL name
         current_path = self.request.path_info
         match = resolve(current_path)
-        current_url_name = match.url_name
-        context['current_url_name'] = current_url_name
+        context['current_url_name'] = match.url_name
 
-        category = Category.visible.select_related('brand').get(slug=self.kwargs['category_slug'])
-        context['category'] = category
-        context['brand'] = category.brand
-        context['offers'] = Offer.visible.filter(category=category.id)
-        context['images'] = ModelImage.objects.filter(category=category.id)
-        context['certificates'] = ModelFile.objects.filter(category=category.id)
-        context['breadcrumbs'] = breadcrumbs_path(category)
-        context['cart_product_form'] = CartAddProductForm()
-        context['brands'] = Brand.visible.all().order_by('name')
-        context['specialist'] = category.specialist
-        context['video_file'] = category.video_file
-        context['youtube_link'] = category.youtube_link
-        context['rt_link'] = category.rt_link
-        context['metadescription'] = category.metadescription
-        context['instructions'] = InstructionsFile.objects.filter(category=category.id)
-        context['catalogs'] = CatalogFile.objects.filter(category=category.id)
+        # Get Category based on slug.
+        category_slug = self.kwargs['category_slug']
+        category = get_object_or_404(Category.objects.select_related('brand'), slug=category_slug)
 
+        if category.is_final:
+            # If category is a Product (is_final=True), load related data
+            try:
+                product = Product.objects.select_related('brand','specialist').get(slug=category_slug)
+            except Product.DoesNotExist:
+                # Handle the case where product was not found for some reason
+                context['product'] = None
+                context['offers'] = None
+                return context
+
+            context['product'] = product
+            context['brand'] = product.brand
+            context['offers'] = Offer.objects.filter(category=product) # using the `category` related name
+            context['images'] = ModelImage.objects.filter(product=product)
+            context['certificates'] = ModelFile.objects.filter(product=product)
+            context['breadcrumbs'] = breadcrumbs_path(product)
+            context['cart_product_form'] = CartAddProductForm()
+            context['brands'] = Brand.objects.all().order_by('name') # no need to filter, already in the view
+            context['specialist'] = product.specialist
+            context['video_file'] = product.video_file
+            context['youtube_link'] = product.youtube_link
+            context['rt_link'] = product.rt_link
+            context['metadescription'] = product.metadescription
+            context['instructions'] = InstructionsFile.objects.filter(product=product)
+            context['catalogs'] = CatalogFile.objects.filter(product=product)
+        else:
+           # Handle case when category is not a final product (e.g. category page)
+           context['category'] = category
+           context['product'] = None
+           context['offers'] = None
+           # Additional logic for category display if needed
 
         return context
 

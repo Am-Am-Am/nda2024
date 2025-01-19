@@ -1,54 +1,64 @@
 from django.db import models
 from django.utils.safestring import mark_safe
 
-from catalog.models import Category
-
+from catalog.models import Product
 
 class ModelImage(models.Model):
-    category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
-    image = models.ImageField(upload_to='category/images', null=True, blank=True)
+    product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='Продукт')
+    image = models.ImageField(upload_to='category/images', null=True, blank=True, verbose_name='Изображение')
 
     class Meta:
         verbose_name_plural = 'Изображения'
+        verbose_name = 'Изображение'
 
     def image_preview(self):
         if self.image:
             return mark_safe('<img src="{0}" width="150" height="150" />'.format(self.image.url))
         else:
             return '(No image)'
-
+    
     def __str__(self):
-        return self.image.url
-
+        if self.image:
+            return self.image.url
+        return '(No image)'
 
 class ModelFile(models.Model):
-    category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
-    file = models.FileField(upload_to='category/certificates', null=True, blank=True)
+    product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='Продукт')
+    file = models.FileField(upload_to='category/certificates', null=True, blank=True, verbose_name='Файл')
 
     class Meta:
         verbose_name_plural = 'РУ и Сертификаты'
+        verbose_name = 'РУ и Сертификат'
 
     def __str__(self):
-        return self.file.url
+        if self.file:
+            return self.file.url
+        return '(No file)'
     
 
 class InstructionsFile(models.Model):
-    category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
-    file = models.FileField(upload_to='category/instructions', null=True, blank=True)
+    product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='Продукт')
+    file = models.FileField(upload_to='category/instructions', null=True, blank=True, verbose_name='Файл')
 
     class Meta:
         verbose_name_plural = 'Инструкции'
+        verbose_name = 'Инструкция'
 
     def __str__(self):
-        return self.file.url    
+        if self.file:
+             return self.file.url
+        return '(No file)'
     
 class CatalogFile(models.Model):
-    category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
-    file = models.FileField(upload_to='category/catalog', null=True, blank=True)
+    product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='Продукт')
+    file = models.FileField(upload_to='category/catalog', null=True, blank=True, verbose_name='Файл')
 
     class Meta:
         verbose_name_plural = 'Каталог'
+        verbose_name = 'Файл каталога'
 
     def __str__(self):
-        return self.file.url   
+       if self.file:
+           return self.file.url
+       return '(No file)'
 

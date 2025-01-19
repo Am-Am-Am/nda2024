@@ -237,6 +237,23 @@ class Category(BaseFields):
         if self.brand:
             return str(self.brand).upper() + '----' + self.name.upper()
         return 'ПОДБОРКА' + '----' + self.name.upper()
+    
+class ProductManager(models.Manager):
+    def get_queryset(self):
+      return super().get_queryset().filter(is_final=True)
+
+
+class Product(Category):
+    objects = ProductManager()
+
+    class Meta:
+        proxy = True
+        verbose_name = 'Продукт'
+        verbose_name_plural = 'Продукты'
+
+    def get_absolute_url(self):
+        return super().get_absolute_url()
+
 
 class Offer(BaseFields):
     name = models.CharField(
@@ -250,7 +267,7 @@ class Offer(BaseFields):
         blank=True,
     )
     category = models.ForeignKey(
-        Category,
+        Product,
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -279,8 +296,8 @@ class Offer(BaseFields):
 
     class Meta:
         ordering = ['place']
-        verbose_name = 'Товар'
-        verbose_name_plural = 'Товары'
+        verbose_name = 'Код'
+        verbose_name_plural = 'Коды'
 
     def __str__(self):
         return self.name
