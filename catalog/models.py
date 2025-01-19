@@ -32,14 +32,6 @@ class BaseFields(models.Model):
         config_name='default'  # Используем конфигурацию по умолчанию
     )
 
-    custom_description = RichTextField(
-        default='',
-        null=True,
-        blank=True,
-        verbose_name='Кастомное описание',
-        config_name='default'
-    )
-
     full_description = RichTextField(
         default='',
         null=True,
@@ -124,18 +116,24 @@ class Specialist(models.Model):
         return self.name
 
 class Category(BaseFields):
-
-
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name, allow_unicode=True)
         super().save(*args, **kwargs)
 
-
     name = models.CharField(
         max_length=256,
-        verbose_name='Название категории'
+        verbose_name='Название категории | Заголовок'
     )
+
+    characteristics = RichTextField(
+        default='',
+        null=True,
+        blank=True,
+        verbose_name='Характеристики',
+        config_name='default'
+    )
+
     brand = models.ForeignKey(
         Brand,
         on_delete=models.SET_NULL,
@@ -143,12 +141,7 @@ class Category(BaseFields):
         blank=True,
         verbose_name='Бренд, к которому относится категория'
     )
-    db_id = models.CharField(
-        max_length=256,
-        verbose_name='Id со старой бд',
-        null=True,
-        blank=True,
-    )
+ 
     parents = models.ManyToManyField(
         'self',
         blank=True,
@@ -156,6 +149,7 @@ class Category(BaseFields):
         related_name='children',
         symmetrical=False
     )
+    
     logo = models.ImageField(
         upload_to='category/logo',
         default='',
@@ -175,11 +169,18 @@ class Category(BaseFields):
         db_index=True,
         verbose_name='url-адрес'
     )
-    metadescription = models.TextField(
+    title = models.TextField(
         default='',
         null=True,
         blank=True,
-        verbose_name='Описание для метатега'
+        verbose_name='Title страницы'
+    )
+
+    keywords = models.TextField(
+        default='',
+        null=True,
+        blank=True,
+        verbose_name='Ключевые слова'
     )
         
     is_final = models.BooleanField(
@@ -248,8 +249,8 @@ class Product(Category):
 
     class Meta:
         proxy = True
-        verbose_name = 'Продукт'
-        verbose_name_plural = 'Продукты'
+        verbose_name = 'Товар'
+        verbose_name_plural = 'Товары'
 
     def get_absolute_url(self):
         return super().get_absolute_url()

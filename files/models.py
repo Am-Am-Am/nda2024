@@ -61,4 +61,6 @@ class CatalogFile(models.Model):
        if self.file:
            return self.file.url
        return '(No file)'
+    
+
 

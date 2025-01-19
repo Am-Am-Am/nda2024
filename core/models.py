@@ -1,5 +1,5 @@
 from django.db import models
-from catalog.models import Category, NotHidden
+from catalog.models import Product, NotHidden
 
 
 class MainPageInfoBlock(models.Model):
@@ -12,15 +12,24 @@ class MainPageInfoBlock(models.Model):
         max_length=128,
         null=False,
         blank=False,
-        verbose_name='Название рекламного блока'
+        verbose_name='Название рекламного блока',
+        default='',
+    )
+    block_header = models.CharField(
+        max_length=128,
+        null=False,
+        blank=False,
+        verbose_name='Заголовок рекламного блока',
+        default='',
     )
     block_category = models.ForeignKey(
-        Category,
+        Product,
         on_delete=models.SET_NULL,
         null=True,
         blank=False,
-        verbose_name='Категория для рекламы на главной странице'
+        verbose_name='Товар для рекламы на главной странице'
     )
+
     block_text = models.TextField(
         default='''<ul>
                     <li><span>Особенность 1</span> </li>

@@ -130,7 +130,8 @@ class OfferView(TemplateView):
             context['video_file'] = product.video_file
             context['youtube_link'] = product.youtube_link
             context['rt_link'] = product.rt_link
-            context['metadescription'] = product.metadescription
+            context['keywords'] = product.keywords
+            context['title'] = product.title
             context['instructions'] = InstructionsFile.objects.filter(product=product)
             context['catalogs'] = CatalogFile.objects.filter(product=product)
         else:

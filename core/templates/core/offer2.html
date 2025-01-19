@@ -3,12 +3,12 @@
 {% load thumbnail %}
 
 {% block title %}
-    <title>{{ product.name }}</title>
+    <title>{{ product.title }}</title>
 {% endblock %}
 
 {% block metatag %}
 <meta name="description"
-        content='{{product.metadescription}}'>
+        content='{{product.keywords}}'>
 {% endblock %}
 
 
@@ -42,7 +42,23 @@
 
 
         {% include 'core/components/breadcrumbs.html' %}
-        {% include 'core/components/banner.html' %}
+        <div class="brandBanner" style="background: linear-gradient(135deg, {{ brand.banner_color }}, white);">
+            <div class="brandLogo">
+              {% if brand.logo %}  
+                          <img src="{{ brand.logo.url }}" alt="{{ brand.name }}" />
+                          {% else %}
+                              <img src="{% static 'images/noImage.jpg' %}" alt="Default logo" />  
+                          {% endif %}
+            </div>
+            <div class="brandInfo">
+              {% if brand %}
+                <h1>{{ brand.name }}</h1>
+                <h2>{{ product.name }}</h2>
+              {% comment %} {% else %}
+                <h1>{{ category.name }}</h1> {% endcomment %}
+              {% endif %}
+            </div>
+          </div>
 
 
         <div class="product">
@@ -179,11 +195,13 @@
                                     </thead>
                                     <tbody class="">
                                         {% for offer in offers %}
-                                        <tr class="table-row">
-                                            <td class="text-center align-middle">{{ offer.name }}</td>
-                                            <td class="text-start align-middle">{{ offer.characteristics }}</td>
-                                            <td class="text-start align-middle">{{ offer.shipping_pack }}</td>
-                                        </tr>
+                                            {% if offer.status == 'PUBLISHED' %}
+                                            <tr class="table-row">
+                                                <td class="text-center align-middle">{{ offer.name }}</td>
+                                                <td class="text-start align-middle">{{ offer.characteristics }}</td>
+                                                <td class="text-start align-middle">{{ offer.shipping_pack }}</td>
+                                            </tr>
+                                            {% endif %}
                                         {% endfor %}
                                     </tbody>
                                 </table>
@@ -215,6 +233,7 @@
                                     </thead>
                                     <tbody class="">
                                         {% for offer in offers %}
+                                            {% if offer.status == 'PUBLISHED' %}
                                         <tr class="table-row">
                                             <td class="text-center align-middle">{{ offer.name }}</td>
                                             <td class="text-start align-middle">{{ offer.description }}</td>
@@ -253,6 +272,7 @@
 
                                             </td>
                                         </tr>
+                                        {% endif %}
                                         {% endfor %}
                                     </tbody>
                                 </table>

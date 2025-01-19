@@ -15,6 +15,7 @@ class MainPageInfoBlockAdmin(admin.ModelAdmin):
     list_filter = ('block_name', ('block_category', RelatedOnlyDropdownFilter), 'status')
     fields = [
         'block_name',
+        'block_header',
         'block_category',
         'block_text',
         'block_image',

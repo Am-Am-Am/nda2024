@@ -4,23 +4,18 @@
     <div class="product_bg" style="background-image: url('{% static "images/header_bg.svg" %}')"></div>
     <div class="slider subheaderSlider">
         {% for ad in ads%}
+        {% if ad.status == 'PUBLISHED' %}
         <div class="subheader" id="top" style="width: 100%!important;">
             
                 <div class="subheaderInfo">
                     <div class="subheaderTitle">
-                        <h3>{{ad.block_category}}</h3>
+                        <h3>{{ad.block_header}}</h3>
                         <h1>{{ad.block_name}}</h1>
                     </div>
                     {{ad.block_text|safe}}
-                    {% comment %} <ul>
-                        <li><span></span> </li>
-                    </ul> {% endcomment %}
                     <a href="{% url 'offer' brand_slug=ad.block_category.brand.slug category_slug=ad.block_category.slug %}">
                         <div class="buttonInfo button">
-                           
-                                <div class="subheaderProductText ">Подробнее</div>
-                              
-                            
+                                <div class="subheaderProductText">Подробнее</div>
                         </div>
                     </a>
 
@@ -36,6 +31,7 @@
             <!-- subheader1 -->
             
         </div>
+        {% endif %}
         {% endfor %}
     </div>
 
