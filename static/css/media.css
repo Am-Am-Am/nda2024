@@ -205,8 +205,15 @@
         font-size: 16px;
     }
 
+    
     .infoMain {
         padding: 30px;
+        padding-bottom: 10px;
+        gap: 20px;
+    }
+
+    .infoImg{
+        width: 45vw;
     }
 
     .infoText h3 {
@@ -2805,6 +2812,8 @@
     }
 
   
+  
+
 
 }
 

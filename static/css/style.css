@@ -631,15 +631,16 @@ li .active {
     box-shadow: 0 0 60px 15px rgba(0, 0, 0, 0.45);
     background: linear-gradient(135deg, #3e609a 0%, #00304e 100%);
     padding: 60px;
+    padding-bottom: 20px;
     gap: 60px;
     height: auto;
 }
 
+
+
 .infoImg {
     width: 40vw;
     height: 100%;
-
-
 }
 
 
@@ -664,18 +665,45 @@ li .active {
 
 .slick-dots {
     position: absolute;
-    bottom: 10px;
+    bottom: 15px;
+    display: flex;
+    justify-content: center; /* выравниваем линии по центру */
+    width: 100%;
+}
+
+.slick-dots li {
+    display: flex;
+    align-items: center; /* выравниваем линию вертикально по центру */
+    margin: 0 10px; /* добавляем немного пространства между линиями */
+    position: relative;
+
+}
+
+.slick-dots li button {
+    font-size: 0;
+    line-height: 0;
+    display: block;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: transparent; /* прозрачный фон */
+    position: relative;
 }
 
 .slick-dots li button:before {
-    color: #000;
-    font-size: 15px;
+    content: ''; /* делаем контент пустым */
+    width: 30px; /* длина линии */
+    height: 3px;  /* толщина линии */
+    background-color: #fff; /* цвет линии */
+    opacity: 0.5; /* цвет бледной линии */
+    transition: background-color 0.3s;
+    display: block; /* чтоб линия отображалась */
 }
 
 .slick-dots li.slick-active button:before {
-    color: #3391c5;
-    /*Change color of active indicator*/
-    font-size: 15px;
+     background-color: #3391c5; /* цвет активной линии */
+     opacity: 1; /* цвет активной линии */
 }
 
 
@@ -703,7 +731,6 @@ li .active {
     font-weight: 400;
     font-size: 20px;
     color: #fff;
-    margin: 0 0 30px 0;
 }
 
 .infoText a {
@@ -1143,9 +1170,12 @@ li .active {
 
 .slider-container {
     position: relative;
+    
     /* Создаем относительное позиционирование для контейнера */
 }
-
+.slider-container .sliderInfo{
+    height: 100%;
+}
 .slick-list .draggable{
     height: 300px;
 }
