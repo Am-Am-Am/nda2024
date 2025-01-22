@@ -36,7 +36,7 @@
         align-items: flex-start;
         justify-content: start;
         text-align: left;
-        width: 50vw;
+        width: 1920px;
     
     }
     .subheader{
@@ -44,7 +44,7 @@
     }
 
     .infoImg {
-        width: 30vw;
+        width: 960px;
         height: 100%;
     }
     
@@ -52,6 +52,9 @@
         height: 300px;
     }
 
+    .productCarousel{
+        width: 30vw;
+    }
 }
 
 @media (width < 480px){
@@ -62,6 +65,7 @@
 
     .slider .buttonInfo {
         justify-content: center;
+        margin-top: 20px;
     }
  
 
@@ -100,7 +104,8 @@
         width: 100%;
     }
 
-    
+
+
 
 
 

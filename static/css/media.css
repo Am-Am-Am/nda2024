@@ -24,12 +24,13 @@
 
 
 @media (min-width:  2500px){
-    @media (min-width:  2500px){
+
         .productCarousel{
             width: 30vw;
         }
         
-    }
+    
+    
 }
 
 @media(width < 2500px) {
@@ -53,10 +54,10 @@
         height: 100%;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+ 
         justify-content: start;
         text-align: left;
-        width: 50vw;
+ 
     }
 }
 
@@ -231,7 +232,6 @@
         font-weight: 700;
         font-size: 68px;
         line-height: 133%;
-        margin-left: 15px;
     }
 
     .subheaderImage img {
@@ -1595,7 +1595,6 @@
     .catalogItem {
         display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: start;
         border-radius: 10px;
         width: 100%;
@@ -2923,6 +2922,7 @@
     .subheaderInfo {
         height: 50vh;
         justify-content: space-evenly;
+        align-items: center;
     }
 
     .subheaderInfo ul {
@@ -2957,6 +2957,9 @@
         font-weight: 400;
         font-size: 16px;
         line-height: 112%;
+        padding-left: 0;
+        width: 100%;
+        align-items: center;
     }
 
     .buttonInfo button {
@@ -3374,8 +3377,33 @@
         width: 100%;
     }
 
+    .subheaderInfo{
+        width: 100%;
+     }
+    
+     .subheaderTitle{
+        width: 100%;
+     }
 
+    .subheaderTitle h1{
+        margin-left: 0;
+     }
 
+    .subheaderTitle h3{
+        font-family: var(--second-family);
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 112%;
+        color: #1a1a18;
+    }
+
+    .subheaderTitle li{
+        margin-bottom: 8px;
+    }
+
+    .buttonInfo button{
+        margin-top: 20px;
+    }
 }
 
 @media (width < 320px) {

@@ -18,7 +18,12 @@
           <a href="{% url 'category' category_slug=breadcrumb.slug %}">{{ breadcrumb.name.upper }}</a>
         </li>
       {% endfor %}
-      <li class="breadcrumb-item breadcrumb-item-active" aria-current="page">{{ category.name.upper }}</li>
+      {% if product %}
+        <li class="breadcrumb-item breadcrumb-item-active" aria-current="page">{{ product.name.upper }}</li>
+      {% else %} 
+        <li class="breadcrumb-item breadcrumb-item-active" aria-current="page">{{ category.name.upper }}</li>
+      {% endif %}
+      
     {% endif %}
   </ol>
 </div>

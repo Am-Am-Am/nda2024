@@ -422,8 +422,8 @@ input::placeholder {
     align-items: start;
     justify-content: start;
     text-align: left;
-
 }
+
 
 .subheaderSlider {
     padding-top: 130px;
@@ -681,7 +681,6 @@ li .active {
 .catalogItem {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: start;
     border-radius: 10px;
     width: 100%;
@@ -1407,7 +1406,7 @@ li .active {
     font-family: var(--second-family);
     font-weight: 700;
     font-size: 80px;
-    line-height: 133%;
+  
     color: #1a1a18;
     margin: 0;
     display: flex;
@@ -1439,6 +1438,9 @@ li .active {
     color: #8a8a8a;
 }
 
+.productTitleText p{
+    margin-top: 20px;
+}
 .productTitleConnect {
     width: 100%;
     min-height: 120px;
