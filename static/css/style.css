@@ -452,13 +452,13 @@ input::placeholder {
 }
 
 .subheaderInfo h1 {
-
+    
     font-weight: 700;
     font-size: 80px;
     line-height: 133%;
     color: #1a1a18;
     margin: 0;
-
+    margin-bottom: 20px;
 }
 
 .subheaderInfo ul {

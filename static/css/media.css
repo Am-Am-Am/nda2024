@@ -613,9 +613,10 @@
     }
 
     .subheaderImage img {
-        width: 370px;
-
+        width: 320px;
+        height: 55vh;
     }
+
 
     .product_bg {
         height: 90%;
@@ -962,7 +963,9 @@
     .sliderContainer {
         height: auto;
     }
-
+    .subheaderInfo ul{
+        font-size: 22px;
+    }
 
 
 }
