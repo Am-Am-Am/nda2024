@@ -2,11 +2,23 @@
     .truck{
         height: 600px;
     }
+
+    .container1 {
+        max-width: 1824px;
+        margin: auto;
+        padding: 0;
+    }
 }
 
 @media(width < 1920px){
     .truck{
         height: 470px;
+    }
+
+    .container1 {
+        max-width: 95vw;
+        margin: auto;
+        padding: 0;
     }
 }
 
@@ -180,10 +192,7 @@
         width: 60vh;
     }
 
-
-
     .catalogItemImg img {
-        width: 240px;
         height: 160px;
     }
 
@@ -583,7 +592,7 @@
 
 
     .catalogItemImg img {
-        width: 200px;
+      
         height: 120px;
     }
 
@@ -2860,7 +2869,7 @@
     .subheaderInfo h1 {
         font-family: var(--third-family);
         font-weight: 700;
-        font-size: 30px;
+        font-size: 37px;
         line-height: 122%;
     }
 
@@ -2903,7 +2912,10 @@
     }
 
     .choice button {
-        height: 60px;
+        height: 65px;
+        font-size: 22px;
+        font-weight: 300;
+        line-height: 112%;
     }
 
     .catalogItems {

@@ -68,7 +68,7 @@
                          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                              <div class="carousel-inner">
                                  {% for image in images %}
-                                 {% thumbnail image.image '600x800' as im %}
+                                 {% thumbnail image.image '600x800' format="PNG" as im %}
                                  <div class="carousel-item {% if forloop.first %}active{% endif %}">
                                      <img src="{{ im.url }}" class="d-block" alt="Product Image">
                                  </div>
@@ -89,7 +89,7 @@
                          <div class="carousel-indicators tumbnails-list">
                              {% for image in images %}
                                  {% with forloop.counter0 as index %}
-                                 {% thumbnail image.image '150x150' as im %}
+                                 {% thumbnail image.image '150x150' format="PNG" as im %}
                                  <div class="thumbnailContainer" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{index}}" class="{% if forloop.first %}active{% endif %}">
                                      <img src="{{ im.url }}" class="d-block  thumbnail-image" aria-label="Slide {{ index }}">
                                  </div>

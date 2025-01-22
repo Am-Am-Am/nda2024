@@ -37,20 +37,32 @@
               {% endif %}
             </span>
           </div>
-          <ul>
+          
             {% for category in object_list %}
-              <li>
-                <div>
-                  <a href="{% url 'offer' brand_slug=category.brand.slug category_slug=category.slug %}">{{ category.name.upper }}</a>
+              
+                <div class="searchResultEl">
+                  <div>
+                    <a href="{% url 'offer' brand_slug=category.brand.slug category_slug=category.slug %}">{{ category.name.upper }}</a>
+                  </div>
+                  
+                    {% for offer in category.related_offers %}
+                      <div class="searchResultArticle">
+                       <div class="searchResultArticleName">
+                        <div class="">Артикл:</div>
+                        <div class="">{{ offer.name | safe}} </div>
+                       </div> 
+                       <div class="searchResultArticleDescription">
+                        <div class="">Описание:</div>
+                        <div class="">{{ offer.description | safe}}</div>
+                         
+                       </div>
+                      </div>
+                    {% endfor %}
+                  
                 </div>
-                <ul>
-                  {% for offer in category.related_offers %}
-                    <li>{{ offer.name }} {{ offer.description }}</li>
-                  {% endfor %}
-                </ul>
-              </li>
+              
             {% endfor %}
-          </ul>
+          
         {% else %}
           <div>По вашему запросу ничего не найдено. Попробуйте изменить запрос и попробовать снова</div>
         {% endif %}

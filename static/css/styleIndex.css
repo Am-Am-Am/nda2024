@@ -23,7 +23,9 @@
     margin-top: 100px;
 }
 
-
+.tab-content{
+    padding: 0;
+}
 @media (width < 480px){
 
     .slider div{
