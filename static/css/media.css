@@ -1,17 +1,69 @@
-@media(max-width: 4000px){
-    .truck{
+@media(max-width: 20000px) {
+    .truck {
         height: 600px;
     }
 
     .container1 {
-        max-width: 1824px;
+        max-width: 2500px;
         margin: auto;
         padding: 0;
     }
+
+    nav {
+        max-width: 2500px;
+    }
+
+    header {
+        height: 1080px;
+    }
+
+    .subheaderImage {
+        height: 864px;
+    }
 }
 
-@media(width < 1920px){
-    .truck{
+
+@media (min-width:  2500px){
+    @media (min-width:  2500px){
+        .productCarousel{
+            width: 30vw;
+        }
+        
+    }
+}
+
+@media(width < 2500px) {
+    .container1 {
+        max-width: 95vw;
+        margin: auto;
+        padding: 0;
+    }
+
+    nav {
+        width: 95vw;
+    }
+
+    header {
+        height: 100vh;
+    }
+
+
+    .slider .subheaderInfo {
+        padding: 20px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: start;
+        text-align: left;
+        width: 50vw;
+    }
+}
+
+
+
+@media(width < 1920px) {
+    .truck {
         height: 470px;
     }
 
@@ -23,7 +75,7 @@
 }
 
 @media (max-width: 1820px) {
- 
+
 
     .addressInfo h3 {
         font-family: var(--font-family);
@@ -36,7 +88,7 @@
     }
 
 
- 
+
     .orderStepsElNumber {
         width: 60px;
         height: 60px;
@@ -214,14 +266,14 @@
         font-size: 16px;
     }
 
-    
+
     .infoMain {
         padding: 30px;
         padding-bottom: 10px;
         gap: 20px;
     }
 
-    .infoImg{
+    .infoImg {
         width: 45vw;
     }
 
@@ -235,7 +287,7 @@
     }
 
 
- 
+
 
 
     .infoText p {
@@ -244,24 +296,24 @@
 
     /* footer */
 
-    .footerInner{
+    .footerInner {
         padding: 60px;
     }
 
 
-    .footerLogoText{
+    .footerLogoText {
         font-size: 18px;
     }
 
-    .footerDataEls span{
+    .footerDataEls span {
         font-size: 16px;
     }
 
-    .footerDataEls h4{
+    .footerDataEls h4 {
         font-size: 18px;
     }
 
-    .footerDataEls li{
+    .footerDataEls li {
         font-size: 16px;
     }
 
@@ -282,7 +334,7 @@
         margin-top: 150px;
     }
 
-  
+
 
 
 
@@ -425,14 +477,14 @@
         font-size: 20px
     }
 
-    .h2{
+    .h2 {
         font-family: var(--font3);
         font-weight: 700;
         font-size: 80px;
         line-height: 133%;
         color: #1a1a18;
         margin-bottom: 40px;
-        
+
         text-align: center;
     }
 
@@ -481,47 +533,49 @@
     }
 
 
-    .reservationImagesEl{
+    .reservationImagesEl {
         border-radius: 10px;
         background-size: cover;
         height: 300px;
     }
 
-    .truck{
+    .truck {
         height: 400px;
     }
 
-    .bullingStepsEl{
+    .bullingStepsEl {
         font-size: 18px;
     }
 
-    .reservationStepsEl{
+    .reservationStepsEl {
         font-size: 18px;
     }
 
-    .deliveryStepsEl{
+    .deliveryStepsEl {
         font-size: 18px;
     }
 
-    .refundEl p{
+    .refundEl p {
         font-size: 18px;
     }
+
     /* work.html */
 
-    .orderStepsEl{
+    .orderStepsEl {
         padding: 20px;
     }
 
-    .addressInfo h3{
+    .addressInfo h3 {
         font-size: 25px;
-    }    
-    .addressInfoElText{
+    }
+
+    .addressInfoElText {
         font-size: 18px;
     }
 
-    .addressInfo p{
+    .addressInfo p {
         font-size: 18px;
-    }    
+    }
 }
 
 
@@ -592,7 +646,7 @@
 
 
     .catalogItemImg img {
-      
+
         height: 120px;
     }
 
@@ -629,15 +683,15 @@
         gap: 30px;
     }
 
-    .footerInner{
+    .footerInner {
         padding: 30px;
     }
 
-    .footerBottom{
+    .footerBottom {
         margin-top: 80px;
     }
 
-    .footerLogo{
+    .footerLogo {
         width: 45%;
     }
 
@@ -687,7 +741,7 @@
     }
 
     .catalogBrandItemImg {
-        
+
         height: 180px;
     }
 
@@ -733,9 +787,10 @@
         justify-content: space-between;
     }
 
-    .slider-nav{
+    .slider-nav {
         margin-top: 150px;
     }
+
     .sliderNavEl {
         background: #fff;
         width: 200px;
@@ -755,9 +810,9 @@
         height: 700px;
     }
 
- 
 
- 
+
+
 
     .slider-nav {
         height: 200px;
@@ -790,7 +845,7 @@
         height: 300px;
     }
 
-    .reservationImages img{
+    .reservationImages img {
         height: 300px;
     }
 
@@ -836,7 +891,7 @@
         font-size: 18px;
     }
 
-    .orderStepsEl{
+    .orderStepsEl {
         height: auto;
     }
 
@@ -849,17 +904,17 @@
         font-size: 18px;
     }
 
-    .bullingStepsEl{
+    .bullingStepsEl {
         font-size: 18px;
     }
 
-    .deliveryStepsEl{
+    .deliveryStepsEl {
         font-size: 18px;
         height: auto;
     }
 
-    
-    .reservationImagesEl{
+
+    .reservationImagesEl {
         border-radius: 10px;
         background-size: cover;
         height: 250px;
@@ -898,7 +953,7 @@
 
     }
 
-    
+
 
     .slider-arrows {
         margin-top: 10px;
@@ -908,7 +963,7 @@
         height: auto;
     }
 
-    
+
 
 }
 
@@ -920,8 +975,8 @@
         gap: 0;
         height: 300px;
     }
-    
-    .reservationImages img{
+
+    .reservationImages img {
         height: 300px;
     }
 }
@@ -1170,7 +1225,7 @@
 
 
     .catalogItemImg img {
-     
+
         height: 160px;
     }
 
@@ -1191,7 +1246,7 @@
     .infoMain {
         display: flex;
         flex-direction: column-reverse;
-      
+
         width: 100%;
         align-items: center;
     }
@@ -1212,20 +1267,20 @@
         width: 100%;
     }
 
-    .footerInfo{
+    .footerInfo {
         flex-direction: column;
     }
 
-    .footerLogo{
+    .footerLogo {
         width: 100%;
     }
 
-    .footerLogoText{
+    .footerLogoText {
         width: 100%;
         margin-bottom: 30px;
     }
 
-    .footerData{
+    .footerData {
         width: 100%;
     }
 
@@ -1234,7 +1289,7 @@
         margin-top: 120px;
     }
 
-  
+
 
 
 
@@ -1266,7 +1321,7 @@
     }
 
     .catalogBrandItemImg {
-  
+
         height: 150px;
     }
 
@@ -1355,7 +1410,7 @@
         height: 120px;
     }
 
- 
+
 
     .slider-nav {
         height: 200px;
@@ -1370,7 +1425,7 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-      
+
     }
 
 
@@ -1448,9 +1503,10 @@
         font-size: 18px;
     }
 
-    .bullingStepsEl p{
+    .bullingStepsEl p {
         font-size: 18px;
     }
+
     .deliveryStepsEl {
         font-size: 18px;
     }
@@ -1459,10 +1515,10 @@
         font-size: 18px;
     }
 
-  
-  
 
-    .h2{
+
+
+    .h2 {
         font-family: var(--font3);
         font-weight: 700;
         font-size: 60px;
@@ -1474,14 +1530,14 @@
     }
 
 
-    
-    .reservationImagesEl{
+
+    .reservationImagesEl {
         border-radius: 10px;
         background-size: cover;
         height: 200px;
     }
 
-    .reservationStepsEl{
+    .reservationStepsEl {
         background: #fff;
         border-radius: 10px;
         height: auto;
@@ -1491,21 +1547,22 @@
         color: #1a1a18;
         background-repeat: no-repeat;
         background-position: 95% -10px;
-    
+
     }
 
-    
-    .bullingStepsEl{
+
+    .bullingStepsEl {
         padding: 20px;
     }
 
-    .deliveryStepsEl{
+    .deliveryStepsEl {
         padding: 20px;
     }
 
-    .refundEl{
+    .refundEl {
         padding: 20px;
     }
+
     /* work.html */
 
     .addresses {
@@ -1528,10 +1585,10 @@
         text-decoration: none;
         display: block;
         width: calc(100% - 67% - 20px);
-        height:auto;
+        height: auto;
     }
 
-    .emptyEl{
+    .emptyEl {
         width: calc(100% - 67% - 20px);
     }
 
@@ -1549,8 +1606,23 @@
         border-bottom: 10px solid #fff;
     }
 
- 
+    .searchResultEl{
+        padding: 10px;
+        margin-top: 20px;
+    }
+    .searchResultEl p{
+        margin-bottom: 0;
+    }
 
+    .searchResultArticle{
+        padding: 10px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .searchResultName{
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 900px) {
@@ -1634,14 +1706,14 @@
         gap: 10px;
     }
 
-  
+
 
     /* brand.html */
 
 
-   
 
- 
+
+
 
     .brandInfo {
         display: flex;
@@ -1667,7 +1739,7 @@
     }
 
     .catalogBrandItemImg {
-        
+
         height: 140px;
     }
 
@@ -1782,7 +1854,7 @@
         -moz-border-radius: 15px;
         -ms-border-radius: 15px;
         -o-border-radius: 15px;
-       
+
         /* Задаем фиксированную ширину для миниатюр */
         margin: 0 10px;
     }
@@ -1980,7 +2052,7 @@
         height: 100%;
     }
 
-  
+
 
     .subheaderSlider {
         padding-top: 0px;
@@ -1990,9 +2062,9 @@
     /* brand.html */
 
 
-    
 
- 
+
+
 
     .brandLogo img {
         width: 100%;
@@ -2029,7 +2101,7 @@
     }
 
     .catalogBrandItemImg {
-   
+
         height: 150px;
     }
 
@@ -2097,7 +2169,7 @@
 
     }
 
-  
+
 
     .nav .nav-tabs {
         flex-wrap: nowrap;
@@ -2131,7 +2203,7 @@
         height: 50px;
     }
 
-  
+
 
     .slider-arrows {
         margin-top: 10px;
@@ -2165,12 +2237,14 @@
     /* product.html */
 
     /* work.html */
-    .workInfo{
+    .workInfo {
         height: auto;
     }
+
     .workInfo p {
         width: 100%;
     }
+
     .el3 {
         display: none;
     }
@@ -2186,55 +2260,55 @@
         flex-direction: column;
         width: 100%;
     }
-    
-    .reservationStepsEl:nth-child(1){
+
+    .reservationStepsEl:nth-child(1) {
         width: 100%;
     }
-    
-    .reservationStepsEl:nth-child(2){
+
+    .reservationStepsEl:nth-child(2) {
         width: 100%;
     }
-    
-    .reservationStepsEl:nth-child(3){
+
+    .reservationStepsEl:nth-child(3) {
         width: calc(100% - 50% - 20px);
     }
-    
-    .reservationStepsEl:nth-child(4){
+
+    .reservationStepsEl:nth-child(4) {
         width: calc(100% - 50% - 20px);
     }
-    
-    .reservationStepsEl:nth-child(5){
+
+    .reservationStepsEl:nth-child(5) {
         width: 100%;
     }
 
 
 
-    .reservationImagesEl:nth-child(1){
+    .reservationImagesEl:nth-child(1) {
         width: calc(100% - 50% - 10px);
-  
+
     }
-    
-    .reservationImagesEl:nth-child(2){
+
+    .reservationImagesEl:nth-child(2) {
         width: calc(100% - 50% - 10px);
-      
+
     }
-    
-    .reservationImagesEl:nth-child(3){
-       display: none;
-    
+
+    .reservationImagesEl:nth-child(3) {
+        display: none;
+
     }
 
     .truck {
         height: 300px;
     }
 
-    .h2{
+    .h2 {
         margin-top: 100px;
         font-size: 50px;
         margin-bottom: 20px;
     }
 
-    
+
     .orderSteps {
         flex-direction: column;
         width: 100%;
@@ -2244,17 +2318,18 @@
         width: 100%;
         height: auto;
     }
+
     /* work.html */
 
-    .orderSteps{
+    .orderSteps {
         gap: 20px;
     }
 
-    .orderSteps p{
+    .orderSteps p {
         margin-bottom: 0;
     }
 
-    .orderStepsElNumber{
+    .orderStepsElNumber {
         width: 50px;
         height: 50px;
         font-size: 20px;
@@ -2264,39 +2339,39 @@
         font-size: 16px;
     }
 
-    .bullingStepsEl p{
+    .bullingStepsEl p {
         font-size: 16px;
-        margin-bottom: 0;
-    }     
-
-    .reservationStepsEl{
-        font-size: 16px;
-    }
-
-    .reservationStepsEl p{
         margin-bottom: 0;
     }
 
-    .orderStepsElNumber img{
+    .reservationStepsEl {
+        font-size: 16px;
+    }
+
+    .reservationStepsEl p {
+        margin-bottom: 0;
+    }
+
+    .orderStepsElNumber img {
         width: auto;
         height: 15px;
     }
 
-    .deliveryStepsEl{
+    .deliveryStepsEl {
         font-size: 16px;
     }
 
-    .deliveryStepsEl p{
+    .deliveryStepsEl p {
         margin-bottom: 0;
     }
 
-    .refundEl p{
+    .refundEl p {
         font-size: 16px;
         margin-bottom: 0;
-    }    
+    }
 
 
-    .refundEl h3{
+    .refundEl h3 {
         font-size: 20px;
         color: #1a1a18;
         font-weight: bold;
@@ -2306,7 +2381,7 @@
     .catalogItems a {
         margin-top: 10px;
         width: calc(100% - 50% - 10px);
-        height:auto;
+        height: auto;
     }
 
 
@@ -2387,7 +2462,7 @@
         font-size: 48px;
     }
 
-  
+
 
 
     .subheaderImage img {
@@ -2396,15 +2471,15 @@
     }
 
     /* footer */
-    .footerLogoText{
+    .footerLogoText {
         font-size: 14px;
     }
 
-    .footerDataEls h4{
+    .footerDataEls h4 {
         font-size: 18px;
     }
 
-    .footerDataEls li{
+    .footerDataEls li {
         font-size: 14px;
     }
 
@@ -2412,9 +2487,9 @@
 
     /* contacts.html */
 
- 
 
-  
+
+
 
     .application {
         height: 700px;
@@ -2443,7 +2518,7 @@
         font-size: 16px;
     }
 
-    .h2{
+    .h2 {
         margin-top: 100px;
         margin-bottom: 20px;
         font-family: var(--font3);
@@ -2495,7 +2570,7 @@
         align-items: center;
     }
 
-   
+
 
     .listOrders {
         width: 100%;
@@ -2511,7 +2586,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: start;
-       
+
         width: 100%;
     }
 
@@ -2539,7 +2614,7 @@
 
     }
 
-    
+
 
     .nav .nav-tabs {
         flex-wrap: nowrap;
@@ -2549,7 +2624,7 @@
         padding: 5px;
     }
 
- 
+
 
     .orderButton {
         font-size: 18px;
@@ -2573,7 +2648,7 @@
         height: 50px;
     }
 
- 
+
 
     .slider-arrows {
         margin-top: 10px;
@@ -2590,21 +2665,22 @@
 
     /* product.html */
 
-       /* work.html */
+    /* work.html */
 
-    .reservationImages{
+    .reservationImages {
         justify-content: center;
     }
 
-    .el1{
+    .el1 {
         height: 300px;
         width: auto;
     }
 
-    .el1 img{
+    .el1 img {
         height: 300px;
         width: auto;
     }
+
     .el2 {
         display: none;
     }
@@ -2614,12 +2690,12 @@
     }
 
     /* work.html */
-   
+
     .truck {
         height: 250px;
     }
 
- 
+
 }
 
 
@@ -2633,7 +2709,7 @@
         gap: 20px;
     }
 
-    .brandLogo{
+    .brandLogo {
         width: 100%;
         height: auto;
     }
@@ -2661,7 +2737,8 @@
     .slider-arrows {
         display: none;
     }
-    .slider-arrows{
+
+    .slider-arrows {
         display: none;
     }
 
@@ -2698,19 +2775,21 @@
     }
 
     /* work.html */
-    .el1{
+    .el1 {
         height: 250px;
         width: auto;
     }
 
-    .el1 img{
+    .el1 img {
         height: 250px;
         width: auto;
     }
-    .bullingStepsEl{
+
+    .bullingStepsEl {
         font-size: 16px;
         height: auto;
     }
+
     .deliveryStepsEl {
         font-size: 16px;
     }
@@ -2725,8 +2804,8 @@
         gap: 20px;
         flex-wrap: wrap;
     }
-    
-    .reservationStepsEl{
+
+    .reservationStepsEl {
         background: #fff;
         border-radius: 10px;
         height: auto;
@@ -2736,31 +2815,31 @@
         color: #1a1a18;
         background-repeat: no-repeat;
         background-position: 95% -10px;
-     
-    }
-    
 
-    .reservationStepsEl:nth-child(3){
+    }
+
+
+    .reservationStepsEl:nth-child(3) {
         width: 100%;
     }
-    
-    .reservationStepsEl:nth-child(4){
+
+    .reservationStepsEl:nth-child(4) {
         width: 100%;
     }
-    
-    .reservationImagesNew{
+
+    .reservationImagesNew {
         flex-direction: column;
         align-items: center;
         height: auto;
     }
 
-    .reservationImagesEl:nth-child(1){
+    .reservationImagesEl:nth-child(1) {
         width: 100%;
         height: 300px;
-  
+
     }
-    
-    .reservationImagesEl:nth-child(2){
+
+    .reservationImagesEl:nth-child(2) {
         width: 100%;
         height: 300px;
     }
@@ -2768,7 +2847,7 @@
 
     /* work.html */
 
-    .breadCrumb{
+    .breadCrumb {
         font-size: 14px;
     }
 
@@ -2776,66 +2855,66 @@
         height: 300px;
     }
 
-    .h2{
+    .h2 {
         margin-top: 80px;
         font-size: 37px;
     }
 
-    .deliverySteps{
+    .deliverySteps {
         gap: 20px;
     }
 
-    .reservationImagesNew{
+    .reservationImagesNew {
         margin-top: 20px;
         gap: 20px;
     }
 
-    .refund{
+    .refund {
         gap: 20px;
     }
 
-    .truck{
+    .truck {
         margin-top: 20px;
     }
 
-    .addressInfo h3{
+    .addressInfo h3 {
         font-size: 18px;
     }
 
-    .addressInfoElText{
+    .addressInfoElText {
         font-size: 16px;
     }
 
-    .addressInfoElImg img{
+    .addressInfoElImg img {
         height: 18px;
         width: 18px;
     }
 
-    .addresses{
+    .addresses {
         gap: 10px;
     }
 
-    .addressImg img{
+    .addressImg img {
         height: 60px;
         width: 60px;
     }
 
-  
-  
+
+
 
 
 }
 
 @media (width < 480px) {
 
-  
+
 
     .header {
         margin-top: 10px;
     }
 
     .subheader {
-     
+
         width: 100%;
     }
 
@@ -2922,7 +3001,7 @@
         margin-top: 30px;
     }
 
- 
+
 
 
 
@@ -3022,7 +3101,7 @@
         height: 50px;
     }
 
-   
+
 
     .modal-header {
         padding: 5px;
@@ -3090,7 +3169,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: start;
-        
+
         width: 100%;
     }
 
@@ -3118,7 +3197,7 @@
         align-items: center;
     }
 
-  
+
 
     .nav .nav-tabs {
         flex-wrap: nowrap;
@@ -3251,49 +3330,52 @@
         height: auto;
     }
 
-    .el1{
+    .el1 {
         height: 200px;
         width: auto;
     }
 
-    .el1 img{
+    .el1 img {
         height: 200px;
         width: auto;
     }
 
-    .truck{
+    .truck {
         height: 150px;
     }
 
 
-    .reservationImagesEl:nth-child(1){
+    .reservationImagesEl:nth-child(1) {
         width: 100%;
         height: 200px;
-  
+
     }
-    
-    .reservationImagesEl:nth-child(2){
+
+    .reservationImagesEl:nth-child(2) {
         width: 100%;
         height: 200px;
     }
+
     /* work.html */
 
     .catalogItems a {
         text-decoration: none;
         display: block;
         width: 100%;
-        height:auto;
+        height: auto;
     }
-    .catalogItemImg{
+
+    .catalogItemImg {
         height: 200px;
     }
-    .catalogItemImg img{
+
+    .catalogItemImg img {
         height: 200px;
         width: 100%;
     }
 
 
-  
+
 }
 
 @media (width < 320px) {

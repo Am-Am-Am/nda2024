@@ -60,6 +60,7 @@ html {
 
 .searchResult{
     margin-bottom: 300px;
+    padding-top:20px ;
 }
 
 .searchResultEl{
@@ -72,11 +73,27 @@ html {
     margin-top: 40px;
 }
 
+.searchResultName{
+    font-size: 28px;
+}
+
 .searchResultEl a{
     text-decoration: none;
     color: #000;
-    font-size: 28px;
 }
+
+.searchResultEl:hover{
+    background-color: #3391C5;
+}
+
+.searchResultEl:hover .searchResultArticle{
+    background-color: #242E49;
+}
+
+.searchResultEl:hover a{
+    color: #fff;
+}
+
 
 .searchResultArticle{
     width: 100%;
@@ -89,9 +106,51 @@ html {
 
 .searchResultArticleName, .searchResultArticleDescription{
     display: flex;
+    gap: 10px;
 }
 
+.searchResultArticleDescription{
+    height: auto;
+    width: 100%;
+}
 
+.innerDescription{
+    height: auto;
+    width: 100px;
+}
+
+.searchResultArticle {
+    /*  задаем ширину блока, в котором будет находиться контент */
+    width: 100%;
+    /* устанавливаем макс. ширину */
+    margin-bottom: 20px; /* добавляем отступ между статьями*/
+    padding: 10px; /* добавляем внутренний отступ */
+}
+.searchResultArticleName {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.searchResultArticleDescription {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.innerDescription {
+    /*  подстраиваемся под ширину */
+    width: 100%;
+    /*  перенос слов */
+    word-break: break-word; /* или overflow-wrap: break-word; */
+
+}
+
+/* Дополнительно для того чтоб картинки тоже могли умещаться */
+.innerDescription img {
+    max-width: 100%; /* убедитесь что картинки не выходят за границы */
+    height: auto;
+}
 
 
 .button:hover {
@@ -2708,5 +2767,13 @@ input .form-control .d-inline-block {
 
 .breadcrumb-item a:hover{
     color: #1A1A18;
+}
+
+
+
+.custom-table th,
+.custom-table td {
+
+    word-break: break-word; /* Перенос слов */
 }
 

@@ -199,7 +199,7 @@
                                             <tr class="table-row">
                                                 <td class="text-center align-middle">{{ offer.name }}</td>
                                                 <td class="text-start align-middle">{{ offer.characteristics }}</td>
-                                                <td class="text-start align-middle">{{ offer.shipping_pack }}</td>
+                                                <td class="text-start align-start">{{ offer.shipping_pack }}</td>
                                             </tr>
                                             {% endif %}
                                         {% endfor %}
@@ -214,7 +214,7 @@
                         <div class="placeOrder">
                             <form action=""></form>
                             <div class="container1">
-                                <table class="table table-responsive table-borderless">
+                                <table class="table table-responsive table-borderless custom-table">
                                     <thead>
                                         <tr class="table-header">
                                             <th class="col-2 text-center">
@@ -235,9 +235,9 @@
                                         {% for offer in offers %}
                                             {% if offer.status == 'PUBLISHED' %}
                                         <tr class="table-row">
-                                            <td class="text-center align-middle">{{ offer.name }}</td>
-                                            <td class="text-start align-middle">{{ offer.description }}</td>
-                                            <td class="text-start align-middle">{{ offer.shipping_pack }}</td>
+                                            <td class="text-center align-middle">{{ offer.name | safe}}</td>
+                                            <td class="text-start align-middle">{{ offer.description | safe}}</td>
+                                            <td class="text-start align-start">{{ offer.shipping_pack | safe}}</td>
                                             <td class="text-start">
 
                                                 <div class="tableCountAdd"
@@ -366,7 +366,7 @@
                         <div class="dropDownEl">
                             <div class="productSpecifications">
                                 <div class="container1">
-                                    <table class="table table-responsive table-borderless">
+                                    <table class="table table-responsive table-borderless custom-table">
                                         <thead>
                                             <tr class="table-header">
                                                 <th class="col-2 text-center">
@@ -384,9 +384,9 @@
                                         <tbody class="">
                                             {% for offer in offers %}
                                             <tr class="table-row">
-                                                <td class="text-center align-middle">{{ offer.name }}</td>
-                                                <td class="text-start align-middle">{{ offer.characteristics }}</td>
-                                                <td class="text-start align-middle">{{ offer.shipping_pack }}</td>
+                                                <td class="text-center align-middle">{{ offer.name | safe}}</td>
+                                                <td class="text-start align-middle">{{ offer.characteristics | safe}}</td>
+                                                <td class="text-start align-start">{{ offer.shipping_pack | safe}}</td>
                                             </tr>
                                             {% endfor %}
                                         </tbody>
@@ -422,9 +422,9 @@
                                         <tbody class="">
                                             {% for offer in offers %}
                                             <tr class="table-row">
-                                                <td class="text-center align-middle">{{ offer.name }}</td>
-                                                <td class="text-start align-middle">{{ offer.description }}</td>
-                                                <td class="text-start align-middle">{{ offer.shipping_pack }}</td>
+                                                <td class="text-center align-middle">{{ offer.name | safe}}</td>
+                                                <td class="text-start align-middle">{{ offer.description | safe}}</td>
+                                                <td class="text-start align-start">{{ offer.shipping_pack | safe}}</td>
                                                 <td class="text-start">
     
                                                     <div class="tableCountAdd"

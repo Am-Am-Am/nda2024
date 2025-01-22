@@ -41,24 +41,25 @@
             {% for category in object_list %}
               
                 <div class="searchResultEl">
-                  <div>
-                    <a href="{% url 'offer' brand_slug=category.brand.slug category_slug=category.slug %}">{{ category.name.upper }}</a>
-                  </div>
+                  <a href="{% url 'offer' brand_slug=category.brand.slug category_slug=category.slug %}">
+                    <div class="searchResultName">
+                      {{ category.name.upper }}
+                    </div>
                   
                     {% for offer in category.related_offers %}
                       <div class="searchResultArticle">
                        <div class="searchResultArticleName">
-                        <div class="">Артикл:</div>
-                        <div class="">{{ offer.name | safe}} </div>
+                        <div class="">Артикл: </div>
+                        <div class=""><b>{{ offer.name | safe}}</b> </div>
                        </div> 
                        <div class="searchResultArticleDescription">
-                        <div class="">Описание:</div>
-                        <div class="">{{ offer.description | safe}}</div>
+                        <div class="">Описание: </div>
+                        <div class="innerDescription">{{ offer.description | safe}}</div>
                          
                        </div>
                       </div>
                     {% endfor %}
-                  
+                  </a>
                 </div>
               
             {% endfor %}

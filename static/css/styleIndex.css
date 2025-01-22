@@ -26,6 +26,34 @@
 .tab-content{
     padding: 0;
 }
+
+@media (min-width:  2500px){
+    .slider .subheaderInfo {
+        padding: 20px;
+        height: 1080px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: start;
+        text-align: left;
+        width: 50vw;
+    
+    }
+    .subheader{
+        height: 1080px;
+    }
+
+    .infoImg {
+        width: 30vw;
+        height: 100%;
+    }
+    
+    .catalogItemImg img{
+        height: 300px;
+    }
+
+}
+
 @media (width < 480px){
 
     .slider div{
@@ -99,7 +127,7 @@
     }
 }
 
-@media (min-width: 900px){
+@media (min-width: 900px ) and (max-width: 2500px){
     .slider .subheaderInfo {
         padding: 20px;
         height: 100%;
@@ -110,5 +138,9 @@
         text-align: left;
         width: 50vw;
     
+    }
+
+    .subheader{
+        height: 100vh;
     }
 }
