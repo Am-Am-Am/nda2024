@@ -5,36 +5,44 @@
     src: url('fonts/reznor-broken.ttf');
 }
 
-input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
-  input[type="number"] {
+input[type="number"] {
     -moz-appearance: textfield;
-  }
+}
 
-  ::-webkit-scrollbar {
-    width: 10px; /* Adjust width as needed */
+::-webkit-scrollbar {
+    width: 10px;
+    /* Adjust width as needed */
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Light grey for track */
+    background: #f1f1f1;
+    /* Light grey for track */
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #3391C5; /* Desired color for thumb */
-    border-radius: 5px; /* Add rounded corners for the thumb */
+    background: #3391C5;
+    /* Desired color for thumb */
+    border-radius: 5px;
+    /* Add rounded corners for the thumb */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #2a7ab3; /* Darker color on hover */
+    background: #2a7ab3;
+    /* Darker color on hover */
 }
 
 /* Firefox */
 html {
-    scrollbar-color: #3391C5 #f1f1f1; /* thumb and track color */
-    scrollbar-width: thin; /* Use thin for a smaller scrollbar */
+    scrollbar-color: #3391C5 #f1f1f1;
+    /* thumb and track color */
+    scrollbar-width: thin;
+    /* Use thin for a smaller scrollbar */
 }
 
 
@@ -53,17 +61,17 @@ body {
 }
 
 html {
-   
+
     overflow-y: scroll;
     overflow-x: hidden;
 }
 
-.searchResult{
+.searchResult {
     margin-bottom: 300px;
-    padding-top:20px ;
+    padding-top: 20px;
 }
 
-.searchResultEl{
+.searchResultEl {
     height: auto;
     width: 100%;
     padding: 20px;
@@ -73,29 +81,29 @@ html {
     margin-top: 40px;
 }
 
-.searchResultName{
+.searchResultName {
     font-size: 28px;
 }
 
-.searchResultEl a{
+.searchResultEl a {
     text-decoration: none;
     color: #000;
 }
 
-.searchResultEl:hover{
+.searchResultEl:hover {
     background-color: #3391C5;
 }
 
-.searchResultEl:hover .searchResultArticle{
+.searchResultEl:hover .searchResultArticle {
     background-color: #242E49;
 }
 
-.searchResultEl:hover a{
+.searchResultEl:hover a {
     color: #fff;
 }
 
 
-.searchResultArticle{
+.searchResultArticle {
     width: 100%;
     height: auto;
     background-color: #f2f2f2;
@@ -104,17 +112,18 @@ html {
     margin-top: 20px;
 }
 
-.searchResultArticleName, .searchResultArticleDescription{
+.searchResultArticleName,
+.searchResultArticleDescription {
     display: flex;
     gap: 10px;
 }
 
-.searchResultArticleDescription{
+.searchResultArticleDescription {
     height: auto;
     width: 100%;
 }
 
-.innerDescription{
+.innerDescription {
     height: auto;
     width: 100px;
 }
@@ -123,13 +132,16 @@ html {
     /*  задаем ширину блока, в котором будет находиться контент */
     width: 100%;
     /* устанавливаем макс. ширину */
-    margin-bottom: 20px; /* добавляем отступ между статьями*/
-    padding: 10px; /* добавляем внутренний отступ */
+    margin-bottom: 20px;
+    /* добавляем отступ между статьями*/
+    padding: 10px;
+    /* добавляем внутренний отступ */
 }
+
 .searchResultArticleName {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 5px;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 5px;
 }
 
 .searchResultArticleDescription {
@@ -142,13 +154,15 @@ html {
     /*  подстраиваемся под ширину */
     width: 100%;
     /*  перенос слов */
-    word-break: break-word; /* или overflow-wrap: break-word; */
+    word-break: break-word;
+    /* или overflow-wrap: break-word; */
 
 }
 
 /* Дополнительно для того чтоб картинки тоже могли умещаться */
 .innerDescription img {
-    max-width: 100%; /* убедитесь что картинки не выходят за границы */
+    max-width: 100%;
+    /* убедитесь что картинки не выходят за границы */
     height: auto;
 }
 
@@ -390,7 +404,7 @@ input::placeholder {
     justify-content: space-between;
     padding: 20px;
     height: 100vh;
-    
+
 }
 
 .subheaderEl {
@@ -509,7 +523,7 @@ input::placeholder {
     z-index: 9999;
 }
 
-#btnFlex{
+#btnFlex {
     width: 100%;
     height: 100%;
     display: flex;
@@ -653,14 +667,14 @@ li .active {
     align-content: flex-start;
     gap: 40px;
     margin-bottom: 40px;
-    
+
 }
 
 .catalogItems a {
     text-decoration: none;
     display: block;
     width: calc(100% - 75% - 40px);
-    height:auto;
+    height: auto;
 }
 
 
@@ -759,14 +773,17 @@ li .active {
     position: absolute;
     bottom: 15px;
     display: flex;
-    justify-content: center; /* выравниваем линии по центру */
+    justify-content: center;
+    /* выравниваем линии по центру */
     width: 100%;
 }
 
 .slick-dots li {
     display: flex;
-    align-items: center; /* выравниваем линию вертикально по центру */
-    margin: 0 10px; /* добавляем немного пространства между линиями */
+    align-items: center;
+    /* выравниваем линию вертикально по центру */
+    margin: 0 10px;
+    /* добавляем немного пространства между линиями */
     position: relative;
 
 }
@@ -779,23 +796,32 @@ li .active {
     cursor: pointer;
     border: none;
     outline: none;
-    background-color: transparent; /* прозрачный фон */
+    background-color: transparent;
+    /* прозрачный фон */
     position: relative;
 }
 
 .slick-dots li button:before {
-    content: ''; /* делаем контент пустым */
-    width: 30px; /* длина линии */
-    height: 3px;  /* толщина линии */
-    background-color: #fff; /* цвет линии */
-    opacity: 0.5; /* цвет бледной линии */
+    content: '';
+    /* делаем контент пустым */
+    width: 30px;
+    /* длина линии */
+    height: 3px;
+    /* толщина линии */
+    background-color: #fff;
+    /* цвет линии */
+    opacity: 0.5;
+    /* цвет бледной линии */
     transition: background-color 0.3s;
-    display: block; /* чтоб линия отображалась */
+    display: block;
+    /* чтоб линия отображалась */
 }
 
 .slick-dots li.slick-active button:before {
-     background-color: #3391c5; /* цвет активной линии */
-     opacity: 1; /* цвет активной линии */
+    background-color: #3391c5;
+    /* цвет активной линии */
+    opacity: 1;
+    /* цвет активной линии */
 }
 
 
@@ -1048,7 +1074,7 @@ li .active {
     display: flex;
     align-items: center;
     justify-content: center;
- 
+
 }
 
 .brandLogo img {
@@ -1062,7 +1088,9 @@ li .active {
 }
 
 .brandInfo {
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .brandInfo h1 {
@@ -1164,7 +1192,7 @@ li .active {
     height: auto;
 }
 
-.slick-initialized  {
+.slick-initialized {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -1175,7 +1203,7 @@ li .active {
     height: 600px;
 }
 
-.sliderNavEl .slick-slide .slick-current{
+.sliderNavEl .slick-slide .slick-current {
     height: 300px;
 }
 
@@ -1186,10 +1214,10 @@ li .active {
 
 .slick-track {
     margin-top: 100px;
-   
+
 }
 
-.slider-nav .nav2 .slick-initialized .slick-slider{
+.slider-nav .nav2 .slick-initialized .slick-slider {
     height: 300px;
 }
 
@@ -1209,19 +1237,20 @@ li .active {
     justify-content: center;
 }
 
-.slick-slide .slick-cloned{
+.slick-slide .slick-cloned {
     height: 100%;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .slider-nav img {
     width: 100%;
     display: flex;
 }
 
-.slick-initialized .slick-slide{
+.slick-initialized .slick-slide {
     display: flex;
 }
 
@@ -1242,7 +1271,7 @@ li .active {
     justify-content: center;
 }
 
-.sliderNavEl img{
+.sliderNavEl img {
     display: block;
     width: 100%;
 }
@@ -1262,13 +1291,15 @@ li .active {
 
 .slider-container {
     position: relative;
-    
+
     /* Создаем относительное позиционирование для контейнера */
 }
-.slider-container .sliderInfo{
+
+.slider-container .sliderInfo {
     height: 100%;
 }
-.slick-list .draggable{
+
+.slick-list .draggable {
     height: 300px;
 }
 
@@ -1342,7 +1373,7 @@ li .active {
     border: 1px solid #3391C5;
 }
 
-.formDescr{
+.formDescr {
     text-align: center;
 }
 
@@ -1469,15 +1500,15 @@ li .active {
     border-top-left-radius: 10px;
 }
 
-.productInfoChoice ul li{
+.productInfoChoice ul li {
     width: 20%;
 }
 
-.productInfoChoice ul li button{
+.productInfoChoice ul li button {
     width: 100%;
 }
 
-.productInfoChoice ul > li + li {
+.productInfoChoice ul>li+li {
     border-left: 2px solid #ddd;
 }
 
@@ -1490,20 +1521,20 @@ li .active {
 
 }
 
-.productVideo{
+.productVideo {
     height: 100%;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    
+
+
 }
 
 .nav-pills .nav-link.active {
     background-color: #3391C5;
     color: #fff !important;
-    
+
 }
 
 .nav-pills .nav-link {
@@ -1552,13 +1583,13 @@ li .active {
     font-weight: bold;
 }
 
-.offerCount{
+.offerCount {
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
 
-.tableCountAdd{
+.tableCountAdd {
     text-decoration: underline;
     text-align: center;
     color: #1e415c;
@@ -1567,27 +1598,28 @@ li .active {
     justify-content: center;
     width: 100%;
 }
-.tableCountAdd:hover{
+
+.tableCountAdd:hover {
     text-decoration: underline;
     text-align: center;
-    color:#006ea9;
+    color: #006ea9;
     cursor: pointer;
 }
 
-.tableCountAdd:active{
+.tableCountAdd:active {
     text-decoration: underline;
     text-align: center;
-    color:#005ff9;
+    color: #005ff9;
     cursor: pointer;
 }
 
-.inputCount{
+.inputCount {
     position: relative;
     width: 55%;
 }
 
 
-.inputCountBtn1{
+.inputCountBtn1 {
     position: absolute;
     left: 3%;
     top: 3px;
@@ -1602,11 +1634,12 @@ li .active {
     cursor: pointer;
 }
 
-.inputCountBtn1:hover, .inputCountBtn2:hover{
+.inputCountBtn1:hover,
+.inputCountBtn2:hover {
     background-color: #4BA3D6;
 }
 
-.inputCountBtn2{
+.inputCountBtn2 {
     position: absolute;
     right: 3px;
     top: 3px;
@@ -1621,7 +1654,7 @@ li .active {
     cursor: pointer;
 }
 
-.quantityFormBtn{
+.quantityFormBtn {
     width: 50%;
 }
 
@@ -1975,14 +2008,14 @@ input .form-control .d-inline-block {
 .modal {
     margin-top: 110px;
     margin: auto;
-    
+
 }
 
 .modal-open {
     padding-right: 0 !important;
 }
 
-.modal-dialog{
+.modal-dialog {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -2432,7 +2465,7 @@ input .form-control .d-inline-block {
 
 /* work.html */
 
-.h2{
+.h2 {
     font-family: var(--font3);
     font-weight: 700;
     font-size: 90px;
@@ -2455,7 +2488,7 @@ input .form-control .d-inline-block {
     background-size: cover;
     background-repeat: no-repeat;
     padding: 80px;
-    
+
 }
 
 .workLogo {
@@ -2562,7 +2595,7 @@ input .form-control .d-inline-block {
 
 
 .bullingSteps {
-   
+
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -2582,7 +2615,7 @@ input .form-control .d-inline-block {
 }
 
 .bullingStepsEl:nth-child(1) {
- 
+
     background-position: right bottom;
     background-repeat: no-repeat;
 }
@@ -2600,7 +2633,7 @@ input .form-control .d-inline-block {
     flex-wrap: wrap;
 }
 
-.reservationStepsEl{
+.reservationStepsEl {
     background: #fff;
     border-radius: 10px;
     height: auto;
@@ -2614,27 +2647,27 @@ input .form-control .d-inline-block {
     padding: 30px;
 }
 
-.reservationStepsEl:nth-child(1){
+.reservationStepsEl:nth-child(1) {
     width: calc(100% - 50% - 20px);
 }
 
-.reservationStepsEl:nth-child(2){
+.reservationStepsEl:nth-child(2) {
     width: calc(100% - 50% - 20px);
 }
 
-.reservationStepsEl:nth-child(3){
+.reservationStepsEl:nth-child(3) {
     width: calc(100% - 67% - 30px);
 }
 
-.reservationStepsEl:nth-child(4){
+.reservationStepsEl:nth-child(4) {
     width: calc(100% - 67% - 30px);
 }
 
-.reservationStepsEl:nth-child(5){
+.reservationStepsEl:nth-child(5) {
     width: calc(100% - 67% - 30px);
 }
 
-.reservationImagesNew{
+.reservationImagesNew {
     display: flex;
     gap: 40px;
     width: 100%;
@@ -2642,23 +2675,23 @@ input .form-control .d-inline-block {
     margin-top: 40px;
 }
 
-.reservationImagesEl{
+.reservationImagesEl {
     border-radius: 10px;
     background-size: cover;
     height: 380px;
 }
 
-.reservationImagesEl:nth-child(1){
+.reservationImagesEl:nth-child(1) {
     width: calc(100% - 67% - 30px);
     background-color: #fff;
 }
 
-.reservationImagesEl:nth-child(2){
+.reservationImagesEl:nth-child(2) {
     width: calc(100% - 67% - 30px);
     background-color: #fff;
 }
 
-.reservationImagesEl:nth-child(3){
+.reservationImagesEl:nth-child(3) {
     width: calc(100% - 67% - 30px);
     background-color: #fff;
 }
@@ -2732,7 +2765,7 @@ input .form-control .d-inline-block {
     color: #1a1a18;
 }
 
-.truck{
+.truck {
     margin-top: 40px;
     width: 100%;
     height: 470px;
@@ -2751,12 +2784,12 @@ input .form-control .d-inline-block {
 /* work.html */
 
 
-.breadcrumb-item a{
+.breadcrumb-item a {
     color: #858585;
     font-weight: 300;
 }
 
-.breadcrumb-item{
+.breadcrumb-item {
     margin-bottom: 5px;
 }
 
@@ -2765,7 +2798,7 @@ input .form-control .d-inline-block {
     font-weight: 500;
 }
 
-.breadcrumb-item a:hover{
+.breadcrumb-item a:hover {
     color: #1A1A18;
 }
 
@@ -2774,6 +2807,6 @@ input .form-control .d-inline-block {
 .custom-table th,
 .custom-table td {
 
-    word-break: break-word; /* Перенос слов */
-}
+    word-break: break-word;
 
+}
