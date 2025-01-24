@@ -276,11 +276,12 @@ class Offer(BaseFields):
         verbose_name='Категория, к которой принадлежит товар'
     )
 
-    characteristics = models.TextField(
+    characteristics = models.FileField(
+        upload_to='characteristics/', 
         default='',
         null=True,
         blank=True,
-        verbose_name='Характеристики'
+        verbose_name='Характеристики',
     )
     tech_info = models.FileField(
         upload_to='files/instructions',

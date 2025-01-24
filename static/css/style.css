@@ -2022,6 +2022,11 @@ input .form-control .d-inline-block {
     display: flex;
     justify-content: center;
     margin-top: 150px;
+    left: 15px;
+}
+
+.modal-footer{
+    justify-content: flex-start;
 }
 
 .btn-close {

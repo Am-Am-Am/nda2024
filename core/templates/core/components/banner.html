@@ -10,10 +10,10 @@
   </div>
   <div class="brandInfo">
     {% if brand %}
-      <h1>{{ brand.name }}</h1>
-      <h2>{{ brand.description }}</h2>
+      <h1>{{ brand.name | safe}}</h1>
+      <h2>{{ brand.description | safe}}</h2>
     {% else %}
-      <h1>{{ category.name }}</h1>
+      <h1>{{ category.name | safe}}</h1>
     {% endif %}
   </div>
 </div>

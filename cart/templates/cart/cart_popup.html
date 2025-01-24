@@ -32,11 +32,11 @@
 <table id="offers-table">
     {% if offers_in_cart|length > 0  %}
         <thead>
-            <tr>
+            {% comment %} <tr>
                 <th>Код</th>
                 <th>Количество</th>
                 <th></th>
-            </tr>
+            </tr> {% endcomment %}
         </thead>
         <tbody>
         {% for offer in offers_in_cart %}

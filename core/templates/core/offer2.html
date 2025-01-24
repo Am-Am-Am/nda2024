@@ -198,7 +198,7 @@
                                             {% if offer.status == 'PUBLISHED' %}
                                             <tr class="table-row">
                                                 <td class="text-center align-middle">{{ offer.name }}</td>
-                                                <td class="text-start align-middle">{{ offer.characteristics }}</td>
+                                                <td class="text-start align-middle">{{ offer.description | safe}}</td>
                                                 <td class="text-start align-start">{{ offer.shipping_pack }}</td>
                                             </tr>
                                             {% endif %}
