@@ -1,7 +1,8 @@
 {% extends 'core/base1.html' %}
 {% load static %}
 {% load thumbnail %}
-
+{% load thumbnail cache %}
+{% load static cache %}
 {% block title %}
     <title>{{ product.title }}</title>
 {% endblock %}
@@ -42,23 +43,25 @@
 
 
         {% include 'core/components/breadcrumbs.html' %}
-        <div class="brandBanner" style="background: linear-gradient(135deg, {{ brand.banner_color }}, white);">
-            <div class="brandLogo">
-              {% if brand.logo %}  
-                          <img src="{{ brand.logo.url }}" alt="{{ brand.name }}" />
-                          {% else %}
-                              <img src="{% static 'images/noImage.jpg' %}" alt="Default logo" />  
-                          {% endif %}
+        {% cache 600 brand.pk product.pk %}
+            <div class="brandBanner" style="background: linear-gradient(135deg, {{ brand.banner_color }}, white);">
+                <div class="brandLogo">
+                {% if brand.logo %}  
+                        <img src="{{ brand.logo.url }}" alt="{{ brand.name }}" />
+                        {% else %}
+                            <img src="{% static 'images/noImage.jpg' %}" alt="Default logo" />  
+                        {% endif %}
+                </div>
+                <div class="brandInfo">
+                {% if brand %}
+                    <h1>{{ brand.name }}</h1>
+                    <h2>{{ product.name }}</h2>
+                {% comment %} {% else %}
+                    <h1>{{ category.name }}</h1> {% endcomment %}
+                {% endif %}
+                </div>
             </div>
-            <div class="brandInfo">
-              {% if brand %}
-                <h1>{{ brand.name }}</h1>
-                <h2>{{ product.name }}</h2>
-              {% comment %} {% else %}
-                <h1>{{ category.name }}</h1> {% endcomment %}
-              {% endif %}
-            </div>
-          </div>
+        {% endcache %}
 
 
         <div class="product">
@@ -66,15 +69,17 @@
                 <div class="productCarousel">
                     <div class="carouselWrapper">
                          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                             <div class="carousel-inner">
-                                 {% for image in images %}
-                                 {% thumbnail image.image '600x800' format="PNG" as im %}
-                                 <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                                     <img src="{{ im.url }}" class="d-block" alt="Product Image">
-                                 </div>
-                                 {% endthumbnail %}
-                                 {% endfor %}
-                             </div>
+                            <div class="carousel-inner">
+                                {% for image in images %}
+                                    {% cache 600 image.pk %}
+                                        {% thumbnail image.image '600x800' format="PNG" as im %}
+                                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                                <img src="{{ im.url }}" class="d-block" alt="Product Image">
+                                            </div>
+                                        {% endthumbnail %}
+                                    {% endcache %}
+                                {% endfor %}
+                            </div>
                              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                                  <span class="carousel-control-prev-icon slick-prev1" aria-hidden="true" style="background-image: url('{% static "images/offer/left.svg"%}')" ></span>
                                  <span class="visually-hidden">Previous</span>
@@ -86,17 +91,19 @@
                          </div>
                     </div>
                     <div class="tumbnailsWrapper">
-                         <div class="carousel-indicators tumbnails-list">
-                             {% for image in images %}
-                                 {% with forloop.counter0 as index %}
-                                 {% thumbnail image.image '150x150' format="PNG" as im %}
-                                 <div class="thumbnailContainer" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{index}}" class="{% if forloop.first %}active{% endif %}">
-                                     <img src="{{ im.url }}" class="d-block  thumbnail-image" aria-label="Slide {{ index }}">
-                                 </div>
-                                 {% endthumbnail %}
-                                 {% endwith %}
-                             {% endfor %}
-                         </div>
+                        <div class="carousel-indicators tumbnails-list">
+                            {% for image in images %}
+                                {% cache 600 image.pk %}
+                                    {% with forloop.counter0 as index %}
+                                        {% thumbnail image.image '150x150' format="PNG" as im %}
+                                            <div class="thumbnailContainer" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{index}}" class="{% if forloop.first %}active{% endif %}">
+                                                <img src="{{ im.url }}" class="d-block  thumbnail-image" aria-label="Slide {{ index }}">
+                                            </div>
+                                        {% endthumbnail %}
+                                    {% endwith %}
+                                {% endcache %}
+                            {% endfor %}
+                        </div>
                      </div>
                 </div>
                 

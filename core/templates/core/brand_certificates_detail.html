@@ -1,35 +1,15 @@
 {% extends 'core/base1.html' %}
-{% load static %}
-
-{% comment %} <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Сертификаты для {{ brand.name }}</title>
-  </head>
-  <body>
-    <h1>Сертификаты для {{ brand.name }}</h1>
-    <ul>
-      {% for certificate in certificates %}
-        <li>
-          <a href="{{ certificate.file.url }}">{{ certificate.file.name }}</a>
-        </li>
-      {% empty %}
-        <p>Нет сертификатов для данного бренда.</p>
-      {% endfor %}
-    </ul>
-  </body>
-</html> {% endcomment %}
+{% load static cache %}
 
 {% block content %}
   <header style="height: 0px;">
     <!-- летающая шапка -->
     {% include 'core/components/flyingHeader.html' %}
-
     <!-- летающая шапка -->
   </header>
   <main class="main">
     <div class="container1">
+    {% cache 86400 'brand_certificates_breadcrumbs' brand.slug %}
       <div class="breadCrumbs">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
@@ -41,10 +21,13 @@
           <li class="breadcrumb-item breadcrumb-item-active" aria-current="page">{{ brand.name }}</li>
         </ol>
       </div>
-
+      {% endcache %}
+     {% cache 86400 'brand_certificates_banner' brand.slug %}
       {% include 'core/components/banner.html' %}
+      {% endcache %}
 
       <div class="certificatesTable">
+        {% cache 3600 'brand_certificate_table' brand.slug %}
         <table class="table table-responsive table-borderless">
           <thead>
             <tr class="table-header">
@@ -71,10 +54,10 @@
             {% endfor %}
           </tbody>
         </table>
+        {% endcache %}
       </div>
       <!-- плавающий элемент с формами связи -->
       {% include 'core/components/formsContainer.html' %}
-
       <!-- плавающий элемент с формами связи -->
       <!-- формы на странице -->
     </div>

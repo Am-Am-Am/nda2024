@@ -1,6 +1,7 @@
 {% extends 'core/base1.html' %}
 {% load pagination_tags %}
 {% load static %}
+{% load cache %}
 
 {% block title %}
   <title>Результаты поиска</title>
@@ -22,24 +23,25 @@
             <div>{{ message }}</div>
           {% endfor %}
         {% elif object_list %}
-          <div>
-            <span>
-              {% if page_obj.has_previous %}
-                <a href="{% url_with_query_params request %}">&laquo; В начало</a>
-                <a href="{% url_with_query_params request page_obj.previous_page_number %}">Предыдущая страница</a>
-              {% endif %}
-              {% if page_obj.paginator.num_pages > 1 %}
-                <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.</span>
-              {% endif %}
-              {% if page_obj.has_next %}
-                <a href="{% url_with_query_params request page_obj.next_page_number %}">Следующая страница</a>
-                <a href="{% url_with_query_params request page_obj.paginator.num_pages %}">В конец &raquo;</a>
-              {% endif %}
-            </span>
-          </div>
-          
+          {% cache 600 page_obj.number request.GET.urlencode %}
+            <div>
+              <span>
+                {% if page_obj.has_previous %}
+                  <a href="{% url_with_query_params request %}">&laquo; В начало</a>
+                  <a href="{% url_with_query_params request page_obj.previous_page_number %}">Предыдущая страница</a>
+                {% endif %}
+                {% if page_obj.paginator.num_pages > 1 %}
+                  <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.</span>
+                {% endif %}
+                {% if page_obj.has_next %}
+                  <a href="{% url_with_query_params request page_obj.next_page_number %}">Следующая страница</a>
+                  <a href="{% url_with_query_params request page_obj.paginator.num_pages %}">В конец &raquo;</a>
+                {% endif %}
+              </span>
+            </div>
+
             {% for category in object_list %}
-              
+              {% cache 600 category.pk %}
                 <div class="searchResultEl">
                   <a href="{% url 'offer' brand_slug=category.brand.slug category_slug=category.slug %}">
                     <div class="searchResultName">
@@ -61,9 +63,9 @@
                     {% endfor %}
                   </a>
                 </div>
-              
+              {% endcache %}
             {% endfor %}
-          
+          {% endcache %}
         {% else %}
           <div>По вашему запросу ничего не найдено. Попробуйте изменить запрос и попробовать снова</div>
         {% endif %}
@@ -74,4 +76,5 @@
     {% include 'core/components/formsContainer.html' %}
     <!-- плавающий элемент с формами связи -->
   </main>
+
 {% endblock %}
