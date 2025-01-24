@@ -2,7 +2,7 @@
 /venv
 .idea
 /dumps
-
+/.vscode
 /temporary_unused_code
 **/**/__pycache__
 

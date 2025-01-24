@@ -277,7 +277,7 @@ class Offer(BaseFields):
     )
 
     characteristics = models.FileField(
-        upload_to='characteristics/', 
+        upload_to='characteristics/',  # Папка для сохранения файлов характеристик
         default='',
         null=True,
         blank=True,

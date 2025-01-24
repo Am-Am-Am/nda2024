@@ -13,7 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-
+import logging
+from django.utils.log import DEFAULT_LOGGING
 
 load_dotenv()
 
@@ -33,7 +34,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
-
+logging.basicConfig(level=logging.INFO)
 # Application definition
 
 INSTALLED_APPS = [
@@ -129,7 +130,7 @@ SQL_BASE_NAME = os.getenv("SQL_DB_BASE_NAME","nda_test")
 
 CACHES = {
     "default": {
-        # "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
         "BACKEND": 'django.core.cache.backends.dummy.DummyCache',
         "LOCATION": "redis://127.0.0.1:6379",
     }
