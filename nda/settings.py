@@ -221,6 +221,9 @@ EMAIL_PORT = os.getenv('PORT', '587')
 EMAIL_USE_TLS = True
 
 
+
+SITE_KEY = os.getenv('SITE_KEY', 'default_value')
+
 # YANDEX CAPTCHA SETTINGS
 SECURE_REFERRER_POLICY = 'no-referrer-when-downgrade'
 YACAPTCHA_SERVER = os.getenv('SERVER_KEY')
