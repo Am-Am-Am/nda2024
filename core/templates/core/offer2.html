@@ -205,7 +205,15 @@
                                             {% if offer.status == 'PUBLISHED' %}
                                             <tr class="table-row">
                                                 <td class="text-center align-middle">{{ offer.name }}</td>
-                                                <td class="text-start align-middle">{{ offer.description | safe}}</td>
+                                                {% if offer.full_description %}
+                                                    <td class="text-start align-middle">
+                                                        {{ offer.full_description | safe }}
+                                                    </td>
+                                                {% else %}
+                                                    <td class="text-start align-middle">
+                                                        {{ offer.description | safe }}
+                                                    </td>
+                                                {% endif %}
                                                 <td class="text-start align-start">{{ offer.shipping_pack }}</td>
                                             </tr>
                                             {% endif %}
@@ -392,7 +400,15 @@
                                             {% for offer in offers %}
                                             <tr class="table-row">
                                                 <td class="text-center align-middle">{{ offer.name | safe}}</td>
-                                                <td class="text-start align-middle">{{ offer.characteristics | safe}}</td>
+                                                {% if offer.full_description %}
+                                                    <td class="text-start align-middle">
+                                                        {{ offer.full_description | safe }}
+                                                    </td>
+                                                {% else %}
+                                                    <td class="text-start align-middle">
+                                                        {{ offer.description | safe }}
+                                                    </td>
+                                                {% endif %}
                                                 <td class="text-start align-start">{{ offer.shipping_pack | safe}}</td>
                                             </tr>
                                             {% endfor %}
