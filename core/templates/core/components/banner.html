@@ -1,5 +1,6 @@
-{% load static %}
+{% load static cache %}
 
+{% cache 600 brand_banner brand.id brand.logo.url brand.name brand.description category.name %}
 <div class="brandBanner" style="background: linear-gradient(135deg, {{ brand.banner_color }}, white);">
   <div class="brandLogo">
     {% if brand.logo %}  
@@ -17,3 +18,4 @@
     {% endif %}
   </div>
 </div>
+{% endcache %}
