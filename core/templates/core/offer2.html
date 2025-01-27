@@ -205,11 +205,7 @@
                                             {% if offer.status == 'PUBLISHED' %}
                                             <tr class="table-row">
                                                 <td class="text-center align-middle">{{ offer.name }}</td>
-                                                <td class="text-start align-middle">  {% if offer.full_description %}
-                                                                                            {{ offer.full_description | safe }}
-                                                                                        {% else %}
-                                                                                            {{ offer.description | safe }}
-                                                                                        {% endif %} </td>
+                                                <td class="text-start align-middle">{{ offer.description | safe}}</td>
                                                 <td class="text-start align-start">{{ offer.shipping_pack }}</td>
                                             </tr>
                                             {% endif %}
@@ -434,14 +430,7 @@
                                             {% for offer in offers %}
                                             <tr class="table-row">
                                                 <td class="text-center align-middle">{{ offer.name | safe}}</td>
-                                                <td class="text-start align-middle">
-                                        
-                                                 {% if offer.full_description %}
-                                                    {{ offer.full_description | safe }}
-                                                {% else %}
-                                                    {{ offer.description | safe }}
-                                                {% endif %} 
-                                                </td>
+                                                <td class="text-start align-middle">{{ offer.description | safe}}</td>
                                                 <td class="text-start align-start">{{ offer.shipping_pack | safe}}</td>
                                                 <td class="text-start">
     

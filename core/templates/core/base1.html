@@ -1,4 +1,4 @@
-{% load static cache %}
+{% load static %}
 {% load infoblock_tag %}
 
 <!DOCTYPE html>
@@ -57,9 +57,8 @@
     {% block script%}
     
     {% endblock%}
-  {% cache 86400 'base_footer' %}
-     {% include "core/components/footer.html" %}
-   {% endcache %}
+
+    {% include "core/components/footer.html" %}
     <script src="{% static 'scripts/indexCarouselInfo.js' %}"></script>
     <script src="{% static 'scripts/indexCarouselSubheader.js' %}"></script>
     <script src="{% static 'scripts/formController.js' %}"></script>

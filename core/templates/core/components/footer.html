@@ -1,9 +1,8 @@
-{% load static cache %}
+{% load static %}
 
 <footer>
     <div class="container1">
         <div class="footerInner" style=" background-image: url('{% static "images/footerBg.png" %}');">
-            {% cache 86400 'footer_content' %}
             <div class="footerInfo">
                 <div class="footerLogo">
                     <img src="{% static 'images/FulllogoFooter.svg' %}" alt="">
@@ -102,7 +101,6 @@
                     </div>
                 </a>
             </div>
-            {% endcache %}
         </div>
     </div>
 </footer>

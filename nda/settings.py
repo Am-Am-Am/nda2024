@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=j#*b5xl1dgzvmdrf9zc+qae3z7^uqie)rao-_*okz+=tboh2-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
@@ -220,9 +220,6 @@ RECIPIENT_EMAIL = os.getenv('RECIPIENT')
 EMAIL_PORT = os.getenv('PORT', '587')
 EMAIL_USE_TLS = True
 
-
-
-SITE_KEY = os.getenv('SITE_KEY', 'default_value')
 
 # YANDEX CAPTCHA SETTINGS
 SECURE_REFERRER_POLICY = 'no-referrer-when-downgrade'

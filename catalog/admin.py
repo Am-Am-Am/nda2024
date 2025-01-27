@@ -137,7 +137,6 @@ class OfferAdmin(admin.ModelAdmin):
     fields = [
         "name",
         "description",
-        "full_description",
         "characteristics",
         "shipping_pack",
         "tech_info",
@@ -176,7 +175,7 @@ class OfferInline(admin.TabularInline):
 
 
 
-
+admin.site.register(Category, CategoryAdmin)
 
 
 class ProductImageInline(admin.TabularInline):
@@ -231,11 +230,8 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Brand, BrandAdmin)
-admin.site.register(Category, CategoryAdmin)
-admin.site.register(Product, ProductAdmin)
 admin.site.register(Offer, OfferAdmin)
 admin.site.register(Group, GroupAdmin)
-
 admin.site.register(User, UserAdmin)
 admin.site.register(Specialist, SpecialistAdmin)
-
+admin.site.register(Product, ProductAdmin)

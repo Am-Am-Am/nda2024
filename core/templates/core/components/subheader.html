@@ -1,10 +1,9 @@
-{% load static cache %}
+{% load static %}
 
 <div class="container1">
     <div class="product_bg" style="background-image: url('{% static "images/header_bg.svg" %}')"></div>
     <div class="slider subheaderSlider">
-        {% cache 3600 'subheader_slider' %}
-        {% for ad in ads %}
+        {% for ad in ads%}
         {% if ad.status == 'PUBLISHED' %}
         <div class="subheader" id="top" style="width: 100%!important;">
             
@@ -34,7 +33,6 @@
         </div>
         {% endif %}
         {% endfor %}
-        {% endcache %}
     </div>
 
 </div>

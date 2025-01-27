@@ -1,4 +1,4 @@
-{% load static cache %}
+{% load static %}
 
 <div class="formsContainer">
 
@@ -18,13 +18,12 @@
         </div>
     </div>
 
+
+
+
     <!-- Модальное окно для написания письма -->
-   {% cache 86400 'email_modal' %}
-    {% include "core/components/forms/emailModal.html" %}
-   {% endcache %}
+   {% include "core/components/forms/emailModal.html" %}
 
     <!-- Модальное окно для заказа звонка -->
-    {% cache 86400 'call_modal' %}
     {% include "core/components/forms/callModal.html" %}
-    {% endcache %}
 </div>
