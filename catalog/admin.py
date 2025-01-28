@@ -238,3 +238,5 @@ admin.site.register(Group, GroupAdmin)
 admin.site.register(User, UserAdmin)
 admin.site.register(Specialist, SpecialistAdmin)
 
+
+

@@ -62,7 +62,7 @@
               {% endif %}
             {% else %}
               <div class="catalogBrandItem">
-                <a href="{% url 'offer' brand_slug=category.brand.slug category_slug=category.slug %}">
+                <a href="{% url 'category' category_slug=category.slug %}">
                   <div class="catalogBrandItemImg">
                     {% if category.logo %}
                       <img src="{{ category.logo.url }}" alt="Логотип категории" />

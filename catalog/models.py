@@ -42,6 +42,7 @@ class BaseFields(models.Model):
     place = models.IntegerField(
         blank=True,
         null=True,
+        default=0,  # Добавлено значение по умолчанию
         verbose_name='Место в списке'
     )
     status = models.CharField(
