@@ -345,7 +345,7 @@
     }
 
     .brandInfo h1 {
-        font-size: 68px;
+        font-size: 50px;
     }
 
     .brandInfo h2 {
@@ -1303,7 +1303,7 @@
     }
 
     .brandInfo h1 {
-        font-size: 54px;
+        font-size: 48px;
     }
 
     .brandInfo h2 {
@@ -2387,6 +2387,9 @@
     }
 
 
+    .brandInfo h2{
+
+    }
 }
 
 
@@ -2716,9 +2719,7 @@
         height: auto;
     }
 
-    .brandInfo {
-        align-items: center;
-    }
+
 
     .main {
         margin-top: 100px;
@@ -3406,6 +3407,10 @@
 
     .buttonInfo button{
         margin-top: 20px;
+    }
+
+    .brandInfo h1 {
+        font-size: 30px;
     }
 }
 
