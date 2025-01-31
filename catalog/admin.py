@@ -3,8 +3,6 @@ from django.contrib.admin import AdminSite
 from django.contrib.auth.models import Group, User
 from django.contrib.auth.admin import GroupAdmin, UserAdmin
 from django.urls import reverse
-
-
 from catalog.models import Brand, Category, Offer, Specialist, Product
 from files.models import ModelImage, ModelFile, InstructionsFile, CatalogFile
 from catalog.admin_filters import (
@@ -36,7 +34,18 @@ class OfferInline(admin.TabularInline):
     extra = 0
     show_change_link = True
     classes = ["collapse", "wide"]
-
+    fields = [
+        "name",
+        "text_description",
+        "text_full_description",
+        "characteristics",
+        "shipping_pack",
+        "tech_info",
+        "ctru",
+        "category",
+        "place",
+        "status",
+    ]
 
 class CategoryImageInline(admin.TabularInline):
     model = ModelImage
@@ -72,7 +81,6 @@ class BrandAdmin(admin.ModelAdmin):
         "slug",
         "place",
         "status",
-        
     ]
     view_on_site = True
     actions_on_bottom = True
@@ -80,16 +88,23 @@ class BrandAdmin(admin.ModelAdmin):
     search_fields = ["name"]
 
 
+
+
+class CategoryRelatedOnlyDropdownFilter(RelatedOnlyDropdownFilter):
+    def field_queryset(self, db, request, model_admin):
+        # Вы можете добавить здесь дополнительную логику, если необходимо.
+        return model_admin.model.objects.filter(parents__isnull=True)
+
+
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
     list_select_related = ["brand"]
-    list_display = ("name", "brand", "slug", "place", "status", "is_final")
+    list_display = ("name", "brand", "slug", "place", "status",)
     list_editable = ("place", "slug", "status")
     list_filter = (
         ("brand", RelatedOnlyDropdownFilter),
         ("parents", CategoryRelatedOnlyDropdownFilter),
         "status",
-        "is_final",
     )
     fields = [
         "name",
@@ -102,7 +117,6 @@ class CategoryAdmin(admin.ModelAdmin):
         "status",
         "title",
         "keywords",
-        "is_final",
     ]
     filter_horizontal = ("parents",)
     autocomplete_fields = ("brand",)
@@ -111,11 +125,24 @@ class CategoryAdmin(admin.ModelAdmin):
     list_per_page = 25
     search_fields = ["name"]
 
+
     def get_form(self, request, obj=None, **kwargs):
         form = super(CategoryAdmin, self).get_form(request, obj, **kwargs)
         qs = form.base_fields["parents"].queryset
         form.base_fields["parents"].queryset = qs.select_related("brand").all()
         return form
+
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        # Фильтруем категории с is_final=True
+        queryset = queryset.filter(is_final=False)
+        # Исключаем категории без дочерних
+        queryset = queryset.exclude(children__isnull=True)
+        
+        return queryset
+    
+
+   
 
 
 class OfferAdmin(admin.ModelAdmin):
@@ -136,8 +163,8 @@ class OfferAdmin(admin.ModelAdmin):
     )
     fields = [
         "name",
-        "description",
-        "full_description",
+        "text_description",
+        "text_full_description",
         "characteristics",
         "shipping_pack",
         "tech_info",
@@ -167,12 +194,6 @@ class OfferAdmin(admin.ModelAdmin):
             return "Бренда нет"
 
 
-class OfferInline(admin.TabularInline):
-    model = Offer
-    can_delete = True
-    extra = 0
-    show_change_link = True
-    classes = ["collapse", "wide"]
 
 
 
@@ -202,7 +223,7 @@ class SpecialistAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ["name", "brand", "is_final"]
+    list_display = ["name", "brand"]
     prepopulated_fields = {"slug": ("name",)}
     list_filter = ["brand", "is_final"]
     search_fields = ["name"]
@@ -227,6 +248,10 @@ class ProductAdmin(admin.ModelAdmin):
         "title",
         "keywords",
         "specialist",
+        "video_file",
+        "youtube_link",
+        "rt_link",
+        # "is_final",
     ]
 
 

@@ -116,7 +116,22 @@ class Specialist(models.Model):
     def __str__(self):
         return self.name
 
+
+
+
+
 class Category(BaseFields):
+    def check_if_category_is_final(self):
+        if self.parents.filter(parent__isnull=False).exists():
+            self.is_final = True
+            self.save(update_fields=['is_final'])
+
+    @classmethod
+    def post_save(cls, instance, created, updated, using, force_update, *args, **kwargs):
+        if created:
+            cls.check_if_category_is_final(instance)
+
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name, allow_unicode=True)
@@ -248,6 +263,10 @@ class ProductManager(models.Manager):
 class Product(Category):
     objects = ProductManager()
 
+    def save(self, *args, **kwargs):
+        self.is_final = True  
+        super().save(*args, **kwargs)
+
     class Meta:
         proxy = True
         verbose_name = 'Товар'
@@ -261,6 +280,18 @@ class Offer(BaseFields):
     name = models.CharField(
         max_length=128,
         verbose_name='Артикул'
+    )
+    text_description = models.TextField(
+        default='',
+        null=True,
+        blank=True,
+        verbose_name='Краткое описание (текст)',
+    )
+    text_full_description = models.TextField(
+        default='',
+        null=True,
+        blank=True,
+        verbose_name='Полное описание (текст)',
     )
     shipping_pack = models.CharField(
         max_length=10,

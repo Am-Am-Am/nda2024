@@ -352,15 +352,7 @@
         font-size: 25px;
     }
 
-    .catalogBrandItem {
-        height: 220px;
-        font-size: 28px;
-    }
 
-    .catalogBrandItemImg {
-        width: auto;
-        height: 200px;
-    }
 
     .sliderContainer {
         height: 700px;
@@ -742,8 +734,13 @@
     }
 
     .catalogBrandItemImg {
-
         height: 180px;
+        width: 180px;
+    }
+
+    .catalogBrandItemImg img {
+        width: 180px;
+        height: auto;
     }
 
     /* contacts.html */
@@ -2103,8 +2100,13 @@
     }
 
     .catalogBrandItemImg {
-
         height: 150px;
+        width: 150px;
+    }
+
+    .catalogBrandItemImg img {
+        width: 150px;
+        height: auto;
     }
 
 
@@ -3149,6 +3151,12 @@
 
     .catalogBrandItemImg {
         height: 110px;
+        width: 110px;
+    }
+
+    .catalogBrandItemImg img {
+        width: 110px;
+        height: auto;
     }
 
     /* product.html */

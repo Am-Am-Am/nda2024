@@ -144,28 +144,42 @@
                 <div class="productInfoChoice">
                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
 
-                        <li {% if not video_file and not youtube_link and not rt_link %} style="width: 25%;"{% endif %} class="nav-item" role="presentation">
+                        <li {% if not video_file and not youtube_link and not rt_link and product.characteristics %} style="width: 25%;"{% endif %} 
+                            {% if not video_file and not youtube_link and not rt_link and not product.characteristics %} style="width: 33.3%;"{% endif %}
+                            {% if video_file or youtube_link or rt_link and not product.characteristics %} style="width: 25%;"{% endif %} 
+                        class="nav-item" role="presentation">
                             <button class="nav-link first active" id="pills-description-tab" data-bs-toggle="pill"
                                 data-bs-target="#pills-description" type="button" role="tab"
                                 aria-controls="pills-description" aria-selected="true">Описание</button>
                         </li>
+                        {% if product.characteristics %}
                         <li {% if not video_file and not youtube_link and not rt_link %} style="width: 25%;"{% endif %} class="nav-item" role="presentation">
                             <button class="nav-link" id="pills-characteristics-tab" data-bs-toggle="pill"
                                 data-bs-target="#pills-characteristics" type="button" role="tab"
                                 aria-controls="pills-characteristics" aria-selected="false">Характеристики</button>
                         </li>
-                        <li {% if not video_file and not youtube_link and not rt_link %} style="width: 25%;"{% endif %} class="nav-item" role="presentation">
+                        {% endif%}
+
+                        <li {% if not video_file and not youtube_link and not rt_link and product.characteristics %} style="width: 25%;"{% endif %} 
+                            {% if not video_file and not youtube_link and not rt_link and not product.characteristics%} style="width: 33.3%;"{% endif %}
+                            {% if video_file or youtube_link or rt_link and not product.characteristics %} style="width: 25%;"{% endif %} 
+                        class="nav-item" role="presentation">
                             <button class="nav-link" id="pills-order-tab" data-bs-toggle="pill"
                                 data-bs-target="#pills-order" type="button" role="tab" aria-controls="pills-order"
                                 aria-selected="false">Оформить заказ</button>
                         </li>
-                        <li {% if not video_file and not youtube_link and not rt_link %} style="width: 25%;"{% endif %} class="nav-item" role="presentation">
+                        <li {% if not video_file and not youtube_link and not rt_link and product.characteristics %} style="width: 25%;"{% endif %} 
+                            {% if not video_file and not youtube_link and not rt_link and not product.characteristics%} style="width: 33.4%;"{% endif %}
+                            {% if video_file or youtube_link or rt_link and not product.characteristics %} style="width: 25%;"{% endif %} 
+                        class="nav-item" role="presentation">
                             <button class="nav-link" id="pills-catalogs-tab" data-bs-toggle="pill"
                                 data-bs-target="#pills-catalogs" type="button" role="tab" aria-controls="pills-catalogs"
                                 aria-selected="false">Каталоги и РУ</button>
                         </li>
                         {% if video_file or youtube_link or rt_link %}
-                        <li class="nav-item" role="presentation">
+                        <li {% if not product.characteristics %} style="width: 25%;"{% endif %} 
+                        
+                        class="nav-item" role="presentation">
                             <button class="nav-link last" id="pills-video-tab" data-bs-toggle="pill"
                                 data-bs-target="#pills-video" type="button" role="tab" aria-controls="pills-video"
                                 aria-selected="false">Видео</button>
@@ -205,13 +219,13 @@
                                             {% if offer.status == 'PUBLISHED' %}
                                             <tr class="table-row">
                                                 <td class="text-center align-middle">{{ offer.name }}</td>
-                                                {% if offer.full_description %}
+                                                {% if offer.text_full_description %}
                                                     <td class="text-start align-middle">
-                                                        {{ offer.full_description | safe }}
+                                                        {{ offer.text_full_description | safe }}
                                                     </td>
                                                 {% else %}
                                                     <td class="text-start align-middle">
-                                                        {{ offer.description | safe }}
+                                                        {{ offer.text_description | safe }}
                                                     </td>
                                                 {% endif %}
                                                 <td class="text-start align-start">{{ offer.shipping_pack }}</td>
@@ -251,7 +265,7 @@
                                             {% if offer.status == 'PUBLISHED' %}
                                         <tr class="table-row">
                                             <td class="text-center align-middle">{{ offer.name | safe}}</td>
-                                            <td class="text-start align-middle">{{ offer.description | safe}}</td>
+                                            <td class="text-start align-middle">{{ offer.text_description | safe}}</td>
                                             <td class="text-start align-start">{{ offer.shipping_pack | safe}}</td>
                                             <td class="text-start">
 
@@ -400,13 +414,13 @@
                                             {% for offer in offers %}
                                             <tr class="table-row">
                                                 <td class="text-center align-middle">{{ offer.name | safe}}</td>
-                                                {% if offer.full_description %}
+                                                {% if offer.text_full_description %}
                                                     <td class="text-start align-middle">
-                                                        {{ offer.full_description | safe }}
+                                                        {{ offer.text_full_description | safe }}
                                                     </td>
                                                 {% else %}
                                                     <td class="text-start align-middle">
-                                                        {{ offer.description | safe }}
+                                                        {{ offer.text_description | safe }}
                                                     </td>
                                                 {% endif %}
                                                 <td class="text-start align-start">{{ offer.shipping_pack | safe}}</td>
@@ -446,7 +460,7 @@
                                             {% for offer in offers %}
                                             <tr class="table-row">
                                                 <td class="text-center align-middle">{{ offer.name | safe}}</td>
-                                                <td class="text-start align-middle">{{ offer.description | safe}}</td>
+                                                <td class="text-start align-middle">{{ offer.text_description | safe}}</td>
                                                 <td class="text-start align-start">{{ offer.shipping_pack | safe}}</td>
                                                 <td class="text-start">
     

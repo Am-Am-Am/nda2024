@@ -39,8 +39,8 @@
                 {% endif %}
               </div> 
               <div class="modal-footer">
-                <div class="g-recaptcha mb-3" data-sitekey="ВАШ_САЙТ_КЛЮЧ"></div>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                {% comment %} <div class="g-recaptcha mb-3" data-sitekey="ВАШ_САЙТ_КЛЮЧ"></div>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button> {% endcomment %}
                 <button type="submit" form="cart_modal_form" class="btn btn-primary">Отправить запрос</button>
               </div>
             </div>
@@ -52,13 +52,11 @@
                 <div class="formEl">
                   {% include 'nda_email/PhysicalContactform.html' %}
                 </div>
-            
                   {% include 'cart/cart_popup.html' %}
-                
               </div>
               <div class="modal-footer">
                 <div class="g-recaptcha mb-3" data-sitekey="ВАШ_САЙТ_КЛЮЧ"></div>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                {% comment %} <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button> {% endcomment %}
                 <button type="submit" form="physical_modal_form" class="btn btn-primary">Отправить запрос</button>
               </div>
             </div>
