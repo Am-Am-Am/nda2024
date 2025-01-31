@@ -2821,3 +2821,20 @@ input .form-control .d-inline-block {
     word-break: break-word;
 
 }
+
+.message-status {
+    margin-top: 100px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.success-message {
+    color: green;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    text-align: center;
+    font-weight: bold;
+}

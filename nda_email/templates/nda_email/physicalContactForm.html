@@ -1,18 +1,10 @@
-
-
-
-
-
-
 <form
-        id="physical_modal_form"
-{#        action="{% url 'physical_cart_submit' %}"#}
-{#        method="post"#}
-        enctype="multipart/form-data"
-        hx-post="{% url 'physical_cart_submit' %}"
-        hx-target="#physical_modal_form"
-        hx-swap="outerHTML"
-        novalidate
+    id="physical_modal_form"
+    enctype="multipart/form-data"
+    hx-post="{% url 'physical_cart_submit' %}"
+    hx-target="#physical_modal_form"
+    hx-swap="outerHTML"
+    novalidate
 >
     {% csrf_token %}
     <div class="physicalForm">
@@ -26,14 +18,14 @@
                     {{ contact_form.phone_number }}
                     <label for="validationPhoneNumber">Номер телефона</label>
                     {% if contact_form.phone_number.errors %}
-                    <div style="color: red">
-                        {{ contact_form.phone_number.errors }}
-                    </div>
+                        <div style="color: red">
+                            {{ contact_form.phone_number.errors }}
+                        </div>
                     {% endif %}
                 </div>
                 <div class="form-floating mb-3 w-50">
                     {{ contact_form.email }}
-                    {% if contact_form.email.errors %}
+                     {% if contact_form.email.errors %}
                         <span class="invalid-feedback">
                             {{ contact_form.email.errors }}
                         </span>
@@ -45,20 +37,37 @@
                 {{ contact_form.message }}
                 <label for="message">Комментарий к заказу</label>
             </div>
-            <div class="mb-3">
+             <div class="mb-3">
                 <label class="input-file">
                     {{contact_form.company_details}}
                     <span>Прикрепить файл</span>
                 </label>
             </div>
             
-          
+            <div
+                id="captcha-container"
+                class="smart-captcha mb-3"
+                data-sitekey="ysc1_sxny6cNZmnvhyJKrojDDLNxj0nvkGnTleldHzqEo9d9475ca"
+            >
+            </div>
+            {% if captchaError %}
+                <div class="text-danger mb-3">{{ captchaError }}</div>
+            {% endif %}
+        
+            
             <div class="form-check mb-3">
                 <input class="form-check-input" type="checkbox" id="policyCheckLegal" required />
                 <label class="form-check-label" for="policyCheckLegal">Я прочитал(а) уведомление о <a href='{% url "privacy" %}'>политике конфиденциальности</a></label>
-              </div>
+            </div>
+            {% if emailError %}
+                <div class="text-danger mb-3">{{ emailError }}</div>
+            {% endif %}
+             {% if emailSuccess %}
+                <div class="text-success mb-3">{{ emailSuccess }}</div>
+            {% endif %}
+            <div class="modal-footer">
+                <button type="submit" form="physical_modal_form" class="btn btn-primary">Отправить запрос</button>
+            </div>
         </div>
-        
     </div>
-    
 </form>

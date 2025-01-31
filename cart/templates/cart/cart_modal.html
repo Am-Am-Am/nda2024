@@ -1,4 +1,4 @@
-
+<script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script>
 
 <div class="modal-custom">
     <div class="modal-content">
@@ -38,11 +38,7 @@
                   <span style="color: #FF4343">{{ contact_form.details.errors }}</span>
                 {% endif %}
               </div> 
-              <div class="modal-footer">
-                {% comment %} <div class="g-recaptcha mb-3" data-sitekey="ВАШ_САЙТ_КЛЮЧ"></div>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button> {% endcomment %}
-                <button type="submit" form="cart_modal_form" class="btn btn-primary">Отправить запрос</button>
-              </div>
+             
             </div>
             <!-- Форма для физического лица -->
             <div class="tab-pane fade" id="physical" role="tabpanel" aria-labelledby="physical-tab">
@@ -54,11 +50,7 @@
                 </div>
                   {% include 'cart/cart_popup.html' %}
               </div>
-              <div class="modal-footer">
-                <div class="g-recaptcha mb-3" data-sitekey="ВАШ_САЙТ_КЛЮЧ"></div>
-                {% comment %} <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button> {% endcomment %}
-                <button type="submit" form="physical_modal_form" class="btn btn-primary">Отправить запрос</button>
-              </div>
+              
             </div>
           </div>
         </div>

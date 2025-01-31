@@ -92,7 +92,6 @@ class BrandAdmin(admin.ModelAdmin):
 
 class CategoryRelatedOnlyDropdownFilter(RelatedOnlyDropdownFilter):
     def field_queryset(self, db, request, model_admin):
-        # Вы можете добавить здесь дополнительную логику, если необходимо.
         return model_admin.model.objects.filter(parents__isnull=True)
 
 
@@ -129,7 +128,15 @@ class CategoryAdmin(admin.ModelAdmin):
     def get_form(self, request, obj=None, **kwargs):
         form = super(CategoryAdmin, self).get_form(request, obj, **kwargs)
         qs = form.base_fields["parents"].queryset
-        form.base_fields["parents"].queryset = qs.select_related("brand").all()
+
+        # Фильтруем queryset, исключая категории is_null и без дочерних категорий
+        filtered_qs = qs.select_related("brand").exclude(
+            is_final=True
+        ).filter(
+            children__isnull=False
+        )
+
+        form.base_fields["parents"].queryset = filtered_qs
         return form
 
     def get_queryset(self, request):
@@ -253,6 +260,19 @@ class ProductAdmin(admin.ModelAdmin):
         "rt_link",
         # "is_final",
     ]
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super(ProductAdmin, self).get_form(request, obj, **kwargs)
+        
+        # Получаем queryset для поля "parents"
+        qs = form.base_fields["parents"].queryset
+
+        # Фильтруем queryset, исключая категории с is_null=True и без детей
+        filtered_qs = qs.exclude(is_final=True).filter(children__isnull=False)
+
+        form.base_fields["parents"].queryset = filtered_qs
+        return form
+
 
 
 admin.site.register(Brand, BrandAdmin)

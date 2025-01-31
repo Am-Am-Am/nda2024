@@ -1,4 +1,4 @@
-
+<script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script>
 
 <div class="modal fade" id="callModal" tabindex="-1" aria-labelledby="callModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -36,9 +36,12 @@
                             <span>Прикрепить файл</span>
                         </label>
                     </div>
-
-                    <div class="g-recaptcha mb-3" data-sitekey="ВАШ_САЙТ_КЛЮЧ"></div>
-
+                    <div
+                            id="captcha-container"
+                            class="smart-captcha mb-3"
+                            data-sitekey="ysc1_sxny6cNZmnvhyJKrojDDLNxj0nvkGnTleldHzqEo9d9475ca"
+                        >
+                    </div>
                 </form>
                 <button type="submit" class="btn btn-success mb-3" form="call_form">Отправить</button>
                 <div class="form-check">

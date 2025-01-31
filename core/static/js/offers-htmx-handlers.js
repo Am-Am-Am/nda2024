@@ -13,7 +13,7 @@ document.addEventListener('htmx:afterOnLoad', function(event) {
 
 // htmx handlers
 function htmxHandlers() {
-    // console.log("i am called")
+    console.log("i am called")
     htmx.on("showMessage", (e) => {
       const toastElement = document.getElementById("toast")
       const toastBody = document.getElementById("toast-body")

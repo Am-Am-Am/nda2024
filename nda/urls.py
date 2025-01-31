@@ -17,7 +17,8 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-
+from django.contrib.sitemaps.views import sitemap
+from nda.sitemaps import sitemaps  
 from nda import settings
 from nda.views import custom_404
 import catalog.views
@@ -30,7 +31,8 @@ urlpatterns = [
     path('cart/', include('cart.urls')),
     path('catalog/', include('catalog.urls')),
     path('files/', include('files.urls')),
-    path('__debug__/', include('debug_toolbar.urls')),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    path('debug/', include('debug_toolbar.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
