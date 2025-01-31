@@ -134,7 +134,7 @@ class CategoryAdmin(admin.ModelAdmin):
             is_final=True
         ).filter(
             children__isnull=False
-        )
+        ).distinct()
 
         form.base_fields["parents"].queryset = filtered_qs
         return form
@@ -268,7 +268,7 @@ class ProductAdmin(admin.ModelAdmin):
         qs = form.base_fields["parents"].queryset
 
         # Фильтруем queryset, исключая категории с is_null=True и без детей
-        filtered_qs = qs.exclude(is_final=True).filter(children__isnull=False)
+        filtered_qs = qs.exclude(is_final=True).filter(children__isnull=False).distinct()
 
         form.base_fields["parents"].queryset = filtered_qs
         return form
