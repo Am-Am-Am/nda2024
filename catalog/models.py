@@ -171,13 +171,13 @@ class Category(BaseFields):
         default='',
         null=True,
         blank=True,
-        verbose_name='Логотип категории'
+        verbose_name='Логотип'
     )
     banner = models.ImageField(
         upload_to='category/banner',
         default='',
         blank=True,
-        verbose_name='Баннер категории'
+        verbose_name='Баннер'
     )
     slug = models.SlugField(
         unique=True,
@@ -305,7 +305,7 @@ class Offer(BaseFields):
         null=True,
         blank=True,
         related_name='offer',
-        verbose_name='Категория, к которой принадлежит товар'
+        verbose_name='Товар, к которому принадлежит код'
     )
 
     characteristics = models.FileField(

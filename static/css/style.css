@@ -1162,7 +1162,7 @@ li .active {
 
 .catalogBrandItemImg img {
     width: 210px;
-    height: auto;
+    height: 100%;
 }
 
 .catalogBrandItemTitle {

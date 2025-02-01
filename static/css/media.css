@@ -740,7 +740,7 @@
 
     .catalogBrandItemImg img {
         width: 180px;
-        height: auto;
+        height: 100%;
     }
 
     /* contacts.html */
@@ -2106,7 +2106,7 @@
 
     .catalogBrandItemImg img {
         width: 150px;
-        height: auto;
+        height: 100%;
     }
 
 
@@ -3156,7 +3156,7 @@
 
     .catalogBrandItemImg img {
         width: 110px;
-        height: auto;
+        height: 100%;
     }
 
     /* product.html */

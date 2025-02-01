@@ -132,8 +132,6 @@ class CategoryAdmin(admin.ModelAdmin):
         # Фильтруем queryset, исключая категории is_null и без дочерних категорий
         filtered_qs = qs.select_related("brand").exclude(
             is_final=True
-        ).filter(
-            children__isnull=False
         ).distinct()
 
         form.base_fields["parents"].queryset = filtered_qs
@@ -141,10 +139,10 @@ class CategoryAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
-        # Фильтруем категории с is_final=True
+        
         queryset = queryset.filter(is_final=False)
-        # Исключаем категории без дочерних
-        queryset = queryset.exclude(children__isnull=True)
+     
+        # queryset = queryset.exclude(children__isnull=True)
         
         return queryset
     
@@ -248,8 +246,8 @@ class ProductAdmin(admin.ModelAdmin):
         "characteristics",
         "brand",
         "parents",
-        "logo",
-        "banner",
+        # "logo",
+        # "banner",
         "slug",
         "status",
         "title",
@@ -268,7 +266,7 @@ class ProductAdmin(admin.ModelAdmin):
         qs = form.base_fields["parents"].queryset
 
         # Фильтруем queryset, исключая категории с is_null=True и без детей
-        filtered_qs = qs.exclude(is_final=True).filter(children__isnull=False).distinct()
+        filtered_qs = qs.exclude(is_final=True).distinct()
 
         form.base_fields["parents"].queryset = filtered_qs
         return form
