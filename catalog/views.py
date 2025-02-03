@@ -11,6 +11,7 @@ from django.core.mail import send_mail
 from django.views.generic.edit import FormView
 from django.urls import resolve
 import datetime
+import time
 
 SEARCH_QUERY_PARAM = 'q'
 
@@ -116,7 +117,7 @@ class OfferView(TemplateView):
         category = get_object_or_404(Category.objects.select_related('brand'), slug=category_slug)
         current_year = datetime.datetime.now().year
         context['current_year'] = current_year
-
+        context['timestamp'] = str(time.time())
         if category.is_final:
             # If category is a Product (is_final=True), load related data
             try:

@@ -1,12 +1,15 @@
+<script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script> 
+
 <form
     id="physical_modal_form"
     enctype="multipart/form-data"
-    hx-post="{% url 'physical_cart_submit' %}"
-    hx-target="#physical_modal_form"
-    hx-swap="outerHTML"
+    hx-post="{% url 'physical_cart_submit' %}?random={{ timestamp }}%}"
+    hx-target="#physical_modal_form_container"  
+    hx-swap="innerHTML"                     
     novalidate
 >
     {% csrf_token %}
+   <div id="physical_modal_form_container"> 
     <div class="physicalForm">
         <div class="formEl">
             <div class="form-floating mb-3">
@@ -70,4 +73,19 @@
             </div>
         </div>
     </div>
+   </div>
 </form>
+
+<script>
+    function initSmartCaptcha() {
+        var captchaContainer = document.getElementById('captcha-container');
+        if (captchaContainer && !captchaContainer.hasChildNodes()){
+           console.log('initialize')
+           var sitekey = captchaContainer.getAttribute('data-sitekey');
+           var smartCaptcha = new window.SmartCaptcha(captchaContainer, sitekey);
+           } else {
+             console.log('initialized');
+           }
+    }
+    initSmartCaptcha()
+</script>

@@ -2,7 +2,7 @@ from django.core.exceptions import ValidationError
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse
-
+import time
 import json
 
 from catalog.models import Offer
@@ -92,10 +92,12 @@ def cart_submit(request):
     token = request.POST.get('smart-token')
     client_ip = get_client_ip(request)
     offers = get_cart_offers(request)
+    context = {'contact_form': form}
     if not yandex_captcha_validation(token, client_ip):
         response = render(request, 'nda_email/contactform.html', {'contact_form': form})
-        response['HX-Trigger'] = json.dumps({"showError": "Докажите что вы не робот"})
-        return response
+        context['captchaError'] = "Докажите что вы не робот"
+        # response['HX-Trigger'] = json.dumps({"showError": "Докажите что вы не робот"})
+        return render(request, 'nda_email/contactform.html', context)
     if form.is_valid():
         try:
             EmailSender.send_messages(request, offers)
@@ -103,7 +105,7 @@ def cart_submit(request):
             print(f'email_send failed due to: {e}')
             response = HttpResponse(status=500)
             response['HX-Trigger'] = json.dumps({"showError": "Сообщение не отправлено"})
-            return response
+            return render(request, 'nda_email/contactform.html', context)
         cart_clear(request)
         return HttpResponse(
             status=204,
@@ -112,11 +114,11 @@ def cart_submit(request):
                     "showMessage": "Запрос отправлен"
                 })
             })
-    return render(request, 'nda_email/contactform.html', {'contact_form': form})
+    return render(request, 'nda_email/contactform.html', {'contact_form': form}, context)
 
 @require_POST
 def physical_cart_submit(request):
-    form = PhysicalContactForm(request.POST, request.FILES) #important to add request.FILES
+    form = PhysicalContactForm(request.POST, request.FILES) 
     token = request.POST.get('smart-token')
     client_ip = get_client_ip(request)
     offers = get_cart_offers(request)

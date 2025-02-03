@@ -2017,6 +2017,7 @@ input .form-control .d-inline-block {
 .modal {
     margin-top: 110px;
     margin: auto;
+    padding-right: 0 !important;
 
 }
 

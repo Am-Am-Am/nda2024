@@ -1,3 +1,6 @@
+<script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script> 
+
+
 <form
     id="cart_modal_form"
     action="{% url 'cart_submit' %}"
@@ -10,10 +13,11 @@
 >
     {% csrf_token %}
     <div class="physicalForm">
+       
         <div class="formEl">
             <div class="form-floating mb-3">
                 {{ contact_form.name }}
-                <label for="fullNameLegal">ФИО контактного лица4</label>
+                <label for="fullNameLegal">ФИО контактного лица</label>
             </div>
             <div class="oneLine">
                 <div class="form-floating mb-3 w-50">
@@ -62,9 +66,10 @@
                 data-sitekey="ysc1_sxny6cNZmnvhyJKrojDDLNxj0nvkGnTleldHzqEo9d9475ca"
             >
             </div>
-             {% if captchaError %}
+            {% if captchaError %}
                 <div class="text-danger mb-3">{{ captchaError }}</div>
             {% endif %}
+    
 
             <div class="form-check mb-3">
                 <input class="form-check-input" type="checkbox" id="policyCheckLegal" required />
@@ -77,6 +82,13 @@
             {% endif %}
              {% if emailSuccess %}
                 <div class="text-success mb-3">{{ emailSuccess }}</div>
+            {% endif %}
+            {% if contact_form.email.errors %}
+                <div class="error-message">
+                    {% for error in contact_form.email.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
             {% endif %}
 
             <div class="modal-footer">
