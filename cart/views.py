@@ -7,7 +7,7 @@ import json
 
 from catalog.models import Offer
 from cart.forms import CartAddProductForm
-from nda_email.forms import ContactForm, PhysicalContactForm, MailForm, CallForm, ApplicationForm
+from nda_email.forms import ContactForm, PhysicalContactForm, MailForm, CallForm
 from nda_email.email_sender import EmailSender
 from nda_email.captcha import get_client_ip, yandex_captcha_validation
 
@@ -124,7 +124,7 @@ def physical_cart_submit(request):
 
     if not yandex_captcha_validation(token, client_ip):
          context['captchaError'] = "Докажите что вы не робот" #add context for message
-         return render(request, 'nda_email/physical_сontact_form.html', context) # return context
+         return render(request, 'nda_email/physical_contact_form.html', context) # return context
 
     if form.is_valid():
         try:
@@ -132,95 +132,83 @@ def physical_cart_submit(request):
         except Exception as e:
             print(f'email_send failed due to: {e}')
             context['emailError'] = "Сообщение не отправлено" #add context for message
-            return render(request, 'nda_email/physical_сontact_form.html', context)  # return context
+            return render(request, 'nda_email/physical_contact_form.html', context)  # return context
 
 
         cart_clear(request)
         context['emailSuccess'] = "Запрос отправлен" #add context for message
-        return render(request, 'nda_email/physical_сontact_form.html', context) # return context
+        return render(request, 'nda_email/physical_contact_form.html', context) # return context
     
-    return render(request, 'nda_email/physical_сontact_form.html', context) #return context
+    return render(request, 'nda_email/physical_contact_form.html', context) #return context
 
 @require_POST
 def mail_submit(request):
-    form = MailForm(request.POST)
+    form = MailForm(request.POST, request.FILES)
     token = request.POST.get('smart-token')
     client_ip = get_client_ip(request)
     offers = get_cart_offers(request)
+
     if not yandex_captcha_validation(token, client_ip):
-        response = render(request, 'nda_email/contactform.html', {'contact_form': form})
-        response['HX-Trigger'] = json.dumps({"showError": "Докажите что вы не робот"})
-        return response
+        return render(request, 'nda_email/emailModal.html', {'mail_form': form, 'error': 'Докажите что вы не робот'})
+
     if form.is_valid():
         try:
             EmailSender.send_messages(request, offers)
         except Exception as e:
             print(f'email_send failed due to: {e}')
-            response = HttpResponse(status=500)
-            response['HX-Trigger'] = json.dumps({"showError": "Сообщение не отправлено"})
-            return response
+            return render(request, 'nda_email/emailModal.html', {'mail_form': form, 'error': 'Сообщение не отправлено'})
         cart_clear(request)
-        return HttpResponse(
-            status=204,
-            headers={
-                'HX-Trigger': json.dumps({
-                    "showMessage": "Запрос отправлен"
-                })
-            })
-    return render(request, 'nda_email/mailForm.html', {'contact_form': form})
+        return HttpResponse(status=204)
+    else:
+        return render(request, 'nda_email/emailModal.html', {'mail_form': form, 'error': 'Проверьте корректность данных'})
 
 @require_POST
 def call_submit(request):
-    form = CallForm(request.POST)
-    token = request.POST.get('smart-token')
-    client_ip = get_client_ip(request)
-    offers = get_cart_offers(request)
-    if not yandex_captcha_validation(token, client_ip):
-        response = render(request, 'nda_email/contactform.html', {'contact_form': form})
-        response['HX-Trigger'] = json.dumps({"showError": "Докажите что вы не робот"})
-        return response
-    if form.is_valid():
-        try:
-            EmailSender.send_messages(request, offers)
-        except Exception as e:
-            print(f'email_send failed due to: {e}')
-            response = HttpResponse(status=500)
-            response['HX-Trigger'] = json.dumps({"showError": "Сообщение не отправлено"})
-            return response
-        cart_clear(request)
-        return HttpResponse(
-            status=204,
-            headers={
-                'HX-Trigger': json.dumps({
-                    "showMessage": "Запрос отправлен"
-                })
-            })
-    return render(request, 'nda_email/callModal.html', {'contact_form': form})
+        form = CallForm(request.POST, request.FILES)  # Передаём файлы для загрузки
+        token = request.POST.get('smart-token')
+        client_ip = get_client_ip(request)
+        offers = get_cart_offers(request)
 
-@require_POST
-def aplication_submit(request):
-    form = ApplicationForm(request.POST)
-    token = request.POST.get('smart-token')
-    client_ip = get_client_ip(request)
-    offers = get_cart_offers(request)
-    if not yandex_captcha_validation(token, client_ip):
-        response = render(request, 'nda_email/contactform.html', {'contact_form': form})
-        response['HX-Trigger'] = json.dumps({"showError": "Докажите что вы не робот"})
-        return response
-    if form.is_valid():
-        try:
-            EmailSender.send_messages(request, offers)
-        except Exception as e:
-            print(f'email_send failed due to: {e}')
-            response = HttpResponse(status=500)
-            response['HX-Trigger'] = json.dumps({"showError": "Сообщение не отправлено"})
-            return response
-        cart_clear(request)
-        return HttpResponse(
-            status=204,
-            headers={
-                'HX-Trigger': json.dumps({
-                    "showMessage": "Запрос отправлен"
-                })
-            })
-    return render(request, 'nda_email/callModal.html', {'contact_form': form})
+        # Проверяем капчу в первую очередь
+        if not yandex_captcha_validation(token, client_ip):
+            return render(request, 'nda_email/callModal.html', {'call_form': form, 'error': 'Докажите что вы не робот'})
+
+        if form.is_valid():
+            try:
+                EmailSender.send_messages(request, offers)
+            except Exception as e:
+                print(f'email_send failed due to: {e}')
+                return render(request, 'nda_email/callModal.html', {'call_form': form, 'error': 'Сообщение не отправлено'})
+            cart_clear(request)
+            return HttpResponse(status=204)
+        else:
+            # Возвращаем форму с ошибками, если она невалидна
+            return render(request, 'nda_email/callModal.html', {'call_form': form, 'error': 'Проверьте корректность данных'})
+
+# @require_POST
+# def aplication_submit(request):
+#     form = ApplicationForm(request.POST)
+#     token = request.POST.get('smart-token')
+#     client_ip = get_client_ip(request)
+#     offers = get_cart_offers(request)
+#     if not yandex_captcha_validation(token, client_ip):
+#         response = render(request, 'nda_email/contactform.html', {'contact_form': form})
+#         response['HX-Trigger'] = json.dumps({"showError": "Докажите что вы не робот"})
+#         return response
+#     if form.is_valid():
+#         try:
+#             EmailSender.send_messages(request, offers)
+#         except Exception as e:
+#             print(f'email_send failed due to: {e}')
+#             response = HttpResponse(status=500)
+#             response['HX-Trigger'] = json.dumps({"showError": "Сообщение не отправлено"})
+#             return response
+#         cart_clear(request)
+#         return HttpResponse(
+#             status=204,
+#             headers={
+#                 'HX-Trigger': json.dumps({
+#                     "showMessage": "Запрос отправлен"
+#                 })
+#             })
+#     return render(request, 'nda_email/callModal.html', {'contact_form': form})

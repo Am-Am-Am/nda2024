@@ -18,8 +18,8 @@
     
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script>
-
+    <script src="https://smartcaptcha.yandexcloud.net/captcha.js" async defer></script>
+    <script src="{% static 'htmx/htmx.min.js' %}"></script>
 
     {% block links %}
     
@@ -63,5 +63,78 @@
     <script src="{% static 'scripts/formController.js' %}"></script>
     <script src="{% static "scripts/buttonInFormController.js" %}"></script>
     <script src="{% static "scripts/tableScript.js" %}"></script>
-    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const forms = document.querySelectorAll('#mail_form, #call_form');
+        
+            forms.forEach(form => {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    submitForm(form);
+                });
+            });
+        
+            async function submitForm(form) {
+                const formData = new FormData(form);
+                const formError = form.querySelector('#form-error');
+                const modalId = form.closest('.modal').id;
+        
+        
+                try {
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                    });
+        
+        
+                     if (response.ok) {
+                        if (response.status === 204) {
+                            const modal = document.getElementById(modalId);
+                            if (modal) {
+                                const modalInstance = bootstrap.Modal.getInstance(modal);
+                                modalInstance.hide();
+                                formError.textContent = "";
+                            }
+                        } else {
+                           const responseData = await response.text();
+                            const modal = document.getElementById(modalId);
+                             if(modal) {
+                                    const parser = new DOMParser();
+                                   const newDocument = parser.parseFromString(responseData, 'text/html');
+                                    const formContainer = newDocument.querySelector(`#${modalId} #${form.id}_container`);
+                                   const newFormError = newDocument.querySelector(`#${modalId} #form-error`);
+                                 const currentFormContainer = form.querySelector(`#${form.id}_container`);
+                                   const currentFormError = form.querySelector('#form-error');
+                                  currentFormContainer.innerHTML = formContainer.innerHTML;
+                                   if (newFormError) {
+                                        currentFormError.textContent = newFormError.textContent;
+                                     }
+                            }
+        
+                        }
+        
+                    } else {
+                         const responseData = await response.text();
+                            const modal = document.getElementById(modalId);
+                            if(modal) {
+                                const parser = new DOMParser();
+                                 const newDocument = parser.parseFromString(responseData, 'text/html');
+                                  const formContainer = newDocument.querySelector(`#${modalId} #${form.id}_container`);
+                                  const newFormError = newDocument.querySelector(`#${modalId} #form-error`);
+                                   const currentFormContainer = form.querySelector(`#${form.id}_container`);
+                                 const currentFormError = form.querySelector('#form-error');
+                                  currentFormContainer.innerHTML = formContainer.innerHTML;
+                                 if (newFormError) {
+                                    currentFormError.textContent = newFormError.textContent;
+                                     }
+                            }
+                    }
+                } catch (error) {
+                    console.error('Error during form submission:', error);
+                     formError.textContent = "Произошла ошибка при отправке запроса";
+                }
+            }
+        });
+        
+    </script>
 </body>

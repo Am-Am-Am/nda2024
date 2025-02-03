@@ -10,7 +10,6 @@
 {% block metatag %}
   <meta name="keywords" content="{{product.keywords}}">
   <meta property="og:url" content="https://nda.ru{{ request.path }}">
-               
   <meta property="og:title" content="{{product.title}}">
   <meta property="og:type" content="website">
   <meta property="og:description" content="{{product.description|striptags}}">
@@ -23,7 +22,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'custom/css/custom.css' %}" />
 <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
-<script src="{% static 'htmx/htmx.min.js' %}"></script>
+
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css"/>
 <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.min.js"></script>
@@ -291,10 +290,8 @@
                                             </div>
                                         </a>
                                     </div>
-                                    
                                 {% endfor %}
                             {% endif %}
-
                             {% if certificates %}
                                 {% for certificate in certificates %}
                                 <div class="catalogTutorialLink">
@@ -303,12 +300,10 @@
                                             <div class="catalogTutorialElText">Скачать сертификат {{certificate.get_filename}}</div>
                                             <div class="catalogTutorialElImg"></div>
                                         </div>
-                                        
                                     </a>
                                 </div>
                                 {% endfor %}
                             {% endif %}
-
                             {% if catalogs %}
                                 {% for catalog in catalogs %}
                                 <div class="catalogTutorialLink">
@@ -321,7 +316,6 @@
                                 </div>
                                 {% endfor %}
                             {% endif %}
-
                         </div>
                     </div>
                     {% if video_file or youtube_link or rt_link %}

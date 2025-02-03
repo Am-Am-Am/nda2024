@@ -14,7 +14,7 @@ class ContactForm(forms.Form):
         max_length=120,
         widget=forms.TextInput(
             attrs={
-                "placeholder": "ФИО контактного лица",
+                "placeholder": "ФИО контактного лица1",
                 "class": "form-control",
                 "id": "fullNameLegal",
             }
@@ -109,7 +109,7 @@ class PhysicalContactForm(forms.Form):
         max_length=120,
         widget=forms.TextInput(
             attrs={
-                "placeholder": "ФИО контактного лица",
+                "placeholder": "ФИО контактного лица2",
                 "class": "form-control",
                 "id": "fullNameLegal",
             }
@@ -177,7 +177,7 @@ class MailForm(forms.Form):
         max_length=120,
         widget=forms.TextInput(
             attrs={
-                "placeholder": "ФИО контактного лица",
+                "placeholder": "Ваше ФИО",
                 "class": "form-control",
                 "id": "fullNameLegal",
             }
@@ -272,7 +272,7 @@ class CallForm(forms.Form):
         max_length=120,
         widget=forms.TextInput(
             attrs={
-                "placeholder": "ФИО контактного лица",
+                "placeholder": "ФИО контактного лиц3а",
                 "class": "form-control",
                 "id": "fullNameLegal",
             }
@@ -310,56 +310,54 @@ class CallForm(forms.Form):
 
     def clean_phone_number(self):
         phone_number = self.cleaned_data["phone_number"]
-        correct_phone_number = PHONE_PATTERN
-        if not re.match(correct_phone_number, phone_number.strip()):
-            raise ValidationError("Проверьте правильно ли введен номер")
+        if not re.match(PHONE_PATTERN, phone_number.strip()):
+            raise forms.ValidationError("Проверьте правильно ли введен номер")
         return phone_number
 
     def clean_email(self):
         email = self.cleaned_data["email"].strip()
-        correct_email = EMAIL_PATTERN
-        if not re.match(correct_email, email):
-            raise ValidationError(
+        if not re.match(EMAIL_PATTERN, email):
+            raise forms.ValidationError(
                 "Проверьте правильно ли указана почта для обратной связи"
             )
         return email
     
-class ApplicationForm(forms.Form):
-    name = forms.CharField(
-        required=True,
-        max_length=120,
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "Ваше имя",
-                "class": "form-control",
-                "id": "fullNameLegal",
-            }
-        ),
-    )
+# class ApplicationForm(forms.Form):
+#     name = forms.CharField(
+#         required=True,
+#         max_length=120,
+#         widget=forms.TextInput(
+#             attrs={
+#                 "placeholder": "Ваше имя",
+#                 "class": "form-control",
+#                 "id": "fullNameLegal",
+#             }
+#         ),
+#     )
 
-    email = forms.CharField(
-        required=True,
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "example@example.ru",
-                "class": "form-control",
-                "id": "email",
-            }
-        ),
-    )
+#     email = forms.CharField(
+#         required=True,
+#         widget=forms.TextInput(
+#             attrs={
+#                 "placeholder": "example@example.ru",
+#                 "class": "form-control",
+#                 "id": "email",
+#             }
+#         ),
+#     )
     
-    def clean_phone_number(self):
-        phone_number = self.cleaned_data["phone_number"]
-        correct_phone_number = PHONE_PATTERN
-        if not re.match(correct_phone_number, phone_number.strip()):
-            raise ValidationError("Проверьте правильно ли введен номер")
-        return phone_number
+#     def clean_phone_number(self):
+#         phone_number = self.cleaned_data["phone_number"]
+#         correct_phone_number = PHONE_PATTERN
+#         if not re.match(correct_phone_number, phone_number.strip()):
+#             raise ValidationError("Проверьте правильно ли введен номер")
+#         return phone_number
 
-    def clean_email(self):
-        email = self.cleaned_data["email"].strip()
-        correct_email = EMAIL_PATTERN
-        if not re.match(correct_email, email):
-            raise ValidationError(
-                "Проверьте правильно ли указана почта для обратной связи"
-            )
-        return email
+#     def clean_email(self):
+#         email = self.cleaned_data["email"].strip()
+#         correct_email = EMAIL_PATTERN
+#         if not re.match(correct_email, email):
+#             raise ValidationError(
+#                 "Проверьте правильно ли указана почта для обратной связи"
+#             )
+#         return email
