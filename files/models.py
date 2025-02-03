@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.safestring import mark_safe
-
+import os
 from catalog.models import Product
 
 class ModelImage(models.Model):
@@ -21,6 +21,9 @@ class ModelImage(models.Model):
         if self.image:
             return self.image.url
         return '(No image)'
+    
+    def get_filename(self):
+        return os.path.basename(self.file.name)
 
 class ModelFile(models.Model):
     product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='Продукт')
@@ -34,6 +37,9 @@ class ModelFile(models.Model):
         if self.file:
             return self.file.url
         return '(No file)'
+    
+    def get_filename(self):
+        return os.path.basename(self.file.name)
     
 
 class InstructionsFile(models.Model):
@@ -49,6 +55,9 @@ class InstructionsFile(models.Model):
              return self.file.url
         return '(No file)'
     
+    def get_filename(self):
+           return os.path.basename(self.file.name)
+    
 class CatalogFile(models.Model):
     product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='Продукт')
     file = models.FileField(upload_to='category/catalog', null=True, blank=True, verbose_name='Файл')
@@ -62,5 +71,6 @@ class CatalogFile(models.Model):
            return self.file.url
        return '(No file)'
     
-
+    def get_filename(self):
+        return os.path.basename(self.file.name)
 

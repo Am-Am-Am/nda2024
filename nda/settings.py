@@ -82,8 +82,7 @@ ROOT_URLCONF = 'nda.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'core/templates']
-        ,
+        'DIRS': [BASE_DIR / 'core/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,12 +121,6 @@ DATABASES = {
      
     }
 }
-
-# Глобальные переменные для переноса с MySql бд
-SQL_HOST = os.getenv('SQL_DB_HOST', "localhost")
-SQL_USER = os.getenv('SQL_DB_USER',"root")
-SQL_PASSWORD = os.getenv('SQL_DB_PASSWORD', 'root')
-SQL_BASE_NAME = os.getenv("SQL_DB_BASE_NAME","nda_test")
 
 CACHES = {
     "default": {

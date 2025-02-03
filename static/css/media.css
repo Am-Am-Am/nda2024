@@ -4,13 +4,13 @@
     }
 
     .container1 {
-        max-width: 2500px;
+        max-width: 1920px;
         margin: auto;
         padding: 0;
     }
 
     nav {
-        max-width: 2500px;
+        max-width: 1920px;
     }
 
     header {
@@ -23,7 +23,7 @@
 }
 
 
-@media (min-width:  2500px){
+/* @media (min-width:  2500px){
 
         .productCarousel{
             width: 30vw;
@@ -31,17 +31,17 @@
         
     
     
-}
+} */
 
-@media(width < 2500px) {
+@media(min-width: 1920px) {
     .container1 {
-        max-width: 95vw;
+        max-width: 1824px;
         margin: auto;
         padding: 0;
     }
 
     nav {
-        width: 95vw;
+        width: 1824px;
     }
 
     header {
@@ -235,7 +235,9 @@
     }
 
     .subheaderImage img {
-        width: 450px;
+        min-width: auto;
+        max-width: 550px;
+
     }
 
 
@@ -605,7 +607,9 @@
     }
 
     .subheaderImage img {
-        width: 320px;
+        min-width: auto;
+        max-width: 450px;
+       
         height: 55vh;
     }
 

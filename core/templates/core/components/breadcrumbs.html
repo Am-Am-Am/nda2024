@@ -9,6 +9,10 @@
       <li class="breadcrumb-item ">
         <a href="{% url 'brand' brand_slug=category.brand.slug %}">{{ category.brand.name.upper }}</a>
       </li>
+    {% elif product.brand %}
+    <li class="breadcrumb-item ">
+      <a href="{% url 'brand' brand_slug=product.brand.slug %}">{{ product.brand.name.upper }}</a>
+    </li>
     {% endif %}
     {% if not breadcrumbs %}
       <li class="breadcrumb-item breadcrumb-item-active" aria-current="page">{{ category.name.upper }}</li>

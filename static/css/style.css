@@ -1163,6 +1163,11 @@ li .active {
 .catalogBrandItemImg img {
     width: 210px;
     height: 100%;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
 }
 
 .catalogBrandItemTitle {
@@ -1741,13 +1746,11 @@ td:nth-child(2) {
     min-width: 50%;
 }
 
-td:last-child {
+/* td:last-child {
     display: flex;
     align-items: center;
     gap: 20px;
-
-
-}
+} */
 
 .quantity-input {
     margin: 0;
@@ -2838,3 +2841,16 @@ input .form-control .d-inline-block {
     text-align: center;
     font-weight: bold;
 }
+
+.characteristics_table {
+    border-collapse: collapse;
+    width: 100%;
+}
+.characteristics_table th,
+.characteristics_table td{
+    border: 2px solid black;
+}
+
+/* .characteristics_table td:last-child{
+    display:block;
+} */

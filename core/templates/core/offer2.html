@@ -8,8 +8,13 @@
 {% endblock %}
 
 {% block metatag %}
-<meta name="description"
-        content='{{product.keywords}}'>
+  <meta name="keywords" content="{{product.keywords}}">
+  <meta property="og:url" content="https://nda.ru{{ request.path }}">
+               
+  <meta property="og:title" content="{{product.title}}">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="{{product.description|striptags}}">
+  <meta name="description" content="{{product.description|striptags}}">
 {% endblock %}
 
 
@@ -197,46 +202,10 @@
                     </div>
                     <div class="tab-pane fade" id="pills-characteristics" role="tabpanel"
                         aria-labelledby="pills-characteristics-tab">
-                        <div class="productSpecifications">
-                            <div class="container1">
-                                <table class="table table-responsive table-borderless">
-                                    <thead>
-                                        <tr class="table-header">
-                                            <th class="col-2 text-center">
-                                                Код
-                                            </th>
-                                            <th class="col-8 text-start">
-                                                Описание
-                                            </th>
-                                            <th class="col-2 text-start">
-                                                Уп/шт.
-                                            </th>
-                                          
-                                        </tr>
-                                    </thead>
-                                    <tbody class="">
-                                        {% for offer in offers %}
-                                            {% if offer.status == 'PUBLISHED' %}
-                                            <tr class="table-row">
-                                                <td class="text-center align-middle">{{ offer.name }}</td>
-                                                {% if offer.text_full_description %}
-                                                    <td class="text-start align-middle">
-                                                        {{ offer.text_full_description | safe }}
-                                                    </td>
-                                                {% else %}
-                                                    <td class="text-start align-middle">
-                                                        {{ offer.text_description | safe }}
-                                                    </td>
-                                                {% endif %}
-                                                <td class="text-start align-start">{{ offer.shipping_pack }}</td>
-                                            </tr>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-
+                        <div class="productDescription characteristics_table" >
+                            {{ product.characteristics|safe }}
                         </div>
+                       
                     </div>
                     <div class="tab-pane fade" id="pills-order" role="tabpanel" aria-labelledby="pills-order-tab">
 
@@ -261,7 +230,7 @@
                                         </tr>
                                     </thead>
                                     <tbody class="">
-                                        {% for offer in offers %}
+                                        {% for offer in offers|dictsort:'place' %}
                                             {% if offer.status == 'PUBLISHED' %}
                                         <tr class="table-row">
                                             <td class="text-center align-middle">{{ offer.name | safe}}</td>
@@ -317,7 +286,7 @@
                                     <div class="catalogTutorialLink">
                                         <a href="{{ instruction.file.url }}">
                                             <div class="catalogTutorialEl">
-                                                <div class="catalogTutorialElText">Скачать инструкцию</div>
+                                                <div class="catalogTutorialElText">Скачать инструкцию: {{instruction.get_filename}}</div>
                                                 <div class="catalogTutorialElImg"></div>
                                             </div>
                                         </a>
@@ -329,9 +298,9 @@
                             {% if certificates %}
                                 {% for certificate in certificates %}
                                 <div class="catalogTutorialLink">
-                                    <a href="{{ certificate.flie.url }}">
+                                    <a href="{{ certificate.file.url }}">
                                         <div class="catalogTutorialEl">
-                                            <div class="catalogTutorialElText">Скачать сертификат</div>
+                                            <div class="catalogTutorialElText">Скачать сертификат {{certificate.get_filename}}</div>
                                             <div class="catalogTutorialElImg"></div>
                                         </div>
                                         
@@ -345,7 +314,7 @@
                                 <div class="catalogTutorialLink">
                                     <a href="{{ catalog.file.url }}">
                                         <div class="catalogTutorialEl">
-                                            <div class="catalogTutorialElText">Скачать Каталог</div>
+                                            <div class="catalogTutorialElText">Скачать Каталог {{catalog.get_filename}}</div>
                                             <div class="catalogTutorialElImg"></div>
                                         </div>
                                     </a>
@@ -393,44 +362,7 @@
                     <details>
                         <summary>Характеристики</summary>
                         <div class="dropDownEl">
-                            <div class="productSpecifications">
-                                <div class="container1">
-                                    <table class="table table-responsive table-borderless custom-table">
-                                        <thead>
-                                            <tr class="table-header">
-                                                <th class="col-2 text-center">
-                                                    Код
-                                                </th>
-                                                <th class="col-8 text-start">
-                                                    Описание
-                                                </th>
-                                                <th class="col-2 text-start">
-                                                    Уп/шт.
-                                                </th>
-                                              
-                                            </tr>
-                                        </thead>
-                                        <tbody class="">
-                                            {% for offer in offers %}
-                                            <tr class="table-row">
-                                                <td class="text-center align-middle">{{ offer.name | safe}}</td>
-                                                {% if offer.text_full_description %}
-                                                    <td class="text-start align-middle">
-                                                        {{ offer.text_full_description | safe }}
-                                                    </td>
-                                                {% else %}
-                                                    <td class="text-start align-middle">
-                                                        {{ offer.text_description | safe }}
-                                                    </td>
-                                                {% endif %}
-                                                <td class="text-start align-start">{{ offer.shipping_pack | safe}}</td>
-                                            </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </div>
-    
-                            </div>
+                            {{ product.characteristics|safe }}
                         </div>
                     </details>
                     <details>
@@ -457,7 +389,7 @@
                                             </tr>
                                         </thead>
                                         <tbody class="">
-                                            {% for offer in offers %}
+                                            {% for offer in offers|dictsort:'place'%}
                                             <tr class="table-row">
                                                 <td class="text-center align-middle">{{ offer.name | safe}}</td>
                                                 <td class="text-start align-middle">{{ offer.text_description | safe}}</td>
@@ -513,7 +445,7 @@
                                         <div class="catalogTutorialLink">
                                             <a href="{{ instruction.file.url }}">
                                                 <div class="catalogTutorialEl">
-                                                    <div class="catalogTutorialElText">Скачать инструкцию</div>
+                                                    <div class="catalogTutorialElText">Скачать инструкцию {{instruction.get_filename}}</div>
                                                     <div class="catalogTutorialElImg"></div>
                                                 </div>
                                             </a>
@@ -527,7 +459,7 @@
                                     <div class="catalogTutorialLink">
                                         <a href="{{ certificate.flie.url }}">
                                             <div class="catalogTutorialEl">
-                                                <div class="catalogTutorialElText">Скачать сертификат</div>
+                                                <div class="catalogTutorialElText">Скачать сертификат {{certificate.get_filename}}</div>
                                                 <div class="catalogTutorialElImg"></div>
                                             </div>
                                             
@@ -541,7 +473,7 @@
                                     <div class="catalogTutorialLink">
                                         <a href="{{ catalog.file.url }}">
                                             <div class="catalogTutorialEl">
-                                                <div class="catalogTutorialElText">Скачать Каталог</div>
+                                                <div class="catalogTutorialElText">Скачать Каталог {{catalog.get_filename}}</div>
                                                 <div class="catalogTutorialElImg"></div>
                                             </div>
                                         </a>

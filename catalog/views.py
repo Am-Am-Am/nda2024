@@ -10,6 +10,7 @@ from django.views.generic import DetailView
 from django.core.mail import send_mail
 from django.views.generic.edit import FormView
 from django.urls import resolve
+import datetime
 
 SEARCH_QUERY_PARAM = 'q'
 
@@ -45,12 +46,12 @@ class IndexView(TemplateView):
         match = resolve(current_path)
         current_url_name = match.url_name
         context['current_url_name'] = current_url_name
-
         context['brands'] = Brand.visible.all().order_by('name')
         context['categories'] = Category.visible.filter(parents=None)
-        
-        # context['categories'] = Category.visible.filter(parents=None).filter(brand=None)
         context['ads'] = MainPageInfoBlock.visible.all()
+
+        current_year = datetime.datetime.now().year
+        context['current_year'] = current_year
         return context
 
 
@@ -71,6 +72,9 @@ class CategoryView(TemplateView):
         context['category'] = category
         context['breadcrumbs'] = breadcrumbs_path(category)
         context['brands'] = Brand.visible.all().order_by('name')
+
+        current_year = datetime.datetime.now().year
+        context['current_year'] = current_year
         return context
 
 
@@ -90,6 +94,9 @@ class BrandView(TemplateView):
         context['categories'] = Category.visible.filter(parents=None, brand=brand).select_related('brand')
         context['brand'] = brand
         context['brands'] = Brand.visible.all().order_by('name')
+
+        current_year = datetime.datetime.now().year
+        context['current_year'] = current_year
         return context
 
 
@@ -107,6 +114,8 @@ class OfferView(TemplateView):
         # Get Category based on slug.
         category_slug = self.kwargs['category_slug']
         category = get_object_or_404(Category.objects.select_related('brand'), slug=category_slug)
+        current_year = datetime.datetime.now().year
+        context['current_year'] = current_year
 
         if category.is_final:
             # If category is a Product (is_final=True), load related data
@@ -184,8 +193,10 @@ class BrandsWithCertificatesView(ListView):
         match = resolve(current_path)
         current_url_name = match.url_name
         context['current_url_name'] = current_url_name
+        current_year = datetime.datetime.now().year
+        context['current_year'] = current_year
         return context
-    
+
 
 class BrandCertificatesDetailView(DetailView):
     model = Brand
@@ -203,11 +214,13 @@ class BrandCertificatesDetailView(DetailView):
         brand = self.object
         products = Product.objects.filter(brand=brand)
         certificates = ModelFile.objects.filter(product__in=products)
-                
-        # Формируем контекст для передачи в шаблон
+
         context['products'] = products
         context['certificates'] = certificates
-        context['brands'] = Brand.objects.all().order_by('name') # убрали видимость, как говорили ранее
+        context['brands'] = Brand.objects.all().order_by('name') 
+
+        current_year = datetime.datetime.now().year
+        context['current_year'] = current_year
         return context
     
 class WorkView(TemplateView):
@@ -221,6 +234,9 @@ class WorkView(TemplateView):
         context['current_url_name'] = current_url_name
 
         context['brands'] = Brand.visible.all().order_by('name')
+
+        current_year = datetime.datetime.now().year
+        context['current_year'] = current_year
         return context
 
 
@@ -235,6 +251,9 @@ class PrivacyView(TemplateView):
         context['current_url_name'] = current_url_name
 
         context['brands'] = Brand.visible.all().order_by('name')
+
+        current_year = datetime.datetime.now().year
+        context['current_year'] = current_year
         return context
 
 class ContactsView(TemplateView):
@@ -248,6 +267,9 @@ class ContactsView(TemplateView):
         context['current_url_name'] = current_url_name
 
         context['brands'] = Brand.visible.all().order_by('name')
+
+        current_year = datetime.datetime.now().year
+        context['current_year'] = current_year
         return context
 
 

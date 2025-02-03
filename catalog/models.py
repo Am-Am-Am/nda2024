@@ -139,7 +139,7 @@ class Category(BaseFields):
 
     name = models.CharField(
         max_length=256,
-        verbose_name='Название категории | Заголовок'
+        verbose_name='Название | Заголовок'
     )
 
     characteristics = RichTextField(

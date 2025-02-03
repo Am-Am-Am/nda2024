@@ -124,7 +124,7 @@ def physical_cart_submit(request):
 
     if not yandex_captcha_validation(token, client_ip):
          context['captchaError'] = "Докажите что вы не робот" #add context for message
-         return render(request, 'nda_email/physicalContactform.html', context) # return context
+         return render(request, 'nda_email/physical_сontact_form.html', context) # return context
 
     if form.is_valid():
         try:
@@ -132,14 +132,14 @@ def physical_cart_submit(request):
         except Exception as e:
             print(f'email_send failed due to: {e}')
             context['emailError'] = "Сообщение не отправлено" #add context for message
-            return render(request, 'nda_email/physicalContactform.html', context)  # return context
+            return render(request, 'nda_email/physical_сontact_form.html', context)  # return context
 
 
         cart_clear(request)
         context['emailSuccess'] = "Запрос отправлен" #add context for message
-        return render(request, 'nda_email/physicalContactform.html', context) # return context
+        return render(request, 'nda_email/physical_сontact_form.html', context) # return context
     
-    return render(request, 'nda_email/physicalContactform.html', context) #return context
+    return render(request, 'nda_email/physical_сontact_form.html', context) #return context
 
 @require_POST
 def mail_submit(request):

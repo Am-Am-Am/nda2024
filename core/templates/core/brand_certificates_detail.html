@@ -1,6 +1,22 @@
 {% extends 'core/base1.html' %}
 {% load static cache %}
 
+{% block title %}
+<title> Регистрационные удостоверения {{brand}}</title>
+{% endblock %}
+
+{% block metatag %}
+  <meta name="keywords" content="РУ Минздрава">
+  <meta property="og:url" content="https://nda.ru{{ request.path }}">
+  {% comment %} <meta property="og:title" content="РУ и сертификаты"> {% endcomment %}
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="Регистрационные удостоверения {{brand}}">
+  <meta name="description" content="Регистрационные удостоверения продукции {{brand}}">
+{% endblock %}
+
+
+
+
 {% block content %}
   <header style="height: 0px;">
     <!-- летающая шапка -->
@@ -38,20 +54,20 @@
             </tr>
           </thead>
           <tbody>
-            {% for product in products %}
+            
                 {% for certificate in certificates %}
-                  {% if certificate.product == product and product.ru%}
-                    <tr class="table-row">
-                        <td>{{ forloop.counter }}</td>
-                        <td>{{ product.name }}</td>
-                        <td>{{ product.ru}}</td>
-                        <td>
-                          <a href="{{ certificate.file.url }}">Скачать</a>
-                        </td>
-                    </tr>
-                  {% endif %}
+                  <tr class="table-row">
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ certificate.get_filename }}</td>
+                    <td>{{ certificate.get_filename|slice:"3:12" }}</td>
+                    <td>
+                      <a href="{{ certificate.file.url }}">Скачать</a>
+                    </td>
+                  </tr>
                 {% endfor %}
-            {% endfor %}
+                
+              
+          
           </tbody>
         </table>
         {% endcache %}

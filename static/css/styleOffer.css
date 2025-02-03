@@ -26,25 +26,25 @@
 
 .catalogTutorial {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     width: 100%;
     height: auto;
     gap: 40px;
-   
+    flex-wrap: wrap;
+    /* align-content: space-between; */
 }
 
 .catalogTutorialLink {
-    width: 33%;
+    width: calc(33% - 35px);
     border: 2px solid #3391c5;
     border-radius: 10px;
-    height: 70px;
+    height: 120px;
 }
 
 .catalogTutorialLink a {
     text-decoration: none;
     font-weight: 400;
-    font-size: 25px;
+    font-size: 23px;
     color: #1a1a18;
 }
 
@@ -54,15 +54,20 @@
     justify-content: space-between;
     height: 100%;
     width: 100%;
-    padding: 0 20px;
+    padding: 10px 20px;
+}
+
+.catalogTutorialElText{
+    width: calc(100% - 70px);
 }
 
 .catalogTutorialElImg {
-    height: 70px;
-    width: 70px;
+    height: 50px;
+    width: 50px;
     background-position: center;
     background-repeat: no-repeat;
     background-image: url('../images/offer/download_blue.svg');
+    
 }
 
 .catalogTutorialLink:hover {
@@ -438,6 +443,17 @@
         }
 
     }
+    @media (max-width: 1024px){
+        .catalogTutorial{
+            gap: 20px;
+        }
+
+        .catalogTutorialLink{
+            width: calc(33% - 15px);
+            height: 160px;
+        }
+    }
+    
 
 
     @media (max-width: 800px) {
@@ -449,6 +465,9 @@
             gap: 20px;
         }
 
+        .catalogTutorialLink{
+            width: calc(33% - 12px);
+        }
         .modal-dialog {
 
             width: 95vw;
@@ -460,6 +479,11 @@
     @media (max-width: 700px) {
         .catalogTutorial {
             gap: 10px;
+        }
+
+        .catalogTutorialLink{
+            width: calc(33%);
+            height: 80px;
         }
 
         .table td {
@@ -536,6 +560,15 @@
             margin-left: 10px;
             background-image: url("data:image/svg+xml,%3Csvg width='19' height='11' viewBox='0 0 19 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.929504 9.62134L9.48285 1.06799L18.4853 10.0705' stroke='%231A1A18' stroke-linecap='round'/%3E%3C/svg%3E%0A");
         }
+
+        .catalogTutorialElText{
+            font-size: 16px;
+        }
+
+        .catalogTutorialLink{
+            width: calc(50% - 10px);
+        }
+
 
     }
 
@@ -685,6 +718,9 @@
 
         }
 
+        .catalogTutorialElText{
+            font-size: 14px;
+        }
     }
 
     /* @media (min-width: 576px) {

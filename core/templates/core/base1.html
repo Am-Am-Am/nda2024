@@ -8,18 +8,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block title %}
-        <title> ООО НДА Деловая медицинская компания</title>
+   
     {% endblock%}
     <link rel="shortcut icon" href="{% static 'images/favicon/favicon.ico' %}" type="image/x-icon">
 
     {% block metatag %}
-    <meta name="description"
-        content='Компания "НДА Деловая Медицинская Компания" уже 28 лет является Вашим партнером и поставщиком оборудования и расходных материалов для хирургии, анестезиологии, реанимации и других направлений.'>
+    
     {% endblock %}
     
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
+    <script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script>
 
 
     {% block links %}
@@ -64,5 +63,5 @@
     <script src="{% static 'scripts/formController.js' %}"></script>
     <script src="{% static "scripts/buttonInFormController.js" %}"></script>
     <script src="{% static "scripts/tableScript.js" %}"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script> 
+    
 </body>

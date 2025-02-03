@@ -4,7 +4,7 @@
     <div class="product_bg" style="background-image: url('{% static "images/header_bg.svg" %}')"></div>
     <div class="slider subheaderSlider">
         {% for ad in ads%}
-        {% if ad.status == 'PUBLISHED' %}
+        {% if ad.status == 'PUBLISHED' and ad.block_category%}
         <div class="subheader" id="top" style="width: 100%!important;">
             
                 <div class="subheaderInfo">
@@ -36,4 +36,3 @@
     </div>
 
 </div>
-<div id="catalog"></div>

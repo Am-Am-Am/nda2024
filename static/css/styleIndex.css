@@ -27,7 +27,7 @@
     padding: 0;
 }
 
-@media (min-width:  2500px){
+@media (min-width:  1920px){
     .slider .subheaderInfo {
         padding: 20px;
         height: 1080px;
@@ -36,11 +36,15 @@
         align-items: flex-start;
         justify-content: start;
         text-align: left;
-        width: 1920px;
-    
+        width: 65%;
     }
     .subheader{
         height: 1080px;
+    }
+
+    .subheaderImage img{
+        min-width: auto;
+        max-width: 700px;
     }
 
     .infoImg {
@@ -48,14 +52,16 @@
         height: 100%;
     }
     
-    .catalogItemImg img{
+    /* .catalogItemImg img{
         height: 300px;
-    }
+    } */
 
     .productCarousel{
         width: 30vw;
     }
 }
+
+
 
 @media (width < 480px){
 
