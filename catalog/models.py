@@ -1,8 +1,6 @@
 from django.db import models
-from django.forms import ValidationError
 from django.urls import reverse
 from django.core.files.storage import FileSystemStorage
-from django.core.validators import URLValidator, ValidationError
 from django.utils.text import slugify
 from nda.settings import PRIVATE_ROOT, SENDFILE_ROOT
 from ckeditor.fields import RichTextField
@@ -61,6 +59,19 @@ class BaseFields(models.Model):
 """Модели"""
 
 
+class Specialist(models.Model):
+    name = models.CharField(max_length=56, verbose_name='Имя специалиста')
+    phone = models.CharField(max_length=28, verbose_name='Телефон')
+    email = models.EmailField(max_length=56, verbose_name='Email')
+
+    class Meta:
+        verbose_name = 'Специалист'
+        verbose_name_plural = 'Специалисты'
+
+    def __str__(self):
+        return self.name
+
+
 class Brand(BaseFields):
     name = models.CharField(
         max_length=128,
@@ -90,7 +101,18 @@ class Brand(BaseFields):
         db_index=True,
         verbose_name='url-адрес'
     )
-
+    title = models.TextField(
+        default='',
+        null=True,
+        blank=True,
+        verbose_name='Title бренда'
+    )
+    ceo_description = models.TextField(
+        default='',
+        null=True,
+        blank=True,
+        verbose_name='CEO Description'
+    )
     class Meta:
         ordering = ['place']
         verbose_name = 'Бренд'
@@ -101,23 +123,6 @@ class Brand(BaseFields):
 
     def __str__(self):
         return self.name.upper()
-
-
-
-class Specialist(models.Model):
-    name = models.CharField(max_length=56, verbose_name='Имя специалиста')
-    phone = models.CharField(max_length=28, verbose_name='Телефон')
-    email = models.EmailField(max_length=56, verbose_name='Email')
-
-    class Meta:
-        verbose_name = 'Специалист'
-        verbose_name_plural = 'Специалисты'
-
-    def __str__(self):
-        return self.name
-
-
-
 
 
 class Category(BaseFields):
@@ -131,7 +136,6 @@ class Category(BaseFields):
         if created:
             cls.check_if_category_is_final(instance)
 
-
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name, allow_unicode=True)
@@ -141,7 +145,6 @@ class Category(BaseFields):
         max_length=256,
         verbose_name='Название | Заголовок'
     )
-
     characteristics = RichTextField(
         default='',
         null=True,
@@ -149,7 +152,6 @@ class Category(BaseFields):
         verbose_name='Характеристики',
         config_name='default'
     )
-
     brand = models.ForeignKey(
         Brand,
         on_delete=models.SET_NULL,
@@ -157,7 +159,6 @@ class Category(BaseFields):
         blank=True,
         verbose_name='Бренд, к которому относится категория'
     )
- 
     parents = models.ManyToManyField(
         'self',
         blank=True,
@@ -165,7 +166,6 @@ class Category(BaseFields):
         related_name='children',
         symmetrical=False
     )
-    
     logo = models.ImageField(
         upload_to='category/logo',
         default='',
@@ -191,45 +191,40 @@ class Category(BaseFields):
         blank=True,
         verbose_name='Title страницы'
     )
-
-    banner_color = models.CharField(
-        max_length=32,
-        default='#3391c5',
-        null=True,
-        verbose_name='Цвет баннера бренда'
-    )
-
     keywords = models.TextField(
         default='',
         null=True,
         blank=True,
-        verbose_name='Ключевые слова'
+        verbose_name='Keywords'
     )
-        
+    ceo_description = models.TextField(
+        default='',
+        null=True,
+        blank=True,
+        verbose_name='CEO Description'
+    )
     is_final = models.BooleanField(
         default=False,
         verbose_name='Отметка о том, что категория является финальной и в ней содержатся товары'
     )
-
-    video_file = models.FileField(
-        upload_to='category/videos',
-        null=True,
-        blank=True,
-        verbose_name='Видео файл'
-    )
+    # video_file = models.FileField(
+    #     upload_to='category/videos',
+    #     null=True,
+    #     blank=True,
+    #     verbose_name='Видео файл'
+    # )
     youtube_link = models.CharField(
         max_length=255,
         null=True,
         blank=True,
         verbose_name='Ссылка на YouTube'
     )
-    rt_link = models.CharField(
+    rutube_link = models.CharField(
         max_length=255,
         null=True,
         blank=True,
         verbose_name='Ссылка Rutube'
     )
-
     specialist = models.ForeignKey(
         Specialist,
         on_delete=models.SET_NULL,
@@ -237,14 +232,14 @@ class Category(BaseFields):
         blank=True,
         verbose_name='Специалист, ответственный за категорию'
     )
+    # ru = models.CharField(
+    #     max_length=255,
+    #     null=True,
+    #     blank=True,
+    #     verbose_name='Номер РУ'
+    # )
 
-    ru = models.CharField(
-        max_length=255,
-        null=True,
-        blank=True,
-        verbose_name='Номер РУ'
-    )
-
+    # вот этот метод save точно нужен????
     def save(self, *args, **kwargs):
         self.full_clean()
         super().save(*args, **kwargs)
@@ -261,10 +256,11 @@ class Category(BaseFields):
         if self.brand:
             return str(self.brand).upper() + '----' + self.name.upper()
         return 'ПОДБОРКА' + '----' + self.name.upper()
-    
+
+
 class ProductManager(models.Manager):
     def get_queryset(self):
-      return super().get_queryset().filter(is_final=True)
+        return super().get_queryset().filter(is_final=True)
 
 
 class Product(Category):
@@ -294,19 +290,13 @@ class Offer(BaseFields):
         blank=True,
         verbose_name='Краткое описание (текст)',
     )
-    text_full_description = models.TextField(
-        default='',
-        null=True,
-        blank=True,
-        verbose_name='Полное описание (текст)',
-    )
     shipping_pack = models.CharField(
         max_length=10,
         verbose_name="Количество в упаковке",
         null=True,
         blank=True,
     )
-    category = models.ForeignKey(
+    product = models.ForeignKey(
         Product,
         on_delete=models.SET_NULL,
         null=True,
@@ -314,33 +304,10 @@ class Offer(BaseFields):
         related_name='offer',
         verbose_name='Товар, к которому принадлежит код'
     )
-
-    characteristics = models.FileField(
-        upload_to='characteristics/',  # Папка для сохранения файлов характеристик
-        default='',
-        null=True,
-        blank=True,
-        verbose_name='Характеристики',
-    )
-    tech_info = models.FileField(
-        upload_to='files/instructions',
-        null=True,
-        blank=True,
-        verbose_name='Техзадание'
-    )
-    ctru = models.CharField(
-        max_length=64,
-        null=True,
-        blank=True,
-        verbose_name='КТРУ'
-    )
-
     class Meta:
-        ordering = ['place']
+        ordering = ['name']
         verbose_name = 'Код'
         verbose_name_plural = 'Коды'
 
     def __str__(self):
         return self.name
-
-

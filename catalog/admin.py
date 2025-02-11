@@ -2,13 +2,11 @@ from django.contrib import admin
 from django.contrib.admin import AdminSite
 from django.contrib.auth.models import Group, User
 from django.contrib.auth.admin import GroupAdmin, UserAdmin
-from django.urls import reverse
 from catalog.models import Brand, Category, Offer, Specialist, Product
 from files.models import ModelImage, ModelFile, InstructionsFile, CatalogFile
 from catalog.admin_filters import (
     DropdownFilter,
     RelatedOnlyDropdownFilter,
-    CategoryRelatedOnlyDropdownFilter,
 )
 
 
@@ -37,13 +35,8 @@ class OfferInline(admin.TabularInline):
     fields = [
         "name",
         "text_description",
-        "text_full_description",
-        "characteristics",
         "shipping_pack",
-        "tech_info",
-        "ctru",
-        "category",
-        "place",
+        "product",
         "status",
     ]
 
@@ -79,6 +72,8 @@ class BrandAdmin(admin.ModelAdmin):
         "banner",
         "banner_color",
         "slug",
+	    "title",
+	    "ceo_description",
         "place",
         "status",
     ]
@@ -86,8 +81,6 @@ class BrandAdmin(admin.ModelAdmin):
     actions_on_bottom = True
     list_per_page = 25
     search_fields = ["name"]
-
-
 
 
 class CategoryRelatedOnlyDropdownFilter(RelatedOnlyDropdownFilter):
@@ -112,11 +105,11 @@ class CategoryAdmin(admin.ModelAdmin):
         "parents",
         "logo",
         "banner",
-        "banner_color",
+	    "title",
+	    "keywords",
+        "ceo_description",
         "slug",
         "status",
-        "title",
-        "keywords",
     ]
     filter_horizontal = ("parents",)
     autocomplete_fields = ("brand",)
@@ -140,15 +133,9 @@ class CategoryAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
-        
         queryset = queryset.filter(is_final=False)
-     
         # queryset = queryset.exclude(children__isnull=True)
-        
         return queryset
-    
-
-   
 
 
 class OfferAdmin(admin.ModelAdmin):
@@ -156,7 +143,7 @@ class OfferAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "brand_name",
-        "category",
+        "product",
         "characteristics",
         "place",
         "status",
@@ -164,22 +151,18 @@ class OfferAdmin(admin.ModelAdmin):
     list_editable = ("place", "status")
     list_filter = (
         ("category__brand", RelatedOnlyDropdownFilter),
-        ("category", CategoryRelatedOnlyDropdownFilter),
+        ("product", CategoryRelatedOnlyDropdownFilter),
         "status",
     )
     fields = [
         "name",
         "text_description",
-        "text_full_description",
-        "characteristics",
         "shipping_pack",
-        "tech_info",
-        "ctru",
-        "category",
+        "product",
         "place",
         "status",
     ]
-    autocomplete_fields = ["category"]
+    autocomplete_fields = ["product"]
     actions_on_bottom = True
     list_per_page = 25
     search_fields = ["name"]
@@ -192,18 +175,12 @@ class OfferAdmin(admin.ModelAdmin):
     @admin.display(description="Бренд", ordering="name")
     def brand_name(self, obj):
         if getattr(obj, "category"):
-            if obj.category.brand:
-                return obj.category.brand.name
+            if obj.product.brand:
+                return obj.product.brand.name
         elif hasattr(obj, "brand"):
             return obj.brand.name
         else:
             return "Бренда нет"
-
-
-
-
-
-
 
 
 class ProductImageInline(admin.TabularInline):
@@ -213,14 +190,6 @@ class ProductImageInline(admin.TabularInline):
 
 class ProductFileInline(admin.TabularInline):
     model = ModelFile
-
-
-class InstructionsFileInline(admin.TabularInline):
-    model = InstructionsFile
-
-
-class CatalogFileInline(admin.TabularInline):
-    model = CatalogFile
 
 
 class SpecialistAdmin(admin.ModelAdmin):
@@ -249,16 +218,15 @@ class ProductAdmin(admin.ModelAdmin):
         "parents",
         "logo",
         "place",
-        # "banner",
+        "banner",
         "slug",
         "status",
         "title",
-        "keywords",
+	    "keywords",
+        "ceo_description",
         "specialist",
-        "video_file",
         "youtube_link",
-        "rt_link",
-        # "is_final",
+        "rutube_link",
     ]
 
     def get_form(self, request, obj=None, **kwargs):
@@ -274,7 +242,6 @@ class ProductAdmin(admin.ModelAdmin):
         return form
 
 
-
 admin.site.register(Brand, BrandAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
@@ -282,6 +249,3 @@ admin.site.register(Offer, OfferAdmin)
 admin.site.register(Group, GroupAdmin)
 admin.site.register(User, UserAdmin)
 admin.site.register(Specialist, SpecialistAdmin)
-
-
-
