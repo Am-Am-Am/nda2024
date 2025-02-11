@@ -7,8 +7,6 @@ from catalog.models import Category, Brand, Offer, Product
 from files.models import ModelFile, ModelImage, InstructionsFile, CatalogFile
 from cart.forms import CartAddProductForm
 from django.views.generic import DetailView
-from django.core.mail import send_mail
-from django.views.generic.edit import FormView
 from django.urls import resolve
 import datetime
 import time
@@ -139,18 +137,17 @@ class OfferView(TemplateView):
             context['specialist'] = product.specialist
             context['video_file'] = product.video_file
             context['youtube_link'] = product.youtube_link
-            context['rt_link'] = product.rt_link
+            context['rt_link'] = product.rutube_link
             context['keywords'] = product.keywords
             context['title'] = product.title
             context['instructions'] = InstructionsFile.objects.filter(product=product)
             context['catalogs'] = CatalogFile.objects.filter(product=product)
         else:
-           # Handle case when category is not a final product (e.g. category page)
-           context['category'] = category
-           context['product'] = None
-           context['offers'] = None
-           # Additional logic for category display if needed
-
+            # Handle case when category is not a final product (e.g. category page)
+            context['category'] = category
+            context['product'] = None
+            context['offers'] = None
+            # Additional logic for category display if needed
         return context
 
 
@@ -176,16 +173,15 @@ class SiteSearchView(ListView):
         )
         return qs
 
+
 class BrandsWithCertificatesView(ListView):
     model = Brand
     template_name = 'core/certificates.html'  
     context_object_name = 'brands'
 
     def get_queryset(self):
-        
         queryset = super().get_queryset()
         brands_with_certs = set(Brand.objects.filter(category__modelfile__isnull=False))
-
         return queryset.filter(id__in=[b.id for b in brands_with_certs])
     
     def get_context_data(self, **kwargs):
@@ -223,7 +219,8 @@ class BrandCertificatesDetailView(DetailView):
         current_year = datetime.datetime.now().year
         context['current_year'] = current_year
         return context
-    
+
+
 class WorkView(TemplateView):
     template_name = 'core/work.html'
     def get_context_data(self, **kwargs):
@@ -272,5 +269,3 @@ class ContactsView(TemplateView):
         current_year = datetime.datetime.now().year
         context['current_year'] = current_year
         return context
-
-

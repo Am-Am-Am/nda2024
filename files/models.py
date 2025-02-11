@@ -52,11 +52,11 @@ class InstructionsFile(models.Model):
 
     def __str__(self):
         if self.file:
-             return self.file.url
+            return self.file.url
         return '(No file)'
     
     def get_filename(self):
-           return os.path.basename(self.file.name)
+        return os.path.basename(self.file.name)
     
 class CatalogFile(models.Model):
     product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='Продукт')
@@ -67,10 +67,9 @@ class CatalogFile(models.Model):
         verbose_name = 'Файл каталога'
 
     def __str__(self):
-       if self.file:
-           return self.file.url
-       return '(No file)'
+        if self.file:
+            return self.file.url
+        return '(No file)'
     
     def get_filename(self):
         return os.path.basename(self.file.name)
-

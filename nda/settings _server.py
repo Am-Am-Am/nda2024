@@ -26,13 +26,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = os.getenv('SECRET_KEY')
-SECRET_KEY = 'django-insecure-=j#*b5xl1dgzvmdrf9zc+qae3z7^uqie)rao-_*okz+=tboh2-'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['31.129.109.8', 'notarealnda.ru']
 
 logging.basicConfig(level=logging.INFO)
 # Application definition
@@ -74,7 +73,7 @@ MIDDLEWARE = [
 
 
 INTERNAL_IPS = [
-    '127.0.0.1',
+    '31.129.109.8',
 ]
 
 ROOT_URLCONF = 'nda.urls'
@@ -113,13 +112,14 @@ WSGI_APPLICATION = 'nda.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'nda'),
-        'USER': os.getenv('DB_USER', 'root'),
-        'PASSWORD': os.getenv('DB_USER_PASSWORD', 'root'),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
-        'PORT': os.getenv('DB_PORT', '5432'),
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_USER_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
+
 
 CACHES = {
     "default": {
@@ -182,7 +182,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = ('static',)
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -214,9 +214,13 @@ EMAIL_PORT = os.getenv('PORT', '587')
 EMAIL_USE_TLS = True
 
 
+
+SITE_KEY = os.getenv('SITE_KEY', 'default_value')
+
 # YANDEX CAPTCHA SETTINGS
 SECURE_REFERRER_POLICY = 'no-referrer-when-downgrade'
 YACAPTCHA_SERVER = os.getenv('SERVER_KEY')
+
 
 
 # Конфигурация CKEditor
@@ -229,4 +233,4 @@ CKEDITOR_CONFIGS = {
 }
 
 
-ADMINS = [("Ivan", "terryjj0@gmail.com")]
+#ADMINS = [("Ivan", "terryjj0@gmail.com")]

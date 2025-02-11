@@ -1,6 +1,6 @@
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
-from catalog.models import Category, Product, Brand, Offer
+from catalog.models import Category, Brand, Offer
 
 class IndexSitemap(Sitemap):
     changefreq = 'daily'
@@ -27,16 +27,16 @@ class OfferSitemap(Sitemap):
     priority = 0.7
 
     def items(self):
-         return Offer.visible.all() # Получаем все предложения
+        return Offer.visible.all() # Получаем все предложения
 
     def location(self, obj):
-         # Получаем бренд из категории, связанной с предложением
-         if obj.category and obj.category.brand:
-            brand_slug = obj.category.brand.slug
-         else:
+        # Получаем бренд из категории, связанной с предложением
+        if obj.product and obj.product.brand:
+            brand_slug = obj.product.brand.slug
+        else:
             return '' # возвращаем пустую строку, если нет бренда
 
-         return reverse('offer', args=[brand_slug, obj.category.slug]) # Передаем brand_slug и category_slug
+        return reverse('offer', args=[brand_slug, obj.product.slug]) # Передаем brand_slug и category_slug
 
 class BrandSitemap(Sitemap):
     changefreq = 'weekly'
