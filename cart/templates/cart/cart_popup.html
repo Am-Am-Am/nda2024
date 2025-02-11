@@ -20,6 +20,7 @@
                         hx-target="#offers-table"
                         hx-delete="{% url 'cart_remove' offer_id=offer.id %}"
                         class="btn btn-danger"
+                        hx-refresh="true" 
                         id="remove-offer-button"
                     >Удалить</button>
                 </td>

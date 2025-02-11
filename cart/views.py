@@ -8,7 +8,7 @@ import json
 from catalog.models import Offer
 from cart.forms import CartAddProductForm
 from nda_email.forms import ContactForm, PhysicalContactForm, MailForm, CallForm
-from nda_email.email_sender import EmailSender
+from nda_email.email_sender import LegalEntityEmailSender, PhysicalPersonEmailSender, MailFormEmailSender, CallFormEmailSender
 from nda_email.captcha import get_client_ip, yandex_captcha_validation
 
 
@@ -45,7 +45,7 @@ def cart_add(request, offer_id):
     if offer_id not in cart:
         cart[offer_id] = {'quantity': item_add_form_data['quantity']}
     else:
-        cart[offer_id]['quantity'] += item_add_form_data['quantity']
+        cart[offer_id]['quantity'] = item_add_form_data['quantity']
     save_cart(request)
     return render(request, 'cart/cart.html')
 
@@ -100,7 +100,7 @@ def cart_submit(request):
         return render(request, 'nda_email/contactform.html', context)
     if form.is_valid():
         try:
-            EmailSender.send_messages(request, offers)
+            LegalEntityEmailSender.send_messages(request, offers)
         except Exception as e:
             print(f'email_send failed due to: {e}')
             response = HttpResponse(status=500)
@@ -130,7 +130,7 @@ def physical_cart_submit(request):
 
     if form.is_valid():
         try:
-            EmailSender.send_messages(request, offers)
+            PhysicalPersonEmailSender.send_messages(request, offers)
         except Exception as e:
             print(f'email_send failed due to: {e}')
             context['emailError'] = "Сообщение не отправлено" #add context for message
@@ -155,7 +155,7 @@ def mail_submit(request):
 
     if form.is_valid():
         try:
-            EmailSender.send_messages(request, offers)
+            MailFormEmailSender.send_messages(request, offers)
         except Exception as e:
             print(f'email_send failed due to: {e}')
             return render(request, 'nda_email/emailModal.html', {'mail_form': form, 'error': 'Сообщение не отправлено'})
@@ -177,7 +177,7 @@ def call_submit(request):
 
         if form.is_valid():
             try:
-                EmailSender.send_messages(request, offers)
+                CallFormEmailSender.send_messages(request, offers)
             except Exception as e:
                 print(f'email_send failed due to: {e}')
                 return render(request, 'nda_email/callModal.html', {'call_form': form, 'error': 'Сообщение не отправлено'})

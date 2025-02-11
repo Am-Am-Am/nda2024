@@ -1,5 +1,6 @@
 <script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script> 
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script>
 
 <form
     id="cart_modal_form"
@@ -22,7 +23,7 @@
             <div class="oneLine">
                 <div class="form-floating mb-3 w-50">
                     {{ contact_form.phone_number }}
-                    <label for="validationPhoneNumber">Номер телефона</label>
+                    {% comment %} <label for="validationPhoneNumber">Номер телефона</label> {% endcomment %}
                     {% if contact_form.phone_number.errors %}
                         <div style="color: red">
                             {{ contact_form.phone_number.errors }}
@@ -56,8 +57,9 @@
             <div class="mb-3">
                 <label class="input-file">
                     {{ contact_form.company_details }}
-                    <span>Прикрепить файл</span>
+                    <span class="filename">Прикрепить файл</span>
                 </label>
+                
             </div>
 
             <div
@@ -97,3 +99,32 @@
         </div>
     </div>
 </form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var phoneInputs = document.querySelectorAll('.phone-mask');
+  
+      phoneInputs.forEach(function(phoneInput) {
+        // Initialize intlTelInput
+        const iti = intlTelInput(phoneInput, {
+          separateDialCode: true,
+          initialCountry: "ru", // Russia by default
+          utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js" // Include utils.js for formatting and validation
+        });
+  
+        // Function to update the phone number value (including the dial code)
+        function updatePhoneNumber() {
+          const fullNumber = iti.getNumber(); // Get the full number with dial code
+          phoneInput.value = fullNumber;       // Update the input field value
+        }
+  
+        // Listen for changes to the number
+        phoneInput.addEventListener('countrychange', updatePhoneNumber); // Use "countrychange" event
+        phoneInput.addEventListener('keyup', updatePhoneNumber);
+  
+        // Store the initial number (if any)
+        updatePhoneNumber();
+      });
+    });
+  </script>
+ 

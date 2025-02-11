@@ -63,6 +63,18 @@
                                     </span>
                                 {% endif %}
                             </a>
+
+                            <a href={% url "privacy" %}>
+                                {% if current_url_name == 'privacy' %}
+                                    <span>
+                                        <li><span style="color:#3494c8">Политика <br> конфиденциальности</span></li>
+                                    </span>
+                                {% else %}
+                                    <span>
+                                        <li style="color:#bebebe"><span>Политика <br> конфиденциальности</span></li>
+                                    </span>
+                                {% endif %}
+                            </a>
                         </ul>
                     </div>
                     <div class="footerDataEls contacts">
@@ -74,16 +86,16 @@
                     <div class="footerDataEls address">
                         <h4>Адрес офиса:</h4>
                         <ul>
-                            <li>г. Санкт-Петербург, ул.Перевозная, 6</li>
+                            <li>г. Санкт-Петербург,<br> ул.Перевозная, 6</li>
                         </ul>
                         <h4>Адрес склада:</h4>
                         <ul>
-                            <li>198095, г. Санкт-Петербург, Михайловский <br> пер., д.4 Лит. АН</li>
+                            <li>198095, г. Санкт-Петербург, <br>Михайловский  пер., д.4 Лит. АН</li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="footerBottom">
+            {% comment %} <div class="footerBottom">
                 <div class="policy">
                     <a href="{% url "privacy" %}">
                         Политика конфиденциальности
@@ -100,7 +112,7 @@
 
                     </div>
                 </a>
-            </div>
+            </div> {% endcomment %}
         </div>
     </div>
 </footer>

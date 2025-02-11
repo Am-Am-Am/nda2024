@@ -31,7 +31,7 @@
                     {% endif %}
                   </div>
                   <h3>{{ brand.name }}</h3>
-                  <p>{{ brand.description|safe }}</p>
+                  <p>{{ brand.description|safe|striptags }}</p>
                 </div>
               </a>
             {% endif %}
@@ -61,7 +61,7 @@
                       {% endif %}
                     </div>
                     <h3>{{ category.name }}</h3>
-                    <p>{{ category.description|safe }}</p>
+                    <p>{{ category.description|safe|striptags }}</p>
                   </div>
                 </a>
               {% endif %}

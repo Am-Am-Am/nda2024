@@ -21,10 +21,11 @@
             </div>
             <div class="form-floating mb-2">
               {{ call_form.phone_number }}
-              <label for="phone">Ваш телефон</label>
+              {% comment %} <label for="phone">Ваш телефон</label> {% endcomment %}
               {% if call_form.phone_number.errors %}
                 <div class="text-danger">{{ call_form.phone_number.errors }}</div>
               {% endif %}
+              
             </div>
             <div class="form-floating mb-2">
               {{ call_form.message }}

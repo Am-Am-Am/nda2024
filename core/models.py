@@ -12,16 +12,24 @@ class MainPageInfoBlock(models.Model):
         max_length=128,
         null=False,
         blank=False,
-        verbose_name='Название рекламного блока',
+        verbose_name='Название рекламного блока | Служебная информация',
         default='',
     )
     block_header = models.CharField(
         max_length=128,
         null=False,
         blank=False,
-        verbose_name='Заголовок рекламного блока',
+        verbose_name='Заголовок рекламного блока | Отображается на странице',
         default='',
     )
+    block_brand = models.CharField(
+        max_length=128,
+        null=True,
+        blank=True,
+        verbose_name='Название бренда | Поле над заголовком | Опционально',
+        default='',
+    )
+
     block_category = models.ForeignKey(
         Product,
         on_delete=models.SET_NULL,

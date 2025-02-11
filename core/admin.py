@@ -16,6 +16,7 @@ class MainPageInfoBlockAdmin(admin.ModelAdmin):
     fields = [
         'block_name',
         'block_header',
+        'block_brand',
         'block_category',
         'block_text',
         'block_image',

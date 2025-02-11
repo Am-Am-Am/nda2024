@@ -112,6 +112,7 @@ class CategoryAdmin(admin.ModelAdmin):
         "parents",
         "logo",
         "banner",
+        "banner_color",
         "slug",
         "status",
         "title",

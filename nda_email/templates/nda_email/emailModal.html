@@ -25,9 +25,9 @@
                                 </div>
                             {% endif %}
                         </div>
-                         <div class="form-floating mb-2">
+                         <div class="form-floating mb-2 w-100">
                             {{ mail_form.phone_number }}
-                            <label for="phone">Ваш телефон</label>
+                            {% comment %} <label for="phone">Ваш телефон</label> {% endcomment %}
                             {% if mail_form.phone_number.errors %}
                                 <div class="text-danger">
                                     {{ mail_form.phone_number.errors }}

@@ -72,7 +72,7 @@
             <div class="productHead">
                 <div class="productCarousel">
                     <div class="carouselWrapper">
-                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 {% for image in images %}
                                     {% cache 600 image.pk %}
@@ -84,31 +84,37 @@
                                     {% endcache %}
                                 {% endfor %}
                             </div>
-                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                                 <span class="carousel-control-prev-icon slick-prev1" aria-hidden="true" style="background-image: url('{% static "images/offer/left.svg"%}')" ></span>
-                                 <span class="visually-hidden">Previous</span>
-                             </button>
-                             <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                                 <span class="carousel-control-next-icon slick-next1" aria-hidden="true" style="background-image: url('{% static "images/offer/right.svg"%}')"></span>
-                                 <span class="visually-hidden">Next</span>
-                             </button>
-                         </div>
-                    </div>
-                    <div class="tumbnailsWrapper">
-                        <div class="carousel-indicators tumbnails-list">
-                            {% for image in images %}
-                                {% cache 600 image.pk %}
-                                    {% with forloop.counter0 as index %}
-                                        {% thumbnail image.image '150x150' format="PNG" as im %}
-                                            <div class="thumbnailContainer" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{index}}" class="{% if forloop.first %}active{% endif %}">
-                                                <img src="{{ im.url }}" class="d-block  thumbnail-image" aria-label="Slide {{ index }}">
-                                            </div>
-                                        {% endthumbnail %}
-                                    {% endwith %}
-                                {% endcache %}
-                            {% endfor %}
+                
+                            {% if images|length > 1 %}
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon slick-prev1" aria-hidden="true" style="background-image: url('{% static "images/offer/left.svg"%}')" ></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon slick-next1" aria-hidden="true" style="background-image: url('{% static "images/offer/right.svg"%}')"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            {% endif %}
                         </div>
-                     </div>
+                    </div>
+                
+                    {% if images|length > 1 %}
+                        <div class="tumbnailsWrapper">
+                            <div class="carousel-indicators tumbnails-list">
+                                {% for image in images %}
+                                    {% cache 600 image.pk %}
+                                        {% with forloop.counter0 as index %}
+                                            {% thumbnail image.image '150x150' format="PNG" as im %}
+                                                <div class="thumbnailContainer" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{index}}" {% if forloop.first %}class="active"{% endif %}>
+                                                    <img src="{{ im.url }}" class="d-block  thumbnail-image" aria-label="Slide {{ index }}">
+                                                </div>
+                                            {% endthumbnail %}
+                                        {% endwith %}
+                                    {% endcache %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
                 
                    
@@ -220,10 +226,10 @@
                                             <th class="col-8 text-start">
                                                 Описание
                                             </th>
-                                            <th class="col-2 text-start">
+                                            <th class="col-1 text-center">
                                                 Уп/шт.
                                             </th>
-                                            <th class="col-4">
+                                            <th class="col-2">
                                                 Количество
                                             </th>
                                         </tr>
@@ -234,14 +240,12 @@
                                         <tr class="table-row">
                                             <td class="text-center align-middle">{{ offer.name | safe}}</td>
                                             <td class="text-start align-middle">{{ offer.text_description | safe}}</td>
-                                            <td class="text-start align-start">{{ offer.shipping_pack | safe}}</td>
+                                            <td class="text-start align-middle">{{ offer.shipping_pack | safe}}</td>
                                             <td class="text-start">
 
-                                                <div class="tableCountAdd"
-                                                    onclick="toggleInput(this)">Добавить
-                                                </div>
+                                               
 
-                                                <div class="quantity-input" style="display:none;">
+                                                <div class="quantity-input">
                                                     <form hx-post="{% url 'cart_add' offer_id=offer.pk %}"
                                                         hx-target="#cart" hx-swap="outerHTML" style="width: 100%;">
                                                         <div class="offerCount">
@@ -325,12 +329,12 @@
                             <div class="productVideoContainer">
                                     {% if  video_file %}
                                         <!-- Локальное видео -->
-                                        <video controls style="width:100%; height:auto">
+                                        <video controls style="width:100%; height:100%">
                                             <source src="{{ video_file.url }}" type="video/mp4">
                                         </video>
                                     {% elif rt_link %}
                                         <!-- Видео с RuTube -->
-                                        <iframe width="100%" height="100%" src="{{rt_link}}" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                                        <iframe width="100%" height="100%" src="https://rutube.ru/play/embed/{{ rt_link|slice:'23:' }}" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
                                     {% elif youtube_link %}
                                         <!-- Видео с Ютуб -->
                                         <iframe width="100%" height="100%" src="{{youtube_link}}" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
@@ -387,28 +391,26 @@
                                             <tr class="table-row">
                                                 <td class="text-center align-middle">{{ offer.name | safe}}</td>
                                                 <td class="text-start align-middle">{{ offer.text_description | safe}}</td>
-                                                <td class="text-start align-start">{{ offer.shipping_pack | safe}}</td>
+                                                <td class="text-start align-middle">{{ offer.shipping_pack | safe}}</td>
                                                 <td class="text-start">
     
-                                                    <div class="tableCountAdd"
-                                                        onclick="toggleInput(this)">Добавить
-                                                    </div>
+                                                   
     
-                                                    <div class="quantity-input" style="display:none;">
+                                                    <div class="quantity-input">
                                                         <form hx-post="{% url 'cart_add' offer_id=offer.pk %}"
                                                             hx-target="#cart" hx-swap="outerHTML" style="width: 100%;">
                                                             <div class="offerCount">
                                                                 <div class="inputCount">
-                                                                    <div class="inputCountBtn1"
-                                                                        onclick="changeQuantity(event, this, -1)">-</div>
+                                                                    {% comment %} <div class="inputCountBtn1"
+                                                                        onclick="changeQuantity(event, this, -1)">-</div> {% endcomment %}
     
                                                                     <input class="form-control" type="number"
                                                                         name="quantity" value="0" required=""
                                                                         id="id_quantity" min="1"/>
-    
+{% comment %}     
                                                                     <div class="inputCountBtn2"
                                                                         onclick="changeQuantity(event, this, 1)">+</div>
-    
+     {% endcomment %}
                                                                 </div>
     
                                                                     <button class="btn btn-primary quantityFormBtn" id="addButton"type="submit"
@@ -492,11 +494,10 @@
                                             </video>
                                         {% elif rt_link %}
                                             <!-- Видео с RuTube -->
-                                            <iframe width="100%" height="100%" src="{{rt_link}}" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-                                        {% elif youtube_link %}
+                                            <iframe width="100%" height="100%" src="https://rutube.ru/play/embed/{{ rt_link|slice:'23:' }}" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
                                             <!-- Видео с Ютуб -->
-                                            <iframe width="100%" height="100%" src="https://rutube.ru/play/embed/405026faf0d5c5600a18d53a9dc84cf2/" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-                                        {% endif %}
+                                            {% comment %} <iframe width="100%" height="100%" src="" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe> {% endcomment %}
+                                        {% endif %} 
                                     
                                 </div>
     
@@ -507,19 +508,9 @@
                  </div>   
                   
                   
-                <div id="cart">
-                    {% if offers_in_cart|length > 0 %}
-                    <div class="placeResult">
-                        <button type="button" class="orderButton" hx-get="{% url 'cart_modal' %}"
-                            hx-target="#dialog" id="orderButton">Оформить заказ</button>
-                        <div class="countItems">
-                            <div class="countText">Всего изделий в заказе:</div>
-                            <div class="count">{{ offers_in_cart|length }}</div>
-                        </div>
-                    </div>
-                    {% endif %}
-                </div>
+                 {% include 'core/components/offer2ButtonCart.html' %}
 
+                
             </div>
         </div>
 
@@ -528,12 +519,12 @@
 
         <!-- Placeholder for the modal -->
         <div id="modal" class="modal fade">
-            <div id="dialog" class="modal-dialog modal-xl" hx-target="this"></div>
+            <div id="dialog" class="modal-dialog modal-xl" hx-target="this" ></div>
         </div>
 
         <!-- Empty toast to show the message -->
 
-        <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 2000;">
+        <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 99999;">
             <div id="toast" class="toast align-items-center text-white border-0 bg-success" role="alert"
                 aria-live="assertive" aria-atomic="true">
                 <div class="d-flex">
@@ -657,7 +648,6 @@
           if (captchaContainer.hasChildNodes()) {
              captchaContainer.innerHTML = ''; // Очищаем старый контейнер
           }
-          console.log('initialize')
           var sitekey = captchaContainer.getAttribute('data-sitekey');
           var smartCaptcha = new window.SmartCaptcha(captchaContainer, sitekey);
        } else {
@@ -665,6 +655,7 @@
        }
    }
 </script>
+
 
 
 

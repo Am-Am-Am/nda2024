@@ -21,17 +21,18 @@ class ContactForm(forms.Form):
         ),
     )
     phone_number = forms.CharField(
-        required=True,
+        # required=True,
         widget=forms.TextInput(
             attrs={
-                "placeholder": "Номер телефона",
-                "class": "form-control",
-                "id": "validationPhoneNumber",
+                # "placeholder": "Номер телефона",
+                "class": "form-control phone-mask",
+                "id": "validationPhoneNumber1",
+         
             }
         ),
     )
     email = forms.CharField(
-        required=True,
+        # required=True,
         widget=forms.TextInput(
             attrs={
                 "placeholder": "example@example.ru",
@@ -78,7 +79,7 @@ class ContactForm(forms.Form):
             attrs={
                 "multiple": False,
                 "allow_empty_file": True,
-                "id": "company_details_input",
+                "id": "contact_form_company_details_input",
                 "form": "cart_modal_form",
                 "class": "form-control",
                 "type": "file",
@@ -88,24 +89,16 @@ class ContactForm(forms.Form):
 
     def clean_phone_number(self):
         phone_number = self.cleaned_data["phone_number"]
-        correct_phone_number = PHONE_PATTERN
-        if not re.match(correct_phone_number, phone_number.strip()):
-            raise ValidationError("Проверьте правильно ли введен номер")
-        return phone_number
+        return phone_number  # Просто возвращаем номер телефона без проверки
 
     def clean_email(self):
-        email = self.cleaned_data["email"].strip()
-        correct_email = EMAIL_PATTERN
-        if not re.match(correct_email, email):
-            raise ValidationError(
-                "Проверьте правильно ли указана почта для обратной связи"
-            )
-        return email
+        email = self.cleaned_data["email"]
+        return email  # Просто возвращаем email без проверки
 
 
 class PhysicalContactForm(forms.Form):
     name = forms.CharField(
-        required=True,
+        # required=True,
         max_length=120,
         widget=forms.TextInput(
             attrs={
@@ -116,12 +109,13 @@ class PhysicalContactForm(forms.Form):
         ),
     )
     phone_number = forms.CharField(
-        required=True,
+        # required=True,
         widget=forms.TextInput(
             attrs={
-                "placeholder": "Номер телефона",
-                "class": "form-control",
+                # "placeholder": "Номер телефона",
+                "class": "form-control phone-mask",
                 "id": "validationPhoneNumber",
+              
             }
         ),
     )
@@ -147,7 +141,7 @@ class PhysicalContactForm(forms.Form):
             attrs={
                 "multiple": False,
                 "allow_empty_file": True,
-                "id": "company_details_input",
+                "id": "p_contact_form_company_details_input",
                 "form": "cart_modal_form",
                 "class": "form-control",
                 "type": "file",
@@ -157,23 +151,16 @@ class PhysicalContactForm(forms.Form):
 
     def clean_phone_number(self):
         phone_number = self.cleaned_data["phone_number"]
-        correct_phone_number = PHONE_PATTERN
-        if not re.match(correct_phone_number, phone_number.strip()):
-            raise ValidationError("Проверьте правильно ли введен номер")
-        return phone_number
+        return phone_number  # Просто возвращаем номер телефона без проверки
 
     def clean_email(self):
-        email = self.cleaned_data["email"].strip()
-        correct_email = EMAIL_PATTERN
-        if not re.match(correct_email, email):
-            raise ValidationError(
-                "Проверьте правильно ли указана почта для обратной связи"
-            )
-        return email
+        email = self.cleaned_data["email"]
+        return email  # Просто возвращаем email без проверки
+
 
 class MailForm(forms.Form):
     name = forms.CharField(
-        required=True,
+        # required=True,
         max_length=120,
         widget=forms.TextInput(
             attrs={
@@ -184,12 +171,13 @@ class MailForm(forms.Form):
         ),
     )
     phone_number = forms.CharField(
-        required=True,
+        # required=True,
         widget=forms.TextInput(
             attrs={
                 "placeholder": "Номер телефона",
-                "class": "form-control",
+                "class": "form-control phone-mask",
                 "id": "validationPhoneNumber",
+         
             }
         ),
     )
@@ -241,7 +229,7 @@ class MailForm(forms.Form):
             attrs={
                 "multiple": False,
                 "allow_empty_file": True,
-                "id": "company_details_input",
+                "id": "mail_form_company_details_input",
                 "form": "cart_modal_form",
                 "class": "form-control",
                 "type": "file",
@@ -249,26 +237,21 @@ class MailForm(forms.Form):
         ),
     )
 
+    
+
     def clean_phone_number(self):
         phone_number = self.cleaned_data["phone_number"]
-        correct_phone_number = PHONE_PATTERN
-        if not re.match(correct_phone_number, phone_number.strip()):
-            raise ValidationError("Проверьте правильно ли введен номер")
-        return phone_number
+        return phone_number  # Просто возвращаем номер телефона без проверки
 
     def clean_email(self):
-        email = self.cleaned_data["email"].strip()
-        correct_email = EMAIL_PATTERN
-        if not re.match(correct_email, email):
-            raise ValidationError(
-                "Проверьте правильно ли указана почта для обратной связи"
-            )
-        return email
+        email = self.cleaned_data["email"]
+        return email  # Просто возвращаем email без проверки
+
     
 
 class CallForm(forms.Form):
     name = forms.CharField(
-        required=True,
+        # required=True,
         max_length=120,
         widget=forms.TextInput(
             attrs={
@@ -279,12 +262,13 @@ class CallForm(forms.Form):
         ),
     )
     phone_number = forms.CharField(
-        required=True,
+        # required=True,
         widget=forms.TextInput(
             attrs={
                 "placeholder": "Номер телефона",
-                "class": "form-control",
+                "class": "form-control phone-mask",
                 "id": "validationPhoneNumber",
+            
             }
         ),
     )
@@ -300,7 +284,7 @@ class CallForm(forms.Form):
             attrs={
                 "multiple": False,
                 "allow_empty_file": True,
-                "id": "company_details_input",
+                "id": "call_form_company_details_input",
                 "form": "cart_modal_form",
                 "class": "form-control",
                 "type": "file",
@@ -310,17 +294,12 @@ class CallForm(forms.Form):
 
     def clean_phone_number(self):
         phone_number = self.cleaned_data["phone_number"]
-        if not re.match(PHONE_PATTERN, phone_number.strip()):
-            raise forms.ValidationError("Проверьте правильно ли введен номер")
-        return phone_number
+        return phone_number  # Просто возвращаем номер телефона без проверки
 
     def clean_email(self):
-        email = self.cleaned_data["email"].strip()
-        if not re.match(EMAIL_PATTERN, email):
-            raise forms.ValidationError(
-                "Проверьте правильно ли указана почта для обратной связи"
-            )
-        return email
+        email = self.cleaned_data["email"]
+        return email  # Просто возвращаем email без проверки
+
     
 # class ApplicationForm(forms.Form):
 #     name = forms.CharField(

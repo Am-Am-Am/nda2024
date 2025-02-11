@@ -1,18 +1,76 @@
-{% if offers %}
-    <h1>Ваш заказ</h1>
-    {% for offer in offers %}
-        {{ offer.name }} - {{ offer.quantity }}
-    {% endfor %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Новый запрос</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #0056b3; /* Темно-синий цвет для заголовков */
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .offer-list {
+            list-style: none;
+            padding: 0;
+        }
+        .offer-list li {
+            margin-bottom: 5px;
+        }
+        .thank-you {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
 
-    <h2>Ваши данные</h2>
-        {{ customer_message }}
-        {{ customer_phone }}
-        {{ customer_email }}
-{% else %}
-    <h1>Ваш запрос</h1>
-        {{ customer_message }}
-        {{ customer_phone }}
-        {{ customer_email }}
+        {% if offers %}
+            <div class="section">
+                <h1>Ваш заказ</h1>
+                <ul class="offer-list">
+                    {% for offer in offers %}
+                        <li><strong>{{ offer.name }}</strong> - {{ offer.quantity }} шт.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
 
-{% endif %}
-<h2>Спасибо за ваш запрос, с вами свяжутся в ближайшее время</h2>
+        <div class="section">
+            <h1>Информация о запросе</h1>
+            {% if name %}
+                <p><strong>ФИО:</strong> {{ name }}</p>
+            {% endif %}
+            {% if company_name %}
+                <p><strong>Компания:</strong> {{ company_name }}</p>
+            {% endif %}
+            {% if inn %}
+                <p><strong>ИНН:</strong> {{ inn }}</p>
+            {% endif %}
+            {% if customer_email %}
+                <p><strong>Email:</strong> {{ customer_email }}</p>
+            {% endif %}
+            {% if customer_phone %}
+                <p><strong>Телефон:</strong> {{ customer_phone }}</p>
+            {% endif %}
+            {% if customer_message %}
+                <p><strong>Сообщение:</strong> {{ customer_message }}</p>
+            {% endif %}
+        </div>
+
+        <p class="thank-you">Спасибо за ваш запрос! С вами свяжутся в ближайшее время.</p>
+
+    </div>
+</body>
+</html>

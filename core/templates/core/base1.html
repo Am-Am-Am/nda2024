@@ -20,6 +20,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://smartcaptcha.yandexcloud.net/captcha.js" async defer></script>
     <script src="{% static 'htmx/htmx.min.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script>
 
     {% block links %}
     
@@ -137,4 +139,111 @@
         });
         
     </script>
+
+ 
+    <script>
+        $(document).ready(function() {
+            // Функция для инициализации масок на всех полях с классом .phone-mask
+            function initializePhoneMasks() {
+                $('.phone-mask').each(function() {
+                    var phoneInput = this;
+    
+                    if (!$(this).hasClass('initialized')) {
+                        // Initialize intlTelInput
+                        const iti = intlTelInput(phoneInput, {
+                            separateDialCode: true,
+                            initialCountry: "ru", // Russia by default
+                            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js", // Include utils.js for formatting and validation
+                            autoPlaceholder: "aggressive", // Enable the autoPlaceholder option
+                            nationalMode: true,      // Display only national numbers
+                        });
+    
+                        // Function to update the phone number value (including the dial code)
+                        function updatePhoneNumber() {
+                            const fullNumber = iti.getNumber(); // Get the full number with dial code
+                            phoneInput.value = fullNumber;       // Update the input field value
+                        }
+    
+                        // Listen for changes to the number
+                        phoneInput.addEventListener('countrychange', updatePhoneNumber); // Use "countrychange" event
+                        phoneInput.addEventListener('keyup', updatePhoneNumber);
+                        phoneInput.addEventListener('blur', updatePhoneNumber); // Update the phone number when input loses focus
+    
+                        // Store the initial number (if any)
+                        updatePhoneNumber();
+    
+                        // Mark as initialized
+                        $(this).addClass('initialized');
+                    }
+                });
+            }
+    
+            // Инициализация масок при первой загрузке страницы
+            initializePhoneMasks();
+    
+            // Обработчик для отслеживания появления новых полей с классом .phone-mask
+            $(document).on('focus', '.phone-mask', function() {
+                var phoneInput = this;
+    
+                if (!$(this).hasClass('initialized')) {
+                    initializePhoneMasks();
+                }
+            });
+    
+            // Инициализация масок при открытии модального окна
+            $('#modal').on('shown.bs.modal', function () {
+                initializePhoneMasks();
+            });
+        });
+    </script>
+    <script>
+        $('#modal').on('shown.bs.modal', function () {
+            function handleFiles(inputId, containerClass) {
+                var input = document.getElementById(inputId);
+                var filenameContainer = document.querySelector(containerClass);
+            
+                input.addEventListener("change", function () {
+                    var fileName = "";
+                    if (this.files && this.files.length > 0) {
+                        fileName = this.files[0].name;
+                    }
+                    filenameContainer.textContent = fileName || "Нет выбранного файла";
+                });
+            }
+
+
+            function legalFunction() {
+                handleFiles("contact_form_company_details_input", ".filename");
+            }
+            
+            function physicalFunction() {
+                handleFiles("p_contact_form_company_details_input", ".filename1");
+            }
+
+
+            const tabs = document.querySelectorAll('#myTab .nav-link');
+            legalFunction()
+            // Подписываемся на событие shown.bs.tab
+            tabs.forEach(tab => {
+                tab.addEventListener('shown.bs.tab', (e) => {
+                    const targetTab = e.target.getAttribute('data-bs-target'); // Получаем цель текущей вкладки
+                    
+                    switch(targetTab) {
+                        case '#legal':
+                            legalFunction(); // Вызываем функцию для юридической вкладки
+                            break;
+                        case '#physical':
+                            physicalFunction(); // Вызываем функцию для физической вкладки
+                            break;
+                        
+                            
+                    }
+                });
+            });
+            
+        
+        });
+     
+        </script>
+
 </body>

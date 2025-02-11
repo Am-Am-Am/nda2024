@@ -192,6 +192,13 @@ class Category(BaseFields):
         verbose_name='Title страницы'
     )
 
+    banner_color = models.CharField(
+        max_length=32,
+        default='#3391c5',
+        null=True,
+        verbose_name='Цвет баннера бренда'
+    )
+
     keywords = models.TextField(
         default='',
         null=True,
