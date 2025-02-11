@@ -2405,7 +2405,15 @@
     .inputCountBtn1, .inputCountBtn2{
         display: none;
     }
-
+    .characteristics_table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    .characteristics_table th,
+    .characteristics_table td {
+        border: 2px solid black;
+    }
     
 }
 
