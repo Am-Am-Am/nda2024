@@ -36,7 +36,7 @@ def breadcrumbs_path(category):
 
 
 class IndexView(TemplateView):
-    template_name = 'core\index.html'
+    template_name = 'core/index.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -128,14 +128,14 @@ class OfferView(TemplateView):
 
             context['product'] = product
             context['brand'] = product.brand
-            context['offers'] = Offer.objects.filter(category=product) # using the `category` related name
+            context['offers'] = Offer.objects.filter(product=product) # using the `category` related name
             context['images'] = ModelImage.objects.filter(product=product)
             context['certificates'] = ModelFile.objects.filter(product=product)
             context['breadcrumbs'] = breadcrumbs_path(product)
             context['cart_product_form'] = CartAddProductForm()
             context['brands'] = Brand.objects.all().order_by('name') # no need to filter, already in the view
             context['specialist'] = product.specialist
-            context['video_file'] = product.video_file
+            # context['video_file'] = product.video_file
             context['youtube_link'] = product.youtube_link
             context['rt_link'] = product.rutube_link
             context['keywords'] = product.keywords

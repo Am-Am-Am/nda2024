@@ -144,13 +144,12 @@ class OfferAdmin(admin.ModelAdmin):
         "name",
         "brand_name",
         "product",
-        "characteristics",
         "place",
         "status",
     )
     list_editable = ("place", "status")
     list_filter = (
-        ("category__brand", RelatedOnlyDropdownFilter),
+        ("product__brand", RelatedOnlyDropdownFilter),
         ("product", CategoryRelatedOnlyDropdownFilter),
         "status",
     )
@@ -169,12 +168,12 @@ class OfferAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         return (
-            super().get_queryset(request).select_related("category", "category__brand")
+            super().get_queryset(request).select_related("product", "product__brand")
         )
 
     @admin.display(description="Бренд", ordering="name")
     def brand_name(self, obj):
-        if getattr(obj, "category"):
+        if getattr(obj, "product"):
             if obj.product.brand:
                 return obj.product.brand.name
         elif hasattr(obj, "brand"):
@@ -222,7 +221,7 @@ class ProductAdmin(admin.ModelAdmin):
         "slug",
         "status",
         "title",
-	    "keywords",
+        "keywords",
         "ceo_description",
         "specialist",
         "youtube_link",

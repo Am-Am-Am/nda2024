@@ -50,7 +50,7 @@
         <div class="catalogItems">
           {% for category in categories|dictsort:'place' %}
             {% if category.status == 'PUBLISHED' %}
-              {% if not category.is_final or category.children.all %}
+              {% if not category.brand %}
                 <a href="{% url 'category' category_slug=category.slug %}">
                   <div class="catalogItem">
                     <div class="catalogItemImg">

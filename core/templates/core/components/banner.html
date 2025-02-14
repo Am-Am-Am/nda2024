@@ -19,28 +19,27 @@
 
   <div class="brandInfo">
     {% if brand %}
-      <h1>{{ brand.name|safe|striptags }}</h1>
+      <h1>{{ brand.name.upper|safe|striptags }}</h1>
       {% if category %}
-        <h2>{{ category.description|safe|striptags }}</h2>
+        <h2>{{ category.name.upper|safe|striptags }}</h2>
       {% elif brand %}
-        <h2>{{ brand.description|safe|striptags }}</h2>
+        <h2>{{ brand.description.upper|safe|striptags }}</h2>
       {% endif %}
-    {% elif category %}
-      <h1>{{ category.name|safe|striptags }}</h1>
-      <h2>{{ category.description|safe|striptags }}</h2>
+    {% elif category and not category.brand %}
+      <h1>{{ category.name.upper|safe|striptags }}</h1>
+      <!-- <h2>{{ category.description.upper|safe|striptags }}</h2> -->
     {% endif %}
   </div>
-
+  {% if category.banner or brand.banner %}
   <div class="brandBannerBg">
     <div class="brandBannerBgImg">
       <img src="{% if category and category.banner %}
                     {{ category.banner.url }}
                   {% elif brand and brand.banner %}
                     {{ brand.banner.url }}
-                  {% else %}
-                    {% static 'images/default_banner.jpg' %}
-                  {% endif %}" 
+                  {% endif %}"
            alt="Banner" /> 
     </div>
   </div>
+  {% endif %}
 </div>
