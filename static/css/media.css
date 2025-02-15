@@ -969,6 +969,9 @@
         font-size: 22px;
     }
 
+    .modal-dialog {
+        max-width: 95%;
+    }
 
 }
 
@@ -1631,6 +1634,8 @@
     .brandBannerBg{
         display: none;
     }
+
+  
 }
 
 @media (max-width: 900px) {

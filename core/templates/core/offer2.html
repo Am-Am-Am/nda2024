@@ -44,8 +44,6 @@
 
 <main class="main">
     <div class="container1">
-
-
         {% include 'core/components/breadcrumbs.html' %}
         {% cache 600 brand.pk product.pk %}
             <div class="brandBanner" style="background: linear-gradient(135deg, {{ brand.banner_color }}, white);">

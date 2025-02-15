@@ -57,7 +57,7 @@
     padding: 10px 20px;
 }
 
-.catalogTutorialElText{
+.catalogTutorialElText {
     width: calc(100% - 70px);
 }
 
@@ -67,7 +67,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-image: url('../images/offer/download_blue.svg');
-    
+
 }
 
 .catalogTutorialLink:hover {
@@ -125,10 +125,10 @@
     gap: 10px;
     height: 50px;
     margin-bottom: 20px;
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: center;
     gap: 20px;
-    
+
 }
 
 #offers-table th {
@@ -154,7 +154,7 @@
     border-radius: 10px;
 }
 
-#offers-table td:first-child{
+#offers-table td:first-child {
     width: 60%;
     font-family: var(--font-family);
     font-weight: 400;
@@ -162,7 +162,7 @@
     color: #1a1a18;
 }
 
-#offers-table td:nth-child(2){
+#offers-table td:nth-child(2) {
     min-width: 10%;
     font-family: var(--font-family);
     font-weight: 500;
@@ -274,7 +274,7 @@
     height: 100%;
 }
 
-.productInfo{
+.productInfo {
     margin-top: 40px;
     /* background-color: #fff; */
 
@@ -285,20 +285,22 @@
     -o-border-radius: 15px;
 }
 
-.glide__slide{
+.glide__slide {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.glide__slide img{
+
+.glide__slide img {
     width: 80%;
 }
 
 
-.productVideoContainer{
+.productVideoContainer {
     width: 1000px;
     height: 600px;
 }
+
 @media (max-width: 600px) {
 
 
@@ -325,517 +327,557 @@
         opacity: 1;
     }
 }
-    @media (max-width: 1440px) {
-        #addButton {
-            font-size: 12px;
-        }
+
+@media (max-width: 1440px) {
+    #addButton {
+        font-size: 12px;
+    }
+
+}
+
+
+@media (max-width: 1260px) {
+
+    .formButton {
+        position: fixed;
+        right: 45px;
+        bottom: 90px;
 
     }
 
-
-    @media (max-width: 1260px) {
-
-        .formButton {
-            position: fixed;
-            right: 45px;
-            bottom: 90px;
-
-        }
-
-        .placeResult {
-            flex-direction: column;
-            align-items: center;
-            height: auto;
-            padding: 10px;
-            bottom: 10px;
-        }
+    .placeResult {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 10px;
+        bottom: 10px;
+    }
 
 
-        .orderButton {
-            width: 300px;
-        }
+    .orderButton {
+        width: 300px;
+    }
 
-        .countItems {
-            width: 300px;
-        }
+    .countItems {
+        width: 300px;
+    }
 
-        .linkContacts {
-            width: 100%;
-        }
+    .linkContacts {
+        width: 100%;
+    }
 
-        .linkContactsEl {
-            width: 100%;
-        }
+    .linkContactsEl {
+        width: 100%;
+    }
 
-        .catalogTutorialElText {
-            font-size: 18px;
-        }
+    .catalogTutorialElText {
+        font-size: 18px;
+    }
 
-        .nav-pills .nav-link {
-            font-size: 18px;
-        }
-
-     
-
-        .sliderImg img {
-            width: 100%;
-        }
-
-        .quantity-input form {
-            height: 100%;
-            width: 100%;
-        }
-
-        .offerCount {
-            flex-direction: column;
-            gap: 10px;
-        }
+    .nav-pills .nav-link {
+        font-size: 18px;
+    }
 
 
-        .table td {
-            height: auto;
-            padding-bottom: 50px;
-        }
 
-        .inputCount {
-            width: 100%;
-            height: 30px;
-        }
+    .sliderImg img {
+        width: 100%;
+    }
 
-        #addButton {
-            font-size: 14px;
-            width: 100%;
-            height: 50px;
-        }
+    .quantity-input form {
+        height: 100%;
+        width: 100%;
+    }
 
-        .modal-dialog {
-            /* width: 95vw;
+    .offerCount {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+
+    .table td {
+        height: auto;
+        padding-bottom: 50px;
+    }
+
+    .inputCount {
+        width: 100%;
+        height: 30px;
+    }
+
+    #addButton {
+        font-size: 14px;
+        width: 100%;
+        height: 50px;
+    }
+
+    .modal-dialog {
+        /* width: 95vw;
             margin: auto; */
-            margin-top: 120px;
-        }
+        margin-top: 120px;
+    }
 
-        .tab-content {
-            padding: 20px;
-        }
+    .tab-content {
+        padding: 20px;
+    }
 
-        .physicalForm {
-            width: 100%;
-            gap: 20px;
-        }
+    .physicalForm {
+        width: 100%;
+        gap: 20px;
+    }
 
+}
+
+
+
+@media (max-width: 900px) {
+
+
+
+    .productTitle {
+        height: auto;
+    }
+
+    .modal-dialog {
+
+        width: 95vw;
+        margin: auto;
+        margin-top: 120px;
+    }
+
+    .modal-lg,
+    .modal-xl {
+        max-width: 95vw;
+    }
+
+}
+
+@media (max-width: 1024px) {
+    .catalogTutorial {
+        gap: 20px;
+    }
+
+    .catalogTutorialLink {
+        width: calc(33% - 15px);
+        height: 160px;
+    }
+
+    .productVideoContainer {
+        width: 800px;
+        height: 400px;
+    }
+}
+
+
+
+@media (max-width: 800px) {
+    .nav-pills .nav-link {
+        font-size: 16px;
+    }
+
+    .catalogTutorial {
+        gap: 20px;
+    }
+
+    .catalogTutorialLink {
+        width: calc(33% - 12px);
+    }
+
+    .modal-dialog {
+
+        width: 95vw;
+        margin: auto;
+        margin-top: 120px;
+    }
+
+    .productVideoContainer {
+        width: 600px;
+        height: 300px;
+    }
+}
+
+@media (max-width: 700px) {
+    .catalogTutorial {
+        gap: 10px;
+    }
+
+    .catalogTutorialLink {
+        width: calc(33%);
+        height: 80px;
+    }
+
+    .table td {
+        font-size: 14px;
+    }
+
+    .modal-dialog {
+
+        width: 95vw;
+        margin: auto;
+        margin-top: 120px;
+    }
+
+    .slick-slide img {
+        width: 100%;
+    }
+
+    .productInfoChoice {
+        display: none;
+    }
+
+    .productTabContent {
+        display: none;
+    }
+
+    .dropDown {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 0 40px 3px rgba(0, 0, 0, 0.15);
+        padding: 10px;
+    }
+
+    .dropDown details {
+        border-bottom: 2px solid #F2F2F2;
+    }
+
+    .dropDown details:last-child {
+        border-bottom: none;
+    }
+
+    .dropDown summary {
+        height: 50px;
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: 600;
     }
 
 
 
-    @media (max-width: 900px) {
-
-
-
-        .productTitle {
-            height: auto;
-        }
-
-        .modal-dialog {
-
-            width: 95vw;
-            margin: auto;
-            margin-top: 120px;
-        }
-
-        .modal-lg,
-        .modal-xl {
-            max-width: 95vw;
-        }
-
-    }
-    @media (max-width: 1024px){
-        .catalogTutorial{
-            gap: 20px;
-        }
-
-        .catalogTutorialLink{
-            width: calc(33% - 15px);
-            height: 160px;
-        }
-
-        .productVideoContainer{
-            width: 800px;
-            height: 400px;
-        }
-    }
-    
-
-
-    @media (max-width: 800px) {
-        .nav-pills .nav-link {
-            font-size: 16px;
-        }
-
-        .catalogTutorial {
-            gap: 20px;
-        }
-
-        .catalogTutorialLink{
-            width: calc(33% - 12px);
-        }
-        .modal-dialog {
-
-            width: 95vw;
-            margin: auto;
-            margin-top: 120px;
-        }
-
-        .productVideoContainer{
-            width: 600px;
-            height: 300px;
-        }
+    details>summary {
+        list-style-type: none;
+        width: 100%;
     }
 
-    @media (max-width: 700px) {
-        .catalogTutorial {
-            gap: 10px;
-        }
 
-        .catalogTutorialLink{
-            width: calc(33%);
-            height: 80px;
-        }
+    details>summary::after {
+        display: inline-block;
+        width: 19px;
+        /* Ширина вашего SVG */
+        height: 11px;
+        /* Высота вашего SVG */
+        background-image: url("data:image/svg+xml,%3Csvg width='20' height='11' viewBox='0 0 20 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18.5558 1.0025L10.0025 9.55585L1 0.553349' stroke='%231A1A18' stroke-linecap='round'/%3E%3C/svg%3E%0A");
 
-        .table td {
-            font-size: 14px;
-        }
-
-        .modal-dialog {
-
-            width: 95vw;
-            margin: auto;
-            margin-top: 120px;
-        }
-
-        .slick-slide img {
-            width: 100%;
-        }
-
-        .productInfoChoice {
-            display: none;
-        }
-
-        .productTabContent {
-            display: none;
-        }
-
-        .dropDown {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            height: auto;
-            background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 0 0 40px 3px rgba(0, 0, 0, 0.15);
-            padding: 10px;
-        }
-
-        .dropDown details {
-            border-bottom: 2px solid #F2F2F2;
-        }
-
-        .dropDown details:last-child {
-            border-bottom: none;
-        }
-
-        .dropDown summary {
-            height: 50px;
-            margin-top: 20px;
-            font-size: 20px;
-            font-weight: 600;
-        }
-        
-
-
-        details>summary {
-            list-style-type: none;
-            width: 100%;
-        }
-
-
-        details>summary::after {
-            display: inline-block;
-            width: 19px;
-            /* Ширина вашего SVG */
-            height: 11px;
-            /* Высота вашего SVG */
-            background-image: url("data:image/svg+xml,%3Csvg width='20' height='11' viewBox='0 0 20 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18.5558 1.0025L10.0025 9.55585L1 0.553349' stroke='%231A1A18' stroke-linecap='round'/%3E%3C/svg%3E%0A");
-            
-            content: '';
-            margin-left: 10px;
-        }
-
-
-        details[open]>summary::after {
-            margin-left: 10px;
-            background-image: url("data:image/svg+xml,%3Csvg width='19' height='11' viewBox='0 0 19 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.929504 9.62134L9.48285 1.06799L18.4853 10.0705' stroke='%231A1A18' stroke-linecap='round'/%3E%3C/svg%3E%0A");
-        }
-
-        .catalogTutorialElText{
-            font-size: 16px;
-        }
-
-        .catalogTutorialLink{
-            width: calc(50% - 10px);
-        }
-
-        .productVideoContainer{
-            width: 500px;
-            height: 300px;
-        }
+        content: '';
+        margin-left: 10px;
     }
 
-    @media (max-width: 600px) {
-        .nav-pills .nav-link {
-            font-size: 14px;
-        }
 
-        .catalogTutorialEl {
-            padding: 0 10px;
-        }
+    details[open]>summary::after {
+        margin-left: 10px;
+        background-image: url("data:image/svg+xml,%3Csvg width='19' height='11' viewBox='0 0 19 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.929504 9.62134L9.48285 1.06799L18.4853 10.0705' stroke='%231A1A18' stroke-linecap='round'/%3E%3C/svg%3E%0A");
+    }
 
-        .catalogTutorialElImg {
-            width: 50px;
-        }
+    .catalogTutorialElText {
+        font-size: 16px;
+    }
 
-        .modal-dialog {
+    .catalogTutorialLink {
+        width: calc(50% - 10px);
+    }
 
-            width: 95vw;
-            margin: auto;
-            margin-top: 120px;
-        }
+    .productVideoContainer {
+        width: 500px;
+        height: 300px;
+    }
+}
+
+@media (max-width: 600px) {
+    .nav-pills .nav-link {
+        font-size: 14px;
+    }
+
+    .catalogTutorialEl {
+        padding: 0 10px;
+    }
+
+    .catalogTutorialElImg {
+        width: 50px;
+    }
+
+    .modal-dialog {
+
+        width: 95vw;
+        margin: auto;
+        margin-top: 120px;
+    }
+
+}
+
+@media (width < 550px) {
+
+    .formButton {
+        position: fixed;
+        right: 15px;
+        bottom: 180px;
 
     }
 
-    @media (width < 550px) {
-
-        .formButton {
-            position: fixed;
-            right: 15px;
-            bottom: 180px;
-
-        }
-
-        .placeResult {
-            flex-direction: column-reverse;
-            align-items: center;
-            height: auto;
-            padding: 10px;
-            bottom: 10px;
-            width: 95%;
-            left: 2.5%;
-            gap: 10px;
-            border-radius: 15px;
-        }
-
-
-        .orderButton {
-            width: 100%;
-            border-radius: 10px;
-            font-size: 16px;
-        }
-
-        .countItems {
-            width: 100%;
-            border-radius: 10px;
-            font-size: 16px;
-        }
-
-        .countItems .count {
-            font-weight: 500;
-            font-size: 16px;
-        }
-
-        .linkContacts {
-            flex-direction: column;
-            align-items: start;
-        }
-
-        .nav-pills .nav-link {
-            font-size: 12px;
-        }
-
-        .catalogTutorialEl {
-            padding: 0 5px;
-        }
-
-        .table td {
-            font-size: 12px;
-        }
-
-        .inputCountBtn1 {
-            display: none;
-        }
-
-        .inputCountBtn2 {
-            display: none;
-        }
-
-        .table th {
-            font-size: 14px;
-        }
-
-        #addButton{
-            font-size: 10px;
-        }
-
-        .tab-content {
-            padding: 10px;
-        }
-
-        .sliderContainer {
-            height: 320px;
-        }
-
-        #offers-table {
-            width: 350px;
-        }
-
-        
-
-        .glide__slide{
-            width: 100%;
-            height: 100%;
-        }
-
-        .glide__slide img{
-            width: 300px;
-            height: auto;
-        }
-
-        .glide__slide .sliderNavEl{
-            width: 100%;
-        }
-
-        .slider-nav{
-            display: none;
-        }
-
-
-        .glide__slide{
-            height: 400px;
-        }
-        .glide__slide img{
-            width: 320px;
-        }       
-
-        #offers-table td:first-child{
-   
-            font-size: 16px;
-    
-        }
-        
-        #offers-table td:nth-child(2){
-    
-            font-size:18px;
-
-        }
-
-        .catalogTutorialElText{
-            font-size: 14px;
-        }
-
-        .productVideoContainer{
-            width: 320px;
-            height: 200px;
-        }
+    .placeResult {
+        flex-direction: column-reverse;
+        align-items: center;
+        height: auto;
+        padding: 10px;
+        bottom: 10px;
+        width: 95%;
+        left: 2.5%;
+        gap: 10px;
+        border-radius: 15px;
     }
 
-    /* @media (min-width: 576px) {
+
+    .orderButton {
+        width: 100%;
+        border-radius: 10px;
+        font-size: 16px;
+    }
+
+    .countItems {
+        width: 100%;
+        border-radius: 10px;
+        font-size: 16px;
+    }
+
+    .countItems .count {
+        font-weight: 500;
+        font-size: 16px;
+    }
+
+    .linkContacts {
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .nav-pills .nav-link {
+        font-size: 12px;
+    }
+
+    .catalogTutorialEl {
+        padding: 0 5px;
+    }
+
+    .table td {
+        font-size: 12px;
+    }
+
+    .inputCountBtn1 {
+        display: none;
+    }
+
+    .inputCountBtn2 {
+        display: none;
+    }
+
+    .table th {
+        font-size: 14px;
+    }
+
+    #addButton {
+        font-size: 10px;
+    }
+
+    .tab-content {
+        padding: 10px;
+    }
+
+    .sliderContainer {
+        height: 320px;
+    }
+
+
+
+
+
+    .glide__slide {
+        width: 100%;
+        height: 100%;
+    }
+
+    .glide__slide img {
+        width: 300px;
+        height: auto;
+    }
+
+    .glide__slide .sliderNavEl {
+        width: 100%;
+    }
+
+    .slider-nav {
+        display: none;
+    }
+
+
+    .glide__slide {
+        height: 400px;
+    }
+
+    .glide__slide img {
+        width: 320px;
+    }
+
+    #offers-table td:first-child {
+
+        font-size: 16px;
+
+    }
+
+    #offers-table td:nth-child(2) {
+
+        font-size: 18px;
+
+    }
+
+    .catalogTutorialElText {
+        font-size: 14px;
+    }
+
+    .productVideoContainer {
+        width: 320px;
+        height: 200px;
+    }
+}
+
+/* @media (min-width: 576px) {
         .modal-dialog {
             max-width: 95vw;
 
         }
     } */
 
-    @media (width < 480px) {
-        .formButton {
-            position: fixed;
-            right: 20px;
-            bottom: 150px;
-        }
+@media (width < 480px) {
+    .formButton {
+        position: fixed;
+        right: 20px;
+        bottom: 150px;
+    }
 
-        .placeResult {
-            flex-direction: column-reverse;
-            align-items: center;
-            height: auto;
-            padding: 10px;
-            bottom: 20px;
-            width: 95%;
-            left: 2.5%;
-            gap: 10px;
-            border-radius: 15px;
-        }
-
-
-        .orderButton {
-            width: 100%;
-            border-radius: 10px;
-            font-size: 16px;
-            height: 40px;
-        }
-
-        .countItems {
-            width: 100%;
-            border-radius: 10px;
-            font-size: 16px;
-            height: 40px;
-        }
-
-        .countItems .count {
-            font-weight: 500;
-            font-size: 16px;
-        }
-
-        .nav-pills .nav-link {
-            font-size: 10px;
-        }
-
-        .catalogTutorial {
-            flex-direction: column;
-        }
-
-        .catalogTutorialLink {
-            width: 100%;
-        }
-
-        .footerLogo img {
-            width: 100%;
-            height: auto;
-        }
-
-        .linkContacts a {
-            font-size: 14px;
-        }
-
-        .modal-dialog {
-            margin-top: 100px;
-            width: 95vw;
-        }
-
-        .productHead {
-            height: auto;
-        }
-
-
-
-
+    .placeResult {
+        flex-direction: column-reverse;
+        align-items: center;
+        height: auto;
+        padding: 10px;
+        bottom: 20px;
+        width: 95%;
+        left: 2.5%;
+        gap: 10px;
+        border-radius: 15px;
     }
 
 
-    @media (width < 400px) {
-        .table th {
-            font-size: 12px;
-        }
-
-        .table td {
-            font-size: 10px;
-        }
+    .orderButton {
+        width: 100%;
+        border-radius: 10px;
+        font-size: 16px;
+        height: 40px;
     }
 
- 
+    .countItems {
+        width: 100%;
+        border-radius: 10px;
+        font-size: 16px;
+        height: 40px;
+    }
+
+    .countItems .count {
+        font-weight: 500;
+        font-size: 16px;
+    }
+
+    .nav-pills .nav-link {
+        font-size: 10px;
+    }
+
+    .catalogTutorial {
+        flex-direction: column;
+    }
+
+    .catalogTutorialLink {
+        width: 100%;
+    }
+
+    .footerLogo img {
+        width: 100%;
+        height: auto;
+    }
+
+    .linkContacts a {
+        font-size: 14px;
+    }
+
+    .modal-dialog {
+        margin-top: 100px;
+        width: 95vw;
+    }
+
+    .productHead {
+        height: auto;
+    }
+
+
+
+
+}
+
+
+@media (width < 400px) {
+    .table th {
+        font-size: 12px;
+    }
+
+    .table td {
+        font-size: 10px;
+    }
+}
+
+/* Стили для формы */
+
+
+.mainFormContainer {
+    display: flex;
+    gap: 40px;
+}
+
+.order_list {
+    flex: 3;
+    margin-top: 40px;
+}
+
+.mainForm {
+    flex: 7;
+}
+
+.order_list_less_800{
+    display: none;
+}
+
+.order_list_over_800{
+    display: block;
+}
+
+@media (max-width: 800px) {
+    .mainFormContainer {
+        flex-direction: column-reverse;
+    }
+
+    .order_list_over_800{
+        display: none;
+    }
+
+    .order_list_less_800{
+        display: block;
+    }
+  
+}
