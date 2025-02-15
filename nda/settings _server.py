@@ -181,7 +181,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = ('static',)
+# STATICFILES_DIRS = ('static',)
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
@@ -191,12 +191,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
-
-# DJANGO_SENDFILE SETTINGS
-PRIVATE_ROOT = os.getenv('PRIVATE_PATH', os.path.join(BASE_DIR, 'private')) 
-SENDFILE_ROOT = 'private/'
-SENDFILE_BACKEND = 'django_sendfile.backends.simple'
 
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'

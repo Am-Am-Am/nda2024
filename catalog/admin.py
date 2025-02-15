@@ -197,9 +197,21 @@ class SpecialistAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ["name", "brand"]
     prepopulated_fields = {"slug": ("name",)}
-    list_filter = ["brand", "is_final"]
+    list_select_related = ["brand"]
+    list_display = ("name", "brand", "slug", "place", "status",)
+    list_editable = ("place", "slug", "status")
+    list_filter = (
+        ("brand", RelatedOnlyDropdownFilter),
+        ("parents", CategoryRelatedOnlyDropdownFilter),
+        "status",
+        "is_final"
+    )
+    filter_horizontal = ("parents",)
+    autocomplete_fields = ("brand",)
+    view_on_site = True
+    actions_on_bottom = True
+    list_per_page = 25
     search_fields = ["name"]
     inlines = [
         OfferInline,
@@ -219,13 +231,13 @@ class ProductAdmin(admin.ModelAdmin):
         "place",
         "banner",
         "slug",
-        "status",
         "title",
         "keywords",
         "ceo_description",
         "specialist",
         "youtube_link",
         "rutube_link",
+        "status",
     ]
 
     def get_form(self, request, obj=None, **kwargs):

@@ -1,11 +1,7 @@
 from django.db import models
 from django.urls import reverse
-from django.core.files.storage import FileSystemStorage
 from django.utils.text import slugify
-from nda.settings import PRIVATE_ROOT, SENDFILE_ROOT
 from ckeditor.fields import RichTextField
-
-private_storage = FileSystemStorage(location=PRIVATE_ROOT + SENDFILE_ROOT, base_url='/files')
 
 
 """Общие классы и миксины"""
@@ -207,12 +203,6 @@ class Category(BaseFields):
         default=False,
         verbose_name='Отметка о том, что категория является финальной и в ней содержатся товары'
     )
-    # video_file = models.FileField(
-    #     upload_to='category/videos',
-    #     null=True,
-    #     blank=True,
-    #     verbose_name='Видео файл'
-    # )
     youtube_link = models.CharField(
         max_length=255,
         null=True,
@@ -232,13 +222,6 @@ class Category(BaseFields):
         blank=True,
         verbose_name='Специалист, ответственный за категорию'
     )
-    # ru = models.CharField(
-    #     max_length=255,
-    #     null=True,
-    #     blank=True,
-    #     verbose_name='Номер РУ'
-    # )
-
     # вот этот метод save точно нужен????
     def save(self, *args, **kwargs):
         self.full_clean()

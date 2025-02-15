@@ -4,16 +4,16 @@
 {% load thumbnail cache %}
 {% load static cache %}
 {% block title %}
-    <title>{{ product.title }}</title>
+    <title>{{ product.name }}</title>
 {% endblock %}
 
 {% block metatag %}
-  <meta name="keywords" content="{{product.keywords}}">
   <meta property="og:url" content="https://nda.ru{{ request.path }}">
   <meta property="og:title" content="{{product.title}}">
   <meta property="og:type" content="website">
-  <meta property="og:description" content="{{product.description|striptags}}">
-  <meta name="description" content="{{product.description|striptags}}">
+  <meta property="og:description" content="{{product.ceo_description|striptags}}">
+  <meta name="description" content="{{product.ceo_description|striptags}}">
+  <meta name="keywords" content="{{product.keywords}}">
 {% endblock %}
 
 
@@ -116,10 +116,6 @@
                         </div>
                     {% endif %}
                 </div>
-                
-                   
-                
-
 
                 <div class="productTitle">
                     <div class="productTitleText">

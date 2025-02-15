@@ -1,14 +1,7 @@
 .env
 /.venv
+/venv
 .idea
-/dumps
 /.vscode
-/temporary_unused_code
 **/**/__pycache__
-
-/theory
-/private
-dump.rdb
-/tmp
-
 /media

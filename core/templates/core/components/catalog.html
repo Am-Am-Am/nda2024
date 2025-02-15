@@ -36,7 +36,6 @@
               </a>
             {% endif %}
           {% endfor %}
-
           <!-- 3 пустых дива - для ровной сетки flex -->
           <div class="emptyEl"></div>
           <div class="emptyEl"></div>
@@ -64,10 +63,9 @@
                     <p>{{ category.description|safe|striptags }}</p>
                   </div>
                 </a>
+                {% endif %}
               {% endif %}
-            {% endif %}
           {% endfor %}
-
           <!-- 3 пустых дива - для ровной сетки flex -->
           <div class="emptyEl"></div>
           <div class="emptyEl"></div>
@@ -109,11 +107,7 @@
     </div>
   </div>
   <div class="place">
-    <h2>Наш офис и склад</h2>
-    <!--       <p>Наши 5 филиалов в Санкт-Петербуге являются частью большой сети клиник. У нас есть учебный центр,
-            который готовит лучших врачей и ассистентов в России. В наших филалах работают стоматологи всех
-            специализаций: врачи общего профиля, ортодонты, ортопеды, пародонтологи, хирурги (в том числе -
-            челюстно-лицевого профиля), имплантологи, анестезиологи-реаниматологи.</p>       -->
+    <h2>Наши адреса</h2>
     <div class="map">
       <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A483b0761fd50f52fa933af3311c796503d73aaca44becb79b973a587356fa263&amp;source=constructor&theme=dark" width="100%" height="100%" frameborder="0"></iframe>
     </div>

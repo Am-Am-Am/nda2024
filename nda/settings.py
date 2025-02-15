@@ -193,12 +193,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
-# DJANGO_SENDFILE SETTINGS
-PRIVATE_ROOT = os.getenv('PRIVATE_PATH', os.path.join(BASE_DIR, 'private')) 
-SENDFILE_ROOT = 'private/'
-SENDFILE_BACKEND = 'django_sendfile.backends.simple'
-
-
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
