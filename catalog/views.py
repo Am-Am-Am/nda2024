@@ -7,8 +7,6 @@ from catalog.models import Category, Brand, Offer, Product
 from files.models import ModelFile, ModelImage, InstructionsFile, CatalogFile
 from cart.forms import CartAddProductForm
 from django.views.generic import DetailView
-from django.core.mail import send_mail
-from django.views.generic.edit import FormView
 from django.urls import resolve
 import datetime
 import time
@@ -38,7 +36,7 @@ def breadcrumbs_path(category):
 
 
 class IndexView(TemplateView):
-    template_name = 'core\index.html'
+    template_name = 'core/index.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -73,6 +71,10 @@ class CategoryView(TemplateView):
         context['breadcrumbs'] = breadcrumbs_path(category)
         context['brands'] = Brand.visible.all().order_by('name')
 
+        context['keywords'] = category.keywords
+        context['ceo_description'] = category.ceo_description
+        context['title'] = category.title
+
         current_year = datetime.datetime.now().year
         context['current_year'] = current_year
         return context
@@ -95,6 +97,9 @@ class BrandView(TemplateView):
         context['brand'] = brand
         context['brands'] = Brand.visible.all().order_by('name')
 
+        context['ceo_description'] = brand.ceo_description
+        context['title'] = brand.title
+
         current_year = datetime.datetime.now().year
         context['current_year'] = current_year
         return context
@@ -113,14 +118,14 @@ class OfferView(TemplateView):
 
         # Get Category based on slug.
         category_slug = self.kwargs['category_slug']
-        category = get_object_or_404(Category.objects.select_related('brand'), slug=category_slug)
+        category = get_object_or_404(Category.visible.select_related('brand'), slug=category_slug)
         current_year = datetime.datetime.now().year
         context['current_year'] = current_year
         context['timestamp'] = str(time.time())
         if category.is_final:
             # If category is a Product (is_final=True), load related data
             try:
-                product = Product.objects.select_related('brand','specialist').get(slug=category_slug)
+                product = Product.visible.select_related('brand','specialist').get(slug=category_slug)
             except Product.DoesNotExist:
                 # Handle the case where product was not found for some reason
                 context['product'] = None
@@ -129,27 +134,26 @@ class OfferView(TemplateView):
 
             context['product'] = product
             context['brand'] = product.brand
-            context['offers'] = Offer.objects.filter(category=product) # using the `category` related name
+            context['offers'] = Offer.visible.filter(product=product) # using the `category` related name
             context['images'] = ModelImage.objects.filter(product=product)
             context['certificates'] = ModelFile.objects.filter(product=product)
             context['breadcrumbs'] = breadcrumbs_path(product)
             context['cart_product_form'] = CartAddProductForm()
-            context['brands'] = Brand.objects.all().order_by('name') # no need to filter, already in the view
+            context['brands'] = Brand.visible.all().order_by('name') # no need to filter, already in the view
             context['specialist'] = product.specialist
-            context['video_file'] = product.video_file
             context['youtube_link'] = product.youtube_link
-            context['rt_link'] = product.rt_link
+            context['rt_link'] = product.rutube_link
             context['keywords'] = product.keywords
+            context['ceo_description'] = product.ceo_description
             context['title'] = product.title
             context['instructions'] = InstructionsFile.objects.filter(product=product)
             context['catalogs'] = CatalogFile.objects.filter(product=product)
         else:
-           # Handle case when category is not a final product (e.g. category page)
-           context['category'] = category
-           context['product'] = None
-           context['offers'] = None
-           # Additional logic for category display if needed
-
+            # Handle case when category is not a final product (e.g. category page)
+            context['category'] = category
+            context['product'] = None
+            context['offers'] = None
+            # Additional logic for category display if needed
         return context
 
 
@@ -175,16 +179,15 @@ class SiteSearchView(ListView):
         )
         return qs
 
+
 class BrandsWithCertificatesView(ListView):
     model = Brand
     template_name = 'core/certificates.html'  
     context_object_name = 'brands'
 
     def get_queryset(self):
-        
         queryset = super().get_queryset()
         brands_with_certs = set(Brand.objects.filter(category__modelfile__isnull=False))
-
         return queryset.filter(id__in=[b.id for b in brands_with_certs])
     
     def get_context_data(self, **kwargs):
@@ -222,7 +225,8 @@ class BrandCertificatesDetailView(DetailView):
         current_year = datetime.datetime.now().year
         context['current_year'] = current_year
         return context
-    
+
+
 class WorkView(TemplateView):
     template_name = 'core/work.html'
     def get_context_data(self, **kwargs):
@@ -240,36 +244,9 @@ class WorkView(TemplateView):
         return context
 
 
-class PrivacyView(TemplateView):
+class PrivacyView(WorkView):
     template_name = 'core/privacy.html'
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
 
-        current_path = self.request.path_info
-        match = resolve(current_path)
-        current_url_name = match.url_name
-        context['current_url_name'] = current_url_name
 
-        context['brands'] = Brand.visible.all().order_by('name')
-
-        current_year = datetime.datetime.now().year
-        context['current_year'] = current_year
-        return context
-
-class ContactsView(TemplateView):
+class ContactsView(WorkView):
     template_name = 'core/contacts.html'
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        current_path = self.request.path_info
-        match = resolve(current_path)
-        current_url_name = match.url_name
-        context['current_url_name'] = current_url_name
-
-        context['brands'] = Brand.visible.all().order_by('name')
-
-        current_year = datetime.datetime.now().year
-        context['current_year'] = current_year
-        return context
-
-

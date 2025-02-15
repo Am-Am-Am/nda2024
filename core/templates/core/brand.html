@@ -4,6 +4,15 @@
 {% block title %}
   <title>{{ brand.name }}</title>
 {% endblock %}
+
+{% block metatag %}
+  <meta property="og:url" content="https://nda.ru{% url 'brand' brand_slug=brand.slug %}">
+  <meta property="og:title" content="{{brand.title}}">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="{{brand.ceo_description|striptags}}">
+  <meta name="description" content="{{brand.description|striptags}}">
+{% endblock %}
+
 {% block content %}
   <header style="height: 0px;">
     <!-- летающая шапка -->
@@ -38,7 +47,7 @@
                   <a href="{% url 'category' category_slug=category.slug %}">
                     <div class="catalogBrandItemImg">
                       {% if category.logo %}
-                        <img src="{{ category.logo.url }}" alt="Логотип категории" />
+                        <img src="{{ category.logo.url }}" alt="Логотип {{ category.name }} {{ brand.name }}" />
                       {% else %}
                         <img src="{% static "/images/noImage.jpg" %}" alt="Нет логотипа" />
                       {% endif %}
@@ -51,7 +60,7 @@
                   <a href="{% url 'offer' brand_slug=category.brand.slug category_slug=category.slug %}">
                     <div class="catalogBrandItemImg">
                       {% if category.logo %}
-                        <img src="{{ category.logo.url }}" alt="Логотип категории" />
+                        <img src="{{ category.logo.url }}" alt="Логотип {{ category.name }} {{ brand.name }}" />
                       {% else %}
                         <img src="{% static "/images/noImage.jpg" %}" alt="Нет логотипа" />
                       {% endif %}
@@ -65,7 +74,7 @@
                 <a href="{% url 'category' category_slug=category.slug %}">
                   <div class="catalogBrandItemImg">
                     {% if category.logo %}
-                      <img src="{{ category.logo.url }}" alt="Логотип категории" />
+                      <img src="{{ category.logo.url }}" alt="Логотип {{ category.name }} {{ brand.name }}" />
                     {% else %}
                     <img src="{% static "/images/noImage.jpg" %}" alt="Нет логотипа" />
                     {% endif %}
