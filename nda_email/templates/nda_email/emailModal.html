@@ -1,4 +1,4 @@
-<!-- <script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script> -->
+<script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script> 
 
 <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -9,11 +9,16 @@
                     id='close1'></button>
             </div>
             <div class="modal-body">
-                <form
+                    <form
                     id="mail_form"
+                    action="{% url 'mail_submit' %}"
                     method="post"
                     enctype="multipart/form-data"
-                    novalidate>
+                    hx-post="{% url 'mail_submit' %}"
+                    hx-target="#mail_form"
+                    hx-swap="none"
+                    novalidate
+                >
                     {% csrf_token %}
                     <div id="mail_form_container">
                          <div class="form-floating mb-2">
@@ -81,12 +86,17 @@
                                 {% endif %}
                             </label>
                         </div>
-                        <div
+                        {% comment %} <div
                                 id="captcha-container"
                                 class="smart-captcha mb-3"
                                 data-sitekey="ysc1_sxny6cNZmnvhyJKrojDDLNxj0nvkGnTleldHzqEo9d9475ca"
                         >
-                        </div>
+                        </div> {% endcomment %}
+                        <div 
+                                id="captcha-container"
+                                class="smart-captcha"
+                                data-sitekey="ysc1_VyMk6kFwNVLym6k3ga8J4WyDeBNRooy4hPhYe2tr9d2736aa"
+                            ></div>
                         <button type="submit" class="btn btn-success mb-3" form="mail_form">Отправить</button>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="emailModal" required />

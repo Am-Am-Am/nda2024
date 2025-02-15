@@ -1,14 +1,22 @@
 // replace <span id="offers-in-cart-counter"> inner value with reduced one on offer removed from cart
 document.addEventListener('htmx:afterOnLoad', function(event) {
-    if (event?.detail?.requestConfig?.elt?.id !== "remove-offer-button") {
-        return
-    }
-    const counter = document.querySelector("#offers-in-cart-counter")
-    const currentCount = parseInt(counter.textContent, 10);
+  if (event?.detail?.requestConfig?.elt?.id !== "remove-offer-button") {
+      return;
+  }
 
-    if (!isNaN(currentCount) && currentCount > 0) {
-        counter.textContent = String(currentCount - 1);
-    }
+  setTimeout(function() { // Добавляем задержку
+      const counter = document.querySelector("#offers-in-cart-counter");
+
+      if (counter) {
+          const currentCount = parseInt(counter.textContent, 10);
+
+          if (!isNaN(currentCount) && currentCount > 0) {
+              counter.textContent = String(currentCount - 1);
+          }
+      } else {
+          console.warn("Element with ID 'offers-in-cart-counter' not found.");
+      }
+  }, 100); // Задержка в 100 миллисекунд (можно настроить)
 });
 
 // htmx handlers

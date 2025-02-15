@@ -131,7 +131,7 @@ CACHES = {
 }
 
 # CELERY SETTINGS
-CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL', 'redis://localhost:6379')
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
@@ -206,18 +206,30 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 
 # EMAIL_SENDER SETTINGS
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = os.getenv('HOST_USER' , 'amur.almukhametov@gmail.com')
+# EMAIL_HOST_PASSWORD = os.getenv('HOST_PASSWORD', 'gqpw qsxy wcwu qczo')
+# RECIPIENT_EMAIL = os.getenv('RECIPIENT')
+# EMAIL_PORT = os.getenv('PORT', '587')
+# EMAIL_USE_TLS = True
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = os.getenv('HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('HOST_PASSWORD')
+EMAIL_HOST = '127.0.0.1'  # IP-адрес, где работает Papercut
+EMAIL_PORT = 25         # Порт, на котором слушает Papercut (обычно 25)
+EMAIL_HOST_USER = ''   # Не нужно указывать имя пользователя для Papercut
+EMAIL_HOST_PASSWORD = '' # Не нужно указывать пароль для Papercut
+EMAIL_USE_TLS = False   # Отключаем TLS для Papercut
+EMAIL_USE_SSL = False   # Отключаем SSL для Papercut (обычно Papercut не использует SSL)
+
+# Оставьте это, если оно вам нужно для других целей (например, для получения из переменных окружения)
 RECIPIENT_EMAIL = os.getenv('RECIPIENT')
-EMAIL_PORT = os.getenv('PORT', '587')
-EMAIL_USE_TLS = True
+
 
 
 # YANDEX CAPTCHA SETTINGS
 SECURE_REFERRER_POLICY = 'no-referrer-when-downgrade'
-YACAPTCHA_SERVER = os.getenv('SERVER_KEY')
+YACAPTCHA_SERVER = os.getenv('SERVER_KEY', 'ysc2_VyMk6kFwNVLym6k3ga8JsIctBN6nnYgcjLCWZdce1a8a26b8')
 
 
 
