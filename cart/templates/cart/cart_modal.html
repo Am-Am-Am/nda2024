@@ -18,9 +18,11 @@
                   <button class="nav-link" id="physical-tab" data-bs-toggle="tab" data-bs-target="#physical" type="button" role="tab" aria-controls="physical" aria-selected="false">Физическое лицо</button>
                 </li>
               </ul>
-              <div class="order_list order_list_less_800">
+              {% comment %} <div class="order_list order_list_less_800">
+
                 {% include 'cart/cart_popup.html' %}
-              </div>
+
+              </div> {% endcomment %}
               
             </div>
          
@@ -58,9 +60,12 @@
 
         
 
-          <div class="order_list order_list_over_800">
+          <div class="order_list">
+
             {% include 'cart/cart_popup.html' %}
+
           </div>
+
         </div>
       </div>
 </div>
