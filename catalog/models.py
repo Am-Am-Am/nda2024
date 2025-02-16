@@ -6,6 +6,7 @@ from django.core.validators import URLValidator, ValidationError
 from django.utils.text import slugify
 from nda.settings import PRIVATE_ROOT, SENDFILE_ROOT
 from ckeditor.fields import RichTextField
+from django.core.cache import cache
 
 private_storage = FileSystemStorage(location=PRIVATE_ROOT + SENDFILE_ROOT, base_url='/files')
 
@@ -99,8 +100,22 @@ class Brand(BaseFields):
     def get_absolute_url(self):
         return reverse('brand', kwargs={'brand_slug': self.slug})
 
-    def __str__(self):
+    def __str__(self):  
         return self.name.upper()
+
+    def save(self, *args, **kwargs):
+        cache_key_breadcrumbs = f'brand_breadcrumbs {self.slug}'
+        cache_key_banner = f'brand_banner {self.slug}'
+        cache.delete(cache_key_breadcrumbs)
+        cache.delete(cache_key_banner)
+        super().save(*args, **kwargs)  # Сначала сохраняем, потом инвалидируем кэш
+
+    def delete(self, *args, **kwargs):
+        cache_key_breadcrumbs = f'brand_breadcrumbs {self.slug}'
+        cache_key_banner = f'brand_banner {self.slug}'
+        cache.delete(cache_key_breadcrumbs)
+        cache.delete(cache_key_banner)
+        super().delete(*args, **kwargs)  # Сначала удаляем, потом инвалидируем кэш
 
 
 
@@ -116,27 +131,20 @@ class Specialist(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        cache_key = f'specialist_{self.pk}' 
+        cache.delete(cache_key)  # Инвалидируем кэш
+        super().save(*args, **kwargs)  # Сохраняем объект
+
+    def delete(self, *args, **kwargs):
+        cache_key = f'specialist_{self.pk}' 
+        cache.delete(cache_key)  # Инвалидируем кэш
+        super().delete(*args, **kwargs)  # Удаляем объект
 
 
 
 
 class Category(BaseFields):
-    def check_if_category_is_final(self):
-        if self.parents.filter(parent__isnull=False).exists():
-            self.is_final = True
-            self.save(update_fields=['is_final'])
-
-    @classmethod
-    def post_save(cls, instance, created, updated, using, force_update, *args, **kwargs):
-        if created:
-            cls.check_if_category_is_final(instance)
-
-
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name, allow_unicode=True)
-        super().save(*args, **kwargs)
-
     name = models.CharField(
         max_length=256,
         verbose_name='Название | Заголовок'
@@ -262,6 +270,7 @@ class Category(BaseFields):
             return str(self.brand).upper() + '----' + self.name.upper()
         return 'ПОДБОРКА' + '----' + self.name.upper()
     
+    
 class ProductManager(models.Manager):
     def get_queryset(self):
       return super().get_queryset().filter(is_final=True)
@@ -340,7 +349,30 @@ class Offer(BaseFields):
         verbose_name = 'Код'
         verbose_name_plural = 'Коды'
 
-    def __str__(self):
+    def __str__(self): # __str__
         return self.name
 
+    def save(self, *args, **kwargs):
+        # Инвалидируем кэш, связанный с этим Offer
+        cache_key_offer = f'offer_{self.pk}'
+        cache.delete(cache_key_offer)
+
+        # Также инвалидируем кэш, связанный с категорией этого Offer
+        if self.category:
+            cache_key_category = f'category_{self.category.slug}'
+            cache.delete(cache_key_category)
+
+        super().save(*args, **kwargs)  # Сначала сохраняем, потом инвалидируем кэш
+
+    def delete(self, *args, **kwargs):
+        # Инвалидируем кэш, связанный с этим Offer
+        cache_key_offer = f'offer_{self.pk}'
+        cache.delete(cache_key_offer)
+
+        # Также инвалидируем кэш, связанный с категорией этого Offer
+        if self.category:
+            cache_key_category = f'category_{self.category.slug}'
+            cache.delete(cache_key_category)
+
+        super().delete(*args, **kwargs)  # Сначала удаляем, потом инвалидируем кэш
 

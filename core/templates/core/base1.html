@@ -52,8 +52,27 @@
 
 <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     {% block content%}
-
+  
     {% endblock %}  
+    <div class="container1">
+        <div class="toast-container position-fixed">
+            <div id="toast" class="toast align-items-center text-white border-0 bg-success" role="alert"
+                aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div id="toast-body" class="toast-body"></div>
+                </div>
+            </div>
+            <div id="toast-warning" class="toast align-items-center text-white border-0 bg-warning" role="alert"
+                aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div id="toast-warning-body" class="toast-body"></div>
+                </div>
+            </div>
+        </div> 
+    </div>
+        
+  
+
 
     {% block script%}
     
@@ -65,6 +84,7 @@
     <script src="{% static 'scripts/formController.js' %}"></script>
     <script src="{% static "scripts/buttonInFormController.js" %}"></script>
     <script src="{% static "scripts/tableScript.js" %}"></script>
+    <script src="{% static 'scripts/offers-htmx-handlers.js' %}"></script>
     <script>
         $(document).ready(function() {
             // Функция для инициализации масок на всех полях с классом .phone-mask

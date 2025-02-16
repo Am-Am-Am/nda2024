@@ -125,7 +125,7 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "BACKEND": 'django.core.cache.backends.dummy.DummyCache',
+        # "BACKEND": 'django.core.cache.backends.dummy.DummyCache',
         "LOCATION": "redis://127.0.0.1:6379",
     }
 }
@@ -260,6 +260,42 @@ TINYMCE_DEFAULT_CONFIG = {
     "a11ycheck ltr rtl | showcomments addcomment code",
     "custom_undo_redo_levels": 10,
     "language": "ru_RU"
+}
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',  
+            'class': 'logging.FileHandler',
+            'filename': 'nda_email.log',  # Укажите имя файла для логов
+            'formatter': 'verbose',
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+    },
+    'loggers': {
+        'nda_email': {  # Используйте имя логгера из вашей функции
+            'handlers': ['file', 'console'],
+            'level': 'DEBUG',  
+            'propagate': True,
+        },
+    },
 }
 
 

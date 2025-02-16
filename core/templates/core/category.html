@@ -7,12 +7,12 @@
 {% endblock %}
 
 {% block metatag %}
-  <meta name="keywords" content="{{category.keywords}}">
-  <meta property="og:url" content="https://nda.ru{% url 'category' category_slug=category.slug %}">
-  <meta property="og:title" content="{{category.title}}">
-  <meta property="og:type" content="website">
-  <meta property="og:description" content="{{category.description|striptags}}">
-  <meta name="description" content="{{category.description|striptags}}">
+  <meta name="keywords" content="{{ category.keywords }}" />
+  <meta property="og:url" content="https://nda.ru{% url 'category' category_slug=category.slug %}" />
+  <meta property="og:title" content="{{ category.title }}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="{{ category.description|striptags }}" />
+  <meta name="description" content="{{ category.description|striptags }}" />
 {% endblock %}
 
 {% block content %}
@@ -23,53 +23,50 @@
   </header>
   <main class="main">
     <div class="container1">
-       {% cache 86400 'breadcrumbs_cache' %}
-         {% include 'core/components/breadcrumbs.html' %}
-       {% endcache %}
+      {% cache 86400 'breadcrumbs_cache' %}
+      {% include 'core/components/breadcrumbs.html' %}
+      {% endcache %}
 
-       {% cache 86400 'banner_cache' %}
-           {% include 'core/components/banner.html' %}
-       {% endcache %}
+      {% cache 86400 'banner_cache' %}
+      {% include 'core/components/banner.html' %}
+      {% endcache %}
 
       <!-- каталог -->
       <div class="catalogBrand">
         <!-- Выбор по производителям -->
 
         <div class="catalogBrandItems">
-            {% cache 3600 'category_children_cache' category.id %}
-
-          {% for category in category.children.all|dictsort:'place'%}
+          {% for category in category.children.all|dictsort:'place' %}
             {% if category.status == 'PUBLISHED' %}
-            {% if category.children.all or not category.is_final%}
-              <div class="catalogBrandItem">
-                <a href="{% url 'category' category_slug=category.slug %}">
-                  <div class="catalogBrandItemImg">
-                    {% if category.logo %}
-                      <img src="{{ category.logo.url }}" alt="Логотип категории" />
-                    {% else %}
-                      <img src="{% static "/images/noImage.jpg" %}" alt="Нет логотипа" />
-                    {% endif %}
-                  </div>
-                  <div class="catalogBrandItemTitle">{{ category.name }}</div>
-                </a>
-              </div>
+              {% if category.children.all or not category.is_final %}
+                <div class="catalogBrandItem">
+                  <a href="{% url 'category' category_slug=category.slug %}">
+                    <div class="catalogBrandItemImg">
+                      {% if category.logo %}
+                        <img src="{{ category.logo.url }}" alt="Логотип категории" />
+                      {% else %}
+                        <img src="{% static '/images/noImage.jpg' %}" alt="Нет логотипа" />
+                      {% endif %}
+                    </div>
+                    <div class="catalogBrandItemTitle">{{ category.name }}</div>
+                  </a>
+                </div>
               {% else %}
-              <div class="catalogBrandItem">
-                <a href="{% url 'offer' brand_slug=category.brand.slug category_slug=category.slug %}">
-                  <div class="catalogBrandItemImg">
-                    {% if category.logo %}
-                      <img src="{{ category.logo.url }}" alt="Логотип категории" />
-                    {% else %}
-                      <img src="{% static "/images/noImage.jpg" %}" alt="Нет логотипа" />
-                    {% endif %}
-                  </div>
-                  <div class="catalogBrandItemTitle">{{ category.name }}</div>
-                </a>
-              </div>
+                <div class="catalogBrandItem">
+                  <a href="{% url 'offer' brand_slug=category.brand.slug category_slug=category.slug %}">
+                    <div class="catalogBrandItemImg">
+                      {% if category.logo %}
+                        <img src="{{ category.logo.url }}" alt="Логотип категории" />
+                      {% else %}
+                        <img src="{% static '/images/noImage.jpg' %}" alt="Нет логотипа" />
+                      {% endif %}
+                    </div>
+                    <div class="catalogBrandItemTitle">{{ category.name }}</div>
+                  </a>
+                </div>
               {% endif %}
             {% endif %}
           {% endfor %}
-             {% endcache %}
         </div>
       </div>
       <!-- конец каталога -->
