@@ -1,4 +1,5 @@
 {% load static%}
+{% load search_query %}
 
 <div class="header nav-container">
     <nav>
@@ -69,11 +70,12 @@
                     </div>
                 </div>
             </div>
+       
 
             <div class="searchSmallScreen">
                 <div class="formInner">
-                    <form action="/catalog/search" class="formInner">
-                        <input type="text" placeholder="Искать по артиклу">
+                    <form action="{% url 'search_page' %}" class="formInner">
+                        <input type="text" placeholder="Искать по артиклу" name='q' value="{% search_query request %}">
                         <button type="submit">
                             <div class="searchButton button"><img src="{% static 'images/SearchButton.svg' %}" alt="Поиск"
                                 class="searchImg"></div></div>

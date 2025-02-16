@@ -31,6 +31,7 @@
     {% endif %}
   </div>
 
+  {% if current_url_name != 'brand_certificates' %}
   <div class="brandBannerBg">
     <div class="brandBannerBgImg">
       <img src="{% if category and category.banner %}
@@ -43,4 +44,5 @@
            alt="Banner" /> 
     </div>
   </div>
+  {% endif %}
 </div>
