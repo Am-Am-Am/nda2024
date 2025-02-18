@@ -227,7 +227,7 @@
                                             <th class="col-1 text-center">
                                                 Уп/шт.
                                             </th>
-                                            <th class="col-2">
+                                            <th class="col-3">
                                                 Количество
                                             </th>
                                         </tr>
@@ -238,7 +238,7 @@
                                         <tr class="table-row">
                                             <td class="text-center align-middle">{{ offer.name | safe}}</td>
                                             <td class="text-start align-middle">{{ offer.text_description | safe}}</td>
-                                            <td class="text-start align-middle">{{ offer.shipping_pack | safe}}</td>
+                                            <td class="text-center align-middle">{{ offer.shipping_pack | safe}}</td>
                                             <td class="text-start">
 
                                                
@@ -370,16 +370,16 @@
                                     <table class="table table-responsive table-borderless">
                                         <thead>
                                             <tr class="table-header">
-                                                <th class="col-2 text-center">
+                                                <th class="col-3 text-center align-middle">
                                                     Код
                                                 </th>
-                                                <th class="col-8 text-start">
+                                                <th class="col-6 text-center align-middle">
                                                     Описание
                                                 </th>
-                                                <th class="col-2 text-start">
+                                                <th class="col-2 text-center align-middle">
                                                     Уп/шт.
                                                 </th>
-                                                <th class="col-4">
+                                                <th class="col-5 text-center align-middle">
                                                     Количество
                                                 </th>
                                             </tr>
@@ -388,9 +388,9 @@
                                             {% for offer in offers|dictsort:'place'%}
                                             <tr class="table-row">
                                                 <td class="text-center align-middle">{{ offer.name | safe}}</td>
-                                                <td class="text-start align-middle">{{ offer.text_description | safe}}</td>
-                                                <td class="text-start align-middle">{{ offer.shipping_pack | safe}}</td>
-                                                <td class="text-start">
+                                                <td class="text-center align-middle">{{ offer.text_description | safe}}</td>
+                                                <td class="text-center align-middle">{{ offer.shipping_pack | safe}}</td>
+                                                <td class="text-center align-middle">
     
                                                    
     

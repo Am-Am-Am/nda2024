@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
 
-@font-face {
-    font-family: 'Reznor';
-    src: url('fonts/reznor-broken.ttf');
-}
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
@@ -48,7 +44,7 @@ html {
 
 :root {
     --font-family: "Jost", sans-serif;
-    --second-family: 'Reznor', sans-serif;
+    --second-family: "Jost", sans-serif;
     --third-family: "Roboto", sans-serif;
 }
 
@@ -58,6 +54,7 @@ body {
     padding-right: 0 !important;
     overflow: auto !important;
     overflow-x: hidden;
+    font-family: var(--font-family);
 }
 
 html {
@@ -187,7 +184,6 @@ header {
 
 
 .header {
-    margin-top: 30px;
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
@@ -196,6 +192,7 @@ header {
     -moz-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     -o-transform: translateX(-50%);
+    margin-top: 2.5vw;
 }
 
 
@@ -586,7 +583,7 @@ h2 {
 
 .choice {
     border-radius: 5px;
-    width: 40vw;
+    width: 60vw;
     height: 65px;
     box-shadow: 0 0 40px 3px rgba(0, 0, 0, 0.25);
     background: #f2f2f2;
@@ -595,7 +592,7 @@ h2 {
 }
 
 .choice ul {
-    width: 100%;
+    width: 60vw;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -655,7 +652,8 @@ li .active {
     font-family: var(--font-family);
     font-weight: 400;
     font-size: 20px;
-
+    margin-bottom: 0;
+    text-transform: uppercase;
 }
 
 
@@ -904,6 +902,7 @@ li .active {
     background-image: url('images/footerBg.png');
     background-size: cover;
     background-repeat: no-repeat;
+    margin-bottom: 2.5vw;
 }
 
 .footerInfo {
@@ -915,7 +914,7 @@ li .active {
 }
 
 .footerLogo{
-    width: 50%;
+    width: 40%;
 }
 
 
@@ -983,6 +982,16 @@ li .active {
     font-weight: 400;
     font-size: 20px;
     color: #bebebe;
+}
+
+.footerLogoCustom{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 20px;
+    color: #fff;
 }
 
 .contacts ul {
@@ -1092,6 +1101,7 @@ li .active {
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
+    
 }
 
 .brandInfo {
@@ -1178,14 +1188,13 @@ li .active {
     color: #1a1a18;
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 20px;
     align-items: center;
 }
 
 .catalogBrandItem {
     border-radius: 10px;
     width: calc(50% - 20px);
-    height: 230px;
     background: #fff;
 
     border-right: 10px solid #fff;
@@ -1476,16 +1485,11 @@ li .active {
 
 }
 
-.productTitleText p::first-line {
-    font-weight: bold;
-}
-
 .productTitleText h4 {
     font-family: var(--font-family);
-    font-weight: 500;
+    font-weight: 400;
     font-size: 20px;
     color: #1a1a18;
-    font-weight: bold;
 }
 
 .productTitleText li {
@@ -1638,13 +1642,13 @@ li .active {
 
 .productDescription {
     font-family: var(--font-family);
-    font-weight: 500;
+    font-weight: 400;
     font-size: 20px;
     color: #1a1a18;
 }
 
-.productDescription p:first {
-    font-weight: bold;
+.productDescription p{
+    margin-bottom: 0;
 }
 
 .offerCount {
@@ -2143,7 +2147,6 @@ input .form-control .d-inline-block {
     background-color: #006EA9;
 }
 
-
 .nav-tabs .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
     background-color: #3391c5;
@@ -2155,6 +2158,14 @@ input .form-control .d-inline-block {
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
+    border-color: #3391c5;
+}
+
+.nav-tabs .nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link {
+    background-color: #f2f2f2;
+    box-shadow: 0 0 40px 3px rgba(0, 0, 0, 0.25);
+    border-color: #f2f2f2;
 }
 
 .nav-tabs .nav-tabs .nav-item.show .nav-link,
@@ -2294,7 +2305,7 @@ input .form-control .d-inline-block {
 .contactsMap {
     margin-top: 40px;
     border-radius: 15px;
-    height: 800px;
+    height: 65vh;
     border-radius: 15px;
     display: flex;
     background-size: contain;
@@ -2513,7 +2524,7 @@ input .form-control .d-inline-block {
     margin-bottom: 30px;
 }
 
-.certificatesTable th,
+/* .certificatesTable th,
 .certificatesTable td {
 
     overflow-wrap: break-word;
@@ -2534,7 +2545,7 @@ input .form-control .d-inline-block {
 .certificatesTable th:nth-child(4),
 .certificatesTable td:nth-child(4) {
     width: 17.5%;
-}
+} */
 
 /* certificatesInternalPage.html */
 
@@ -2943,3 +2954,16 @@ input .form-control .d-inline-block {
     display: flex;
     justify-content: center;
 }
+
+.less550{
+    display: none;
+}
+
+.more550{
+    display: block;
+}
+
+.table{
+    margin-bottom: 0;
+}
+

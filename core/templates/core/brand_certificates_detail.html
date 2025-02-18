@@ -47,20 +47,20 @@
         <table class="table table-responsive table-borderless">
           <thead>
             <tr class="table-header">
-              <th>№</th>
-              <th>Содержание документа</th>
-              <th>Номер РУ</th>
-              <th>РУ</th>
+              <th class="col-2 text-center">№</th>
+              <th class="col-6 text-center">Содержание документа</th>
+              <th class="col-4 text-center">Номер РУ</th>
+              <th class="col-2 text-center">РУ</th>
             </tr>
           </thead>
           <tbody>
             
                 {% for certificate in certificates %}
                   <tr class="table-row">
-                    <td>{{ forloop.counter }}</td>
-                    <td>{{ certificate.get_filename }}</td>
-                    <td>{{ certificate.get_filename|slice:"3:12" }}</td>
-                    <td>
+                    <td class="text-center align-middle">{{ forloop.counter }}</td>
+                    <td class="text-center align-middle">{{ certificate.get_filename }}</td>
+                    <td class="text-center align-middle">{{ certificate.get_filename|slice:"3:12" }}</td>
+                    <td class="text-center align-middle">
                       <a href="{{ certificate.file.url }}">Скачать</a>
                     </td>
                   </tr>

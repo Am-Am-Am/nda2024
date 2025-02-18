@@ -47,7 +47,7 @@
      <!-- карта     -->
      {% cache 86400 'contacts_map' %}
       <div class="contactsMap">
-          <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A483b0761fd50f52fa933af3311c796503d73aaca44becb79b973a587356fa263&amp;source=constructor&theme=dark" width="100%" height="100%" frameborder="0"></iframe>
+          <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A483b0761fd50f52fa933af3311c796503d73aaca44becb79b973a587356fa263&amp;source=constructor&theme=dark&scroll=false" width="100%" height="100%" frameborder="0"></iframe>
       </div>
       <!-- карта     -->
       {% endcache %}
@@ -57,10 +57,10 @@
           <div class="ContactAddress">
               <div class="addressImg">
                 <img src="{% static "images/contacts/contactsSecond.svg" %}" alt="">
-                
+                <h3 class="less550">офис</h3>
               </div>
               <div class="addressInfo">
-                  <h3>офис</h3>
+                  <h3 class="more550">офис</h3>
                   <div class="addressInfoEl">
                       <div class="addressInfoElImg">
                           <img src="{% static "images/contacts/location.svg" %}" alt="">
@@ -100,10 +100,10 @@
           <div class="ContactAddress">
               <div class="addressImg">
                 <img src="{% static "images/contacts/contactsThird.svg" %}" alt="">
-                  
+                <h3 class="less550">склад</h3>
               </div>
               <div class="addressInfo">
-                  <h3>склад</h3>
+                  <h3 class="more550">склад</h3>
                   <div class="addressInfoEl">
                       <div class="addressInfoElImg">
                         <img src="{% static "images/contacts/location.svg" %}" alt="">
@@ -141,9 +141,10 @@
           <div class="ContactAddress mainAddress">
             <div class="addressImg">
                 <img src="{% static "images/contacts/contactsFirst.svg" %}" alt="">
+                <h3 class="less550">ООО "НДА Деловая медицинская компания"</h3>
             </div>
             <div class="addressInfo">
-                <h3>ООО "НДА Деловая медицинская компания"</h3>
+                <h3 class="more550">ООО "НДА Деловая медицинская компания"</h3>
                 <p>Юр.адрес:199034, Санкт-Петербург, 16-я линия В.О., 
                     <br> д.7, литера А, помещ. 1-Н, часть №97 
                     <br> ИНН: 7801314509

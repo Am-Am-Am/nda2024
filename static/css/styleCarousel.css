@@ -47,8 +47,8 @@
 
 .carousel-item img {
     height: 480px;
-    width: auto;
     margin: auto;
+    object-fit: cover;
 }
 
 .thumbnailContainer {

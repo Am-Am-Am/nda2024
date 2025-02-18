@@ -206,21 +206,14 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 
 # EMAIL_SENDER SETTINGS
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = os.getenv('HOST_USER' , 'amur.almukhametov@gmail.com')
-# EMAIL_HOST_PASSWORD = os.getenv('HOST_PASSWORD', 'gqpw qsxy wcwu qczo')
-# RECIPIENT_EMAIL = os.getenv('RECIPIENT')
-# EMAIL_PORT = os.getenv('PORT', '587')
-# EMAIL_USE_TLS = True
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = '127.0.0.1'  # IP-адрес, где работает Papercut
-EMAIL_PORT = 25         # Порт, на котором слушает Papercut (обычно 25)
-EMAIL_HOST_USER = ''   # Не нужно указывать имя пользователя для Papercut
-EMAIL_HOST_PASSWORD = '' # Не нужно указывать пароль для Papercut
-EMAIL_USE_TLS = False   # Отключаем TLS для Papercut
-EMAIL_USE_SSL = False   # Отключаем SSL для Papercut (обычно Papercut не использует SSL)
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = os.getenv('HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('HOST_PASSWORD')
+RECIPIENT_EMAIL = os.getenv('RECIPIENT')
+EMAIL_PORT = os.getenv('PORT', '587')
+EMAIL_USE_TLS = True
+
 
 # Оставьте это, если оно вам нужно для других целей (например, для получения из переменных окружения)
 RECIPIENT_EMAIL = os.getenv('RECIPIENT')

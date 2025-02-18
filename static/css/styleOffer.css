@@ -656,10 +656,7 @@
         font-size: 16px;
     }
 
-    .linkContacts {
-        flex-direction: column;
-        align-items: start;
-    }
+
 
     .nav-pills .nav-link {
         font-size: 12px;
@@ -808,10 +805,7 @@
         width: 100%;
     }
 
-    .footerLogo img {
-        width: 100%;
-        height: auto;
-    }
+
 
     .linkContacts a {
         font-size: 14px;
