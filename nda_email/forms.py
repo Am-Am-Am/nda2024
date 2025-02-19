@@ -21,7 +21,7 @@ class ContactForm(forms.Form):
         ),
     )
     phone_number = forms.CharField(
-        # required=True,
+        required=False,
         widget=forms.TextInput(
             attrs={
                 # "placeholder": "Номер телефона",
@@ -32,7 +32,7 @@ class ContactForm(forms.Form):
         ),
     )
     email = forms.CharField(
-        # required=True,
+        required=False,
         widget=forms.TextInput(
             attrs={
                 "placeholder": "example@example.ru",
@@ -98,7 +98,7 @@ class ContactForm(forms.Form):
 
 class PhysicalContactForm(forms.Form):
     name = forms.CharField(
-        # required=True,
+        required=True,
         max_length=120,
         widget=forms.TextInput(
             attrs={
@@ -109,7 +109,7 @@ class PhysicalContactForm(forms.Form):
         ),
     )
     phone_number = forms.CharField(
-        # required=True,
+        required=False,
         widget=forms.TextInput(
             attrs={
                 # "placeholder": "Номер телефона",
@@ -120,7 +120,7 @@ class PhysicalContactForm(forms.Form):
         ),
     )
     email = forms.CharField(
-        required=True,
+        required=False,
         widget=forms.TextInput(
             attrs={
                 "placeholder": "example@example.ru",
@@ -160,7 +160,7 @@ class PhysicalContactForm(forms.Form):
 
 class MailForm(forms.Form):
     name = forms.CharField(
-        # required=True,
+        required=True,
         max_length=120,
         widget=forms.TextInput(
             attrs={
@@ -171,7 +171,7 @@ class MailForm(forms.Form):
         ),
     )
     phone_number = forms.CharField(
-        # required=True,
+        required=False,
         widget=forms.TextInput(
             attrs={
                 "placeholder": "Номер телефона",
@@ -182,7 +182,7 @@ class MailForm(forms.Form):
         ),
     )
     email = forms.CharField(
-        required=True,
+        required=False,
         widget=forms.TextInput(
             attrs={
                 "placeholder": "example@example.ru",
@@ -220,7 +220,7 @@ class MailForm(forms.Form):
 
     message = forms.CharField(
         required=False,
-        widget=forms.Textarea(attrs={"id": "message", "class": "form-control"}),
+        widget=forms.Textarea(attrs={"id": "message", "class": "form-control", "label": "Текст писма",}),
     )
 
     company_details = forms.FileField(
@@ -251,7 +251,7 @@ class MailForm(forms.Form):
 
 class CallForm(forms.Form):
     name = forms.CharField(
-        # required=True,
+        required=True,
         max_length=120,
         widget=forms.TextInput(
             attrs={
@@ -262,7 +262,7 @@ class CallForm(forms.Form):
         ),
     )
     phone_number = forms.CharField(
-        # required=True,
+        required=False,
         widget=forms.TextInput(
             attrs={
                 "placeholder": "Номер телефона",

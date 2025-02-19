@@ -25,7 +25,7 @@
           <div id="call-form-container">
             <div class="form-floating mb-2">
               {{ call_form.name }}
-              <label for="name">Ваше имя</label>
+              <label for="fullNameLegal">Ваше имя</label>
               {% if call_form.name.errors %}
                 <div class="text-danger">{{ call_form.name.errors }}</div>
               {% endif %}
@@ -39,7 +39,7 @@
             </div>
             <div class="form-floating mb-2">
               {{ call_form.message }}
-              <label for="org">Текст письма</label>
+              <label for="message">Текст письма</label>
               {% if call_form.message.errors %}
                 <div class="text-danger">{{ call_form.message.errors }}</div>
               {% endif %}
