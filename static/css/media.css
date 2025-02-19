@@ -1000,6 +1000,10 @@
         max-width: 95%;
     }
 
+    .offersList{
+        margin-bottom: 30px;
+    }
+
 }
 
 @media (max-width: 1200px) {

@@ -7,7 +7,7 @@ from django.utils.text import slugify
 from nda.settings import PRIVATE_ROOT, SENDFILE_ROOT
 from ckeditor.fields import RichTextField
 from django.core.cache import cache
-
+from django_ckeditor_5.fields import CKEditor5Field
 private_storage = FileSystemStorage(location=PRIVATE_ROOT + SENDFILE_ROOT, base_url='/files')
 
 
@@ -25,7 +25,7 @@ class BaseFields(models.Model):
         PUBLISHED = 'PUBLISHED', 'Активен'
         ARCHIVED = 'ARCHIVED', 'В архиве'
 
-    description = RichTextField(
+    description = CKEditor5Field(
         default='',
         null=True,
         blank=True,
@@ -33,7 +33,7 @@ class BaseFields(models.Model):
         config_name='default'  # Используем конфигурацию по умолчанию
     )
 
-    full_description = RichTextField(
+    full_description = CKEditor5Field(
         default='',
         null=True,
         blank=True,
@@ -150,7 +150,7 @@ class Category(BaseFields):
         verbose_name='Название | Заголовок'
     )
 
-    characteristics = RichTextField(
+    characteristics = CKEditor5Field(
         default='',
         null=True,
         blank=True,

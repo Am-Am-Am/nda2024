@@ -307,15 +307,7 @@
     height: 600px;
 }
 
-.offersList{
-    font-family: var(--second-family);
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 120%;
-    color: #1a1a18;
-    margin-bottom: 30px;
 
-}
 
 @media (max-width: 600px) {
 

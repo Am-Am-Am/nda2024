@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'ckeditor',
     'django.contrib.sitemaps',
+    'django_ckeditor_5',
 ]
 
 MIDDLEWARE = [
@@ -215,11 +216,6 @@ EMAIL_PORT = os.getenv('PORT', '587')
 EMAIL_USE_TLS = True
 
 
-# Оставьте это, если оно вам нужно для других целей (например, для получения из переменных окружения)
-RECIPIENT_EMAIL = os.getenv('RECIPIENT')
-
-
-
 # YANDEX CAPTCHA SETTINGS
 SECURE_REFERRER_POLICY = 'no-referrer-when-downgrade'
 YACAPTCHA_SERVER = os.getenv('SERVER_KEY', 'ysc2_VyMk6kFwNVLym6k3ga8JsIctBN6nnYgcjLCWZdce1a8a26b8')
@@ -233,26 +229,6 @@ CKEDITOR_CONFIGS = {
         'height': 300,
         'width': '100%',
     },
-}
-
-
-# TINYMCE SETTINGS
-TINYMCE_JS_URL = os.path.join(BASE_DIR, MEDIA_URL, "tinymce/js/tinymce/tinymce.min.js")
-TINYMCE_COMPRESSOR = False
-TINYMCE_SPELLCHECKER = True
-TINYMCE_DEFAULT_CONFIG = {
-    "height": "320px",
-    "width": "960px",
-    "menubar": "file edit view insert format tools table help",
-    "plugins": "advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code "
-    "fullscreen insertdatetime media table paste code help wordcount spellchecker",
-    "toolbar": "undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft "
-    "aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor "
-    "backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | "
-    "fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | "
-    "a11ycheck ltr rtl | showcomments addcomment code",
-    "custom_undo_redo_levels": 10,
-    "language": "ru_RU"
 }
 
 
@@ -273,7 +249,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',  
             'class': 'logging.FileHandler',
-            'filename': 'nda_email.log',  # Укажите имя файла для логов
+            'filename': 'nda_email.log',  
             'formatter': 'verbose',
         },
         'console': {
@@ -283,7 +259,7 @@ LOGGING = {
         },
     },
     'loggers': {
-        'nda_email': {  # Используйте имя логгера из вашей функции
+        'nda_email': {  
             'handlers': ['file', 'console'],
             'level': 'DEBUG',  
             'propagate': True,
@@ -291,5 +267,117 @@ LOGGING = {
     },
 }
 
+customColorPalette = [
+    {
+        'color': 'hsl(4, 90%, 58%)',
+        'label': 'Red'
+    },
+    {
+        'color': 'hsl(340, 82%, 52%)',
+        'label': 'Pink'
+    },
+    {
+        'color': 'hsl(291, 64%, 42%)',
+        'label': 'Purple'
+    },
+    {
+        'color': 'hsl(262, 52%, 47%)',
+        'label': 'Deep Purple'
+    },
+    {
+        'color': 'hsl(231, 48%, 48%)',
+        'label': 'Indigo'
+    },
+    {
+        'color': 'hsl(207, 90%, 54%)',
+        'label': 'Blue'
+    },
+    {
+        'color': 'hsl(0, 0%, 0%)',  # Добавляем черный цвет
+        'label': 'Black'
+    },
+    {
+        'color': 'hsl(0, 0%, 100%)', # Добавляем белый цвет
+        'label': 'White'
+    }
+]
+
+CKEDITOR_5_CUSTOM_CSS = 'path_to.css'  # optional
+CKEDITOR_5_CUSTOM_CSS = 'css/admin_dark_mode_fix.css'
+CKEDITOR_5_CONFIGS = {
+    "default": {
+        "language": "ru",
+        'toolbar': {
+            'items': [
+                '|', 'heading',
+                '|', 'outdent', 'indent',
+                '|', 'bold', 'italic', 'link', 'underline', 'strikethrough', 'code', 'subscript', 'superscript',
+                'highlight',
+                '|', 'codeBlock', 'insertImage', 'bulletedList', 'numberedList', 'todoList',
+                '|', 'blockQuote',
+                '|', 'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'mediaEmbed', 'removeFormat',
+                'insertTable', 'horizontalLine', 'specialCharacters', 'pageBreak', 'findAndReplace', # Добавлено
+                '|', 'undo', 'redo' # Всегда полезно добавить undo/redo
+            ],
+            'shouldNotGroupWhenFull': True
+        },
+        "image": {
+            "toolbar": [
+                '|', "imageTextAlternative",
+                "|", "imageStyle:alignLeft", "imageStyle:alignRight", "imageStyle:alignCenter", "imageStyle:side",
+                "|", "toggleImageCaption",
+                "|"
+            ],
+            "styles": [
+                "full",
+                "side",
+                "alignLeft",
+                "alignRight",
+                "alignCenter",
+            ],
+        },
+        "table": {
+            "contentToolbar": [
+                "tableColumn",
+                "tableRow",
+                "mergeTableCells",
+                "tableProperties",
+                "tableCellProperties", 'toggleTableCaption', 'insertTable' # добавлено
+            ],
+            "tableProperties": {
+                "borderColors": customColorPalette,
+                "backgroundColors": customColorPalette,
+            },
+            "tableCellProperties": {
+                "borderColors": customColorPalette,
+                "backgroundColors": customColorPalette,
+            },
+        },
+        "list": {
+            "properties": {
+                "styles": True,
+                "startIndex": True,
+                "reversed": True,
+            }
+        },
+         "fontSize": {
+            "options": [
+                "12px",
+                "14px",
+                "16px",
+                "18px",
+                "20px",
+                "22px",
+                "24px",
+                "26px",
+                "28px",
+                "30px",
+            ]
+        },
+    },
+}
+
+# Custom CSS for Dark Mode Fix
+CKEDITOR_5_CUSTOM_CSS = 'css/admin_dark_mode_fix.css'
 
 ADMINS = [("Ivan", "terryjj0@gmail.com")]

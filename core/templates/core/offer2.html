@@ -64,8 +64,6 @@
                 </div>
             </div>
         {% endcache %}
-
-
         <div class="product">
             <div class="productHead">
                 <div class="productCarousel">
@@ -82,7 +80,6 @@
                                     {% endcache %}
                                 {% endfor %}
                             </div>
-                
                             {% if images|length > 1 %}
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon slick-prev1" aria-hidden="true" style="background-image: url('{% static "images/offer/left.svg"%}')" ></span>
@@ -95,7 +92,6 @@
                             {% endif %}
                         </div>
                     </div>
-                
                     {% if images|length > 1 %}
                         <div class="tumbnailsWrapper">
                             <div class="carousel-indicators tumbnails-list">
@@ -114,11 +110,6 @@
                         </div>
                     {% endif %}
                 </div>
-                
-                   
-                
-
-
                 <div class="productTitle">
                     <div class="productTitleText">
                         <h3>{{brand}}</h3>
@@ -151,7 +142,6 @@
             <div class="productInfo">
                 <div class="productInfoChoice">
                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
-
                         <li {% if not video_file and not youtube_link and not rt_link and product.characteristics %} style="width: 25%;"{% endif %} 
                             {% if not video_file and not youtube_link and not rt_link and not product.characteristics %} style="width: 33.3%;"{% endif %}
                             {% if video_file or youtube_link or rt_link and not product.characteristics %} style="width: 25%;"{% endif %} 
@@ -167,7 +157,6 @@
                                 aria-controls="pills-characteristics" aria-selected="false">Характеристики</button>
                         </li>
                         {% endif%}
-
                         <li {% if not video_file and not youtube_link and not rt_link and product.characteristics %} style="width: 25%;"{% endif %} 
                             {% if not video_file and not youtube_link and not rt_link and not product.characteristics%} style="width: 33.3%;"{% endif %}
                             {% if video_file or youtube_link or rt_link and not product.characteristics %} style="width: 25%;"{% endif %} 
@@ -186,7 +175,6 @@
                         </li>
                         {% if video_file or youtube_link or rt_link %}
                         <li {% if not product.characteristics %} style="width: 25%;"{% endif %} 
-                        
                         class="nav-item" role="presentation">
                             <button class="nav-link last" id="pills-video-tab" data-bs-toggle="pill"
                                 data-bs-target="#pills-video" type="button" role="tab" aria-controls="pills-video"
@@ -208,10 +196,8 @@
                         <div class="productDescription characteristics_table" >
                             {{ product.characteristics|safe }}
                         </div>
-                       
                     </div>
                     <div class="tab-pane fade" id="pills-order" role="tabpanel" aria-labelledby="pills-order-tab">
-
                         <div class="placeOrder">
                             <form action=""></form>
                             <div class="container1">
@@ -240,9 +226,6 @@
                                             <td class="text-start align-middle">{{ offer.text_description | safe}}</td>
                                             <td class="text-center align-middle">{{ offer.shipping_pack | safe}}</td>
                                             <td class="text-start">
-
-                                               
-
                                                 <div class="quantity-input">
                                                     <form hx-post="{% url 'cart_add' offer_id=offer.pk %}"
                                                         hx-target="#cart" hx-swap="outerHTML" style="width: 100%;">
@@ -250,25 +233,17 @@
                                                             <div class="inputCount">
                                                                 <div class="inputCountBtn1"
                                                                     onclick="changeQuantity(event, this, -1)">-</div>
-
                                                                 <input class="form-control" type="number"
                                                                     name="quantity" value="0" required=""
                                                                     id="id_quantity" min="1"/>
-
                                                                 <div class="inputCountBtn2"
                                                                     onclick="changeQuantity(event, this, 1)">+</div>
-
                                                             </div>
-
                                                                 <button class="btn btn-primary quantityFormBtn" id="addButton"type="submit"
                                                                 value="">Добавить</button>
-                                                           
                                                         </div>
                                                     </form>
-
                                                 </div>
-
-
                                             </td>
                                         </tr>
                                         {% endif %}
@@ -279,7 +254,6 @@
                             </form>
                         </div>
                     </div>
-
                     <div class="tab-pane fade" id="pills-catalogs" role="tabpanel" aria-labelledby="pills-catalogs-tab">
                         <div class="catalogTutorial">
                             {% if instructions %}
@@ -323,7 +297,6 @@
                     {% if video_file or youtube_link or rt_link %}
                     <div class="tab-pane fade" id="pills-video" role="tabpanel" aria-labelledby="pills-video-tab">
                         <div class="productVideo">
-
                             <div class="productVideoContainer">
                                     {% if  video_file %}
                                         <!-- Локальное видео -->
@@ -337,15 +310,11 @@
                                         <!-- Видео с Ютуб -->
                                         <iframe width="100%" height="100%" src="{{youtube_link}}" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
                                     {% endif %}
-                                
                             </div>
-
                         </div>
                     </div>
                     {% endif %}
                 </div>
-                
-           
                  <div class="dropDown">
                     <details>
                         <summary>Описание</summary>
@@ -391,9 +360,6 @@
                                                 <td class="text-center align-middle">{{ offer.text_description | safe}}</td>
                                                 <td class="text-center align-middle">{{ offer.shipping_pack | safe}}</td>
                                                 <td class="text-center align-middle">
-    
-                                                   
-    
                                                     <div class="quantity-input">
                                                         <form hx-post="{% url 'cart_add' offer_id=offer.pk %}"
                                                             hx-target="#cart" hx-swap="outerHTML" style="width: 100%;">
@@ -401,7 +367,6 @@
                                                                 <div class="inputCount">
                                                                     {% comment %} <div class="inputCountBtn1"
                                                                         onclick="changeQuantity(event, this, -1)">-</div> {% endcomment %}
-    
                                                                     <input class="form-control" type="number"
                                                                         name="quantity" value="0" required=""
                                                                         id="id_quantity" min="1"/>
@@ -410,16 +375,11 @@
                                                                         onclick="changeQuantity(event, this, 1)">+</div>
      {% endcomment %}
                                                                 </div>
-    
                                                                     <button class="btn btn-primary quantityFormBtn" id="addButton"type="submit"
                                                                     value="">Добавить</button>
-                                                               
                                                             </div>
                                                         </form>
-    
                                                     </div>
-    
-    
                                                 </td>
                                             </tr>
                                             {% endfor %}
@@ -444,10 +404,8 @@
                                                 </div>
                                             </a>
                                         </div>
-                                        
                                     {% endfor %}
                                 {% endif %}
-    
                                 {% if certificates %}
                                     {% for certificate in certificates %}
                                     <div class="catalogTutorialLink">
@@ -456,12 +414,10 @@
                                                 <div class="catalogTutorialElText">Скачать сертификат {{certificate.get_filename}}</div>
                                                 <div class="catalogTutorialElImg"></div>
                                             </div>
-                                            
                                         </a>
                                     </div>
                                     {% endfor %}
                                 {% endif %}
-    
                                 {% if catalogs %}
                                     {% for catalog in catalogs %}
                                     <div class="catalogTutorialLink">
@@ -474,7 +430,6 @@
                                     </div>
                                     {% endfor %}
                                 {% endif %}
-    
                             </div>
                         </div>
                     </details>
@@ -483,7 +438,6 @@
                         <summary>Видео</summary>
                         <div class="dropDownEl">
                             <div class="productVideo">
-
                                 <div class="productVideoContainer">
                                         {% if  video_file %}
                                             <!-- Локальное видео -->
@@ -496,34 +450,19 @@
                                             <!-- Видео с Ютуб -->
                                             {% comment %} <iframe width="100%" height="100%" src="" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe> {% endcomment %}
                                         {% endif %} 
-                                    
                                 </div>
-    
                             </div>
                         </div>
                     </details>
                     {% endif %}
                  </div>   
-                  
-                  
                  {% include 'core/components/offer2ButtonCart.html' %}
-
-                
             </div>
         </div>
-
-
-
-
         <!-- Placeholder for the modal -->
         <div id="modal" class="modal fade">
             <div id="dialog" class="modal-dialog modal-xl" hx-target="this" ></div>
         </div>
-
-        <!-- Empty toast to show the message -->
-
-        
-
     </div>
     <!-- плавающий элемент с формами связи -->
     {% include 'core/components/formsContainer.html' %}
@@ -535,61 +474,10 @@
 {% block script %}
 
 <script src="{% static 'scripts/offers-htmx-handlers.js' %}"></script>
-<script>
-    $(document).ready(function () {
-        $('.modal').on('shown.bs.modal', function () {
-            // Находим и скрываем блок с классом placeResult
-            $('.placeResult').css('display', 'none');
-        }).on('hidden.bs.modal', function () {
-            // Показываем блок с классом placeResult
-            $('.placeResult').css('display', 'flex');
-        });
-    });
-</script>
+<script src="{% static 'scripts/offerButton.js' %}"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css"/>
 <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.min.js"></script>
+<script src="{% static 'scripts/tumbnailActiveElCarousel.js' %}"></script>
 
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const thumbnailDivs = document.querySelectorAll('.tumbnails-list div');
-        const carouselElement = document.getElementById('carouselExampleIndicators');
-        const carousel = new bootstrap.Carousel(carouselElement);
-
-
-        function setActiveThumbnail(slideIndex) {
-            thumbnailDivs.forEach(div => div.classList.remove('active'));
-            thumbnailDivs[slideIndex].classList.add('active');
-        
-        }
-
-          carouselElement.addEventListener('slid.bs.carousel', function(e) {
-             const activeSlideIndex = e.to;
-
-             setActiveThumbnail(activeSlideIndex);
-            });
-
-        thumbnailDivs.forEach(div => {
-            div.addEventListener('click', function() {
-                const slideTo = parseInt(this.getAttribute('data-bs-slide-to'));
-                carousel.to(slideTo);
-                setActiveThumbnail(slideTo);
-             
-            });
-        });
-
-
-          // Инициализируем активную миниатюру при загрузке страницы
-          const initialActiveSlide = document.querySelector('.carousel-item.active');
-          if (initialActiveSlide) {
-               const initialActiveIndex = Array.from(document.querySelectorAll('.carousel-item')).indexOf(initialActiveSlide);
-                setActiveThumbnail(initialActiveIndex);
-        
-            }
-
-    });
-</script> 
     
-
 {% endblock %}
