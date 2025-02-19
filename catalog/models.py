@@ -222,6 +222,7 @@ class Category(BaseFields):
         blank=True,
         verbose_name='Специалист, ответственный за категорию'
     )
+
     # вот этот метод save точно нужен????
     def save(self, *args, **kwargs):
         self.full_clean()
