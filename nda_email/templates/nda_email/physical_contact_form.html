@@ -4,10 +4,12 @@
 
 <form
     id="physical_modal_form"
+    action="{% url 'physical_cart_submit' %}"
+    method="post"
     enctype="multipart/form-data"
     hx-post="{% url 'physical_cart_submit' %}?random={{ timestamp }}%}"
     hx-target="#physical_modal_form_container"  
-    hx-swap="innerHTML"                     
+    hx-swap="none"                      
     novalidate
 >
     {% csrf_token %}

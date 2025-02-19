@@ -535,7 +535,6 @@
 {% block script %}
 
 <script src="{% static 'scripts/offers-htmx-handlers.js' %}"></script>
-{% comment %} <script src="{% static "scripts/productSlider.js" %}"></script> {% endcomment %}
 <script>
     $(document).ready(function () {
         $('.modal').on('shown.bs.modal', function () {
@@ -592,52 +591,5 @@
     });
 </script> 
     
-<script>
-    document.getElementById('cart_modal_form').addEventListener('submit', function(event) {
-        event.preventDefault(); // Предотвращаем стандартную отправку формы
-
-        const form = event.target;
-        const formData = new FormData(form);
-
-        fetch(form.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest' // Обозначаем AJAX-запрос
-            }
-        })
-        .then(response => response.text())
-        .then(data => {
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(data, 'text/html');
-
-          const newForm = doc.getElementById('cart_modal_form')
-          document.getElementById('cart_modal_form').outerHTML = newForm.outerHTML
-
-
-        })
-        .catch(error => {
-            console.error('Ошибка при отправке формы:', error);
-              alert('Произошла ошибка. Пожалуйста, попробуйте еще раз.');
-        });
-    });
-</script>    
-<script>
-    function initSmartCaptcha() {
-        var captchaContainer = document.getElementById('captcha-container');
-        if (captchaContainer){
-          if (captchaContainer.hasChildNodes()) {
-             captchaContainer.innerHTML = ''; // Очищаем старый контейнер
-          }
-          var sitekey = captchaContainer.getAttribute('data-sitekey');
-          var smartCaptcha = new window.SmartCaptcha(captchaContainer, sitekey);
-       } else {
-        console.log('not found')
-       }
-   }
-</script>
-
-
-
 
 {% endblock %}

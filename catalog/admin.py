@@ -92,7 +92,9 @@ class BrandAdmin(admin.ModelAdmin):
 
 class CategoryRelatedOnlyDropdownFilter(RelatedOnlyDropdownFilter):
     def field_queryset(self, db, request, model_admin):
-        return model_admin.model.objects.filter(parents__isnull=True)
+        return model_admin.model.objects.filter(parents__isnull=True).distinct()
+    
+
 
 
 class CategoryAdmin(admin.ModelAdmin):

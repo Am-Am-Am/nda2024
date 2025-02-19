@@ -127,8 +127,6 @@
     margin-bottom: 20px;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
-
 }
 
 #offers-table th {
@@ -147,7 +145,6 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
-    width: 100px;
     box-shadow: 0 0 30px 3px rgba(0, 0, 0, 0.15);
     background: #f5f5f5;
     height: 60px;
@@ -155,22 +152,31 @@
 }
 
 #offers-table td:first-child {
-    width: 60%;
     font-family: var(--font-family);
     font-weight: 400;
     font-size: 18px;
     color: #1a1a18;
+
 }
 
 #offers-table td:nth-child(2) {
-    min-width: 10%;
     font-family: var(--font-family);
     font-weight: 500;
     font-size: 20px;
     text-align: center;
     color: #3391c5;
+    width: 60px;
+
 }
 
+#offers-table td:nth-child(3) {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
+    width: 60px;
+    
+}
 
 .dropDown {
     display: none;
@@ -299,6 +305,16 @@
 .productVideoContainer {
     width: 1000px;
     height: 600px;
+}
+
+.offersList{
+    font-family: var(--second-family);
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 120%;
+    color: #1a1a18;
+    margin-bottom: 30px;
+
 }
 
 @media (max-width: 600px) {
@@ -508,6 +524,7 @@
 
     .table td {
         font-size: 14px;
+        word-break: break-word;
     }
 
     .modal-dialog {
@@ -695,7 +712,9 @@
     }
 
 
-
+    .offersList{
+        font-size: 20px;
+    }
 
 
     .glide__slide {
@@ -841,12 +860,10 @@
 
 .mainFormContainer {
     display: flex;
-    gap: 40px;
 }
 
 .order_list {
     flex: 3;
-    margin-top: 40px;
 }
 
 .mainForm {
@@ -862,9 +879,7 @@
 }
 
 @media (max-width: 800px) {
-    .mainFormContainer {
-        flex-direction: column-reverse;
-    }
+
 
     .order_list_over_800{
         display: none;

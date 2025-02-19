@@ -2,75 +2,59 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Новый запрос</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 20px;
-        }
-        h1, h2 {
-            color: #0056b3; /* Темно-синий цвет для заголовков */
-        }
-        .section {
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-        }
-        .offer-list {
-            list-style: none;
-            padding: 0;
-        }
-        .offer-list li {
-            margin-bottom: 5px;
-        }
-        .thank-you {
-            font-style: italic;
-            color: #555;
-        }
-    </style>
 </head>
-<body>
-    <div class="container">
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 20px; background-color: #f9f9f9;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#f9f9f9">
+        <tr>
+            <td align="center">
+                <table style="max-width: 600px; width: 100%; background-color: #ffffff; border: 1px solid #ddd; border-radius: 5px;" cellpadding="20" cellspacing="0" border="0">
+                    <tr>
+                        <td>
+                            {% if offers %}
+                                <h1 style="color: #0056b3; margin-top: 0;">Ваш заказ</h1>
+                                <ul style="list-style: none; padding: 0; margin-bottom: 20px;">
+                                    {% for offer in offers %}
+                                        <li style="margin-bottom: 5px;"><strong>{{ offer.name }}</strong> - {{ offer.quantity }} шт.</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                            
+                            <h1 style="color: #0056b3; margin-top: 0;">Информация о запросе</h1>
+                            <table width="100%" cellpadding="5" cellspacing="0" border="0">
+                                <tr>
+                                    <td style="padding: 5px;"><strong>ФИО:</strong></td>
+                                    <td style="padding: 5px;">{{ name }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px;"><strong>Компания:</strong></td>
+                                    <td style="padding: 5px;">{{ company_name }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px;"><strong>ИНН:</strong></td>
+                                    <td style="padding: 5px;">{{ inn }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px;"><strong>Email:</strong></td>
+                                    <td style="padding: 5px;">{{ customer_email }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px;"><strong>Телефон:</strong></td>
+                                    <td style="padding: 5px;">{{ customer_phone }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px;"><strong>Сообщение:</strong></td>
+                                    <td style="padding: 5px;">{{ customer_message }}</td>
+                                </tr>
+                            </table>
 
-        {% if offers %}
-            <div class="section">
-                <h1>Ваш заказ</h1>
-                <ul class="offer-list">
-                    {% for offer in offers %}
-                        <li><strong>{{ offer.name }}</strong> - {{ offer.quantity }} шт.</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        {% endif %}
-
-        <div class="section">
-            <h1>Информация о запросе</h1>
-            {% if name %}
-                <p><strong>ФИО:</strong> {{ name }}</p>
-            {% endif %}
-            {% if company_name %}
-                <p><strong>Компания:</strong> {{ company_name }}</p>
-            {% endif %}
-            {% if inn %}
-                <p><strong>ИНН:</strong> {{ inn }}</p>
-            {% endif %}
-            {% if customer_email %}
-                <p><strong>Email:</strong> {{ customer_email }}</p>
-            {% endif %}
-            {% if customer_phone %}
-                <p><strong>Телефон:</strong> {{ customer_phone }}</p>
-            {% endif %}
-            {% if customer_message %}
-                <p><strong>Сообщение:</strong> {{ customer_message }}</p>
-            {% endif %}
-        </div>
-
-        <p class="thank-you">Спасибо за ваш запрос! С вами свяжутся в ближайшее время.</p>
-
-    </div>
+                            <p style="font-style: italic; color: #555; margin-top: 20px; margin-bottom: 0;">Спасибо за ваш запрос! С вами свяжутся в ближайшее время.</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>

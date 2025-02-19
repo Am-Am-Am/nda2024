@@ -1,20 +1,22 @@
+{% load static %}
 
 
 <table id="offers-table">
     {% if offers_in_cart|length > 0  %}
-        <thead>
-            {% comment %} <tr>
-                <th>Код</th>
-                <th>Количество</th>
+    <h3 class="offersList">Ваш выбор:</h3>
+        {% comment %} <thead>
+            <tr>
                 <th></th>
-            </tr> {% endcomment %}
-        </thead>
+                <th></th>
+                <th></th>
+            </tr> 
+        </thead> {% endcomment %}
         <tbody>
         {% for offer in offers_in_cart %}
             <tr>
-                <td>{{ offer.name }}</td>
-                <td>{{ offer.quantity }}</td>
-                <td >
+                <td class="col-6 text-center align-middle">{{ offer.name }}</td>
+                <td class="col-1 text-center align-middle">{{ offer.quantity }}</td>
+                <td class="col-1 text-center align-middle">
                     <button
                         hx-confirm="Вы уверены?"
                         hx-target="#offers-table"
@@ -23,7 +25,8 @@
                         {% comment %} hx-refresh="true"  {% endcomment %}
                         hx-swap="innerHTML"
                         id="remove-offer-button"
-                    >Удалить</button>
+                    ><img src="{% static 'images/offer/delOffer.svg' %}" alt="">
+                </button>
                 </td>
             </tr>
         {% endfor %}

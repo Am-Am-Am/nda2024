@@ -486,7 +486,7 @@ input::placeholder {
 
 .subheaderImage {
     display: block;
-    margin-top: 40px;
+    /* margin-top: 40px; */
     /* margin-right: 50px; */
     width: 50%;
     height: 80vh;
@@ -496,6 +496,7 @@ input::placeholder {
     width: 100%;
     height: auto;
     object-fit: contain;
+    max-width: 450px;
 }
 
 
@@ -1794,14 +1795,9 @@ td {
     padding: 0;
 }
 
-td:first-child {
-    text-align: center;
-    min-width: 10%;
-}
 
-td:nth-child(2) {
-    min-width: 50%;
-}
+
+
 
 /* td:last-child {
     display: flex;
@@ -2950,7 +2946,7 @@ input .form-control .d-inline-block {
 .toast-container{
     z-index: 99999; 
     top: 100px; 
-    width: 100%;
+    width: 95vw;
     display: flex;
     justify-content: center;
 }
@@ -2967,3 +2963,38 @@ input .form-control .d-inline-block {
     margin-bottom: 0;
 }
 
+.modal-body .mainFormContainer{
+    padding: 0;
+}
+
+.toast{
+    background-color: #fff;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    font-size: 20px;
+    box-shadow: 0 0 30px 3px rgba(0, 0, 0, 0.15);
+}
+
+#toast{
+    color: #65CCA5;
+}
+
+#toast-warning{
+    color: #DCC073;
+}
+
+.toastInner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.toastInner img{
+    width: 150px;
+
+}

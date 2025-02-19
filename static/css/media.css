@@ -234,8 +234,11 @@
     }
 
     .subheaderImage img {
+        margin-top: 80px;
         min-width: auto;
-        max-width: 450px;
+        max-width: 400px;
+        max-height: 600px;
+        min-height: 300px;
 
     }
 
@@ -1675,6 +1678,19 @@
         width: 100%;
     }
   
+    .mainFormContainer {
+        flex-direction: column-reverse;
+        gap: 40px;
+    }
+
+    #offers-table td:first-child {
+        font-family: var(--font-family);
+        font-weight: 400;
+        font-size: 18px;
+        color: #1a1a18;
+        width: 80%;
+    
+    }
 }
 
 @media (max-width: 900px) {
@@ -1750,7 +1766,7 @@
     }
 
     .subheaderSlider {
-        padding-top: 40px;
+        padding-top: 80px;
     }
 
     /* catalog */
@@ -2456,6 +2472,13 @@
         border: 2px solid black;
     }
     
+    #offers-table td:first-child {
+        font-family: var(--font-family);
+        font-weight: 400;
+        color: #1a1a18;
+        width: 75%;
+    
+    }
 }
 
 
@@ -3127,6 +3150,17 @@
         object-fit: cover;
     }
 
+    #offers-table td:first-child {
+        font-family: var(--font-family);
+        font-weight: 400;
+        color: #1a1a18;
+        width: 70%;
+    
+    }
+
+    .mainFormContainer{
+        gap: 20px;
+    }
 }
 
 @media (width < 480px) {
@@ -3638,7 +3672,27 @@
     .slick-dotted.slick-slider{
         margin-bottom: 0;
     }
+
+    #offers-table td:first-child {
+        font-family: var(--font-family);
+        font-weight: 400;
+        color: #1a1a18;
+        width: 60%;
+    }
+
+
 }
+
+@media (width < 380px) {
+    #offers-table td:first-child {
+        font-family: var(--font-family);
+        font-weight: 400;
+        color: #1a1a18;
+        width: 50%;
+    
+    }
+}
+
 
 @media (width < 320px) {
     .el {

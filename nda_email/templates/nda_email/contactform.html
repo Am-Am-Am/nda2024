@@ -8,99 +8,100 @@
     method="post"
     enctype="multipart/form-data"
     hx-post="{% url 'cart_submit' %}"
-    hx-target="#cart_modal_form"
-    hx-swap="outerHTML"
+    hx-target="#physical_modal_form_container"
+    hx-swap="none"  
     novalidate
 >
     {% csrf_token %}
-    <div class="physicalForm">
-       
-        <div class="formEl">
-            <div class="form-floating mb-3">
-                {{ contact_form.name }}
-                <label for="fullNameLegal">ФИО контактного лица</label>
-            </div>
-            <div class="oneLine">
-                <div class="form-floating mb-3 w-50">
-                    {{ contact_form.phone_number }}
-                    {% comment %} <label for="validationPhoneNumber">Номер телефона</label> {% endcomment %}
-                    {% if contact_form.phone_number.errors %}
-                        <div style="color: red">
-                            {{ contact_form.phone_number.errors }}
-                        </div>
-                    {% endif %}
+    <div id="physical_modal_form_container"> 
+        <div class="physicalForm">
+            <div class="formEl">
+                <div class="form-floating mb-3">
+                    {{ contact_form.name }}
+                    <label for="fullNameLegal">ФИО контактного лица</label>
                 </div>
-                <div class="form-floating mb-3 w-50">
-                    {{ contact_form.email }}
-                    {% if contact_form.email.errors %}
-                        <span class="invalid-feedback">
-                            {{ contact_form.email.errors }}
-                        </span>
-                    {% endif %}
-                    <label for="email">Email</label>
+                <div class="oneLine">
+                    <div class="form-floating mb-3 w-50">
+                        {{ contact_form.phone_number }}
+                        {% comment %} <label for="validationPhoneNumber">Номер телефона</label> {% endcomment %}
+                        {% if contact_form.phone_number.errors %}
+                            <div style="color: red">
+                                {{ contact_form.phone_number.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="form-floating mb-3 w-50">
+                        {{ contact_form.email }}
+                        {% if contact_form.email.errors %}
+                            <span class="invalid-feedback">
+                                {{ contact_form.email.errors }}
+                            </span>
+                        {% endif %}
+                        <label for="email">Email</label>
+                    </div>
                 </div>
-            </div>
-            <div class="oneLine">
-                <div class="form-floating mb-3 w-50">
-                    {{ contact_form.company_name }}
-                    <label for="companyName">Наименование организации</label>
+                <div class="oneLine">
+                    <div class="form-floating mb-3 w-50">
+                        {{ contact_form.company_name }}
+                        <label for="companyName">Наименование организации</label>
+                    </div>
+                    <div class="form-floating mb-3 w-50">
+                        {{ contact_form.inn }}
+                        <label for="inn">ИНН</label>
+                    </div>
                 </div>
-                <div class="form-floating mb-3 w-50">
-                    {{ contact_form.inn }}
-                    <label for="inn">ИНН</label>
+                <div class="form-floating mb-3">
+                    {{ contact_form.message }}
+                    <label for="message">Комментарий к заказу</label>
                 </div>
-            </div>
-            <div class="form-floating mb-3">
-                {{ contact_form.message }}
-                <label for="message">Комментарий к заказу</label>
-            </div>
-            <div class="mb-3">
-                <label class="input-file">
-                    {{ contact_form.company_details }}
-                    <span class="filename">Прикрепить файл</span>
-                </label>
-                
-            </div>
+                <div class="mb-3">
+                    <label class="input-file">
+                        {{ contact_form.company_details }}
+                        <span class="filename">Прикрепить файл</span>
+                    </label>
+                    
+                </div>
 
-           {% comment %} <div
-                id="captcha-container"
-                class="smart-captcha mb-3"
-                data-sitekey="ysc1_sxny6cNZmnvhyJKrojDDLNxj0nvkGnTleldHzqEo9d9475ca"
-            >
-            </div> {% endcomment %}
-            <div 
-                id="captcha-container"
-                class="smart-captcha"
-                data-sitekey="ysc1_VyMk6kFwNVLym6k3ga8J4WyDeBNRooy4hPhYe2tr9d2736aa"
-            ></div>
+            {% comment %} <div
+                    id="captcha-container"
+                    class="smart-captcha mb-3"
+                    data-sitekey="ysc1_sxny6cNZmnvhyJKrojDDLNxj0nvkGnTleldHzqEo9d9475ca"
+                >
+                </div> {% endcomment %}
+                <div 
+                    id="captcha-container"
+                    class="smart-captcha"
+                    data-sitekey="ysc1_VyMk6kFwNVLym6k3ga8J4WyDeBNRooy4hPhYe2tr9d2736aa"
+                ></div>
 
-            {% if captchaError %}
-                <div class="text-danger mb-3">{{ captchaError }}</div>
-            {% endif %} 
-    
+                {% if captchaError %}
+                    <div class="text-danger mb-3">{{ captchaError }}</div>
+                {% endif %} 
+        
 
-            <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="policyCheckLegal" required />
-                <label class="form-check-label" for="policyCheckLegal">
-                    Я прочитал(а) уведомление о <a href="{% url 'privacy' %}">политике конфиденциальности</a>
-                </label>
-            </div>
-            {% if emailError %}
-                <div class="text-danger mb-3">{{ emailError }}</div>
-            {% endif %}
-             {% if emailSuccess %}
-                <div class="text-success mb-3">{{ emailSuccess }}</div>
-            {% endif %}
-            {% if contact_form.email.errors %}
-                <div class="error-message">
-                    {% for error in contact_form.email.errors %}
-                        {{ error }}
-                    {% endfor %}
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="policyCheckLegal" required />
+                    <label class="form-check-label" for="policyCheckLegal">
+                        Я прочитал(а) уведомление о <a href="{% url 'privacy' %}">политике конфиденциальности</a>
+                    </label>
                 </div>
-            {% endif %}
+                {% if emailError %}
+                    <div class="text-danger mb-3">{{ emailError }}</div>
+                {% endif %}
+                {% if emailSuccess %}
+                    <div class="text-success mb-3">{{ emailSuccess }}</div>
+                {% endif %}
+                {% if contact_form.email.errors %}
+                    <div class="error-message">
+                        {% for error in contact_form.email.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
 
-            <div class="modal-footer">
-                <button type="submit" form="cart_modal_form" class="btn btn-primary">Отправить запрос</button>
+                <div class="modal-footer">
+                    <button type="submit" form="cart_modal_form" class="btn btn-primary">Отправить запрос</button>
+                </div>
             </div>
         </div>
     </div>
