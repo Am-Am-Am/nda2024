@@ -5,13 +5,13 @@ from django.core.mail import EmailMessage
 from nda.settings import EMAIL_HOST_USER, RECIPIENT_EMAIL
 from nda_email.temporary_storage import temporary_storage
 
-logger = logging.getLogger(__name__)  # Рекомендуется использовать __name__ для логгера
+logger = logging.getLogger(__name__) 
 
 @shared_task(bind=True, autoretry_for=(Exception,), retry_kwargs={'max_retries': 5, 'countdown': 60})
 def send_emails_task(self, html_message_for_nda, html_message_for_customer, customer_email, file_name):
     logger.info("send_emails_task started")
-    logger.debug(f"html_message_for_nda: {html_message_for_nda}")  # Используйте debug для содержимого HTML
-    logger.debug(f"html_message_for_customer: {html_message_for_customer}")  # Используйте debug
+    logger.debug(f"html_message_for_nda: {html_message_for_nda}")  
+    logger.debug(f"html_message_for_customer: {html_message_for_customer}")  
     logger.info(f"customer_email: {customer_email}")
     logger.info(f"file_name: {file_name}")
 
@@ -23,7 +23,7 @@ def send_emails_task(self, html_message_for_nda, html_message_for_customer, cust
         EMAIL_HOST_USER,
         [RECIPIENT_EMAIL]
     )
-    email_for_nda.content_subtype = "html"  # Добавляем для корректной отправки HTML
+    email_for_nda.content_subtype = "html"  
     logger.info(f"email_for_nda created")
 
     subject_for_customer = f'Ваш заказ от {datetime.now().strftime("%Y-%m-%d %H:%M.")}'
@@ -43,7 +43,6 @@ def send_emails_task(self, html_message_for_nda, html_message_for_customer, cust
             storaged_file_path = temporary_storage.path(file_name)
             logger.info(f"storaged_file_path: {storaged_file_path}")
 
-            # Проверяем, существует ли файл перед прикреплением
             if temporary_storage.exists(file_name):
                 email_for_nda.attach_file(storaged_file_path)
                 email_for_customer.attach_file(storaged_file_path)
@@ -63,11 +62,9 @@ def send_emails_task(self, html_message_for_nda, html_message_for_customer, cust
         logger.info(f"Successfully sent emails to {customer_email} and {RECIPIENT_EMAIL}")
 
     except Exception as e:
-        logger.exception(f"Failed to send emails. Error: {e}")  # Используйте exception для полного стека вызовов
-        raise  # Allow Celery to retry
-
+        logger.exception(f"Failed to send emails. Error: {e}")  
+        raise  
     finally:
-        # Гарантируем удаление файла, даже если произошла ошибка
         if file_name is not None and temporary_storage.exists(file_name):
             try:
                 temporary_storage.delete(file_name)

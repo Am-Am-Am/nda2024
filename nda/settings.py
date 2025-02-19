@@ -218,7 +218,7 @@ EMAIL_USE_TLS = True
 
 # YANDEX CAPTCHA SETTINGS
 SECURE_REFERRER_POLICY = 'no-referrer-when-downgrade'
-YACAPTCHA_SERVER = os.getenv('SERVER_KEY', 'ysc2_VyMk6kFwNVLym6k3ga8JsIctBN6nnYgcjLCWZdce1a8a26b8')
+YACAPTCHA_SERVER = os.getenv('SERVER_KEY')
 
 
 
