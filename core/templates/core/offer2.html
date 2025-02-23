@@ -112,7 +112,7 @@
                 </div>
                 <div class="productTitle">
                     <div class="productTitleText">
-                        <h3>{{brand}}</h3>
+                        {% comment %} <h3>{{brand}}</h3> {% endcomment %}
                         <h2>{{ product.name }}</h2>
                         {{ product.description|safe }}
                     
@@ -261,8 +261,9 @@
                                     <div class="catalogTutorialLink">
                                         <a href="{{ instruction.file.url }}">
                                             <div class="catalogTutorialEl">
-                                                <div class="catalogTutorialElText">Скачать инструкцию: {{instruction.get_filename}}</div>
-                                                <div class="catalogTutorialElImg"></div>
+                                                <div class="catalogTutorialElText">Скачать инструкцию</div>
+                                            {% comment %} <div class="catalogTutorialElText">Скачать Каталог {{catalog.get_filename}}</div> {% endcomment %}
+                                                <div class="catalogTutorialElImg instructionDownload"></div>
                                             </div>
                                         </a>
                                     </div>
@@ -273,8 +274,9 @@
                                 <div class="catalogTutorialLink">
                                     <a href="{{ certificate.file.url }}">
                                         <div class="catalogTutorialEl">
-                                            <div class="catalogTutorialElText">Скачать сертификат {{certificate.get_filename}}</div>
-                                            <div class="catalogTutorialElImg"></div>
+                                            <div class="catalogTutorialElText">Скачать РУ</div>
+                                            {% comment %} <div class="catalogTutorialElText">Скачать Каталог {{catalog.get_filename}}</div> {% endcomment %}
+                                            <div class="catalogTutorialElImg ruDownload"></div>
                                         </div>
                                     </a>
                                 </div>
@@ -285,8 +287,9 @@
                                 <div class="catalogTutorialLink">
                                     <a href="{{ catalog.file.url }}">
                                         <div class="catalogTutorialEl">
-                                            <div class="catalogTutorialElText">Скачать Каталог {{catalog.get_filename}}</div>
-                                            <div class="catalogTutorialElImg"></div>
+                                            <div class="catalogTutorialElText">Скачать Каталог</div>
+                                            {% comment %} <div class="catalogTutorialElText">Скачать Каталог {{catalog.get_filename}}</div> {% endcomment %}
+                                            <div class="catalogTutorialElImg catalogDownload"></div>
                                         </div>
                                     </a>
                                 </div>
@@ -399,8 +402,8 @@
                                         <div class="catalogTutorialLink">
                                             <a href="{{ instruction.file.url }}">
                                                 <div class="catalogTutorialEl">
-                                                    <div class="catalogTutorialElText">Скачать инструкцию {{instruction.get_filename}}</div>
-                                                    <div class="catalogTutorialElImg"></div>
+                                                    <div class="catalogTutorialElText">Скачать инструкцию</div>
+                                                    <div class="catalogTutorialElImg instructionDownload"></div>
                                                 </div>
                                             </a>
                                         </div>
@@ -411,8 +414,8 @@
                                     <div class="catalogTutorialLink">
                                         <a href="{{ certificate.flie.url }}">
                                             <div class="catalogTutorialEl">
-                                                <div class="catalogTutorialElText">Скачать сертификат {{certificate.get_filename}}</div>
-                                                <div class="catalogTutorialElImg"></div>
+                                                <div class="catalogTutorialElText">Скачать сертификат</div>
+                                                <div class="catalogTutorialElImg ruDownload"></div>
                                             </div>
                                         </a>
                                     </div>
@@ -423,8 +426,8 @@
                                     <div class="catalogTutorialLink">
                                         <a href="{{ catalog.file.url }}">
                                             <div class="catalogTutorialEl">
-                                                <div class="catalogTutorialElText">Скачать Каталог {{catalog.get_filename}}</div>
-                                                <div class="catalogTutorialElImg"></div>
+                                                <div class="catalogTutorialElText">Скачать Каталог</div>
+                                                <div class="catalogTutorialElImg catalogDownload"></div>
                                             </div>
                                         </a>
                                     </div>
@@ -460,7 +463,7 @@
             </div>
         </div>
         <!-- Placeholder for the modal -->
-        <div id="modal" class="modal fade">
+        <div id="modal" class="modal fade" onclick="modalClickHandler(event)">
             <div id="dialog" class="modal-dialog modal-xl" hx-target="this" ></div>
         </div>
     </div>

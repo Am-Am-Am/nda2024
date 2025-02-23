@@ -95,7 +95,7 @@ def cart_submit(request):
 
     if not yandex_captcha_validation(token, client_ip):
         response = HttpResponse(status=400)  
-        response['HX-Trigger'] = json.dumps({"showError": "Докажите, что вы не робот"})
+        response['HX-Trigger'] = json.dumps({"showError": "Докажите, что вы не робот", "reloadPage": True})
         return response
     
     if form.is_valid():
@@ -103,7 +103,8 @@ def cart_submit(request):
             LegalEntityEmailSender.send_messages(request, offers)
             cart_clear(request)
             response = HttpResponse(status=200)
-            response['HX-Trigger'] = json.dumps({"showMessage": "Запрос отправлен"})
+            response['HX-Trigger'] = json.dumps({"showMessage": "Запрос отправлен", "reloadPage": True})
+            
             return response
         except Exception as e:
             logger.exception("Ошибка при отправке формы для юридических лиц")  
@@ -124,7 +125,7 @@ def physical_cart_submit(request):
 
     if not yandex_captcha_validation(token, client_ip):
         response = HttpResponse(status=400)  
-        response['HX-Trigger'] = json.dumps({"showError": "Докажите, что вы не робот"})
+        response['HX-Trigger'] = json.dumps({"showError": "Докажите, что вы не робот", "reloadPage": True})
         return response
 
     if form.is_valid():
@@ -132,7 +133,7 @@ def physical_cart_submit(request):
             PhysicalPersonEmailSender.send_messages(request, offers)
             cart_clear(request)
             response = HttpResponse(status=200)
-            response['HX-Trigger'] = json.dumps({"showMessage": "Запрос отправлен"})
+            response['HX-Trigger'] = json.dumps({"showMessage": "Запрос отправлен", "reloadPage": True})
             return response
         except Exception as e:
             logger.exception("Ошибка при отправке формы для физических лиц")  
@@ -152,14 +153,14 @@ def mail_submit(request):
 
     if not yandex_captcha_validation(token, client_ip):
         response = HttpResponse(status=400)  
-        response['HX-Trigger'] = json.dumps({"showError": "Докажите, что вы не робот"})
+        response['HX-Trigger'] = json.dumps({"showError": "Докажите, что вы не робот", "reloadPage": True})
         return response
 
     if form.is_valid():
         try:
             MailFormEmailSender.send_messages(request)
             response = HttpResponse(status=200)
-            response['HX-Trigger'] = json.dumps({"showMessage": "Запрос отправлен"})
+            response['HX-Trigger'] = json.dumps({"showMessage": "Запрос отправлен", "reloadPage": True})
             return response
         except Exception as e:
             logger.exception("Ошибка при отправке сообщения")  
@@ -179,14 +180,14 @@ def call_submit(request):
 
     if not yandex_captcha_validation(token, client_ip):
         response = HttpResponse(status=400)  
-        response['HX-Trigger'] = json.dumps({"showError": "Докажите, что вы не робот"})
+        response['HX-Trigger'] = json.dumps({"showError": "Докажите, что вы не робот", "reloadPage": True})
         return response
 
     if form.is_valid():
         try:
             CallFormEmailSender.send_messages(request)
             response = HttpResponse(status=200)  
-            response['HX-Trigger'] = json.dumps({"showMessage": "Запрос отправлен"})
+            response['HX-Trigger'] = json.dumps({"showMessage": "Запрос отправлен", "reloadPage": True})
             return response
         except Exception as e:
             logger.exception("Ошибка при отправке сообщения")

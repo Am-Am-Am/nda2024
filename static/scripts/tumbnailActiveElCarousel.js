@@ -1,3 +1,6 @@
+// Выделение активного элемента в миниатюрах карусели внутри товара
+
+
 document.addEventListener('DOMContentLoaded', function() {
     const thumbnailDivs = document.querySelectorAll('.tumbnails-list div');
     const carouselElement = document.getElementById('carouselExampleIndicators');

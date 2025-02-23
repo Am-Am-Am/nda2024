@@ -1,4 +1,6 @@
-// replace <span id="offers-in-cart-counter"> inner value with reduced one on offer removed from cart
+// HTMX код для работы с корзиной, всплывающим окном со статусом отправки запроса с форм
+
+
 document.addEventListener('htmx:afterOnLoad', function(event) {
     if (event?.detail?.requestConfig?.elt?.id !== "remove-offer-button") {
         return

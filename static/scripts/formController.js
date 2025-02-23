@@ -1,3 +1,6 @@
+// Скрипт для работы с модальными окнами
+
+
 const options = document.getElementById('options');
 const toggleOptions = document.getElementById('toggleOptions')
 const closeButton1 = document.getElementById('close1')

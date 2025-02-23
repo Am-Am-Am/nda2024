@@ -1,3 +1,5 @@
+// Скрипт, создающий маску для номеров в формах
+
 $(document).ready(function() {
     // Функция для инициализации масок на всех полях с классом .phone-mask
     function initializePhoneMasks() {

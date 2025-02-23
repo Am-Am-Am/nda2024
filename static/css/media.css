@@ -330,9 +330,6 @@
         font-size: 28px;
     }
 
-    .productTitleText h2 {
-        font-size: 80px;
-    }
 
     /* brand.html */
     .main {
@@ -581,10 +578,10 @@
         width: 50%;
     }
 
-    .linkText{
+    /* .linkText{
         font-size: 18px;
         margin-bottom: 20px;
-    }
+    } */
 
     .productDescription{
         font-size: 18px;
@@ -598,10 +595,14 @@
         width: 170px;
     }
 
-    .productTitleText p{
+    /* .productTitleText p{
         font-size: 18px;
-    }
+    } */
 
+    #cookie-consent {
+        font-size: 20px;
+    }
+    
 }
 
 
@@ -746,8 +747,8 @@
 
     .productTitleText p {
         font-family: var(--font-family);
-        font-weight: 500;
-        font-size: 16px;
+        /* font-weight: 500;
+        font-size: 16px; */
     }
 
     .productTitleText li {
@@ -973,7 +974,7 @@
     }
 
     .productTitleText h2 {
-        font-size: 37px;
+        font-size: 50px;
     }
 
     .linkContacts {
@@ -1002,6 +1003,11 @@
 
     .offersList{
         margin-bottom: 30px;
+    }
+
+    #cookie-consent {
+        display: none;
+        font-size: 16px;
     }
 
 }
@@ -1695,6 +1701,8 @@
         width: 80%;
     
     }
+
+ 
 }
 
 @media (max-width: 900px) {
@@ -1978,7 +1986,7 @@
     }
 
     .productTitleText h2 {
-        font-size: 37px;
+        font-size: 45px;
     }
 
     .linkContacts {
@@ -2243,7 +2251,14 @@
 
     }
 
+    .linkText{
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
 
+    .linkContacts a{
+        font-size: 16px;
+    }
 
     .nav .nav-tabs {
         flex-wrap: nowrap;
@@ -2483,6 +2498,10 @@
         width: 75%;
     
     }
+    .subheaderInfo{
+        margin-top: 200px;
+    }
+ 
 }
 
 
@@ -2812,7 +2831,6 @@
         width: 100%;
     }
 
-   
 }
 
 
@@ -2881,9 +2899,7 @@
         padding: 2px;
     }
 
-
-
-
+  
     /* certificatesInternalPage.html */
 
     .btn {
@@ -3165,6 +3181,28 @@
     .mainFormContainer{
         gap: 20px;
     }
+
+    #cookie-consent{
+        height: auto;
+        flex-direction: column;
+        width: 100%;
+        
+    }
+
+    .cookieElText{
+        width: 60%;
+    }
+
+    .cookieElButton{
+        width: 60%;
+    }
+
+    #cookie-consent-button{
+        margin-right: 0;
+    }
+
+
+
 }
 
 @media (width < 480px) {
@@ -3684,6 +3722,8 @@
         width: 60%;
     }
 
+ 
+
 
 }
 
@@ -3710,7 +3750,4 @@
         height: 900px;
     }
 
-    .product_bg{
-        height: 900px;
-    }
 }

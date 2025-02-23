@@ -1,3 +1,5 @@
+// Имя прикреплённого файла в форме
+
 $('#modal').on('shown.bs.modal', function () {
     function handleFiles(inputId, containerClass) {
         var input = document.getElementById(inputId);

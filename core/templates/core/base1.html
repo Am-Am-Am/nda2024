@@ -71,6 +71,15 @@
                 </div>
             </div>
         </div> 
+
+        <div id="cookie-consent" style="display:none;">
+            <div class="cookieEl cookieElText">
+                Наш сайт использует куки. Продолжая им пользоваться, вы соглашаетесь с нашей <a href="{% url 'privacy' %}" style="text-decoration: underline; color: black;">политикой конфиденциальности</a>.
+            </div>
+            <div class="cookieEl cookieElButton">
+                <button id="cookie-consent-button">Согласен!</button>
+            </div>
+          </div>
     </div>
         
   
@@ -89,4 +98,27 @@
     <script src="{% static 'scripts/offers-htmx-handlers.js' %}"></script>
     <script src="{% static 'scripts/phoneMask.js' %}"></script>
     <script src="{% static 'scripts/formFiles.js' %}"></script>
+    <script src="{% static 'scripts/cookieScript.js' %}"></script>
+    <script src="{% static 'scripts/closeForms.js' %}"></script>
+  
+
+    <script>
+        function modalClickHandler(event) {
+          // Проверяем, был ли клик вне модального окна (то есть, на области, окружающей модальное окно)
+          if (event.target.id === 'modal') {
+            window.location.reload();
+          }
+
+          
+          if (event.target.id === 'callModal') {
+            window.location.reload();
+          }
+
+          if (event.target.id === 'emailModal') {
+            window.location.reload();
+          }
+
+
+        }
+      </script>
 </body>
