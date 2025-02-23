@@ -62,28 +62,49 @@
     }
 }
 
+@media (max-width: 900px){
+
+
+    .subheaderImage{
+        margin-top: 0px;
+        height: 500px;
+    }
+    
+    .subheaderInfo{
+        margin-top: 0px;
+        height: 400px;
+    }
+    
+    .subheader{
+        height: 850px;
+    }
+ 
+
+
+}
+
 @media (max-width: 800px){
 
     .subheader{
         height: 100vh;
+       
     }
     .subheaderInfo{
-        margin-top: 250px;
+        margin-top: 20px;
     }
 
     .subheaderImage img{
         margin-top: 0;
+        margin-bottom: 20px;
     }
- 
-}
-
-@media (max-width: 800px){
 
     .subheader{
         height: 100vh;
     }
-
+ 
 }
+
+
 
 @media (min-width: 900px ) and (max-width: 2500px){
     .slider .subheaderInfo {
@@ -104,11 +125,46 @@
 }
 
 
+@media (width < 550px){
+    .buttonInfo{
+        height: 60px;
+    }
+
+    .subheader{
+        padding: 0px;
+    }
+
+    .subheaderInfo{
+        padding: 0px;
+        margin-top: 100px;
+    }
+
+    .subheaderTitle h1{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    header{
+        height: 700px;
+    }
+
+    .product_bg{
+        top: 420px;
+        height: 350px;
+    }
+
+    .subheaderImage{
+        height: 50vh;
+    } 
+
+
+}
+
+
 @media (width < 480px){
 
     .slider div{
         justify-content: center;
-        
     }   
 
     .subheaderImage img{
@@ -118,7 +174,6 @@
 
     .slider .buttonInfo {
         justify-content: center;
-        margin-top: 20px;
     }
  
 
@@ -127,22 +182,27 @@
     }
     .subheaderInfo{
         height: 200px;
-    
+        margin-top: 0;
     }
 
     .slider .subheaderImage{
         width: 100%;
         display: flex;
-        justify-content: center;
-        align-content: start;
+        flex-direction: column;
+
     }
     .subheaderImage img{
         width: 75%;
         height: auto;
+        margin-bottom:20px ;
+    }
+
+    .subheaderImage a{
+        text-decoration: none;
     }
 
     .slick-initialized .slick-slide{
-        justify-content: space-around;
+        justify-content: flex-start;
     }
 
     .subheaderImage{
@@ -169,7 +229,12 @@
 
     .subheaderInfo{
         padding: 0px;
-        margin-top: 100px;
+        margin-top: 80px;
+    }
+
+    .subheaderTitle h1{
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     header{
@@ -182,11 +247,6 @@
     }
 
     .subheaderImage{
-        height: 80vh;
+        height: 50vh;
     } 
-
-
-   
 }
-
-

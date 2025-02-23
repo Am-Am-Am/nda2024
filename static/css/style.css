@@ -2952,11 +2952,11 @@ input .form-control .d-inline-block {
 }
 
 .less550 {
-    display: none;
+    display: none !important;
 }
 
 .more550 {
-    display: block;
+    display: block !important;
 }
 
 .table {

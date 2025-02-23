@@ -2108,6 +2108,7 @@
 
 
 
+
 }
 
 @media (max-width: 800px) {
@@ -3072,11 +3073,11 @@
     }
 
     .less550{
-        display: block;
+        display: block !important;
     }
 
     .more550{
-        display: none;
+        display: none !important;
     }
  
     .footerDataEls:nth-child(3){
