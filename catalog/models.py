@@ -5,7 +5,7 @@ from django.core.files.storage import FileSystemStorage
 from django.core.validators import URLValidator, ValidationError
 from django.utils.text import slugify
 from nda.settings import PRIVATE_ROOT, SENDFILE_ROOT
-from ckeditor.fields import RichTextField
+# from ckeditor.fields import RichTextField
 from django.core.cache import cache
 from django_ckeditor_5.fields import CKEditor5Field
 private_storage = FileSystemStorage(location=PRIVATE_ROOT + SENDFILE_ROOT, base_url='/files')

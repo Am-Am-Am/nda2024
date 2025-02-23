@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'sorl.thumbnail',
     'phonenumber_field',
-    'ckeditor',
+    # 'ckeditor',
     'django.contrib.sitemaps',
     'django_ckeditor_5',
 ]
