@@ -249,4 +249,8 @@
     .subheaderImage{
         height: 50vh;
     } 
+
+    .buttonInfo{
+        width: 95vw;
+    }
 }

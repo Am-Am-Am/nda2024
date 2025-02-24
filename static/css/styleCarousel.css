@@ -198,5 +198,9 @@
         transform: translate(-50%, -50%);
       }
 
+      .tumbnailsWrapper {
+        margin-top: 20px;
+     
+     }
 
 }
