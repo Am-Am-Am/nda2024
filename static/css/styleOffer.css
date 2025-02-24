@@ -331,6 +331,9 @@
     height: 600px;
 }
 
+.productDescription table{
+    width: 100% !important;
+}
 
 
 @media (max-width: 600px) {

@@ -68,7 +68,7 @@
             <div class="productHead">
                 <div class="productCarousel">
                     <div class="carouselWrapper">
-                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="false" data-interval="false" > 
                             <div class="carousel-inner">
                                 {% for image in images %}
                                     {% cache 600 image.pk %}
@@ -99,7 +99,7 @@
                                     {% cache 600 image.pk %}
                                         {% with forloop.counter0 as index %}
                                             {% thumbnail image.image '150x150' format="PNG" as im %}
-                                                <div class="thumbnailContainer" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{index}}" {% if forloop.first %}class="active"{% endif %}>
+                                                <div class="thumbnailContainer" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{index}}" {% if forloop.first %}class="active"{% endif %} data-bs-ride="false" data-interval="false">
                                                     <img src="{{ im.url }}" class="d-block  thumbnail-image" aria-label="Slide {{ index }}">
                                                 </div>
                                             {% endthumbnail %}
@@ -481,6 +481,44 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css"/>
 <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.min.js"></script>
 <script src="{% static 'scripts/tumbnailActiveElCarousel.js' %}"></script>
+<script>
+    $(document).ready(function() {
+         // Инициализируем карусель без автовоспроизведения
+        $('#carouselExampleIndicators').carousel({
+            interval: false,
+            pause: false,
+            ride: false  // Отключаем автоматический запуск
+        });
 
+        // Обработчик кликов по стрелкам
+        $('.carousel-control-prev, .carousel-control-next').click(function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            // Уничтожаем текущую карусель
+            $('#carouselExampleIndicators').carousel('dispose');
+
+            // Заново инициализируем карусель без автовоспроизведения
+            $('#carouselExampleIndicators').carousel({
+                interval: false,
+                pause: false,
+                ride: false
+            });
+        });
+        $('#carouselExampleIndicators').carousel({
+            interval: false, 
+            pause: false
+        });
+    
+        $('#carouselExampleIndicators').on('slid.bs.carousel', function() {
+            $(this).carousel('pause'); 
+        });
+    
+         $('#carouselExampleIndicators').on('slide.bs.carousel', function() {
+            $(this).carousel('pause'); 
+        });
+
+    });
+</script>
     
 {% endblock %}
