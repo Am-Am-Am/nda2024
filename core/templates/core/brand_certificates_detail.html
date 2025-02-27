@@ -61,7 +61,7 @@
                       <td class="text-center align-middle">{{ forloop.counter }}</td>
                       <td class="text-center align-middle">{{ certificate.get_filename }}</td>
                       <td class="text-center align-middle">{{ certificate.get_filename|slice:"3:12" }}</td>
-                      <td class="text-center align-middle" id= "certificateDownload">
+                      <td class="text-center align-middle" id="certificateDownload">
                         <img src="{% static 'images/certificates/downloadCertificates.svg' %}" alt="" />  
                         <a href="{{ certificate.file.url }}">Скачать</a>
                       </td>
