@@ -1,5 +1,6 @@
 {% extends 'core/base1.html' %}
 {% load static cache %}
+{% load static %}
 
 {% block title %}
 <title> Регистрационные удостоверения {{brand}}</title>
@@ -42,36 +43,65 @@
       {% include 'core/components/banner.html' %}
       {% endcache %}
 
-      <div class="certificatesTable">
-        {% cache 3600 'brand_certificate_table' brand.slug %}
-        <table class="table table-responsive table-borderless">
-          <thead>
-            <tr class="table-header">
-              <th class="col-1 text-center">№</th>
-              <th class="col-6 text-center">Содержание документа</th>
-              <th class="col-2 text-center">Номер РУ</th>
-              <th class="col-2 text-center">РУ</th>
-            </tr>
-          </thead>
-          <tbody>
-            
-                {% for certificate in certificates %}
-                  <tr class="table-row">
-                    <td class="text-center align-middle">{{ forloop.counter }}</td>
-                    <td class="text-center align-middle">{{ certificate.get_filename }}</td>
-                    <td class="text-center align-middle">{{ certificate.get_filename|slice:"3:12" }}</td>
-                    <td class="text-center align-middle">
-                      <a href="{{ certificate.file.url }}">Скачать</a>
-                    </td>
-                  </tr>
-                {% endfor %}
-                
-              
-          
-          </tbody>
-        </table>
-        {% endcache %}
+      <div class="more550">
+        <div class="certificatesTable">
+          {% cache 3600 'brand_certificate_table' brand.slug %}
+          <table class="table table-responsive table-borderless">
+            <thead>
+              <tr class="table-header">
+                <th class="col-1 text-center">№</th>
+                <th class="col-11 text-center">Содержание документа</th>
+                <th class="col-2 text-center">Номер РУ</th>
+                <th class="col-2 text-center">РУ</th>
+              </tr>
+            </thead>
+            <tbody>
+                  {% for certificate in certificates %}
+                    <tr class="table-row">
+                      <td class="text-center align-middle">{{ forloop.counter }}</td>
+                      <td class="text-center align-middle">{{ certificate.get_filename }}</td>
+                      <td class="text-center align-middle">{{ certificate.get_filename|slice:"3:12" }}</td>
+                      <td class="text-center align-middle" id= "certificateDownload">
+                        <img src="{% static 'images/certificates/downloadCertificates.svg' %}" alt="" />  
+                        <a href="{{ certificate.file.url }}">Скачать</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+            </tbody>
+          </table>
+          {% endcache %}
+        </div>
       </div>
+
+      <div class="less550">
+        <div class="certificatesTable">
+          {% cache 3600 'brand_certificate_table' brand.slug %}
+          <table class="table table-responsive table-borderless">
+            <thead>
+              <tr class="table-header">
+                <th class="col-2 text-center">№</th>
+                <th class="col-9  text-center">Содержание документа</th>
+                <th class="col-4  text-center">Номер РУ</th>
+                <th class="col-3  text-center">РУ</th>
+              </tr>
+            </thead>
+            <tbody>
+                  {% for certificate in certificates %}
+                    <tr class="table-row">
+                      <td class="text-center align-middle">{{ forloop.counter }}</td>
+                      <td class="text-center align-middle">{{ certificate.get_filename }}</td>
+                      <td class="text-center align-middle">{{ certificate.get_filename|slice:"3:12" }}</td>
+                      <td class="text-center align-middle" id= "certificateDownload">
+                        <a href="{{ certificate.file.url }}">Скачать</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+            </tbody>
+          </table>
+          {% endcache %}
+        </div>
+      </div>
+
       <!-- плавающий элемент с формами связи -->
       {% include 'core/components/formsContainer.html' %}
       <!-- плавающий элемент с формами связи -->

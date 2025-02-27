@@ -485,18 +485,22 @@ input::placeholder {
 }
 
 .subheaderImage {
-    display: block;
+    /* display: block; */
     /* margin-top: 40px; */
     /* margin-right: 50px; */
-    width: 50%;
+    /* width: 50%; */
     height: 80vh;
+   
+    display: flex;
+    align-items: flex-start;
+    margin-top: 80px;
 }
 
 .subheaderImage img {
     width: 100%;
     height: auto;
     object-fit: contain;
-    max-width: 400px;
+    max-width: 600px;
 }
 
 
@@ -567,7 +571,7 @@ input::placeholder {
 /* конец subheader, начало main catalog */
 
 .catalog {
-    margin-top: 100px;
+    margin-top: 0px;
 }
 
 h2 {
@@ -582,11 +586,16 @@ h2 {
     margin-top: 100px;
 }
 
+.catalog h2{
+    margin-top: 0px;
+}
+
 .choice {
     border-radius: 5px;
     width: 60vw;
     height: 65px;
     box-shadow: 0 0 40px 3px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0 0 40px 3px rgba(0, 0, 0, 0.25);
     background: #f2f2f2;
     margin: 0 auto;
     display: flex;
@@ -622,6 +631,14 @@ li .active {
     background-color: #3391C5;
     color: #fff;
 }
+
+
+li .active {
+    background-color: #3391C5;
+    color: #fff;
+}
+
+
 
 
 
@@ -1323,6 +1340,8 @@ li .active {
 
 .slick-initialized .slick-slide {
     display: flex;
+    width: 95vw;
+    justify-content: space-between;
 }
 
 .sliderNavEl {
@@ -1526,6 +1545,7 @@ li .active {
     font-size: 16px;
     color: #1a1a18;
     margin-bottom: 20px;
+    font-weight: 500;
 }
 
 .linkContacts {
@@ -1656,6 +1676,7 @@ li .active {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    gap: 5px;
 }
 
 .tableCountAdd {
@@ -1725,6 +1746,18 @@ li .active {
 
 .quantityFormBtn {
     width: 50%;
+    border: none;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    background-color: #3391C5;
+    color: #FFFFFF;
+    padding-left: 5px;
+}
+.quantityFormBtn:hover{
+    background-color: #4BA3D6;
 }
 
 
@@ -3048,4 +3081,28 @@ input .form-control .d-inline-block {
 .cookieElButton{
     flex: 2;
 }
+
+#certificateDownload a{
+    color: white;
+    text-decoration: none;
+}
+
+#certificateDownload{
+    background-color: #3391C5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+#certificateDownload img{
+    height: 16px;
+}
+
+
+#certificateDownload:hover{
+    background-color: #4BA3D6;
+    cursor: pointer;
+}
+
 

@@ -19,7 +19,7 @@ function htmxHandlers() {
     htmx.on("showMessage", (e) => {
       const toastElement = document.getElementById("toast")
       const toastBody = document.getElementById("toast-body")
-      const toast = new bootstrap.Toast(toastElement, { delay: 2000 })
+      const toast = new bootstrap.Toast(toastElement, { delay: 3000 })
       toastBody.innerText = e.detail.value
       toast.show()
     })
@@ -27,7 +27,7 @@ function htmxHandlers() {
     htmx.on("showError", (e) => {
       const toastElement = document.getElementById("toast-warning")
       const toastBody = document.getElementById("toast-warning-body")
-      const toast = new bootstrap.Toast(toastElement, { delay: 2000 })
+      const toast = new bootstrap.Toast(toastElement, { delay: 3000 })
       toastBody.innerText = e.detail.value
       toast.show()
     })

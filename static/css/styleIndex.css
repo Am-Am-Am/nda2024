@@ -27,6 +27,12 @@
     padding: 0;
 }
 
+.subheaderImage .buttonInfo{
+    box-shadow: none;
+}
+
+
+
 @media (min-width:  1920px){
     .slider .subheaderInfo {
         padding: 20px;
@@ -90,7 +96,7 @@
        
     }
     .subheaderInfo{
-        margin-top: 20px;
+        margin-top: 80px;
     }
 
     .subheaderImage img{
@@ -139,13 +145,10 @@
         margin-top: 100px;
     }
 
-    .subheaderTitle h1{
-        padding-left: 20px;
-        padding-right: 20px;
-    }
+  
 
     header{
-        height: 700px;
+        height: 75vh;
     }
 
     .product_bg{
@@ -153,15 +156,15 @@
         height: 350px;
     }
 
-    .subheaderImage{
+    /* .subheaderImage{
         height: 50vh;
-    } 
+    }  */
 
 
 }
 
 
-@media (width < 480px){
+@media (width < 550px){
 
     .slider div{
         justify-content: center;
@@ -171,7 +174,13 @@
         margin-top: 0;
     }
 
+    .catalog{
+        margin-top: 40px;
+    }
 
+    .subheader{
+        height: 80vh;
+    }
     .slider .buttonInfo {
         justify-content: center;
     }
@@ -181,7 +190,7 @@
         width: 100%;
     }
     .subheaderInfo{
-        height: 200px;
+        height: 120px;
         margin-top: 0;
     }
 
@@ -192,9 +201,10 @@
 
     }
     .subheaderImage img{
-        width: 75%;
+        width: 100%;
         height: auto;
-        margin-bottom:20px ;
+        margin-bottom:20px;
+        object-fit: cover;
     }
 
     .subheaderImage a{
@@ -229,28 +239,31 @@
 
     .subheaderInfo{
         padding: 0px;
-        margin-top: 80px;
+        margin-top: 100px;
     }
 
-    .subheaderTitle h1{
-        padding-left: 20px;
-        padding-right: 20px;
-    }
 
-    header{
-        height: 700px;
-    }
 
     .product_bg{
-        top: 420px;
-        height: 350px;
+        top: 35vh;
+        height: 320px;
     }
 
-    .subheaderImage{
-        height: 50vh;
-    } 
 
     .buttonInfo{
-        width: 95vw;
+        width: 94vw;
     }
 }
+@media (width < 400px) and (height < 700px){
+    header{
+        height: 100vh;
+    }
+    .subheader{
+        height: 100vh;
+    }
+    .subheaderInfo{
+        margin-top: 100px;
+    }
+ 
+}
+

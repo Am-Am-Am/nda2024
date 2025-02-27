@@ -563,7 +563,6 @@
     .productTabContent {
         display: none;
     }
-
     .dropDown {
         display: flex;
         flex-direction: column;
@@ -596,7 +595,9 @@
         list-style-type: none;
         width: 100%;
     }
-
+    details > summary::-webkit-details-marker {
+        display: none;
+      }
 
     details>summary::after {
         display: inline-block;
@@ -615,6 +616,7 @@
         margin-left: 10px;
         background-image: url("data:image/svg+xml,%3Csvg width='19' height='11' viewBox='0 0 19 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.929504 9.62134L9.48285 1.06799L18.4853 10.0705' stroke='%231A1A18' stroke-linecap='round'/%3E%3C/svg%3E%0A");
     }
+    
 
     .catalogTutorialElText {
         font-size: 16px;

@@ -236,7 +236,7 @@
     .subheaderImage img {
         margin-top: 40px;
         min-width: auto;
-        max-width: 400px;
+        max-width: 600px;
         max-height: 600px;
         min-height: 300px;
 
@@ -2191,7 +2191,7 @@
 
     /* contacts.html */
     .contactsMap {
-        display: none;
+       height: 40vh;
     }
 
     /* contacts.html */
@@ -2874,14 +2874,6 @@
         display: none;
     }
 
-
-
-    .choice {
-        width: 100%;
-        font-size: 14px;
-    }
-
-
     /* certificatesInternalPage.html */
 
     .certificatesTable{
@@ -3184,23 +3176,36 @@
     }
 
     #cookie-consent{
+        position: fixed;
         height: auto;
         flex-direction: column;
-        width: 100%;
-        
+        width: 95vw;
+        z-index: 9999;
+        left: 2.5vw;
+        bottom: 5vh;
+        background-color: #E6F0F8;
+        box-shadow: 0 0 40px 3px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        padding: 15px;
     }
 
     .cookieElText{
-        width: 60%;
+        width: 100%;
+        text-align: left;
     }
 
     .cookieElButton{
-        width: 60%;
+        width: 100%;
     }
 
     #cookie-consent-button{
-        margin-right: 0;
+        width: 100%;
+        margin-top: 15px;
+        height: 40px;
+        padding: 0;
     }
+
+   
 
 
 
@@ -3284,19 +3289,24 @@
     }
 
     .choice {
+        width: 95vw;
         height: 50px;
         font-size: 16px;
         text-align: center;
     }
 
+  
+
     .choice button {
         height: 65px;
         font-size: 18px;
+        width: 100%;
     }
 
     .catalogItems {
         margin-top: 20px;
     }
+
 
 
 
@@ -3722,6 +3732,7 @@
         color: #1a1a18;
         width: 60%;
     }
+
 
  
 

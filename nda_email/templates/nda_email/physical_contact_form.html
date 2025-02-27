@@ -20,8 +20,8 @@
                 {{ p_contact_form.name }}
                 <label for="fullNameLegal">ФИО контактного лица</label>
             </div>
-            <div class="oneLine">
-                <div class="form-floating mb-3 w-50">
+            
+                <div class="form-floating mb-3">
                     {{ p_contact_form.phone_number }}
                     {% comment %} <label for="validationPhoneNumber">Номер телефона</label> {% endcomment %}
                     {% if p_contact_form.phone_number.errors %}
@@ -30,7 +30,7 @@
                         </div>
                     {% endif %}
                 </div>
-                <div class="form-floating mb-3 w-50">
+                <div class="form-floating mb-3">
                     {{ p_contact_form.email }}
                      {% if p_contact_form.email.errors %}
                         <span class="invalid-feedback">
@@ -39,7 +39,7 @@
                     {% endif %}
                     <label for="email">Email</label>
                 </div>
-            </div>
+           
             <div class="form-floating mb-3">
                 {{ p_contact_form.message }}
                 <label for="message">Комментарий к заказу</label>
@@ -86,31 +86,3 @@
    </div>
 </form>
 
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var phoneInputs = document.querySelectorAll('.phone-mask');
-  
-      phoneInputs.forEach(function(phoneInput) {
-        // Initialize intlTelInput
-        const iti = intlTelInput(phoneInput, {
-          separateDialCode: true,
-          initialCountry: "ru", // Russia by default
-          utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js" // Include utils.js for formatting and validation
-        });
-  
-        // Function to update the phone number value (including the dial code)
-        function updatePhoneNumber() {
-          const fullNumber = iti.getNumber(); // Get the full number with dial code
-          phoneInput.value = fullNumber;       // Update the input field value
-        }
-  
-        // Listen for changes to the number
-        phoneInput.addEventListener('countrychange', updatePhoneNumber); // Use "countrychange" event
-        phoneInput.addEventListener('keyup', updatePhoneNumber);
-  
-        // Store the initial number (if any)
-        updatePhoneNumber();
-      });
-    });
-  </script>
