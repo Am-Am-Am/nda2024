@@ -20,7 +20,7 @@
 }
 
 .subheaderInfo{
-    margin-top: 40px;
+    margin-top: 80px;
 }
 
 .tab-content{
@@ -203,7 +203,7 @@
     .subheaderImage img{
         width: 100%;
         height: auto;
-        margin-bottom:20px;
+        margin-bottom:10px;
         object-fit: cover;
     }
 
@@ -230,7 +230,7 @@
     }
 
     .buttonInfo{
-        height: 60px;
+        height: 55px;
     }
 
     .subheader{
@@ -239,7 +239,7 @@
 
     .subheaderInfo{
         padding: 0px;
-        margin-top: 100px;
+        margin-top: 120px;
     }
 
 

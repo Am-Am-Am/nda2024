@@ -72,12 +72,8 @@
 
 .tumbnails-list {
     display: flex;
-    /* Enable flexbox */
     flex-wrap: wrap;
-    /* Allow items to wrap to new lines */
     justify-content: space-between;
-    /* align items to the start of container */
-    overflow: scroll;
 }
 
 .tumbnails-list .thumbnailContainer {

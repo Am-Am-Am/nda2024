@@ -70,7 +70,7 @@ class ContactForm(forms.Form):
 
     message = forms.CharField(
         required=False,
-        widget=forms.Textarea(attrs={"id": "message", "class": "form-control"}),
+        widget=forms.Textarea(attrs={"id": "message", "class": "form-control","placeholder": "Комментарий к заказу"}),
     )
 
     company_details = forms.FileField(
@@ -132,7 +132,7 @@ class PhysicalContactForm(forms.Form):
 
     message = forms.CharField(
         required=False,
-        widget=forms.Textarea(attrs={"id": "message", "class": "form-control"}),
+        widget=forms.Textarea(attrs={"id": "message", "class": "form-control","placeholder": "Комментарий к заказу"}),
     )
 
     company_details = forms.FileField(
@@ -220,7 +220,7 @@ class MailForm(forms.Form):
 
     message = forms.CharField(
         required=False,
-        widget=forms.Textarea(attrs={"id": "message", "class": "form-control", "label": "Текст писма",}),
+        widget=forms.Textarea(attrs={"id": "message", "class": "form-control", "placeholder": "Текст писма"}),
     )
 
     company_details = forms.FileField(
@@ -275,7 +275,7 @@ class CallForm(forms.Form):
     
     message = forms.CharField(
         required=False,
-        widget=forms.Textarea(attrs={"id": "message", "class": "form-control"}),
+        widget=forms.Textarea(attrs={"id": "message", "class": "form-control", "placeholder": "Текст писма",}),
     )
 
     company_details = forms.FileField(

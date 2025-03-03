@@ -454,6 +454,7 @@
 
     .tab-content {
         padding: 20px;
+        padding-bottom: 0px;
     }
 
     .physicalForm {
@@ -851,7 +852,7 @@
     }
 
     .modal-dialog {
-        margin-top: 100px;
+        margin-top: 80px;
         width: 95vw;
     }
 
