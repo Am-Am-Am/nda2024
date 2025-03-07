@@ -1,4 +1,4 @@
-<script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script> 
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script>
 
@@ -8,12 +8,12 @@
     method="post"
     enctype="multipart/form-data"
     hx-post="{% url 'cart_submit' %}"
-    hx-target="#physical_modal_form_container"
-    hx-swap="none"  
+    hx-target="#modal_form_container"
+    hx-swap="outerHTML"  
     novalidate
 >
     {% csrf_token %}
-    <div id="physical_modal_form_container"> 
+    <div id="modal_form_container"> 
         <div class="physicalForm">
             <div class="formEl">
                 <div class="form-floating mb-3">
@@ -24,19 +24,19 @@
                     <div class="form-floating mb-3 w-50">
                         {{ contact_form.phone_number }}
                         {% comment %} <label for="validationPhoneNumber">Номер телефона</label> {% endcomment %}
-                        {% if contact_form.phone_number.errors %}
+                        {% comment %} {% if contact_form.phone_number.errors %}
                             <div style="color: red">
                                 {{ contact_form.phone_number.errors }}
                             </div>
-                        {% endif %}
+                        {% endif %} {% endcomment %}
                     </div>
                     <div class="form-floating mb-3 w-50">
                         {{ contact_form.email }}
-                        {% if contact_form.email.errors %}
+                        {% comment %} {% if contact_form.email.errors %}
                             <span class="invalid-feedback">
                                 {{ contact_form.email.errors }}
                             </span>
-                        {% endif %}
+                        {% endif %} {% endcomment %}
                         <label for="email">Email</label>
                     </div>
                 </div>
@@ -62,17 +62,18 @@
                     
                 </div>
 
-            <div
+            {% comment %} <div
                     id="captcha-container"
                     class="smart-captcha mb-3"
                     data-sitekey="ysc1_sxny6cNZmnvhyJKrojDDLNxj0nvkGnTleldHzqEo9d9475ca"
                 >
-                </div>  
-                {% comment %} <div 
+                </div>   {% endcomment %}
+                
+                <div 
                     id="captcha-container"
                     class="smart-captcha"
                     data-sitekey="ysc1_VyMk6kFwNVLym6k3ga8J4WyDeBNRooy4hPhYe2tr9d2736aa"
-                ></div>  {% endcomment %}
+                ></div>  
 
                 {% if captchaError %}
                     <div class="text-danger mb-3">{{ captchaError }}</div>
@@ -107,3 +108,29 @@
     </div>
 </form>
 
+
+<script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script> 
+<script>
+    document.addEventListener('htmx:afterSwap', function(event) {
+         if (event.detail.xhr.getResponseHeader('HX-Trigger')) {
+             const trigger = JSON.parse(event.detail.xhr.getResponseHeader('HX-Trigger'));
+             if (trigger && trigger.resetCaptcha) {
+                // Переинициализируем Яндекс Капчу
+                 let captchaContainer = document.getElementById('captcha-container');
+                 captchaContainer.innerHTML = '<div class="smart-captcha" data-sitekey="ysc1_VyMk6kFwNVLym6k3ga8J4WyDeBNRooy4hPhYe2tr9d2736aa"></div>';
+                 ymaps.ready(function(){
+                    var smartCaptcha = new yaSmartCaptcha({
+                       k: 'ysc1_VyMk6kFwNVLym6k3ga8J4WyDeBNRooy4hPhYe2tr9d2736aa',
+                       invisible: false,
+                       callback: function(token){
+                          console.log(token);
+                       }
+                    })
+                 })
+
+
+             }
+         }
+     });
+  </script>
+  

@@ -45,7 +45,7 @@ class ContactForm(forms.Form):
     company_name = forms.CharField(
         label="Наименование организации",
         max_length=100,
-        required=True,
+        required=False,
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
@@ -58,7 +58,7 @@ class ContactForm(forms.Form):
     inn = forms.CharField(
         label="ИНН",
         max_length=12,
-        required=True,
+        required=False,
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
@@ -98,7 +98,7 @@ class ContactForm(forms.Form):
 
 class PhysicalContactForm(forms.Form):
     name = forms.CharField(
-        required=True,
+        required=False,
         max_length=120,
         widget=forms.TextInput(
             attrs={

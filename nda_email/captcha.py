@@ -27,6 +27,7 @@ def yandex_captcha_validation(token, client_ip):
         },
         timeout=1
     )
+    
     server_output = resp.content.decode()
     print(server_output)
     if resp.status_code != 200:

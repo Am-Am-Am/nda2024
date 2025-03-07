@@ -71,6 +71,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
 ]
 
 
@@ -218,7 +219,7 @@ EMAIL_USE_TLS = True
 
 # YANDEX CAPTCHA SETTINGS
 SECURE_REFERRER_POLICY = 'no-referrer-when-downgrade'
-YACAPTCHA_SERVER = os.getenv('SERVER_KEY')
+YACAPTCHA_SERVER = os.getenv('SERVER_KEY', 'ysc2_VyMk6kFwNVLym6k3ga8JsIctBN6nnYgcjLCWZdce1a8a26b8')
 
 
 
