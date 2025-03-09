@@ -10,7 +10,7 @@ EMAIL_PATTERN = r"([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]{2,})"
 
 class ContactForm(forms.Form):
     name = forms.CharField(
-        required=True,
+        required=False,
         max_length=120,
         widget=forms.TextInput(
             attrs={
@@ -32,7 +32,7 @@ class ContactForm(forms.Form):
         ),
     )
     email = forms.CharField(
-        required=False,
+        required=True,
         widget=forms.TextInput(
             attrs={
                 "placeholder": "example@example.ru",
@@ -120,7 +120,7 @@ class PhysicalContactForm(forms.Form):
         ),
     )
     email = forms.CharField(
-        required=False,
+        required=True,
         widget=forms.TextInput(
             attrs={
                 "placeholder": "example@example.ru",
@@ -160,7 +160,7 @@ class PhysicalContactForm(forms.Form):
 
 class MailForm(forms.Form):
     name = forms.CharField(
-        required=True,
+        required=False,
         max_length=120,
         widget=forms.TextInput(
             attrs={
@@ -182,7 +182,7 @@ class MailForm(forms.Form):
         ),
     )
     email = forms.CharField(
-        required=False,
+        required=True,
         widget=forms.TextInput(
             attrs={
                 "placeholder": "example@example.ru",
@@ -195,7 +195,7 @@ class MailForm(forms.Form):
     company_name = forms.CharField(
         label="Наименование организации",
         max_length=100,
-        required=True,
+        required=False,
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
@@ -208,7 +208,7 @@ class MailForm(forms.Form):
     inn = forms.CharField(
         label="ИНН",
         max_length=12,
-        required=True,
+        required=False,
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
@@ -262,7 +262,7 @@ class CallForm(forms.Form):
         ),
     )
     phone_number = forms.CharField(
-        required=False,
+        required=True,
         widget=forms.TextInput(
             attrs={
                 "placeholder": "Номер телефона",

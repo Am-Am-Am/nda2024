@@ -4,7 +4,7 @@ from celery import shared_task
 from django.core.mail import EmailMessage
 from nda.settings import EMAIL_HOST_USER, RECIPIENT_EMAIL
 from nda_email.temporary_storage import temporary_storage
-
+from django.core.files import File
 logger = logging.getLogger(__name__) 
 
 @shared_task(bind=True, autoretry_for=(Exception,), retry_kwargs={'max_retries': 5, 'countdown': 60})
@@ -44,10 +44,17 @@ def send_emails_task(self, html_message_for_nda, html_message_for_customer, cust
             logger.info(f"storaged_file_path: {storaged_file_path}")
 
             if temporary_storage.exists(file_name):
-                email_for_nda.attach_file(storaged_file_path)
-                email_for_customer.attach_file(storaged_file_path)
-                temporary_storage.delete(file_name)
-                logger.info("File attached and deleted")
+                try:
+                    with temporary_storage.open(file_name, 'rb') as f:
+                        file = File(f)
+                        email_for_nda.attach(file_name, file.read())
+                        email_for_customer.attach(file_name, file.read())
+                    logger.info("File attached")
+                except Exception as e:
+                    logger.error(f"Failed to attach file {file_name}. Error: {e}")
+                finally:
+                    temporary_storage.delete(file_name)
+                    logger.info("File deleted")
             else:
                 logger.warning(f"File {file_name} not found in temporary storage. Skipping attachment.")
 

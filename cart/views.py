@@ -88,44 +88,39 @@ def cart_modal(request):
 
 def cart_submit(request):
     form = ContactForm(request.POST, request.FILES)
-    token = request.POST.get('smart-token')
-    client_ip = get_client_ip(request)
     offers = get_cart_offers(request)
-    context = {'contact_form': form}
-
-    if not yandex_captcha_validation(token, client_ip):
-        # Сброс капчи и добавление ошибки в форму
-        response = HttpResponse(status=400)  
-        response['HX-Trigger'] = json.dumps({
-            "showError": "Докажите, что вы не робот",
-           
-        })
-        return response
-    
+    if request.session.get('captcha_passed', False):
+        pass 
+    else:
+        token = request.POST.get('smart-token')
+        client_ip = get_client_ip(request)
+        if not yandex_captcha_validation(token, client_ip):
+            response = HttpResponse(status=400)
+            response['HX-Trigger'] = json.dumps({"showError": "Докажите, что вы не робот", "reloadPage": True})
+            return response
+        else:
+            request.session['captcha_passed'] = True
+            request.session.set_expiry(600)  
     if form.is_valid():
         try:
-            LegalEntityEmailSender.send_messages(request, offers)
+            LegalEntityEmailSender().send_messages(request, offers)
             cart_clear(request)
             response = HttpResponse(status=200)
-            response['HX-Trigger'] = json.dumps({"showMessage": "Запрос отправлен",  "reloadPage": True})
+            response['HX-Trigger'] = json.dumps({"showMessage": "Запрос отправлен", "reloadPage": True})
+            del request.session['captcha_passed']
             return response
-        
         except Exception as e:
-            logger.exception("Ошибка при отправке формы для юридических лиц")  
-            response = HttpResponse(status=500) 
-            response['HX-Trigger'] = json.dumps({"showError": "Сообщение не отправлено"})
-            return render(request, 'nda_email/contactform.html', context)
+            logger.exception("Ошибка при отправке сообщения")
+            response = HttpResponse(status=500)
+            response['HX-Trigger'] = json.dumps({"showError": "Форма не отправлена"})
+            return response
     else:
-        # Сбор ошибок формы
         errors = dict(form.errors.items())
-        
-        # Форматируем ошибки для вывода
         error_message = ""
         for field, messages in errors.items():
             error_message += f"{field}: {messages[0]}\n"
-        
-        # Рендеринг формы с ошибками
-        response = render(request, 'nda_email/contactform.html', context)
+
+        response = HttpResponse(status=400)  
         response['HX-Trigger'] = json.dumps({
             "showError": error_message,
         })
@@ -134,68 +129,26 @@ def cart_submit(request):
 @require_POST
 def physical_cart_submit(request):
     form = PhysicalContactForm(request.POST, request.FILES) 
-    token = request.POST.get('smart-token')
-    client_ip = get_client_ip(request)
     offers = get_cart_offers(request)
-    context = {'contact_form': form}
-
-    if not yandex_captcha_validation(token, client_ip):
-        response = HttpResponse(status=400)  
-        response['HX-Trigger'] = json.dumps({
-            "showError": "Докажите, что вы не робот",
-            "resetCaptcha": True,  
-            "reloadPage": True
-        })
-        
-        context['captchaError'] = "Докажите что вы не робот"
-        return response
-    
-
+    if request.session.get('captcha_passed', False):
+        pass 
+    else:
+        token = request.POST.get('smart-token')
+        client_ip = get_client_ip(request)
+        if not yandex_captcha_validation(token, client_ip):
+            response = HttpResponse(status=400)
+            response['HX-Trigger'] = json.dumps({"showError": "Докажите, что вы не робот", "reloadPage": True})
+            return response
+        else:
+            request.session['captcha_passed'] = True
+            request.session.set_expiry(600)  
     if form.is_valid():
         try:
             PhysicalPersonEmailSender.send_messages(request, offers)
             cart_clear(request)
             response = HttpResponse(status=200)
             response['HX-Trigger'] = json.dumps({"showMessage": "Запрос отправлен", "reloadPage": True})
-            return response
-        except Exception as e:
-            logger.exception("Ошибка при отправке формы для юридических лиц")  
-            response = HttpResponse(status=500) 
-            response['HX-Trigger'] = json.dumps({"showError": "Сообщение не отправлено"})
-            return render(request, 'nda_email/physical_contact_form.html', context)
-    else:
-        # Сбор ошибок формы
-        errors = dict(form.errors.items())
-        
-        # Форматируем ошибки для вывода
-        error_message = ""
-        for field, messages in errors.items():
-            error_message += f"{field}: {messages[0]}\n"
-        
-        # Рендеринг формы с ошибками
-        response = render(request, 'nda_email/physical_contact_form.html', context)
-        response['HX-Trigger'] = json.dumps({
-            "showError": error_message,
-            "resetCaptcha": True  
-        })
-        return response
-
-@require_POST
-def mail_submit(request):
-    form = MailForm(request.POST, request.FILES)
-    token = request.POST.get('smart-token')
-    client_ip = get_client_ip(request)
-
-    if not yandex_captcha_validation(token, client_ip):
-        response = HttpResponse(status=400)
-        response['HX-Trigger'] = json.dumps({"showError": "Докажите, что вы не робот", "reloadPage": True})
-        return response
-
-    if form.is_valid():
-        try:
-            MailFormEmailSender.send_messages(request)
-            response = HttpResponse(status=200)
-            response['HX-Trigger'] = json.dumps({"showMessage": "Запрос отправлен", "reloadPage": True})
+            del request.session['captcha_passed']
             return response
         except Exception as e:
             logger.exception("Ошибка при отправке сообщения")
@@ -203,29 +156,22 @@ def mail_submit(request):
             response['HX-Trigger'] = json.dumps({"showError": "Форма не отправлена"})
             return response
     else:
-        # Сбор ошибок формы
         errors = dict(form.errors.items())
-
-        # Форматируем ошибки для вывода
         error_message = ""
         for field, messages in errors.items():
             error_message += f"{field}: {messages[0]}\n"
 
-        # Рендеринг формы с ошибками
-        context = {'contact_form': form}  # Add form to context
-        response = render(request, 'nda_email/contactform.html', context)  # Render the template
+        response = HttpResponse(status=400)  
         response['HX-Trigger'] = json.dumps({
             "showError": error_message,
         })
         return response
 
 @require_POST
-def call_submit(request):
-    form = CallForm(request.POST, request.FILES)
-    # Check if captcha is already passed in session
+def mail_submit(request):
+    form = MailForm(request.POST, request.FILES)
     if request.session.get('captcha_passed', False):
-        # Капча уже пройдена, пропускаем проверку
-        pass  # Дальше пойдет код с отправкой формы
+        pass  
     else:
         token = request.POST.get('smart-token')
         client_ip = get_client_ip(request)
@@ -235,16 +181,14 @@ def call_submit(request):
             response['HX-Trigger'] = json.dumps({"showError": "Докажите, что вы не робот", "reloadPage": True})
             return response
         else:
-            # Капча пройдена, устанавливаем флаг в сессии
             request.session['captcha_passed'] = True
-            request.session.set_expiry(600)  # 10 минут (600 секунд)
+            request.session.set_expiry(600) 
 
     if form.is_valid():
         try:
             CallFormEmailSender.send_messages(request)
             response = HttpResponse(status=200)
             response['HX-Trigger'] = json.dumps({"showMessage": "Запрос отправлен", "reloadPage": True})
-            # После успешной отправки очищаем сессию (опционально)
             del request.session['captcha_passed']
             return response
         except Exception as e:
@@ -253,76 +197,55 @@ def call_submit(request):
             response['HX-Trigger'] = json.dumps({"showError": "Форма не отправлена"})
             return response
     else:
-        # Сбор ошибок формы
         errors = dict(form.errors.items())
-
-        # Форматируем ошибки для вывода
         error_message = ""
         for field, messages in errors.items():
             error_message += f"{field}: {messages[0]}\n"
 
-        # Рендеринг формы с ошибками
-        context = {'contact_form': form}  # Add form to context
-        response = render(request, 'nda_email/contactform.html', context)  # Render the template
+        response = HttpResponse(status=400)  
+        response['HX-Trigger'] = json.dumps({
+            "showError": error_message,
+        })
+        return response
+
+@require_POST
+def call_submit(request):
+    form = CallForm(request.POST, request.FILES)
+    if request.session.get('captcha_passed', False):
+        pass 
+    else:
+        token = request.POST.get('smart-token')
+        client_ip = get_client_ip(request)
+
+        if not yandex_captcha_validation(token, client_ip):
+            response = HttpResponse(status=400)
+            response['HX-Trigger'] = json.dumps({"showError": "Докажите, что вы не робот", "reloadPage": True})
+            return response
+        else:
+            request.session['captcha_passed'] = True
+            request.session.set_expiry(600) 
+
+    if form.is_valid():
+        try:
+            CallFormEmailSender.send_messages(request)
+            response = HttpResponse(status=200)
+            response['HX-Trigger'] = json.dumps({"showMessage": "Запрос отправлен", "reloadPage": True})
+            del request.session['captcha_passed']
+            return response
+        except Exception as e:
+            logger.exception("Ошибка при отправке сообщения")
+            response = HttpResponse(status=500)
+            response['HX-Trigger'] = json.dumps({"showError": "Форма не отправлена"})
+            return response
+    else:
+        errors = dict(form.errors.items())
+        error_message = ""
+        for field, messages in errors.items():
+            error_message += f"{field}: {messages[0]}\n"
+
+        response = HttpResponse(status=400)  
         response['HX-Trigger'] = json.dumps({
             "showError": error_message,
         })
         return response
         
-
-        # @require_POST
-# def cart_submit(request):
-#     form = ContactForm(request.POST, request.FILES)
-#     token = request.POST.get('smart-token')
-#     client_ip = get_client_ip(request)
-#     offers = get_cart_offers(request)
-#     context = {'contact_form': form}
-
-#     if not yandex_captcha_validation(token, client_ip):
-#         context['captchaError'] = "Докажите что вы не робот" 
-#         return render(request, 'nda_email/contactform.html', context)
-#     if form.is_valid():
-#         try:
-#             LegalEntityEmailSender.send_messages(request, offers)
-#         except Exception as e:
-#             print(f'email_send failed due to: {e}')
-#             response = HttpResponse(status=500)
-#             response['HX-Trigger'] = json.dumps({"showError": "Сообщение не отправлено"})
-#             return render(request, 'nda_email/contactform.html', context)
-#         cart_clear(request)
-#         return HttpResponse(
-#             status=200,
-#             headers={
-#                 'HX-Trigger': json.dumps({
-#                     "showMessage": "Запрос отправлен"
-#                 })
-#             })
-#     return render(request, 'nda_email/contactform.html', {'contact_form': form}, context)
-
-# @require_POST
-# def aplication_submit(request):
-#     form = ApplicationForm(request.POST)
-#     token = request.POST.get('smart-token')
-#     client_ip = get_client_ip(request)
-#     offers = get_cart_offers(request)
-#     if not yandex_captcha_validation(token, client_ip):
-#         response = render(request, 'nda_email/contactform.html', {'contact_form': form})
-#         response['HX-Trigger'] = json.dumps({"showError": "Докажите что вы не робот"})
-#         return response
-#     if form.is_valid():
-#         try:
-#             EmailSender.send_messages(request, offers)
-#         except Exception as e:
-#             print(f'email_send failed due to: {e}')
-#             response = HttpResponse(status=500)
-#             response['HX-Trigger'] = json.dumps({"showError": "Сообщение не отправлено"})
-#             return response
-#         cart_clear(request)
-#         return HttpResponse(
-#             status=204,
-#             headers={
-#                 'HX-Trigger': json.dumps({
-#                     "showMessage": "Запрос отправлен"
-#                 })
-#             })
-#     return render(request, 'nda_email/callModal.html', {'contact_form': form})

@@ -31,7 +31,7 @@ class LegalEntityEmailSender:  # Класс для отправки писем �
             'inn': inn,
             'name': name,
         }
-        if offers:  # Проверяем, не пуст ли список offers
+        if offers:  
             context['offers'] = offers
 
         html_message_for_nda = render_to_string(
