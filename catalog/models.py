@@ -51,7 +51,7 @@ class BaseFields(models.Model):
         default=Status.DRAFT,
         verbose_name='Статус показа на страницах'
     )
-
+    
     objects = models.Manager()
     visible = NotHidden()
 
@@ -149,15 +149,7 @@ class Category(BaseFields):
         max_length=256,
         verbose_name='Название | Заголовок'
     )
-
-    characteristics = CKEditor5Field(
-        default='',
-        null=True,
-        blank=True,
-        verbose_name='Характеристики',
-        config_name='default'
-    )
-
+    
     brand = models.ForeignKey(
         Brand,
         on_delete=models.SET_NULL,
@@ -173,6 +165,16 @@ class Category(BaseFields):
         related_name='children',
         symmetrical=False
     )
+
+    characteristics = CKEditor5Field(
+        default='',
+        null=True,
+        blank=True,
+        verbose_name='Характеристики',
+        config_name='default'
+    )
+
+
     
     logo = models.ImageField(
         upload_to='category/logo',
@@ -297,6 +299,15 @@ class Offer(BaseFields):
         max_length=128,
         verbose_name='Артикул'
     )
+    category = models.ForeignKey(
+        Product,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='offer',
+        verbose_name='Товар, к которому принадлежит код'
+    )
+    
     text_description = models.TextField(
         default='',
         null=True,
@@ -315,14 +326,7 @@ class Offer(BaseFields):
         null=True,
         blank=True,
     )
-    category = models.ForeignKey(
-        Product,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='offer',
-        verbose_name='Товар, к которому принадлежит код'
-    )
+    
 
     characteristics = models.FileField(
         upload_to='characteristics/',  # Папка для сохранения файлов характеристик

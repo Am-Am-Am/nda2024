@@ -32,12 +32,13 @@ SECRET_KEY = 'django-insecure-=j#*b5xl1dgzvmdrf9zc+qae3z7^uqie)rao-_*okz+=tboh2-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '').split(',')
 
 logging.basicConfig(level=logging.INFO)
 # Application definition
 
 INSTALLED_APPS = [
+    'django_prometheus',
     'debug_toolbar',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -56,12 +57,12 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'sorl.thumbnail',
     'phonenumber_field',
-    # 'ckeditor',
     'django.contrib.sitemaps',
-    'django_ckeditor_5',
+    'django_ckeditor_5'
 ]
 
 MIDDLEWARE = [
+    'django_prometheus.middleware.PrometheusBeforeMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -72,6 +73,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django_prometheus.middleware.PrometheusAfterMiddleware',
 ]
 
 
@@ -114,11 +116,12 @@ WSGI_APPLICATION = 'nda.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        # 'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django_prometheus.db.backends.postgresql',
         'NAME': os.getenv('DB_NAME', 'nda'),
         'USER': os.getenv('DB_USER', 'root'),
         'PASSWORD': os.getenv('DB_USER_PASSWORD', 'root'),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
+        'HOST': os.getenv('DB_HOST', 'db'),
         'PORT': os.getenv('DB_PORT', '5432'),
      
     }
@@ -126,8 +129,7 @@ DATABASES = {
 
 CACHES = {
     "default": {
-        "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "BACKEND": 'django.core.cache.backends.dummy.DummyCache',
+        "BACKEND": "django.core.cache.backends.dummy.DummyCache",
         "LOCATION": "redis://127.0.0.1:6379",
     }
 }
@@ -184,7 +186,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = ('static',)
+# STATICFILES_DIRS = ('static',)
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Default primary key field type
@@ -381,4 +384,10 @@ CKEDITOR_5_CONFIGS = {
 # Custom CSS for Dark Mode Fix
 CKEDITOR_5_CUSTOM_CSS = 'css/admin_dark_mode_fix.css'
 
+DEBUG_TOOLBAR_CONFIG = {
+    "SHOW_TOOLBAR_CALLBACK": lambda request: not request.path.startswith('/metrics/'),
+}
+
 ADMINS = [("Ivan", "terryjj0@gmail.com")]
+PROMETHEUS_LATENCY_BUCKETS = (.1, .2, .5, .8, 1.0, 2.0)
+PROMETHEUS_METRIC_URL = '/metrics/metrics'  # Явное указание пути

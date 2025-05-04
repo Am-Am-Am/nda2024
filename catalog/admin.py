@@ -132,7 +132,6 @@ class CategoryAdmin(admin.ModelAdmin):
         form = super(CategoryAdmin, self).get_form(request, obj, **kwargs)
         qs = form.base_fields["parents"].queryset
 
-        # Фильтруем queryset, исключая категории is_null и без дочерних категорий
         filtered_qs = qs.select_related("brand").exclude(
             is_final=True
         ).distinct()
@@ -145,8 +144,6 @@ class CategoryAdmin(admin.ModelAdmin):
         
         queryset = queryset.filter(is_final=False)
      
-        # queryset = queryset.exclude(children__isnull=True)
-        
         return queryset
     
 

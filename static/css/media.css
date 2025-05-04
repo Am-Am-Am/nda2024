@@ -21,9 +21,16 @@
         height: 864px;
     }
 
-
 }
 
+@media(width > 1920px){
+    .product_bg{
+        width: 50vw;
+        height: 60vh;
+        margin-right: 20vw;
+        position: absolute;
+    }
+}
 
 @media(min-width: 1920px) {
     .container1 {
@@ -40,7 +47,6 @@
         height: 100vh;
     }
 
-
     .slider .subheaderInfo {
         padding: 20px;
         height: 100%;
@@ -54,7 +60,6 @@
     .subheaderImage {
         height: auto;
     }
-
 }
 
 

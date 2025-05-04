@@ -1,0 +1,17 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'django'
+    metrics_path: '/metrics'  # Соответствует вашему пути
+    static_configs:
+      - targets: ['web:8000']  # Важно использовать имя сервиса
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: django_app
+    scrape_timeout: 10s
+
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['postgres-exporter:9187']

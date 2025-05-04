@@ -18,10 +18,10 @@
     
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://smartcaptcha.yandexcloud.net/captcha.js" async defer></script>
+    {% comment %} <script src="https://smartcaptcha.yandexcloud.net/captcha.js" async defer></script> {% endcomment %}
     <script src="{% static 'htmx/htmx.min.js' %}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script>
+    {% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script> {% endcomment %}
 
     {% block links %}
     
@@ -33,16 +33,14 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 
-        <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
-    <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <script src="https://www.google.com/recaptcha/api.js"></script>
 
     <link rel="stylesheet" href="{% static 'css/style.css'%}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/media.css'%}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slick-theme.css'%}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slick.css'%}" type="text/css">
     {% block styles %}
 
     {% endblock %}
@@ -96,11 +94,12 @@
     <script src="{% static "scripts/buttonInFormController.js" %}"></script>
     <script src="{% static "scripts/tableScript.js" %}"></script>
     <script src="{% static 'scripts/offers-htmx-handlers.js' %}"></script>
-    <script src="{% static 'scripts/phoneMask.js' %}"></script>
+    {% comment %} <script src="{% static 'scripts/phoneMask.js' %}"></script> {% endcomment %}
     <script src="{% static 'scripts/formFiles.js' %}"></script>
     <script src="{% static 'scripts/cookieScript.js' %}"></script>
     <script src="{% static 'scripts/closeForms.js' %}"></script>
-    <script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script> 
+    {% comment %} <script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script>  {% endcomment %}
+    <script src="{% static 'scripts/slick.min.js' %}"></script>
   
 
     <script>
