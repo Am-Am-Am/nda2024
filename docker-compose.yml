@@ -130,5 +130,5 @@ networks:
 volumes:
   postgres_data:
   grafana_data:
-  static_volume:  # Добавьте это
+  static_volume:  
   media_volume: 

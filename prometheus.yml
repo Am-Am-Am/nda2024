@@ -3,9 +3,9 @@ global:
 
 scrape_configs:
   - job_name: 'django'
-    metrics_path: '/metrics'  # Соответствует вашему пути
+    metrics_path: '/metrics'  
     static_configs:
-      - targets: ['web:8000']  # Важно использовать имя сервиса
+      - targets: ['web:8000']  
     relabel_configs:
       - source_labels: [__address__]
         target_label: instance

@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+spec:
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      initContainers:
+      - name: wait-for-db
+        image: busybox
+        command: ['sh', '-c', 'until nc -z db 5432; do echo "Waiting for PostgreSQL..."; sleep 1; done; echo "PostgreSQL is ready"']
+      - name: migrate
+        image: nda2024-1/nda2024-1:latest
+        command: ["python", "manage.py", "migrate"]
+        envFrom:
+        - secretRef:
+            name: django-secrets
+        - configMapRef:
+            name: django-config
+        volumeMounts:
+        - name: app-code
+          mountPath: /NDA2024-1
+        - name: static-volume
+          mountPath: /NDA2024-1/staticfiles
+        - name: media-volume
+          mountPath: /NDA2024-1/media
+      - name: create-superuser
+        image: nda2024-1/nda2024-1:latest
+        command: ["sh", "-c", "if [ -n \"$DJANGO_SUPERUSER_USERNAME\" ]; then python manage.py createsuperuser --noinput --username $DJANGO_SUPERUSER_USERNAME --email $DJANGO_SUPERUSER_EMAIL || true; fi"]
+        envFrom:
+        - secretRef:
+            name: django-secrets
+        - configMapRef:
+            name: django-config
+        volumeMounts:
+        - name: app-code
+          mountPath: /NDA2024-1
+      containers:
+      - name: django
+        image: nda2024-1/nda2024-1:latest
+        command: ["gunicorn", "nda.wsgi:application", "--bind", "0.0.0.0:8000"]
+        ports:
+        - containerPort: 8000
+        envFrom:
+        - secretRef:
+            name: django-secrets
+        - configMapRef:
+            name: django-config
+        volumeMounts:
+        - name: app-code
+          mountPath: /NDA2024-1
+        - name: static-volume
+          mountPath: /NDA2024-1/staticfiles
+        - name: media-volume
+          mountPath: /NDA2024-1/media
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "1000m"
+        livenessProbe:
+          httpGet:
+            path: /health/
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health/
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+      volumes:
+      - name: app-code
+        persistentVolumeClaim:
+          claimName: app-code-pvc
+      - name: static-volume
+        persistentVolumeClaim:
+          claimName: static-pvc
+      - name: media-volume
+        persistentVolumeClaim:
+          claimName: media-pvc

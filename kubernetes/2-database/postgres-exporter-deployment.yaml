@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-exporter
+spec:
+  selector:
+    matchLabels:
+      app: postgres-exporter
+  template:
+    metadata:
+      labels:
+        app: postgres-exporter
+    spec:
+      containers:
+      - name: postgres-exporter
+        image: prometheuscommunity/postgres-exporter
+        envFrom:
+        - secretRef:
+            name: postgres-exporter-secret
+        ports:
+        - containerPort: 9187
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
